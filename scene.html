@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>memoryOS — scene</title>
+  <link rel="stylesheet" href="src/style.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./vendor/three/build/three.module.js",
+      "three/examples/jsm/": "./vendor/three/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body class="viewer">
+  <a class="back-link" href="./">&larr; scenes</a>
+
+  <div id="overlay" class="overlay">
+    <h1 id="scene-title">Scene</h1>
+    <p>Guided walkthrough &middot; drag to look around</p>
+  </div>
+
+  <div id="locus-panel" class="locus-panel">
+    <span id="locus-progress" class="locus-progress"></span>
+    <h2 id="locus-title"></h2>
+    <p id="locus-description"></p>
+  </div>
+
+  <div id="transport" class="transport">
+    <button id="btn-prev" type="button">Prev</button>
+    <button id="btn-playpause" type="button">Pause</button>
+    <button id="btn-next" type="button">Next</button>
+    <button id="btn-restart" type="button">Restart</button>
+  </div>
+
+  <div id="loading" class="loading">Loading scene&hellip;</div>
+  <div id="error-box" class="error-box"></div>
+
+  <canvas id="viewer-canvas"></canvas>
+  <script type="module" src="src/scene.js"></script>
+</body>
+</html>
