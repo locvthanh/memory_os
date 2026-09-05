@@ -4,6 +4,8 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { buildLoci } from './loci.js';
 import { Walkthrough } from './Walkthrough.js';
 import { LocusOverlay } from './LocusOverlay.js';
+import { buildLocusLabels } from './LocusLabels.js';
+import { FreeMove } from './FreeMove.js';
 
 const SKY = 0x87b6d9;
 
@@ -67,6 +69,7 @@ export class Viewer {
       this.scene.add(model);
 
       const loci = buildLoci(model, this.config);
+      this.scene.add(buildLocusLabels(loci));
       this.overlay = new LocusOverlay(loci.length);
       this.walkthrough = new Walkthrough({
         camera: this.camera,
@@ -75,6 +78,8 @@ export class Viewer {
         config: this.config,
         onLocusChange: (i, locus) => this.overlay.show(i, locus),
       });
+      this.freeMove = new FreeMove({ root: document.body });
+      this.freeModeActive = false;
 
       this._wireTransport();
       document.getElementById('loading').classList.add('hidden');
@@ -101,6 +106,27 @@ export class Viewer {
       this.walkthrough.setPaused(false);
       playpause.textContent = 'Pause';
     });
+
+    const freemoveBtn = document.getElementById('btn-freemove');
+    const overlay = document.getElementById('overlay');
+    const locusPanel = document.getElementById('locus-panel');
+    freemoveBtn.addEventListener('click', () => {
+      this.freeModeActive = !this.freeModeActive;
+      this.walkthrough.setFreeMode(this.freeModeActive);
+      if (this.freeModeActive) {
+        this.freeMove.show();
+        freemoveBtn.textContent = 'Tour Mode';
+        freemoveBtn.classList.add('active');
+        overlay.hidden = true;
+        locusPanel.hidden = true;
+      } else {
+        this.freeMove.hide();
+        freemoveBtn.textContent = 'Free Move';
+        freemoveBtn.classList.remove('active');
+        overlay.hidden = false;
+        locusPanel.hidden = false;
+      }
+    });
   }
 
   _onResize() {
@@ -112,8 +138,12 @@ export class Viewer {
   _animate() {
     requestAnimationFrame(() => this._animate());
     const dt = Math.min(0.05, this.clock.getDelta());
-    this.walkthrough.update(dt);
-    if (this.controls.enabled) this.controls.update();
+    if (this.freeModeActive) {
+      this.freeMove.update(dt, this.camera, this.controls); // pins target + calls controls.update() itself
+    } else {
+      this.walkthrough.update(dt);
+      if (this.controls.enabled) this.controls.update();
+    }
     this.renderer.render(this.scene, this.camera);
   }
 }

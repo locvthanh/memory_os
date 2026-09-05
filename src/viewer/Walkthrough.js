@@ -2,6 +2,18 @@ import * as THREE from 'three';
 
 const smoothstep = (t) => t * t * (3 - 2 * t);
 
+// Shared by Walkthrough's dwell phase and FreeMove: keeps OrbitControls'
+// target a fixed distance in front of the camera so dragging only rotates
+// (never pans/zooms), regardless of who last moved the camera.
+export function pinTargetInFrontOf(camera, controls, lookDistance) {
+  const fwd = new THREE.Vector3();
+  camera.getWorldDirection(fwd);
+  controls.target.copy(camera.position).addScaledVector(fwd, lookDistance);
+  controls.minDistance = lookDistance;
+  controls.maxDistance = lookDistance;
+  controls.update();
+}
+
 // System-controlled camera rig.
 //  - "travel" phase: rig drives the camera from one locus anchor to the
 //    next; user input is ignored.
@@ -74,14 +86,7 @@ export class Walkthrough {
   }
 
   _pinLookTarget() {
-    const fwd = new THREE.Vector3();
-    this.camera.getWorldDirection(fwd);
-    this.controls.target
-      .copy(this.camera.position)
-      .addScaledVector(fwd, this.lookDistance);
-    this.controls.minDistance = this.lookDistance;
-    this.controls.maxDistance = this.lookDistance;
-    this.controls.update();
+    pinTargetInFrontOf(this.camera, this.controls, this.lookDistance);
   }
 
   _startTravel(toIndex) {
@@ -126,7 +131,17 @@ export class Walkthrough {
     this.paused = p;
   }
 
+  // Suspend/resume rails control for FreeMove. Entering freezes travel/dwell
+  // timers so they don't fight the free camera; leaving snaps back to the
+  // current stop's official anchor/look so the tour resumes predictably.
+  setFreeMode(active) {
+    this.freeMode = active;
+    if (!active) this._applyStop(this.index);
+  }
+
   update(dt) {
+    if (this.freeMode) return;
+
     if (this.phase === 'travel') {
       this.clock += dt;
       const t = smoothstep(Math.min(1, this.clock / this.travelSeconds));
