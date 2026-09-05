@@ -34,6 +34,7 @@ export function buildLoci(gltfScene, config) {
         description: cfg.description || '',
         position: p,
         anchorFrom: cfg.anchorFrom || null,
+        link: cfg.link || null,
       };
     });
 
