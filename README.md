@@ -47,3 +47,12 @@ site works both locally and under the GitHub Pages project path
 4. Add an entry to `src/scenes/index.js`.
 
 See `CLAUDE.md` for the Blender / Blender-MCP workflow and its gotchas.
+
+## Music credits
+
+Per-scene ambient background tracks (`audio/<id>.mp3`), Kevin MacLeod
+(incompetech.com), licensed under Creative Commons: By Attribution 4.0
+(https://creativecommons.org/licenses/by/4.0/):
+
+- `chinatown-street.mp3` — "Mystery Bazaar"
+- `portal-island.mp3` — "Floating Cities"

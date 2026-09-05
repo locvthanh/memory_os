@@ -6,6 +6,7 @@ import { Walkthrough } from './Walkthrough.js';
 import { LocusOverlay } from './LocusOverlay.js';
 import { buildLocusLabels } from './LocusLabels.js';
 import { FreeMove } from './FreeMove.js';
+import { MusicPlayer } from './MusicPlayer.js';
 
 const SKY = 0x87b6d9;
 
@@ -85,6 +86,7 @@ export class Viewer {
 
       this._wireTransport();
       this._wireLocusPicking();
+      this._wireMusic();
       document.getElementById('locus-close').addEventListener('click', () => {
         document.getElementById('locus-panel').hidden = true;
       });
@@ -117,6 +119,22 @@ export class Viewer {
 
     document.getElementById('btn-freemove').addEventListener('click', () => {
       this._setFreeMode(!this.freeModeActive);
+    });
+  }
+
+  _wireMusic() {
+    if (!this.config.music) return;
+    this.music = new MusicPlayer({ src: this.config.music });
+
+    const btn = document.getElementById('btn-music');
+    btn.hidden = false;
+    const sync = () => {
+      btn.textContent = this.music.muted ? '\u{1F507}' : '\u{1F508}';
+    };
+    sync();
+    btn.addEventListener('click', () => {
+      this.music.toggleMute();
+      sync();
     });
   }
 

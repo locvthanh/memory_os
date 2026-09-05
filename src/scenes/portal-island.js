@@ -33,6 +33,7 @@ const PLAZA = [-0.51, 0, -0.79]; // gate-ring centre, three.js space
 const SQUARE = [-23.14, 0, -23.42]; // Rosetta square centre
 
 export default {
+  music: 'audio/portal-island.mp3',
   walkthrough: {
     travelSeconds: 5,
     dwellSeconds: 6,

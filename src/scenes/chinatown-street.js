@@ -13,6 +13,7 @@
 // `position` is the three.js-space fallback; the real positions come from
 // the Locus_01..06 empties injected into the glb by scripts/build_glb.py.
 export default {
+  music: 'audio/chinatown-street.mp3',
   walkthrough: {
     travelSeconds: 4,
     dwellSeconds: 6,
