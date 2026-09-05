@@ -14,7 +14,7 @@ $src  = "C:\Users\ASUS\Desktop\Loc\blender\blender_models"
 $script = Join-Path $PSScriptRoot "build_glb.py"
 
 $map = @{
-    "chinatown-street" = "ChinatownStreet.blend"
+    "chinatown-street" = "chinatown_street.blend"
     "coffee-shop"      = "CoffeeShop.blend"
     "luan-hoi-dai"     = "LuanHoiDai.blend"
     "writing-room"     = "PhongVietLachTacGia.blend"

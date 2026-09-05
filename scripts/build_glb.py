@@ -16,17 +16,23 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # id -> ordered locus positions in Blender coords (x, y, z-up). z ~ eye height.
 # Starting values; refine by eye in the viewer then re-export.
 SCENES = {
-    # Zigzag down the lane: gate, then alternating N/S shopfronts. Offsetting
-    # the loci onto the sidewalks (not the centreline) is what gives the camera
-    # rig a sideways "look across the street" angle instead of shoving it along
-    # the street axis into open sky.
+    # chinatown_street.blend (2026-09-05 source): street runs along Blender Y
+    # (camera start ~y0, paifang gate ~y44). Zigzag down the lane: gate end
+    # first, alternating shopfronts, ending short of y=8 where the hanging
+    # lanterns start (HangingLanterns spans y~8-26) -- "where the lamps fade
+    # out". x = +-3.5 sits just off each shopfront's street-facing edge (front
+    # faces are at |x|~3-4) rather than the shop's own centre (|x|~9), because
+    # `position` here is the *look-at* target and the web app's sideView rig
+    # anchors the camera further out on the opposite side of that offset --
+    # see Walkthrough.js. Supersedes the old ChinatownStreet.blend source (see
+    # git history / build_glb.ps1) which ran its street along X instead.
     "chinatown-street": [
-        [-9, 3.5, 2.4],   # north shopfront, by the gate
-        [-5, -3.5, 2.4],  # south shopfront
-        [-2, 3.5, 2.4],   # north shopfront
-        [2, -3.5, 2.4],   # south shopfront
-        [5, 3.5, 2.4],    # north shopfront
-        [9, -3.5, 2.4],   # south shopfront, east end
+        [3.5, 41.8, 2.4],   # ShopR8, right by the gate
+        [-3.5, 39.5, 2.4],  # ShopL6
+        [3.5, 26.2, 2.4],   # ShopR5
+        [-3.5, 21.8, 2.4],  # ShopL3
+        [3.5, 8.95, 2.4],   # ShopR1
+        [-3.5, 4.32, 2.4],  # ShopL0, past where the lanterns start
     ],
     "coffee-shop": [
         [0, 3.0, 1.0], [-2.8, 4.0, 1.0], [2.8, 4.0, 1.0],
@@ -83,10 +89,14 @@ def _solid_mat(name, rgb):
 
 
 def add_chinatown_ground():
-    """The .blend only has a short road + sidewalk strip (x within +-10), so
-    past the middle of the street you see straight through to the flat blue
-    background. Lay a large ground slab under everything and run the road and
-    raised sidewalks the full length of the building rows."""
+    """Legacy fix for the old ChinatownStreet.blend source, which only had a
+    short road + sidewalk strip (x within +-10) so past the middle of the
+    street you saw straight through to flat blue background. Lay a large
+    ground slab under everything and run the road and raised sidewalks the
+    full length of the building rows. Not needed for the current
+    chinatown_street.blend source, which already has a full-length ground
+    plane -- only called when the legacy PaifangGate collection is present,
+    see main()."""
     coll = bpy.data.collections.get("Ground") or bpy.context.scene.collection
     ground = _solid_mat("M_GroundFill", (0.20, 0.18, 0.17))
     road = _mat("M_Road") or ground
@@ -98,11 +108,10 @@ def add_chinatown_ground():
 
 
 def rebuild_chinatown_gate():
-    """The .blend's paifang has short pillars that don't reach the beam and a
-    huge flat roof slab floating ~1.5 m above it and overhanging 6 m to each
-    side. Replace the whole PaifangGate collection with a clean arch: full-
-    height pillars, a stacked lintel/beam, a centre plaque and a tiered roof
-    sitting on the beam."""
+    """Legacy fix (see add_chinatown_ground) -- the old .blend's paifang had
+    short pillars that didn't reach the beam and a huge flat roof slab
+    floating ~1.5 m above it. Replace the whole PaifangGate collection with a
+    clean arch. Only called when that legacy collection is present."""
     coll = bpy.data.collections.get("PaifangGate")
     if not coll:
         return
@@ -133,11 +142,10 @@ def rebuild_chinatown_gate():
 
 
 def rebuild_chinatown_props():
-    """The .blend's street lamps are three disjoint pieces (a stubby pole
-    floating 0.8 m off the ground, plus an arm and head hovering separately
-    higher up), and the lantern strings sag across the street right at head
-    height. Rebuild both: proper lamps down each sidewalk, and tidy lantern
-    garlands strung across the lane well above the walkthrough camera."""
+    """Legacy fix (see add_chinatown_ground) -- the old .blend's street lamps
+    were three disjoint floating pieces and the lantern strings sagged to head
+    height. Rebuild proper lamps + tidy lantern garlands. Only called when the
+    legacy PaifangGate collection is present."""
     black = _mat("M_LampBlack") or _solid_mat("M_LampBlack", (0.03, 0.03, 0.03))
     glow = _mat("M_LampGlow") or _solid_mat("M_LampGlow", (1.0, 0.85, 0.5))
     red = _mat("M_LanternRed") or _solid_mat("M_LanternRed", (0.6, 0.02, 0.02))
@@ -210,13 +218,13 @@ def _world_bounds(objs):
 
 
 def fill_chinatown_walls():
-    """Each shopfront in the .blend is a set of window/sign/awning panels
-    floating in front of a small set-back body block, with the pitched roof
-    hovering ~0.7 m above the body top and nothing joining them -- so from
-    the street you see sky through every gap. For each Bldg_* collection, add
-    one solid mass box at the roof's footprint, from the ground up to the
-    roof underside, so the building reads as one piece with the panels on its
-    street face. Additive only; the .blend is untouched."""
+    """Legacy fix (see add_chinatown_ground) -- each shopfront in the old
+    .blend was window/sign/awning panels floating in front of a small
+    set-back body block with the roof hovering above, nothing joining them.
+    For each Bldg_* collection, add one solid mass box from ground to roof
+    underside. Only called when legacy Bldg_* collections are present (the
+    current chinatown_street.blend source has single solid ShopL*/ShopR*
+    meshes per shopfront already, so this is a no-op for it)."""
     for coll in bpy.data.collections:
         if not coll.name.startswith("Bldg_"):
             continue
@@ -247,17 +255,76 @@ def fill_chinatown_walls():
         )
 
 
+def fix_chinatown_materials_for_export():
+    """The current chinatown_street.blend source uses a custom vertex-color
+    driven NPR shader for its FlatVC/ToonVC materials: a per-vertex color
+    attribute named "fvar" feeds an Emission node (FlatVC) or a
+    Attribute -> VectorMath -> DiffuseBSDF -> ShaderToRGB -> ColorRamp ->
+    Emission toon-banding chain (ToonVC). Blender's glTF exporter only
+    recognizes vertex colors when they feed a Principled BSDF's Base Color,
+    so as authored it silently drops them -- every shopfront would export as
+    flat white. Reroute each material's Material Output through a plain
+    Principled BSDF fed by the same "fvar" Attribute node's Color output
+    (dropping the toon quantization for export, but keeping the actual hue),
+    and bake the two solid text materials' (TXT_<hex>) Emission color into
+    their own Principled Base Color the same way. This only touches the
+    in-memory node graph -- the .blend is never saved, so main()'s
+    revert-free "empties in memory only" convention still holds (the caller
+    is expected to have opened this via `blender -b`, a fresh process that
+    exits after export, so there's nothing to revert)."""
+    def route(mat_name, attr_source=None, static_color=None, roughness=0.9):
+        m = bpy.data.materials.get(mat_name)
+        if not m:
+            return
+        nt = m.node_tree
+        out = nt.nodes.get("Material Output")
+        principled = nt.nodes.new("ShaderNodeBsdfPrincipled")
+        principled.name = "ExportPrincipled"
+        principled.location = (out.location.x - 200, out.location.y - 300)
+        if "Roughness" in principled.inputs:
+            principled.inputs["Roughness"].default_value = roughness
+        if "Specular IOR Level" in principled.inputs:
+            principled.inputs["Specular IOR Level"].default_value = 0.1
+        elif "Specular" in principled.inputs:
+            principled.inputs["Specular"].default_value = 0.1
+        if attr_source is not None:
+            src_name, src_socket = attr_source
+            src = nt.nodes.get(src_name)
+            if src:
+                nt.links.new(src.outputs[src_socket], principled.inputs["Base Color"])
+        elif static_color is not None:
+            principled.inputs["Base Color"].default_value = static_color
+        nt.links.new(principled.outputs["BSDF"], out.inputs["Surface"])
+
+    route("FlatVC", attr_source=("Attribute", "Color"))
+    route("ToonVC", attr_source=("Attribute", "Color"))
+    for name in ("TXT_8e1610", "TXT_e6bb4c"):
+        m = bpy.data.materials.get(name)
+        if not m:
+            continue
+        em = m.node_tree.nodes.get("Emission")
+        color = list(em.inputs["Color"].default_value) if em else (1, 1, 1, 1)
+        route(name, static_color=color)
+
+
 def main():
     argv = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else []
     if not argv or argv[0] not in SCENES:
         raise SystemExit("usage: ... -- <%s>" % "|".join(SCENES))
     scene_id = argv[0]
 
+    export_kwargs = {}
     if scene_id == "chinatown-street":
-        add_chinatown_ground()
-        rebuild_chinatown_gate()
-        rebuild_chinatown_props()
-        fill_chinatown_walls()
+        if bpy.data.collections.get("PaifangGate"):
+            # Legacy source (old ChinatownStreet.blend).
+            add_chinatown_ground()
+            rebuild_chinatown_gate()
+            rebuild_chinatown_props()
+            fill_chinatown_walls()
+        if bpy.data.materials.get("ToonVC") or bpy.data.materials.get("FlatVC"):
+            # Current source (chinatown_street.blend) -- see docstring.
+            fix_chinatown_materials_for_export()
+            export_kwargs["export_vertex_color"] = "ACTIVE"
 
     for i, (x, y, z) in enumerate(SCENES[scene_id], start=1):
         empty = bpy.data.objects.new("Locus_%02d" % i, None)
@@ -270,6 +337,7 @@ def main():
     bpy.ops.export_scene.gltf(
         filepath=out, export_format="GLB", use_selection=False,
         export_apply=True, export_yup=True,
+        **export_kwargs,
     )
     print("wrote", out)
 
