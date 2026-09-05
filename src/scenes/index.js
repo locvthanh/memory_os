@@ -24,7 +24,7 @@ export const SCENES = [
   {
     id: 'portal-island',
     title: 'Portal Island',
-    blurb: 'A floating island ringed by eight portal gates around a plaza, cabin and garden. Eight loci.',
+    blurb: 'A floating island ringed by eight portal gates, with a causeway out to the Rosetta language square. Thirteen loci.',
     model: 'models/portal-island.glb',
     config: () => import('./portal-island.js').then((m) => m.default),
   },

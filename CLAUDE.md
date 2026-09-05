@@ -92,6 +92,20 @@ Auto-advances after the dwell; `loop: true` wraps around. Transport buttons
 Per-scene tuning lives in `<id>.js` `walkthrough`: `travelSeconds`,
 `dwellSeconds`, `eyeHeight`, `anchorDistance`, `loop`.
 
+Radial anchoring measures from the centroid of **all** loci, which only works
+while a scene is one cluster. `portal-island` is two — the gate ring plus the
+Rosetta square out on its peninsula — and their shared centroid sits in the
+empty air between them, aiming the camera up to 109 deg off the gate it is
+supposed to be looking at. A locus can therefore set `anchorFrom: [x, y, z]`
+(three.js space; only x/z are read) to name its own cluster centre. See
+`src/scenes/portal-island.js`, which defines one `PLAZA` and one `SQUARE`
+constant and tags every locus with the right one.
+
+Note the rig parks the camera `eyeHeight` **above** the locus and looks down at
+it, so the locus is the aim point, not eye level. For a tall subject put the
+locus at the subject's mid-height rather than at head height — otherwise the
+shot is aimed at its base and the top is cropped.
+
 ## Loci authoring
 
 `buildLoci` reads objects named `Locus_01`, `Locus_02`, … from the loaded
@@ -103,6 +117,12 @@ always come from the scene config, keyed by that number. If the glb has no
 positions are hand-placed placeholders (a couple sit awkwardly close to
 buildings). Fix by adding empties in Blender on the next city re-export.
 
+The regex is `^Locus[_-]?(\d+)`, so a trailing label is fine and useful —
+`portal-island` uses `Locus_09_piano`, `Locus_10_hindi` and so on. Only the
+number is read. A locus present in the glb but missing from the scene config
+still appears in the tour, titled `Locus N` with no description, so add a
+config entry for every empty you bake.
+
 ## Adding a scene
 
 1. Build the model in Blender. Add Empties named `Locus_01..NN` where each
@@ -111,6 +131,13 @@ buildings). Fix by adding empties in Blender on the next city re-export.
 3. Create `src/scenes/<id>.js` — `walkthrough` tuning + one `loci` entry per
    Empty id (`title`, `description`; `position` optional fallback).
 4. Add an entry to `src/scenes/index.js`.
+
+`scripts/build_glb.py` exports the whole Blender scene, so anything that
+exists only for Blender's still renders has to be dropped first — see its
+`RENDER_ONLY` dict. `portal-island` drops its backdrop plane, its sky dome and
+its two framing cameras; the dome especially, because `Viewer` sets
+`castShadow` on every mesh it loads and a 2300-unit emissive shell around the
+scene would put the whole island in shadow.
 
 ## Blender / Blender-MCP workflow
 

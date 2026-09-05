@@ -38,11 +38,12 @@ SCENES = {
         [0, 3.0, 1.0], [-2.8, 4.0, 1.0], [2.8, 4.0, 1.0],
         [0, 5.5, 1.1], [0, 6.2, 2.0],
     ],
-    # PortalIsland.blend (2026-09-05): Locus_01..08 are baked directly into
-    # the source .blend (an octagonal ring of gate empties at radius ~12,
-    # z~3.41 -- see the Blender build session) rather than injected here, so
-    # this list is intentionally empty -- the export loop below just skips
-    # empty-injection and passes the existing empties through untouched.
+    # PortalIsland.blend: every locus is baked directly into the source .blend
+    # rather than injected here, so this list is intentionally empty -- the
+    # export loop below just skips empty-injection and passes the existing
+    # empties through untouched. Currently Locus_01..08 (the gate ring at
+    # radius ~12, z~3.41), Locus_09_piano, and Locus_10..13 on the Rosetta
+    # language square out on the NW peninsula (isl_rosetta.py).
     "portal-island": [],
     "writing-room": [
         [0, 3.6, 1.2], [-2.2, 2.5, 1.4], [-0.8, 3.6, 1.1],
@@ -53,6 +54,27 @@ SCENES = {
         [5, 3, 1.8], [0, 5, 1.8],
     ],
 }
+
+
+# Objects that exist only for the Blender still renders and have no business
+# in a walkthrough. Rosetta_SkyDome especially: it is ~2300 u across and the
+# viewer sets castShadow on every mesh it loads, so shipping it would wrap the
+# scene in an emissive shell and drop it into shadow.
+RENDER_ONLY = {
+    "portal-island": ("Sky_Backdrop", "Rosetta_SkyDome", "WideCam",
+                      "RosettaCam"),
+}
+
+
+def drop_render_only(scene_id):
+    dropped = []
+    for name in RENDER_ONLY.get(scene_id, ()):
+        ob = bpy.data.objects.get(name)
+        if ob:
+            bpy.data.objects.remove(ob, do_unlink=True)
+            dropped.append(name)
+    if dropped:
+        print("dropped render-only objects:", ", ".join(dropped))
 
 
 def _make_box(name, mn, mx, mat, coll):
@@ -327,6 +349,8 @@ def main():
             # Current source (chinatown_street.blend) -- see docstring.
             fix_chinatown_materials_for_export()
             export_kwargs["export_vertex_color"] = "ACTIVE"
+
+    drop_render_only(scene_id)
 
     for i, (x, y, z) in enumerate(SCENES[scene_id], start=1):
         empty = bpy.data.objects.new("Locus_%02d" % i, None)

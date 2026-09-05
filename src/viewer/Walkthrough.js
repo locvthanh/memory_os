@@ -41,6 +41,13 @@ export class Walkthrough {
     // long axis; the camera offsets on the other axis toward 0.
     this.sideView = this.cfg.sideView || null;
 
+    // Radial anchoring measures from the centroid of *all* loci, which breaks
+    // down when a scene has two separate clusters (Portal Island's gate ring
+    // plus the Rosetta square on its peninsula): the shared centroid sits in
+    // the empty water between them and aims the camera off to one side of
+    // every gate. A locus may therefore name its own centre with
+    // `anchorFrom: [x, y, z]` (three.js space; only x/z are used).
+
     const center = new THREE.Vector3();
     loci.forEach((l) => center.add(l.position));
     center.divideScalar(Math.max(1, loci.length));
@@ -54,10 +61,13 @@ export class Walkthrough {
         anchor[off] -= sign * (this.sideView.distance ?? 8);
         anchor.y = l.position.y + (this.sideView.height ?? this.eyeHeight);
       } else {
+        const from = l.anchorFrom
+          ? new THREE.Vector3(l.anchorFrom[0], 0, l.anchorFrom[2])
+          : center;
         const dir = new THREE.Vector3(
-          l.position.x - center.x,
+          l.position.x - from.x,
           0,
-          l.position.z - center.z,
+          l.position.z - from.z,
         );
         if (dir.lengthSq() < 1e-4) dir.set(0, 0, 1);
         dir.normalize();

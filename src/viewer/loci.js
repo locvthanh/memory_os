@@ -5,7 +5,8 @@ const LOCUS_RE = /^Locus[_-]?(\d+)/i;
 // Build the ordered locus list for a scene.
 // Position priority: Blender Empty (named Locus_NN) in the glb, else the
 // fallback `position` from the scene config. Title/description always come
-// from the config, keyed by numeric id.
+// from the config, keyed by numeric id, as does the optional per-locus camera
+// hint `anchorFrom` (see Walkthrough).
 export function buildLoci(gltfScene, config) {
   const configById = new Map((config.loci || []).map((l) => [l.id, l]));
   const fromGlb = new Map();
@@ -32,6 +33,7 @@ export function buildLoci(gltfScene, config) {
         title: cfg.title || `Locus ${id}`,
         description: cfg.description || '',
         position: p,
+        anchorFrom: cfg.anchorFrom || null,
       };
     });
 
