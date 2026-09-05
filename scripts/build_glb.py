@@ -38,10 +38,12 @@ SCENES = {
         [0, 3.0, 1.0], [-2.8, 4.0, 1.0], [2.8, 4.0, 1.0],
         [0, 5.5, 1.1], [0, 6.2, 2.0],
     ],
-    "luan-hoi-dai": [
-        [0, 0, 2], [0, -4, 2], [0, -8, 2],
-        [5, -6, 2], [-5, -6, 2], [0, 6, 2],
-    ],
+    # PortalIsland.blend (2026-09-05): Locus_01..08 are baked directly into
+    # the source .blend (an octagonal ring of gate empties at radius ~12,
+    # z~3.41 -- see the Blender build session) rather than injected here, so
+    # this list is intentionally empty -- the export loop below just skips
+    # empty-injection and passes the existing empties through untouched.
+    "portal-island": [],
     "writing-room": [
         [0, 3.6, 1.2], [-2.2, 2.5, 1.4], [-0.8, 3.6, 1.1],
         [0.8, 3.6, 1.1], [2.2, 1.0, 1.0], [0, 4.0, 1.3],

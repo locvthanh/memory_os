@@ -16,7 +16,7 @@ $script = Join-Path $PSScriptRoot "build_glb.py"
 $map = @{
     "chinatown-street" = "chinatown_street.blend"
     "coffee-shop"      = "CoffeeShop.blend"
-    "luan-hoi-dai"     = "LuanHoiDai.blend"
+    "portal-island"    = "PortalIsland.blend"
     "writing-room"     = "PhongVietLachTacGia.blend"
     "time-machine"     = "TimeMachineTimeline.blend"
 }

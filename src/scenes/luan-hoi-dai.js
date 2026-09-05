@@ -1,3 +1,8 @@
+// SUPERSEDED (2026-09-05): replaced in src/scenes/index.js by portal-island.js
+// per user request -- this file and models/luan-hoi-dai.glb are no longer
+// registered/reachable from the hub and are kept only because this session
+// has no way to delete files on the user's machine. Safe to delete both.
+//
 // Luan Hoi Dai: a central glowing pillar ringed by orbiting bands, with a path
 // of gates leading away across a dark platform. Six loci. Placeholder text.
 //

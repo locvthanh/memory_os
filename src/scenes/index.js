@@ -22,11 +22,11 @@ export const SCENES = [
     config: () => import('./coffee-shop.js').then((m) => m.default),
   },
   {
-    id: 'luan-hoi-dai',
-    title: 'Luan Hoi Dai',
-    blurb: 'A glowing pillar ringed by orbits, with a path of gates leading away. Six loci.',
-    model: 'models/luan-hoi-dai.glb',
-    config: () => import('./luan-hoi-dai.js').then((m) => m.default),
+    id: 'portal-island',
+    title: 'Portal Island',
+    blurb: 'A floating island ringed by eight portal gates around a plaza, cabin and garden. Eight loci.',
+    model: 'models/portal-island.glb',
+    config: () => import('./portal-island.js').then((m) => m.default),
   },
   {
     id: 'writing-room',
