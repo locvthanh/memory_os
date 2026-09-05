@@ -69,7 +69,9 @@ export class Viewer {
       this.scene.add(model);
 
       const loci = buildLoci(model, this.config);
-      this.scene.add(buildLocusLabels(loci));
+      this.loci = loci;
+      this.locusLabels = buildLocusLabels(loci);
+      this.scene.add(this.locusLabels);
       this.overlay = new LocusOverlay(loci.length);
       this.walkthrough = new Walkthrough({
         camera: this.camera,
@@ -82,6 +84,9 @@ export class Viewer {
       this.freeModeActive = false;
 
       this._wireTransport();
+      this._wireLocusPicking();
+      this._setFreeMode(true); // free exploration is the default on entering a scene
+
       document.getElementById('loading').classList.add('hidden');
       this._animate();
       return this;
@@ -107,24 +112,71 @@ export class Viewer {
       playpause.textContent = 'Pause';
     });
 
+    document.getElementById('btn-freemove').addEventListener('click', () => {
+      this._setFreeMode(!this.freeModeActive);
+    });
+  }
+
+  // Toggles between the system-controlled tour and free exploration. In free
+  // mode the Prev/Pause/Next/Restart tour controls and the narration panels
+  // are hidden — they describe the rails walkthrough, which is paused.
+  _setFreeMode(active) {
+    this.freeModeActive = active;
+    this.walkthrough.setFreeMode(active);
+
     const freemoveBtn = document.getElementById('btn-freemove');
+    const tourControls = document.getElementById('tour-controls');
     const overlay = document.getElementById('overlay');
     const locusPanel = document.getElementById('locus-panel');
-    freemoveBtn.addEventListener('click', () => {
-      this.freeModeActive = !this.freeModeActive;
-      this.walkthrough.setFreeMode(this.freeModeActive);
-      if (this.freeModeActive) {
-        this.freeMove.show();
-        freemoveBtn.textContent = 'Tour Mode';
-        freemoveBtn.classList.add('active');
-        overlay.hidden = true;
-        locusPanel.hidden = true;
-      } else {
-        this.freeMove.hide();
-        freemoveBtn.textContent = 'Free Move';
-        freemoveBtn.classList.remove('active');
-        overlay.hidden = false;
-        locusPanel.hidden = false;
+
+    if (active) {
+      this.freeMove.show();
+      freemoveBtn.textContent = 'Tour Mode';
+      freemoveBtn.classList.add('active');
+      tourControls.hidden = true;
+      overlay.hidden = true;
+      locusPanel.hidden = true;
+    } else {
+      this.freeMove.hide();
+      freemoveBtn.textContent = 'Free Move';
+      freemoveBtn.classList.remove('active');
+      tourControls.hidden = false;
+      overlay.hidden = false;
+      locusPanel.hidden = false;
+    }
+  }
+
+  // Tapping a numbered locus sprite shows its title/description, even in
+  // free mode where the narration panel is otherwise hidden. A drag (used
+  // to look around) is distinguished from a tap by pointer travel distance.
+  _wireLocusPicking() {
+    const raycaster = new THREE.Raycaster();
+    const pointer = new THREE.Vector2();
+    const dom = this.renderer.domElement;
+    let downPos = null;
+
+    dom.addEventListener('pointerdown', (e) => {
+      downPos = { x: e.clientX, y: e.clientY };
+    });
+
+    dom.addEventListener('pointerup', (e) => {
+      if (!downPos) return;
+      const dragged = Math.hypot(e.clientX - downPos.x, e.clientY - downPos.y) > 6;
+      downPos = null;
+      if (dragged) return;
+
+      const rect = dom.getBoundingClientRect();
+      pointer.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      pointer.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+      raycaster.setFromCamera(pointer, this.camera);
+      const hit = raycaster.intersectObjects(this.locusLabels.children)[0];
+
+      if (hit) {
+        const index = this.locusLabels.children.indexOf(hit.object);
+        document.getElementById('locus-panel').hidden = false;
+        this.overlay.show(index, this.loci[index]);
+      } else if (this.freeModeActive) {
+        document.getElementById('locus-panel').hidden = true;
       }
     });
   }

@@ -137,6 +137,11 @@ body.viewer {
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
 }
 .transport button:hover { background: #fff; }
+.tour-controls {
+  display: flex;
+  gap: 8px;
+}
+.tour-controls[hidden] { display: none; }
 .transport button.active {
   background: var(--ink);
   color: #fff;
