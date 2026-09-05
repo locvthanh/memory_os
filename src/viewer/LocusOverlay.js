@@ -9,6 +9,7 @@ export class LocusOverlay {
   }
 
   show(index, locus) {
+    this.panel.hidden = false;
     this.progress.textContent = `${index + 1} / ${this.total}`;
     this.title.textContent = locus.title;
     this.description.textContent = locus.description;

@@ -85,6 +85,9 @@ export class Viewer {
 
       this._wireTransport();
       this._wireLocusPicking();
+      document.getElementById('locus-close').addEventListener('click', () => {
+        document.getElementById('locus-panel').hidden = true;
+      });
       this._setFreeMode(true); // free exploration is the default on entering a scene
 
       document.getElementById('loading').classList.add('hidden');
@@ -123,6 +126,7 @@ export class Viewer {
   _setFreeMode(active) {
     this.freeModeActive = active;
     this.walkthrough.setFreeMode(active);
+    document.body.classList.toggle('free-mode', active);
 
     const freemoveBtn = document.getElementById('btn-freemove');
     const tourControls = document.getElementById('tour-controls');
