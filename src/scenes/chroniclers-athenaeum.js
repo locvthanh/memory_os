@@ -114,11 +114,12 @@ export default {
     },
     {
       id: 6,
-      title: 'Statue of Thoth',
+      title: 'The Statue of Liberty',
       description:
-        'The ibis-headed scribe god in white marble, gold beak and headdress, holding a tablet — mid-aisle, halfway up the nave. The patron of everything written down.',
+        "Liberty Enlightening the World in patinated bronze — torch raised, tablet in hand, spiked crown catching the light — standing on her own brick-and-marble pedestal where Thoth's marble statue once stood, mid-aisle, halfway up the nave. A doorway to somewhere not yet named.",
       position: [0, 6.5, 14],
       anchorFrom: NAVE_MID,
+      link: 'liberty-statue',
     },
     {
       id: 7,
