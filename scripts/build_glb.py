@@ -50,6 +50,15 @@ SCENES = {
     # Locus_01_great_hall .. Locus_13_herbarium), so this list is empty and
     # the export loop passes the existing empties through untouched.
     "chroniclers-athenaeum": [],
+    # TheWhiteHouse.blend: a scale reconstruction of the real White House, with
+    # all 47 presidencies placed in the building's actual named rooms. Every
+    # locus (Locus_01..47, collection 11_Loci) is baked into the source .blend
+    # and carries custom properties (president_name, term, room, zone), so this
+    # list is empty and the export loop passes the existing empties through.
+    # The tour climbs the house as it climbs the timeline: Ground Floor 1-5,
+    # State Floor 6-16, Second Floor 17-29, Coolidge's Third Floor 30-35, and
+    # the West Wing / East Wing / grounds 36-47.
+    "the-white-house": [],
     "writing-room": [
         [0, 3.6, 1.2], [-2.2, 2.5, 1.4], [-0.8, 3.6, 1.1],
         [0.8, 3.6, 1.1], [2.2, 1.0, 1.0], [0, 4.0, 1.3],
@@ -88,6 +97,9 @@ def drop_render_only(scene_id):
 # preventing the interior from rendering black while still showing the roof geometry.
 DROP_COLLECTIONS = {
     "chroniclers-athenaeum": ("07_Lighting",),
+    # the-white-house: 10_Lighting holds the Blender suns plus the still/plan
+    # cameras (Cam_Overview, Cam_Plan, Cam_Cutaway and their TRACK_TO targets).
+    "the-white-house": ("10_Lighting",),
 }
 
 
@@ -117,6 +129,11 @@ MERGE_BY_MATERIAL = {
         "Leaf_Light": 0.30, "Water": 0.5, "Marble_White": 0.6,
         "Carpet_Teal": 0.6,
     },
+    # the-white-house ships ~1,380 objects (every wall segment, window panel,
+    # column and pedestal is its own box). Merging by material collapses that to
+    # ~34 nodes. Nothing is decimated: this scene is entirely flat-shaded
+    # architecture, which decimation destroys.
+    "the-white-house": {},
 }
 
 # Materials that belong to roofs/ceilings. Merged meshes with these materials
@@ -124,6 +141,12 @@ MERGE_BY_MATERIAL = {
 # preventing the interior from rendering in shadow while showing roof geometry.
 ROOF_MATERIALS = {
     "Roof_Tile", "Roof_Lead", "Glass_Dome", "Ceiling_Wood",
+    # the-white-house: WH_Ceiling is carried by every inter-floor slab and every
+    # roof deck (see CEILING_PREFIXES in that scene's build notes). It exists as
+    # a material of its own precisely so this tagging can be surgical --
+    # WH_Stone_Shadow is shared with the interior partitions, which must keep
+    # casting shadows or the rooms read flat.
+    "WH_Ceiling", "WH_Roof_Slate",
 }
 
 
@@ -434,6 +457,59 @@ def fix_chinatown_materials_for_export():
         route(name, static_color=color)
 
 
+# the-white-house: Blender-space direction from each pedestal toward the side the
+# walkthrough camera stands on. Must stay in step with `anchorFrom` in
+# src/scenes/the-white-house.js, which is generated from the same offsets.
+WH_APPROACH = {
+    1: (0, 1), 2: (0, 1), 3: (0, 1), 4: (0, 1), 5: (0, 1),
+    6: (0, 1), 7: (0, 1), 8: (0, 1), 9: (0, 1), 10: (0, 1), 11: (0, -1),
+    12: (0, -1), 13: (0, -1), 14: (0, -1), 15: (1, 0), 16: (1, 0),
+    17: (1, 0), 18: (0, 1), 19: (0, -1), 20: (0, 1), 21: (0, 1), 22: (-1, 0),
+    23: (-1, 0), 24: (-1, 0), 25: (0, 1), 26: (0, 1), 27: (-1, 0), 28: (0, 1),
+    29: (0, 1), 30: (0, 1), 31: (0, 1), 32: (0, -1), 33: (-1, 0), 34: (0, 1),
+    35: (0, 1), 36: (0, 1), 37: (0, -1), 38: (-1, 0), 39: (0, -1), 40: (1, 0),
+    41: (-1, 0), 42: (1, 0), 43: (-1, 0), 44: (0, 1), 45: (0, 1), 46: (0, 1),
+    47: (-1, 0),
+}
+
+
+def fix_white_house_labels_for_export():
+    """Stand each pedestal's name text up as a placard facing its camera.
+
+    In the .blend every label lies flat on the floor, which is right for the
+    orthographic floor-plan renders but wrong in the walkthrough: a flat label
+    is only legible from one side, and the rig approaches most pedestals from
+    the side that reads it backwards. Rotate each Name_NN upright and turn it
+    to face its own approach direction, then drop the flat room labels
+    (Label_*) and the numerals on the pedestal caps (Num_*) -- the viewer's UI
+    panel already carries both the room name and the number for every stop.
+
+    In-memory only; the .blend keeps its flat labels for plan renders.
+    """
+    import math
+    for ob in list(bpy.data.objects):
+        if ob.type != "FONT":
+            continue
+        if ob.name.startswith("Label_") or ob.name.startswith("Num_"):
+            bpy.data.objects.remove(ob, do_unlink=True)
+            continue
+        if not ob.name.startswith("Name_"):
+            continue
+        n = int(ob.name.split("_")[1])
+        dx, dy = WH_APPROACH.get(n, (0, 1))
+        # A FONT rotated +90 deg about X stands in the XZ plane with its normal
+        # facing -Y; rotating by atan2(dx, -dy) about Z swings that normal onto
+        # the approach direction, so the text faces the camera head-on.
+        ob.rotation_euler = (math.pi / 2, 0.0, math.atan2(dx, -dy))
+        base = bpy.data.objects.get("Pedestal_%02d" % n)
+        if base:
+            bx, by, bz = base.location
+            ob.location = (bx + dx * 0.8, by + dy * 0.8, bz + 0.30)
+        ob.data.size = 0.22
+        ob.data.align_y = "CENTER"
+    print("white-house: nameplates stood up, flat labels dropped")
+
+
 def main():
     argv = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else []
     if not argv or argv[0] not in SCENES:
@@ -452,6 +528,9 @@ def main():
             # Current source (chinatown_street.blend) -- see docstring.
             fix_chinatown_materials_for_export()
             export_kwargs["export_vertex_color"] = "ACTIVE"
+
+    if scene_id == "the-white-house":
+        fix_white_house_labels_for_export()
 
     drop_render_only(scene_id)
     drop_collections(scene_id)

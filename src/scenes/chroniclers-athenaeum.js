@@ -116,10 +116,14 @@ export default {
       id: 6,
       title: 'The Statue of Liberty',
       description:
-        "Liberty Enlightening the World in patinated bronze — torch raised, tablet in hand, spiked crown catching the light — standing on her own brick-and-marble pedestal where Thoth's marble statue once stood, mid-aisle, halfway up the nave. A doorway to somewhere not yet named.",
+        "Liberty Enlightening the World in patinated bronze — torch raised, tablet in hand, spiked crown catching the light — standing on her own brick-and-marble pedestal where Thoth's marble statue once stood, mid-aisle, halfway up the nave. She is the door to the White House: step past her and you arrive in its Ground Floor Library, at the first of the 47 presidents.",
       position: [0, 6.5, 14],
       anchorFrom: NAVE_MID,
-      link: 'liberty-statue',
+      // Was `liberty-statue`, a scene id that never existed — the description
+      // used to end "a doorway to somewhere not yet named". It is named now:
+      // Liberty is the crossing point between the library and the White House,
+      // and the White House's own Library (locus 1) links back here.
+      link: 'the-white-house',
     },
     {
       id: 7,

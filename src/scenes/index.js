@@ -17,9 +17,16 @@ export const SCENES = [
   {
     id: 'chroniclers-athenaeum',
     title: "The Chroniclers' Athenaeum",
-    blurb: 'A great library: a nave of book stacks under a domed reading room, with an alchemist’s lab, a manuscript vault, a glass herbarium and a star observatory off its wings. Thirteen loci.',
+    blurb: 'A great library: a nave of book stacks under a domed reading room, with an alchemist’s lab, a manuscript vault, a glass herbarium and a star observatory off its wings. The Statue of Liberty standing mid-nave is a door through to the White House. Thirteen loci.',
     model: 'models/chroniclers-athenaeum.glb',
     config: () => import('./chroniclers-athenaeum.js').then((m) => m.default),
+  },
+  {
+    id: 'the-white-house',
+    title: 'The White House',
+    blurb: 'The real building, room by room — Executive Residence, West Wing, East Wing and grounds — holding all 47 American presidencies. The tour climbs the house as it climbs the timeline: the founders on the Ground Floor, Lincoln at the foot of the Grand Staircase, and the modern presidency out in the West Wing. Entered from the Athenaeum through the Statue of Liberty, and its own Library leads back. Forty-seven loci.',
+    model: 'models/the-white-house.glb',
+    config: () => import('./the-white-house.js').then((m) => m.default),
   }
 ];
 

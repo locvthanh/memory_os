@@ -143,6 +143,11 @@ body.viewer {
   text-decoration: none;
 }
 .locus-link:hover { text-decoration: underline; }
+/* `display: block` above outranks the plain `hidden` attribute LocusOverlay
+   sets, so without this the "Go to scene" link showed on every locus in every
+   scene, pointing at the placeholder href="#". Only loci that declare a `link`
+   should offer one. */
+.locus-link[hidden] { display: none; }
 .locus-close {
   position: absolute;
   top: 8px;

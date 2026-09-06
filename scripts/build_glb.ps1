@@ -18,6 +18,7 @@ $map = @{
     "coffee-shop"      = "CoffeeShop.blend"
     "portal-island"    = "PortalIsland.blend"
     "chroniclers-athenaeum" = "ChroniclersAthenaeum.blend"
+    "the-white-house"  = "TheWhiteHouse.blend"
     "writing-room"     = "PhongVietLachTacGia.blend"
     "time-machine"     = "TimeMachineTimeline.blend"
 }
