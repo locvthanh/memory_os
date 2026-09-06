@@ -13,6 +13,13 @@ export const SCENES = [
     blurb: 'A floating island ringed by eight portal gates, with a causeway out to the Rosetta language square. Thirteen loci.',
     model: 'models/portal-island.glb',
     config: () => import('./portal-island.js').then((m) => m.default),
+  },
+  {
+    id: 'chroniclers-athenaeum',
+    title: "The Chroniclers' Athenaeum",
+    blurb: 'A great library: a nave of book stacks under a domed reading room, with an alchemist’s lab, a manuscript vault, a glass herbarium and a star observatory off its wings. Thirteen loci.',
+    model: 'models/chroniclers-athenaeum.glb',
+    config: () => import('./chroniclers-athenaeum.js').then((m) => m.default),
   }
 ];
 

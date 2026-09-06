@@ -45,6 +45,11 @@ SCENES = {
     # radius ~12, z~3.41), Locus_09_piano, and Locus_10..13 on the Rosetta
     # language square out on the NW peninsula (isl_rosetta.py).
     "portal-island": [],
+    # ChroniclersAthenaeum.blend: like portal-island, every locus is baked
+    # directly into the source .blend (collection 09_Loci, named
+    # Locus_01_great_hall .. Locus_13_herbarium), so this list is empty and
+    # the export loop passes the existing empties through untouched.
+    "chroniclers-athenaeum": [],
     "writing-room": [
         [0, 3.6, 1.2], [-2.2, 2.5, 1.4], [-0.8, 3.6, 1.1],
         [0.8, 3.6, 1.1], [2.2, 1.0, 1.0], [0, 4.0, 1.3],
@@ -75,6 +80,96 @@ def drop_render_only(scene_id):
             dropped.append(name)
     if dropped:
         print("dropped render-only objects:", ", ".join(dropped))
+
+
+# Whole collections to drop before export. The Athenaeum's roofs and ceilings
+# (08_Roofs) would seal the building: the viewer's only directional light comes
+# from above and every mesh it loads casts a shadow, so a lidded model puts the
+# entire interior in the dark. 07_Lighting holds the Blender-only lamps and
+# still cameras. Dropping both leaves the open-top dollhouse the walkthrough
+# actually flies through.
+DROP_COLLECTIONS = {
+    "chroniclers-athenaeum": ("08_Roofs", "07_Lighting"),
+}
+
+
+def drop_collections(scene_id):
+    for cname in DROP_COLLECTIONS.get(scene_id, ()):
+        coll = bpy.data.collections.get(cname)
+        if not coll:
+            continue
+        for ob in list(coll.all_objects):
+            bpy.data.objects.remove(ob, do_unlink=True)
+        bpy.data.collections.remove(coll)
+        print("dropped collection:", cname)
+
+
+# Scenes built from thousands of small primitives ship one glb node per object,
+# which is one draw call each -- the Athenaeum alone is 2210. Merging every mesh
+# that shares a material collapses that to ~25 nodes and (with the decimation
+# below on the blob-shaped groups, which are all low-stakes spheres and
+# discs: floor stars, candle flames, foliage, fountain water) takes the
+# Athenaeum glb from ~13 MB to 3.9 MB.
+# value = {material name: decimate ratio}; materials absent from the dict are
+# merged but never decimated, because flat-shaded architecture does not survive
+# it.
+MERGE_BY_MATERIAL = {
+    "chroniclers-athenaeum": {
+        "Star_Glow": 0.30, "Lamp_Glow": 0.32, "Leaf_Green": 0.30,
+        "Leaf_Light": 0.30, "Water": 0.5, "Marble_White": 0.6,
+        "Carpet_Teal": 0.6,
+    },
+}
+
+
+def merge_by_material(scene_id):
+    if scene_id not in MERGE_BY_MATERIAL:
+        return
+    import bmesh
+    from collections import defaultdict
+
+    decimate = MERGE_BY_MATERIAL[scene_id]
+    groups = defaultdict(list)
+    for ob in bpy.data.objects:
+        if ob.type != "MESH":
+            continue
+        mat = ob.data.materials[0] if ob.data.materials else None
+        groups[mat.name if mat else "_none"].append(ob)
+
+    merged = bpy.data.collections.new("10_Export")
+    bpy.context.scene.collection.children.link(merged)
+
+    for matname, objs in groups.items():
+        bm = bmesh.new()
+        for ob in objs:
+            tmp = bmesh.new()
+            tmp.from_mesh(ob.data)
+            tmp.transform(ob.matrix_world)
+            vmap = {v: bm.verts.new(v.co) for v in tmp.verts}
+            for f in tmp.faces:
+                try:
+                    bm.faces.new([vmap[v] for v in f.verts])
+                except Exception:
+                    pass  # duplicate face from coincident geometry
+            tmp.free()
+        bm.normal_update()
+        me = bpy.data.meshes.new("MERGED_" + matname)
+        bm.to_mesh(me)
+        bm.free()
+        new = bpy.data.objects.new("MERGED_" + matname, me)
+        mat = bpy.data.materials.get(matname)
+        if mat:
+            me.materials.append(mat)
+        if matname in decimate:
+            mod = new.modifiers.new("dec", "DECIMATE")
+            mod.ratio = decimate[matname]
+        merged.objects.link(new)
+
+    for objs in groups.values():
+        for ob in objs:
+            bpy.data.objects.remove(ob, do_unlink=True)
+    print("merged %d meshes into %d by material" %
+          (sum(len(v) for v in groups.values()), len(groups)))
 
 
 def _make_box(name, mn, mx, mat, coll):
@@ -351,6 +446,7 @@ def main():
             export_kwargs["export_vertex_color"] = "ACTIVE"
 
     drop_render_only(scene_id)
+    drop_collections(scene_id)
 
     for i, (x, y, z) in enumerate(SCENES[scene_id], start=1):
         empty = bpy.data.objects.new("Locus_%02d" % i, None)
@@ -358,6 +454,8 @@ def main():
         empty.empty_display_size = 0.3
         empty.location = (x, y, z)
         bpy.context.scene.collection.objects.link(empty)
+
+    merge_by_material(scene_id)
 
     out = os.path.join(REPO, "models", scene_id + ".glb")
     bpy.ops.export_scene.gltf(

@@ -17,6 +17,7 @@ $map = @{
     "chinatown-street" = "chinatown_street.blend"
     "coffee-shop"      = "CoffeeShop.blend"
     "portal-island"    = "PortalIsland.blend"
+    "chroniclers-athenaeum" = "ChroniclersAthenaeum.blend"
     "writing-room"     = "PhongVietLachTacGia.blend"
     "time-machine"     = "TimeMachineTimeline.blend"
 }
