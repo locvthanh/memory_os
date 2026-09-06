@@ -82,14 +82,12 @@ def drop_render_only(scene_id):
         print("dropped render-only objects:", ", ".join(dropped))
 
 
-# Whole collections to drop before export. The Athenaeum's roofs and ceilings
-# (08_Roofs) would seal the building: the viewer's only directional light comes
-# from above and every mesh it loads casts a shadow, so a lidded model puts the
-# entire interior in the dark. 07_Lighting holds the Blender-only lamps and
-# still cameras. Dropping both leaves the open-top dollhouse the walkthrough
-# actually flies through.
+# Whole collections to drop before export. The Athenaeum's 07_Lighting holds
+# Blender-only lamps and still cameras; we drop those. 08_Roofs is now kept
+# and tagged with ROOF_ prefix so the viewer can render them but skip castShadow,
+# preventing the interior from rendering black while still showing the roof geometry.
 DROP_COLLECTIONS = {
-    "chroniclers-athenaeum": ("08_Roofs", "07_Lighting"),
+    "chroniclers-athenaeum": ("07_Lighting",),
 }
 
 
@@ -119,6 +117,13 @@ MERGE_BY_MATERIAL = {
         "Leaf_Light": 0.30, "Water": 0.5, "Marble_White": 0.6,
         "Carpet_Teal": 0.6,
     },
+}
+
+# Materials that belong to roofs/ceilings. Merged meshes with these materials
+# will be prefixed with ROOF_ so the viewer can skip castShadow for them,
+# preventing the interior from rendering in shadow while showing roof geometry.
+ROOF_MATERIALS = {
+    "Roof_Tile", "Roof_Lead", "Glass_Dome", "Ceiling_Wood",
 }
 
 
@@ -153,10 +158,13 @@ def merge_by_material(scene_id):
                     pass  # duplicate face from coincident geometry
             tmp.free()
         bm.normal_update()
-        me = bpy.data.meshes.new("MERGED_" + matname)
+        # Tag roof meshes with ROOF_ prefix so viewer can skip castShadow for them
+        is_roof = matname in ROOF_MATERIALS
+        prefix = "ROOF_" if is_roof else "MERGED_"
+        me = bpy.data.meshes.new(prefix + matname)
         bm.to_mesh(me)
         bm.free()
-        new = bpy.data.objects.new("MERGED_" + matname, me)
+        new = bpy.data.objects.new(prefix + matname, me)
         mat = bpy.data.materials.get(matname)
         if mat:
             me.materials.append(mat)

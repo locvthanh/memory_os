@@ -63,7 +63,13 @@ export class Viewer {
       const model = gltf.scene;
       model.traverse((n) => {
         if (n.isMesh) {
-          n.castShadow = true;
+          // Roof/ceiling meshes are tagged ROOF_ by build_glb.py's merge step
+          // (see MERGE_BY_MATERIAL/ROOF_MATERIALS there). They're kept in the
+          // export for visual closure, but the scene's only light is a single
+          // overhead directional light and every mesh casts a shadow by
+          // default -- if roofs cast shadows too, the whole interior goes
+          // black. Skip castShadow on them; they still receive shadows fine.
+          n.castShadow = !n.name.startsWith('ROOF_');
           n.receiveShadow = true;
         }
       });
