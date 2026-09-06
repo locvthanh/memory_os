@@ -29,6 +29,13 @@
 // roof off. Standing further back is not an option here: the square's centre
 // is occupied by the Rosetta Stone, and a larger `anchorDistance` puts the
 // camera inside it. Raising the aim point is what frames the whole gate.
+//
+// Locus 0 — "0-Library": a small domed rotunda added just off the plaza (not
+// part of the original eight-gate ring), built as a miniature echo of the
+// Chronicler's Athenaeum it leads to. Its geometry is baked into the .blend
+// as the `Locus_00_Library` empty + parts (see project doc), and — like the
+// Chinese gate below (locus 11) — its `link` sends the visitor to that other
+// scene entirely via the same scene.html?id=... mechanism.
 const PLAZA = [-0.51, 0, -0.79]; // gate-ring centre, three.js space
 const SQUARE = [-23.14, 0, -23.42]; // Rosetta square centre
 
@@ -42,6 +49,14 @@ export default {
     loop: true,
   },
   loci: [
+    {
+      id: 0,
+      title: '0-Library',
+      description: "A small marble rotunda beside the plaza — domed, colonnaded, and built as a miniature echo of the Chronicler's Athenaeum. Portal to the Chronicler's Athenaeum scene.",
+      position: [11.8, 1.58, 4.4],
+      anchorFrom: PLAZA,
+      link: 'chroniclers-athenaeum',
+    },
     {
       id: 1,
       title: 'Phòng viết lách',

@@ -10,7 +10,7 @@ export const SCENES = [
   {
     id: 'portal-island',
     title: 'Luân Hồi Đài',
-    blurb: 'A floating island ringed by eight portal gates, with a causeway out to the Rosetta language square. Thirteen loci.',
+    blurb: 'A floating island ringed by eight portal gates, with a causeway out to the Rosetta language square and a small library rotunda that leads onward to the Chronicler’s Athenaeum. Fourteen loci.',
     model: 'models/portal-island.glb',
     config: () => import('./portal-island.js').then((m) => m.default),
   },
