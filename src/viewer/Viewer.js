@@ -25,7 +25,16 @@ export class Viewer {
 
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color(SKY);
-    this.scene.fog = new THREE.Fog(SKY, 60, 220);
+    // Per-scene lighting / fog overrides, both optional: a scene config may
+    // carry `lighting: { hemisphere, ambient, ambientColor, sun, shadowExtent }`
+    // and `fog: { near, far }`. Scenes that omit them keep exactly the values
+    // that were hard-coded here before. the-white-house sets both: after its
+    // x1.6 rescale its interiors are lit only by the hemisphere light (the sun
+    // is blocked by exterior walls that must keep casting shadows) and the old
+    // constants left 6 m rooms nearly black and the far wing lost in fog.
+    const L = (this.config && this.config.lighting) || {};
+    const F = (this.config && this.config.fog) || {};
+    this.scene.fog = new THREE.Fog(SKY, F.near ?? 60, F.far ?? 220);
 
     this.camera = new THREE.PerspectiveCamera(
       50,
@@ -42,13 +51,17 @@ export class Viewer {
     this.controls.enableZoom = false;
     this.controls.maxPolarAngle = Math.PI * 0.85;
 
-    this.scene.add(new THREE.HemisphereLight(0xbfe0ff, 0x3a3a2e, 0.9));
-    const sun = new THREE.DirectionalLight(0xffffff, 1.4);
+    this.scene.add(new THREE.HemisphereLight(0xbfe0ff, 0x3a3a2e, L.hemisphere ?? 0.9));
+    if (L.ambient) {
+      this.scene.add(new THREE.AmbientLight(L.ambientColor ?? 0xfff1dd, L.ambient));
+    }
+    const sun = new THREE.DirectionalLight(0xffffff, L.sun ?? 1.4);
     sun.position.set(60, 90, 40);
     sun.castShadow = true;
     sun.shadow.mapSize.set(2048, 2048);
+    const E = L.shadowExtent ?? 80;
     Object.assign(sun.shadow.camera, {
-      left: -80, right: 80, top: 80, bottom: -80, near: 1, far: 300,
+      left: -E, right: E, top: E, bottom: -E, near: 1, far: Math.max(300, E * 4),
     });
     this.scene.add(sun);
 

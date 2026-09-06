@@ -151,39 +151,60 @@ ROOF_MATERIALS = {
 
 
 def merge_by_material(scene_id):
+    """Collapse every mesh in the scene into one object per material.
+
+    Grouping is done PER FACE, not per object: a face is routed to the group
+    named by its own material slot. Most of this repo's scenes are built from
+    single-material objects, for which this is identical to the old
+    `ob.data.materials[0]` grouping -- but the White House Library furniture
+    (collection 13_Library_Washington, added 2026-09-06) is authored as a few
+    large bmesh objects carrying 20-30 slots each, and grouping those by their
+    first slot silently threw away every other material in the room.
+
+    Vertices are still shared within a source object, so the split costs
+    nothing except at the seams between two materials on the same mesh.
+    """
     if scene_id not in MERGE_BY_MATERIAL:
         return
     import bmesh
     from collections import defaultdict
 
     decimate = MERGE_BY_MATERIAL[scene_id]
-    groups = defaultdict(list)
-    for ob in bpy.data.objects:
-        if ob.type != "MESH":
-            continue
-        mat = ob.data.materials[0] if ob.data.materials else None
-        groups[mat.name if mat else "_none"].append(ob)
+    bms = {}
+    sources = [ob for ob in bpy.data.objects if ob.type == "MESH"]
+
+    for ob in sources:
+        mats = list(ob.data.materials)
+        tmp = bmesh.new()
+        tmp.from_mesh(ob.data)
+        tmp.transform(ob.matrix_world)
+        vmaps = defaultdict(dict)
+        for f in tmp.faces:
+            mat = mats[f.material_index] if f.material_index < len(mats) else None
+            key = mat.name if mat else "_none"
+            bm = bms.get(key)
+            if bm is None:
+                bm = bms[key] = bmesh.new()
+            vmap = vmaps[key]
+            verts = []
+            for v in f.verts:
+                nv = vmap.get(v)
+                if nv is None:
+                    nv = vmap[v] = bm.verts.new(v.co)
+                verts.append(nv)
+            try:
+                bm.faces.new(verts)
+            except Exception:
+                pass  # duplicate face from coincident geometry
+        tmp.free()
 
     merged = bpy.data.collections.new("10_Export")
     bpy.context.scene.collection.children.link(merged)
 
-    for matname, objs in groups.items():
-        bm = bmesh.new()
-        for ob in objs:
-            tmp = bmesh.new()
-            tmp.from_mesh(ob.data)
-            tmp.transform(ob.matrix_world)
-            vmap = {v: bm.verts.new(v.co) for v in tmp.verts}
-            for f in tmp.faces:
-                try:
-                    bm.faces.new([vmap[v] for v in f.verts])
-                except Exception:
-                    pass  # duplicate face from coincident geometry
-            tmp.free()
+    for matname, bm in bms.items():
         bm.normal_update()
         # Tag roof meshes with ROOF_ prefix so viewer can skip castShadow for them
-        is_roof = matname in ROOF_MATERIALS
-        prefix = "ROOF_" if is_roof else "MERGED_"
+        prefix = "ROOF_" if matname in ROOF_MATERIALS else "MERGED_"
         me = bpy.data.meshes.new(prefix + matname)
         bm.to_mesh(me)
         bm.free()
@@ -196,11 +217,9 @@ def merge_by_material(scene_id):
             mod.ratio = decimate[matname]
         merged.objects.link(new)
 
-    for objs in groups.values():
-        for ob in objs:
-            bpy.data.objects.remove(ob, do_unlink=True)
-    print("merged %d meshes into %d by material" %
-          (sum(len(v) for v in groups.values()), len(groups)))
+    for ob in sources:
+        bpy.data.objects.remove(ob, do_unlink=True)
+    print("merged %d meshes into %d by material" % (len(sources), len(bms)))
 
 
 def _make_box(name, mn, mx, mat, coll):
@@ -504,7 +523,11 @@ def fix_white_house_labels_for_export():
         base = bpy.data.objects.get("Pedestal_%02d" % n)
         if base:
             bx, by, bz = base.location
-            ob.location = (bx + dx * 0.8, by + dy * 0.8, bz + 0.30)
+            # 1.28 / 0.48 = the original 0.8 / 0.30 offsets x 1.6, matching the
+            # 2026-09-06 rescale of the whole complex. data.size stays 0.22
+            # because every Name_NN object already carries scale 1.6, so the
+            # placard still renders at 0.352 in world units.
+            ob.location = (bx + dx * 1.28, by + dy * 1.28, bz + 0.48)
         ob.data.size = 0.22
         ob.data.align_y = "CENTER"
     print("white-house: nameplates stood up, flat labels dropped")
