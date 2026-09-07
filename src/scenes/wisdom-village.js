@@ -56,7 +56,26 @@ export default {
     plot(5, 'Plot 05 · The Tiered Hall', 'A two-tier East-Asian hall on a stone podium', 'Left', 'first terrace', [-21, 6.9, 8]),
     plot(6, 'Plot 06 · The Glass Cube', 'A modern glazed cube under a cantilevered slab', 'Right', 'first terrace', [21, 6.9, 8]),
     plot(7, 'Plot 07 · The Longhouse', 'A long barn with a clerestory ridge', 'Left', 'second terrace', [-21, 10.4, -4]),
-    plot(8, 'Plot 08 · The Observatory', 'A drum under a slit dome', 'Right', 'second terrace', [21, 10.4, -4]),
+    // The village's door back to the Chroniclers' Athenaeum. The Athenaeum's
+    // locus 3 — the carved-wood owl monument, wisdom's other emblem — links
+    // here, and this is the half that links back, so the pair is a loop rather
+    // than a one-way door (same treatment as Liberty <-> the White House).
+    // Of the twelve plots the Observatory is the right end to hang it on: the
+    // owl and the observatory are the same idea twice — seeing in the dark,
+    // the owl of Minerva flying at dusk. Still an open plot; the door does not
+    // depend on who eventually lives here.
+    {
+      id: 8,
+      title: 'Plot 08 · The Observatory',
+      description:
+        'A drum under a slit dome. Right of the stair, second terrace. Open ' +
+        'plot — no thinker assigned yet. The dome is also the way back to the ' +
+        "Chroniclers' Athenaeum: the owl standing in its nave watches the same " +
+        'dark this slit does, and steps through to here.',
+      position: [21, 10.4, -4],
+      anchorFrom: [0, 0, -4 + 8],
+      link: 'chroniclers-athenaeum',
+    },
     plot(9, 'Plot 09 · The Stepped Hall', 'A four-step stone ziggurat topped by a shrine', 'Left', 'third terrace', [-19, 13.9, -15.5]),
     plot(10, 'Plot 10 · The A-Frame', 'A steep glass-gabled A-frame on a timber deck', 'Right', 'third terrace', [19, 13.9, -15.5]),
     plot(11, 'Plot 11 · The Mill', 'A tapered windmill tower with four sails', 'Left', 'summit terrace', [-15, 17.4, -26.5]),
