@@ -95,6 +95,7 @@ export default {
         "A carved-wood owl, larger than life now, perched on its leafy branch atop a stone-capped plinth in the middle of the blue aisle runner \u2014 wide gold eyes, small tufted ears, wings folded close. Wisdom's other classic emblem, standing where the terrestrial globe once did.",
       position: [0, 7.4, 30],
       anchorFrom: NAVE_S,
+      link: 'wisdom-village',
     },
     {
       id: 4,
