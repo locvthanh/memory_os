@@ -27,6 +27,13 @@ export const SCENES = [
     blurb: 'The real building, room by room — Executive Residence, West Wing, East Wing and grounds — holding all 47 American presidencies. The tour climbs the house as it climbs the timeline: the founders on the Ground Floor, Lincoln at the foot of the Grand Staircase, and the modern presidency out in the West Wing. Entered from the Athenaeum through the Statue of Liberty, and its own Library leads back. Forty-seven loci.',
     model: 'models/the-white-house.glb',
     config: () => import('./the-white-house.js').then((m) => m.default),
+  },
+  {
+    id: 'wisdom-village',
+    title: 'Village of the Sages',
+    blurb: 'A terraced hill village for the thinkers: a timber gate, the Founder’s statue on the plaza, a switchback stone stair climbing five terraces, and the Rotunda of Assembly at the summit. Twelve numbered plots flank the stair — each a different silhouette, all still empty, waiting for a thinker to move in. Tour order is altitude. Twelve loci.',
+    model: 'models/wisdom-village.glb',
+    config: () => import('./wisdom-village.js').then((m) => m.default),
   }
 ];
 
