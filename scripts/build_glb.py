@@ -480,7 +480,10 @@ def fix_chinatown_materials_for_export():
 # walkthrough camera stands on. Must stay in step with `anchorFrom` in
 # src/scenes/the-white-house.js, which is generated from the same offsets.
 WH_APPROACH = {
-    1: (0, 1), 2: (0, 1), 3: (0, 1), 4: (0, 1), 5: (0, 1),
+    # 1 faces SOUTH (2026-09-06): the Library's fireplace and its Mount Vernon
+    # overmantel -- Washington's strongest peg in the room -- are on the north
+    # wall, so the camera has to stand on the south side to see them.
+    1: (0, -1), 2: (0, 1), 3: (0, 1), 4: (0, 1), 5: (0, 1),
     6: (0, 1), 7: (0, 1), 8: (0, 1), 9: (0, 1), 10: (0, 1), 11: (0, -1),
     12: (0, -1), 13: (0, -1), 14: (0, -1), 15: (1, 0), 16: (1, 0),
     17: (1, 0), 18: (0, 1), 19: (0, -1), 20: (0, 1), 21: (0, 1), 22: (-1, 0),
@@ -528,7 +531,10 @@ def fix_white_house_labels_for_export():
             # because every Name_NN object already carries scale 1.6, so the
             # placard still renders at 0.352 in world units.
             ob.location = (bx + dx * 1.28, by + dy * 1.28, bz + 0.48)
-        ob.data.size = 0.22
+        # 0.16 x the object's own 1.6 scale = 0.256 world units. Was 0.22 when
+        # the house was at true scale; after the x1.6 rescale that read as a
+        # 3.4 m banner across the room, so the placard was pulled back down.
+        ob.data.size = 0.16
         ob.data.align_y = "CENTER"
     print("white-house: nameplates stood up, flat labels dropped")
 

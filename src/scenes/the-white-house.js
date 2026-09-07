@@ -68,7 +68,12 @@ export default {
   // rescues the Library; the raised hemisphere keeps the exterior from going
   // milky. shadowExtent/fog are simply the old values x ~1.6, because the
   // complex now spans ~240 m instead of 150 m.
-  lighting: { hemisphere: 1.15, ambient: 0.5, sun: 1.5, shadowExtent: 140 },
+  lighting: {
+    hemisphere: 1.15, ambient: 0.5, sun: 1.5, shadowExtent: 140,
+    // The gold pedestal caps and the Library's gilt / brass work are metallic;
+    // without an environment probe three.js draws them black.
+    environment: true, environmentIntensity: 0.9,
+  },
   fog: { near: 110, far: 380 },
   loci: [
     {
@@ -76,7 +81,14 @@ export default {
       title: "1. George Washington",
       description: "Library. Chose the site and hired the architect, but never lived here. The tour starts where the house starts. (1789-1797) This room is also the way back: library to library, out past the Statue of Liberty standing mid-nave in the Chroniclers' Athenaeum.",
       position: [-33.36, 1.744, 12],
-      anchorFrom: [-33.36, 1.744, 2.4],
+      // South of the pedestal, so the rig's negative anchorDistance parks the
+      // camera on the south side looking NORTH -- straight at the Library
+      // fireplace and the Mount Vernon overmantel above it, with the cherry
+      // stump and its hatchet in the right foreground. Must stay in step with
+      // WH_APPROACH[1] in scripts/build_glb.py, which is (0, -1) for the same
+      // reason. The reading table, sofa and globe were moved on 2026-09-06 to
+      // keep this camera position clear.
+      anchorFrom: [-33.36, 1.744, 21.6],
       // The return leg of the Athenaeum's Liberty crossing (its locus 6 links
       // here). Paired on purpose: both ends of the door are libraries. The
       // viewer has no deep-link to a locus, so this lands on the Athenaeum's
@@ -86,8 +98,29 @@ export default {
     {
       id: 2,
       title: "2. John Adams",
-      description: "Vermeil Room. First occupant, November 1800, moving into a house still half-built. (1797-1801)",
+      description:
+        "Vermeil Room, staged as Moving Day, 1 November 1800: Adams is the first " +
+        "occupant and the house is still half-built, so the room is split down its " +
+        "length - plastered and gilt on one side, bare lath and wet grey plaster on " +
+        "the other. On the pedestal is the travelling writing box where he wrote the " +
+        "blessing now cut in gilt across the mantel opposite. The finished side holds " +
+        "what he built: the frigate in its open crate (Navy Department, 1798), his own " +
+        "two crates - 2nd president, one term - and on top of them two hats, a man's " +
+        "and a boy's, for the son who becomes the 6th. The unfinished side holds what " +
+        "undid him: the press chained and padlocked shut (Sedition Act, 1798), three " +
+        "sealed letters marked X, Y and Z with the bribe money spilt beside them, and " +
+        "judges' wigs waiting on their pegs under a clock stopped at midnight. The " +
+        "crates are already re-addressed QUINCY, MASS. 4 MARCH 1801 - he packed and " +
+        "left before Jefferson was sworn in - and two candles burn at the doorway " +
+        "through to Jefferson's China Room, dated 4 July 1826, the one on Jefferson's " +
+        "side already out. (1797-1801)",
       position: [-22.4, 1.744, 12],
+      // Faces SOUTH: the camera parks at the room's north end and looks down its
+      // length at the chimneypiece, so the inscription is the backdrop to the
+      // pedestal. Blender -X is SCREEN RIGHT from here, which is why the finished
+      // half of the room (west of the seam at x = -21.4) reads on the right and the
+      // unfinished half on the left. Must stay in step with WH_APPROACH[2] in
+      // scripts/build_glb.py, which is (0, 1) for the same reason.
       anchorFrom: [-22.4, 1.744, 2.4],
     },
     {

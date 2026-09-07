@@ -65,6 +65,35 @@ export class Viewer {
     });
     this.scene.add(sun);
 
+    // Metals need reflections. With no `scene.environment`, three.js renders a
+    // glTF material with metalness ~1 as BLACK -- which is why the gold
+    // pedestal caps and every gilt / brass piece in the White House Library
+    // read as holes punched in the model. Rather than vendor
+    // examples/jsm/environments/RoomEnvironment.js, build a three-panel PMREM
+    // probe here. Opt in per scene with `lighting: { environment: true }`;
+    // scenes that omit it are byte-for-byte unchanged.
+    if (L.environment) {
+      const pmrem = new THREE.PMREMGenerator(this.renderer);
+      const probe = new THREE.Scene();
+      probe.background = new THREE.Color(L.environmentColor ?? 0xdfe6ef);
+      const box = new THREE.BoxGeometry(1, 1, 1);
+      const panel = (color, p, s) => {
+        const m = new THREE.Mesh(box, new THREE.MeshBasicMaterial({ color }));
+        m.position.set(p[0], p[1], p[2]);
+        m.scale.set(s[0], s[1], s[2]);
+        probe.add(m);
+      };
+      panel(0xfff4e2, [0, 6, 0], [14, 0.2, 14]);   // warm ceiling bounce
+      panel(0x6a6255, [0, -6, 0], [16, 0.2, 16]);  // dim floor
+      panel(0xffffff, [-6, 1, 0], [0.2, 8, 11]);   // window-side key
+      this.scene.environment = pmrem.fromScene(probe, 0.06).texture;
+      if ('environmentIntensity' in this.scene) {
+        this.scene.environmentIntensity = L.environmentIntensity ?? 1;
+      }
+      box.dispose();
+      pmrem.dispose();
+    }
+
     this.clock = new THREE.Clock();
     this._onResize = this._onResize.bind(this);
     window.addEventListener('resize', this._onResize);
