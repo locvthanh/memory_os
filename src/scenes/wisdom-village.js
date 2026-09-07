@@ -31,6 +31,16 @@ const plot = (id, title, silhouette, side, terrace, position) => ({
 });
 
 export default {
+  // Opening shot: standing on the approach path outside the timber gate,
+  // looking north through it at the Founder's statue and the stair beyond, so
+  // the scene introduces itself the way a visitor would arrive. Without this
+  // the scene opened at locus 1's anchor — already inside, face to face with
+  // Plot 01. Blender (0, -72, 3) / aimed at (0, -20, 6.5); export_yup maps
+  // Blender (x, y, z) to three.js (x, z, -y).
+  startView: {
+    position: [0, 3.0, 72],
+    lookAt: [0, 6.5, 20],
+  },
   walkthrough: {
     travelSeconds: 5,
     dwellSeconds: 7,

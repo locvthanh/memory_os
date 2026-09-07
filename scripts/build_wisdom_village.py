@@ -294,8 +294,8 @@ for i, (tz, xh, y0, y1) in enumerate(TIERS):
     box("Terrace_%d_rim" % i, (-xh, y0, tz - 0.02), (xh, y0 + 1.6, tz + 0.05), GRASS_D)
 
 # skirt of land in front of the gate
-box("Apron_rock", (-24, -66, -8), (24, -44, -0.7), ROCK)
-box("Apron_grass", (-25, -67, -0.7), (25, -44, 0.0), GRASS)
+box("Apron_rock", (-24, -78, -8), (24, -44, -0.7), ROCK)
+box("Apron_grass", (-26, -80, -0.7), (26, -44, 0.0), GRASS)
 
 # distant peaks (low-poly backdrop, well outside the village)
 for (mx, my, mr, mh) in ((-78, 74, 26, 34), (22, 104, 34, 46), (88, 62, 24, 28),
@@ -326,7 +326,7 @@ for si, (sy0, sy1, sz0, sz1) in enumerate(STAIRS):
             (s + 0.55, sy1 + 0.2, sz1 + 1.3), MARBLE)
 
 # paved spine along each terrace + branch paths to the plots
-SPINE = [(-53.0, -19.5, 0.0), (-14.0, -7.5, 3.5), (-2.0, 4.5, 7.0),
+SPINE = [(-76.0, -19.5, 0.0), (-14.0, -7.5, 3.5), (-2.0, 4.5, 7.0),
          (10.0, 15.5, 10.5), (21.0, 39.0, 14.0)]
 for i, (py0, py1, pz) in enumerate(SPINE):
     box("Spine_%d" % i, (-4.2, py0, pz - 0.02), (4.2, py1, pz + 0.06), PAVE)

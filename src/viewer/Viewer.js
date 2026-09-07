@@ -110,11 +110,31 @@ export class Viewer {
         document.getElementById('locus-panel').hidden = true;
       });
       this._setFreeMode(true); // free exploration is the default on entering a scene
+      this._applyStartView();
 
       document.getElementById('loading').classList.add('hidden');
       this._animate();
       return this;
     });
+  }
+
+  // Optional per-scene opening shot. Without it a scene opens wherever the
+  // walkthrough's first stop is -- i.e. already inside, nose-to-nose with the
+  // first subject. `startView: { position, lookAt }` (three.js space) lets a
+  // scene open on its own front door instead: the camera is placed and aimed
+  // once, before the user takes over in free mode. Tour Mode still snaps back
+  // to locus 1, and scenes without `startView` are unchanged.
+  _applyStartView() {
+    const sv = this.config.startView;
+    if (!sv || !sv.position) return;
+    this.camera.position.set(...sv.position);
+    this.camera.lookAt(new THREE.Vector3(...(sv.lookAt || [0, 0, 0])));
+    // FreeMove re-pins controls.target in front of the camera every frame, but
+    // do it once here so the very first frame isn't still aimed at locus 1.
+    const fwd = new THREE.Vector3();
+    this.camera.getWorldDirection(fwd);
+    this.controls.target.copy(this.camera.position).addScaledVector(fwd, 2);
+    this.controls.update();
   }
 
   _wireTransport() {
