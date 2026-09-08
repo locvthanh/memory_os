@@ -126,8 +126,34 @@ export default {
     {
       id: 3,
       title: "3. Thomas Jefferson",
-      description: "China Room. Opened the house to the public and added the low colonnades either side. (1801-1809)",
+      description:
+        "China Room, hung in its own red and lined with glazed cases of " +
+        "presidential porcelain - the room is the peg. Past the pedestal a round " +
+        "table is laid for THREE (3rd president), pell-mell, with no head and no " +
+        "precedence: macaroni, ice cream and French wine, everything he brought " +
+        "home from Paris. One cabinet plate is rimmed in gilt and marked 3. On the " +
+        "way in you step around a mastodon laid out on a dark cloth - he really did " +
+        "spread fossils through the President's House. Blender -X is SCREEN RIGHT, " +
+        "so the right-hand wall runs what he gained: the Louisiana map table with " +
+        "the coin bags and $15,000,000 - THE COUNTRY DOUBLES (1803), then the desk " +
+        "where the polygraph copies every line of the Declaration as he writes it, " +
+        "then Monticello's dome beside his own epitaph obelisk (author, statute, " +
+        "father of UVa - no mention of the presidency). The left-hand wall runs what " +
+        "he sent out and shut in: the Lewis and Clark keelboat under mounted elk " +
+        "antlers (1804-06), the frigate cased beside a Tripoli crescent (1801-05, " +
+        "the first foreign war), the EMBARGO crates chained shut with a becalmed " +
+        "ship in a bottle (1807 - O GRAB ME), and his mockingbird caged at the " +
+        "window. Behind you at the door: duelling pistols and a 73-73 tally board " +
+        "(the tie with Burr, and Amendment XII), and a broken chain over the Act " +
+        "ending the slave trade in 1808. (1801-1809)",
       position: [-13.76, 1.744, 12],
+      // Faces SOUTH, like 2: the camera parks at the room's north end, ~5 m back
+      // from the pedestal, and looks down the length of the room at the south
+      // windows and the pier between them, which carries THOMAS JEFFERSON / III /
+      // 1801-1809. Must stay in step with WH_APPROACH[3] in
+      // scripts/build_glb.py, which is (0, 1) for the same reason. The mastodon
+      // was pushed south to y = -9.95 (Blender) so it lands mid-shot rather than
+      // underfoot at the camera's feet.
       anchorFrom: [-13.76, 1.744, 2.4],
     },
     {
