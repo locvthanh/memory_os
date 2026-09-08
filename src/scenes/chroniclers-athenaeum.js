@@ -92,9 +92,12 @@ export default {
       id: 3,
       title: 'The Athenaeum Owl',
       description:
-        "A carved-wood owl, larger than life now, perched on its leafy branch atop a stone-capped plinth in the middle of the blue aisle runner \u2014 wide gold eyes, small tufted ears, wings folded close. Wisdom's other classic emblem, standing where the terrestrial globe once did.",
+        "A carved-wood owl, larger than life now, perched on its leafy branch atop a stone-capped plinth in the middle of the blue aisle runner \u2014 wide gold eyes, small tufted ears, wings folded close. Wisdom's other classic emblem, standing where the terrestrial globe once did. It is also a door: step past it and you arrive at the gate of the Village of the Sages, the terraced hill town where the thinkers themselves live. That scene's Observatory \u2014 a drum under a slit dome, watching the same dark the owl does \u2014 opens back to here.",
       position: [0, 7.4, 30],
       anchorFrom: NAVE_S,
+      // Two-way door to the Village of the Sages: that scene's locus 8, the
+      // Observatory, links back here. Owl and observatory are the same idea
+      // twice — seeing in the dark — which is what makes the crossing stick.
       link: 'wisdom-village',
     },
     {
