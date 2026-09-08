@@ -159,8 +159,42 @@ export default {
     {
       id: 4,
       title: "4. James Madison",
-      description: "Diplomatic Reception Room. The British burned the house in 1814; Dolley Madison got Washington's portrait out first. (1809-1817)",
+      description:
+        "Diplomatic Reception Room - the oval bow room, and the only round stop " +
+        "on the ground floor, which is the peg by itself: after the China Room's " +
+        "hard corners you walk into a drum. The curved wall carries a painted " +
+        "panorama the whole way round, except for one scorched quarter on the " +
+        "right where the plaster is black to the cornice, a roof beam has come " +
+        "down across the floor, embers are still in the brazier and a longcase " +
+        "clock stands burnt and stopped - 24 AUGUST 1814, the night the British " +
+        "fired the house. Blender -X is SCREEN RIGHT. Beside the pedestal on the " +
+        "right, the campaign table: map, spyglass, a brace of pistols, saddlebag " +
+        "on the floor - Bladensburg, where Madison rode out and became the only " +
+        "sitting president under fire. On the left, Dolley's peg is a gilt frame " +
+        "with nothing in it, the canvas cut out and rolled at its foot, her " +
+        "ice-cream cooler and her turban beside it. Straight ahead at the centre " +
+        "window, the 15-star, 15-stripe ensign on its staff above a star-shaped " +
+        "fort, with rocket streaks over it - Fort McHenry, 1814. Further in, two " +
+        "tables face each other across the room: the treaty on green felt with " +
+        "its ribbons and seals, the Octagon House model beside it (Ghent, where " +
+        "the war ends, ratified in the house they moved to after this one " +
+        "burned); and opposite, the lectern with the engrossed Constitution and " +
+        "the Federalist in three volumes - he is the Father of the Constitution " +
+        "before he is anything else. Ten small framed cards in two rows of five " +
+        "hang over a console on the left: the Bill of Rights, 1791. Gilt " +
+        "ambassadors' chairs stand round the oval, because this is the room where " +
+        "credentials are presented. (1809-1817)",
       position: [0, 1.744, 19.2],
+      // Faces SOUTH, like 2 and 3: the rig parks 5 m north of the pedestal at
+      // (0, -14.2) in Blender and looks down the bow. Must stay in step with
+      // WH_APPROACH[4] in scripts/build_glb.py, which is (0, 1).
+      //
+      // Note for anyone editing this room: its headroom is 4.36, not 6.08. The
+      // South Portico's step slabs (SPortico_Step_0..2, 4.36-6.04) run straight
+      // through the bow's upper volume, so the underside of Step_2 is what the
+      // visitor actually reads as the ceiling. Dip_Ceiling is set at 4.16-4.34
+      // to cap the room just under it; nothing in 16_DiplomaticRoom_Madison goes
+      // above 4.36. The portico itself was left alone.
       anchorFrom: [0, 1.744, 6.4],
     },
     {
