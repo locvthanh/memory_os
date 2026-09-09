@@ -200,8 +200,50 @@ export default {
     {
       id: 5,
       title: "5. James Monroe",
-      description: "Map Room. Rebuilt and refurnished the gutted shell from 1817, in French taste. (1817-1825)",
+      description:
+        "Map Room, and the room is the peg: a cartographer's chamber in deep " +
+        "teal and brass, because his is the presidency that draws America's " +
+        "lines on the map. Underfoot the whole floor is a Western Hemisphere " +
+        "inlaid in gilt and ocean blue, with the pedestal standing in the " +
+        "middle of the Atlantic; a brass post-and-chain barrier arcs across " +
+        "the ocean and three European crowns lie toppled beyond it, above a " +
+        "parchment cartouche reading MONROE DOCTRINE / 2 DECEMBER 1823. " +
+        "Blender -X is SCREEN RIGHT, so the right-hand wall runs the home " +
+        "front: the Columbian Centinel hung as a broadsheet with the old party " +
+        "banners furled in a bin beside it and one lone standard still " +
+        "shouldered (Era of Good Feelings, Boston, 12 July 1817), the banker's " +
+        "counter with its coin stacks collapsed, an empty strongbox and a " +
+        "sheriff's bill on the wall (Panic of 1819), the easel map cut in two " +
+        "by a red line at 36 deg 30' with Missouri and Maine weighed against " +
+        "each other on a brass balance (1820), and the gilt pier table, French " +
+        "clock, overmantel mirror and open PARIS crate where the burnt shell " +
+        "was refurnished and reopened on 1 January 1818. The left-hand wall " +
+        "runs the world: the treaty table where Spain signs Florida away and " +
+        "the boundary runs on to the Pacific (Adams-Onis, 1819), the round " +
+        "chart of the West African coast with a ship and a founding stone " +
+        "(Monrovia, 1822 - a capital named for a sitting president), the laurel " +
+        "garland, wreath, tricolour sash and tall hat for Lafayette's return as " +
+        "the Nation's Guest (1824-25), and a slate chalked 231 - 1 over a " +
+        "ballot box, with the single dissenting ballot on the floor (the " +
+        "near-unanimous re-election of 1820). Behind you at the corridor door, " +
+        "a tricorn on its stand with an officer's sash and a musket ball under " +
+        "glass: the last cocked hat, the last president who fought the " +
+        "Revolution, wounded at Trenton in 1776 - and above the door, JAMES " +
+        "MONROE / FIFTH PRESIDENT. (1817-1825)",
       position: [14.56, 1.744, 12],
+      // Faces SOUTH, like 2, 3 and 4: the rig parks ~5 m north of the pedestal
+      // and looks down the room at the three south windows. Must stay in step
+      // with WH_APPROACH[5] in scripts/build_glb.py, which is (0, 1).
+      //
+      // Headroom here is 4.36, not 6.08, for the same reason as room 4: the
+      // South Portico's step slabs (SPortico_Step_0..2) cross this room's upper
+      // volume too, and Dip_Ceiling's rim overhangs ~0.6 m past the shared west
+      // wall between 3.99 and 4.34. So every label in 17_MapRoom_Monroe sits at
+      // or below 4.24 (the REBUILT & REOPENED pair drops to 3.82 to clear that
+      // overhang), and the identity tablet went over the north door instead of
+      // on the window wall, where the slab hides anything above the window
+      // heads. Ray-tested from six eye points inside the room. The portico
+      // itself was left alone.
       anchorFrom: [14.56, 1.744, 2.4],
     },
     {
