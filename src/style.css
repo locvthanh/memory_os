@@ -166,6 +166,17 @@ body.viewer {
 }
 .locus-close:hover { opacity: 1; background: rgba(0, 0, 0, 0.08); }
 
+/* Structural wrappers for the mobile sheet. Inert on desktop -- no margins, no
+   constraints -- so the panel renders exactly as it did before. */
+.locus-head, .locus-body { display: block; }
+.locus-grabber { display: none; }
+
+/* The panel is faded out with opacity, not removed, so without this it went on
+   swallowing taps over its whole footprint while invisible. Harmless on
+   desktop; on a phone it would have blocked the bottom half of the scene. */
+.locus-panel { pointer-events: none; }
+.locus-panel.visible { pointer-events: auto; }
+
 /* Free Move's up/down buttons sit where the tour bottom-right panel
    normally does, so lift it clear of them while free-moving. */
 .free-mode .locus-panel { bottom: 220px; }
@@ -289,4 +300,97 @@ body.viewer {
   font-size: 13px;
   display: none;
   z-index: 30;
+}
+
+/* ---------- small screens: the locus panel becomes a bottom sheet ----------
+
+   This is the first media query in the file; there was no existing mobile
+   breakpoint to match. 640px keeps phones (360-430 CSS px) on the sheet and
+   leaves tablets and up on the desktop layout untouched.
+
+   What was wrong: .locus-panel is `position: fixed; right: 16px; bottom: 80px`
+   with no max-height, so it grows UPWARD from its bottom edge. On a ~390px
+   phone a long locus -- the-white-house stop 4 is ~1,900 characters -- wraps to
+   roughly 1,700px of text. The panel ran clean off the top of the viewport, so
+   the counter, the <h2> title and the absolutely-positioned close button all
+   sat above y=0 with no way to reach them, the first readable line started
+   mid-sentence under the URL bar, and the panel covered both the back link and
+   the scene itself. Capping the height and scrolling the body inside the panel
+   fixes all of it. */
+@media (max-width: 640px) {
+  .locus-panel {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-width: none;
+    display: flex;
+    flex-direction: column;
+    /* dvh follows the collapsing browser chrome; vh is the fallback for
+       engines without it. Order matters -- the later one wins where supported. */
+    max-height: 45vh;
+    max-height: 45dvh;
+    border-radius: 16px 16px 0 0;
+    padding: 6px 16px 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.24);
+    /* Slide the whole sheet off the bottom edge when closed. Both states are
+       restated here: the base `.locus-panel.visible { transform: none }` above
+       is more specific than a bare `.locus-panel` in this block, so a hidden
+       transform declared on its own would lose to it and the sheet would never
+       come to rest flush with the bottom. */
+    transform: translateY(100%);
+  }
+  .locus-panel.visible { transform: none; }
+  /* .free-mode lifts the desktop panel clear of the up/down buttons. The sheet
+     is already docked at the bottom, so cancel that or it floats mid-screen.
+     Needs the same two-class specificity as the rule it overrides. */
+  .free-mode .locus-panel { bottom: 0; }
+
+  .locus-grabber {
+    display: block;
+    flex: none;
+    width: 36px;
+    height: 4px;
+    margin: 2px auto 8px;
+    border-radius: 2px;
+    background: currentColor;
+    opacity: 0.22;
+  }
+
+  .locus-head {
+    flex: none;
+    padding-right: 34px; /* clear of the close button */
+  }
+  .locus-panel h2 { margin: 2px 0 8px; font-size: 18px; }
+
+  .locus-body {
+    flex: 1 1 auto;
+    min-height: 0;        /* without this a flex child refuses to shrink and
+                             overflow-y never engages */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain; /* don't chain the scroll to the page behind */
+    padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  }
+  .locus-panel p { font-size: 14px; line-height: 1.55; opacity: 0.85; }
+
+  .locus-close {
+    top: 10px;
+    right: 10px;
+    width: 34px;
+    height: 34px;
+    line-height: 32px;
+    font-size: 22px;
+    opacity: 0.65;
+    background: rgba(0, 0, 0, 0.06);
+  }
+
+  /* Everything anchored to the bottom of the screen has to ride above the
+     sheet. --locus-sheet-h is written by LocusOverlay from the panel's real
+     measured height, and is 0px whenever the panel is closed -- so a two-line
+     locus doesn't shove the controls as far up as a twenty-line one, and
+     nothing moves at all when the sheet is dismissed. */
+  .transport { bottom: calc(var(--locus-sheet-h, 0px) + 20px); }
+  .joystick-base,
+  .vertical-controls { bottom: calc(var(--locus-sheet-h, 0px) + 84px); }
 }

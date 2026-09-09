@@ -23,12 +23,20 @@
     <p>Guided walkthrough &middot; drag to look around</p>
   </div>
 
-  <div id="locus-panel" class="locus-panel">
+  <!-- The head stays put and the body scrolls, so a long locus can never push
+       the title, the counter or the close button off the top of the screen.
+       On desktop .locus-head / .locus-body are inert blocks. -->
+  <div id="locus-panel" class="locus-panel" role="dialog" aria-labelledby="locus-title">
+    <div class="locus-grabber" aria-hidden="true"></div>
     <button id="locus-close" class="locus-close" type="button" aria-label="Close">&times;</button>
-    <span id="locus-progress" class="locus-progress"></span>
-    <h2 id="locus-title"></h2>
-    <p id="locus-description"></p>
-    <a id="locus-link" class="locus-link" href="#" hidden>Go to scene &rarr;</a>
+    <div class="locus-head">
+      <span id="locus-progress" class="locus-progress"></span>
+      <h2 id="locus-title"></h2>
+    </div>
+    <div id="locus-body" class="locus-body">
+      <p id="locus-description"></p>
+      <a id="locus-link" class="locus-link" href="#" hidden>Go to scene &rarr;</a>
+    </div>
   </div>
 
   <div id="transport" class="transport">

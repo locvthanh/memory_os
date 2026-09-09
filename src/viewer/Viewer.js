@@ -136,7 +136,7 @@ export class Viewer {
       this._wireLocusPicking();
       this._wireMusic();
       document.getElementById('locus-close').addEventListener('click', () => {
-        document.getElementById('locus-panel').hidden = true;
+        this.overlay.dismiss();
       });
       this._setFreeMode(true); // free exploration is the default on entering a scene
       this._applyStartView();
@@ -263,10 +263,13 @@ export class Viewer {
 
       if (hit) {
         const index = this.locusLabels.children.indexOf(hit.object);
-        document.getElementById('locus-panel').hidden = false;
-        this.overlay.show(index, this.loci[index]);
-      } else if (this.freeModeActive) {
-        document.getElementById('locus-panel').hidden = true;
+        this.overlay.show(index, this.loci[index]); // show() unhides the panel
+      } else {
+        // Tap on empty scene = dismiss, in tour mode as well as free mode.
+        // This is the "tap outside" affordance for the mobile sheet, and it is
+        // safe in tour mode because the next stop calls show() again. The 6px
+        // travel test above means drag-to-look never triggers it.
+        this.overlay.dismiss();
       }
     });
   }
