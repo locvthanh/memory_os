@@ -34,6 +34,13 @@ export const SCENES = [
     blurb: 'A terraced hill village for the thinkers: a timber gate, the Founder’s statue on the plaza, a switchback stone stair climbing five terraces, and the Rotunda of Assembly at the summit. Twelve numbered plots flank the stair — each a different silhouette, all still empty, waiting for a thinker to move in. Tour order is altitude. Twelve loci.',
     model: 'models/wisdom-village.glb',
     config: () => import('./wisdom-village.js').then((m) => m.default),
+  },
+  {
+    id: 'civil-war-map',
+    title: 'The Civil War',
+    blurb: 'A relief map of the United States built from real ETOPO elevation on an Albers equal-area projection, with the war of 1861\u201365 laid over it: states coloured by allegiance, the front line redrawn for each year, movement arrows for the blockade and the great campaigns, and eighteen numbered pins in chronological order from Fort Sumter to Appomattox. The tour follows the calendar, not the geography. Eighteen loci.',
+    model: 'models/civil-war-map.glb',
+    config: () => import('./civil-war-map.js').then((m) => m.default),
   }
 ];
 

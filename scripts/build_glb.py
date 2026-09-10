@@ -45,6 +45,11 @@ SCENES = {
     # radius ~12, z~3.41), Locus_09_piano, and Locus_10..13 on the Rosetta
     # language square out on the NW peninsula (isl_rosetta.py).
     "portal-island": [],
+    # CivilWarMap.blend: Locus_01..18 (collection "Loci") are baked into the
+    # source .blend by build_civilwar_map.py, one per event pin in
+    # chronological order, so this list is empty and the export loop passes the
+    # existing empties through untouched.
+    "civil-war-map": [],
     # ChroniclersAthenaeum.blend: like portal-island, every locus is baked
     # directly into the source .blend (collection 09_Loci, named
     # Locus_01_great_hall .. Locus_13_herbarium), so this list is empty and
@@ -100,6 +105,9 @@ DROP_COLLECTIONS = {
     # the-white-house: 10_Lighting holds the Blender suns plus the still/plan
     # cameras (Cam_Overview, Cam_Plan, Cam_Cutaway and their TRACK_TO targets).
     "the-white-house": ("10_Lighting",),
+    # civil-war-map: "Rig" holds the Blender sun, the two area fills and the
+    # stills camera; the web viewer lights the scene itself.
+    "civil-war-map": ("Rig",),
 }
 
 
@@ -539,6 +547,33 @@ def fix_white_house_labels_for_export():
     print("white-house: nameplates stood up, flat labels dropped")
 
 
+def bake_curves_to_meshes():
+    """Convert every CURVE / FONT object to a real mesh before export.
+
+    civil-war-map draws its front lines, movement arrows, legend bars and every
+    label as curve and text objects. The glTF exporter will evaluate those on
+    its own, but doing it here makes the triangle budget measurable and keeps
+    the exported node names identical to the .blend. Text is authored with
+    resolution_u = 2 and no extrude, which is what keeps ~1,500 glyphs down to
+    ~50k triangles instead of ~450k.
+    """
+    dg = bpy.context.evaluated_depsgraph_get()
+    n = 0
+    for ob in [o for o in bpy.data.objects if o.type in ("CURVE", "FONT")]:
+        me = bpy.data.meshes.new_from_object(ob.evaluated_get(dg))
+        me.materials.clear()
+        for m in ob.data.materials:
+            me.materials.append(m)
+        name, mw, cols = ob.name, ob.matrix_world.copy(), list(ob.users_collection)
+        bpy.data.objects.remove(ob, do_unlink=True)
+        new = bpy.data.objects.new(name, me)
+        new.matrix_world = mw
+        for c in cols:
+            c.objects.link(new)
+        n += 1
+    print("baked %d curve/text objects to meshes" % n)
+
+
 def main():
     argv = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else []
     if not argv or argv[0] not in SCENES:
@@ -561,6 +596,9 @@ def main():
     if scene_id == "the-white-house":
         fix_white_house_labels_for_export()
 
+    if scene_id == "civil-war-map":
+        bake_curves_to_meshes()
+
     drop_render_only(scene_id)
     drop_collections(scene_id)
 
@@ -574,6 +612,13 @@ def main():
     merge_by_material(scene_id)
 
     out = os.path.join(REPO, "models", scene_id + ".glb")
+    if scene_id == "civil-war-map":
+        # The terrain plate is a single UV-mapped mesh carrying the baked
+        # cartography texture; merge_by_material() rebuilds geometry without UVs
+        # so it must never run here. Cameras and lights come from the viewer.
+        export_kwargs.setdefault("export_cameras", False)
+        export_kwargs.setdefault("export_lights", False)
+
     bpy.ops.export_scene.gltf(
         filepath=out, export_format="GLB", use_selection=False,
         export_apply=True, export_yup=True,

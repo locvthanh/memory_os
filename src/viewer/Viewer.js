@@ -119,7 +119,7 @@ export class Viewer {
 
       const loci = buildLoci(model, this.config);
       this.loci = loci;
-      this.locusLabels = buildLocusLabels(loci);
+      this.locusLabels = buildLocusLabels(loci, this.config.labels || {});
       this.scene.add(this.locusLabels);
       this.overlay = new LocusOverlay(loci.length);
       this.walkthrough = new Walkthrough({
