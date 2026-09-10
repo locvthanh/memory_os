@@ -45,8 +45,12 @@ export function buildLocusLabels(loci, options = {}) {
   const group = new THREE.Group();
   group.name = 'locus-labels';
   loci.forEach((locus, i) => {
-    const sprite = makeNumberSprite(i + 1, worldSize);
-    sprite.position.copy(locus.position).add(new THREE.Vector3(0, offsetY, 0));
+    // A locus may size and lift its own badge (see loci.js): solar-system's
+    // subjects differ in radius by 40x, so one size fits none.
+    const s = locus.labelScale ?? worldSize;
+    const o = locus.labelOffsetY ?? offsetY;
+    const sprite = makeNumberSprite(i + 1, s);
+    sprite.position.copy(locus.position).add(new THREE.Vector3(0, o, 0));
     group.add(sprite);
   });
   return group;

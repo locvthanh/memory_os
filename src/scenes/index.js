@@ -41,6 +41,13 @@ export const SCENES = [
     blurb: 'A relief map of the United States built from real ETOPO elevation on an Albers equal-area projection, with the war of 1861\u201365 laid over it: states coloured by allegiance, the front line redrawn for each year, movement arrows for the blockade and the great campaigns, and eighteen numbered pins in chronological order from Fort Sumter to Appomattox. The tour follows the calendar, not the geography. Eighteen loci.',
     model: 'models/civil-war-map.glb',
     config: () => import('./civil-war-map.js').then((m) => m.default),
+  },
+  {
+    id: 'solar-system',
+    title: 'The Solar System',
+    blurb: 'The Sun, the eight planets, both belts and three dwarf planets, built at readable scale: planet sizes are true relative to each other, but distances are square-root compressed so the whole system fits in one view. Axial tilts, orbital inclinations, the Cassini Division and the Kirkwood gaps are all real. The tour runs outward from the Sun to the Kuiper Belt. Twelve loci.',
+    model: 'models/solar-system.glb',
+    config: () => import('./solar-system.js').then((m) => m.default),
   }
 ];
 

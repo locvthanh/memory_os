@@ -25,6 +25,14 @@ if (!scene) {
         modelUrl: scene.model,
         config,
       });
+      // Debug handle. The in-app preview pane throttles requestAnimationFrame
+      // to zero while it is not the visible surface, so the render loop (and
+      // with it the walkthrough's travel/dwell timers) simply does not tick
+      // there -- which looks exactly like a broken transport. With this handle
+      // a stop can be stepped by hand from the console:
+      //   __viewer.walkthrough.next(); __viewer.walkthrough.update(6);
+      //   __viewer.renderer.render(__viewer.scene, __viewer.camera);
+      window.__viewer = viewer;
       return viewer.start();
     })
     .catch((err) => {

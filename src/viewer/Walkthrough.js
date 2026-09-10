@@ -71,8 +71,14 @@ export class Walkthrough {
         );
         if (dir.lengthSq() < 1e-4) dir.set(0, 0, 1);
         dir.normalize();
-        anchor = l.position.clone().addScaledVector(dir, this.anchorDistance);
-        anchor.y = l.position.y + this.eyeHeight;
+        // A locus may override the rig's stand-off distance and eye height.
+        // A NEGATIVE anchorDistance puts the camera on the centroid side of
+        // the locus instead of beyond it -- which for solar-system means
+        // between the Sun and the planet, so every body is seen lit rather
+        // than backlit.
+        const dist = l.anchorDistance ?? this.anchorDistance;
+        anchor = l.position.clone().addScaledVector(dir, dist);
+        anchor.y = l.position.y + (l.eyeHeight ?? this.eyeHeight);
       }
       return { anchor, look: l.position.clone(), locus: l };
     });

@@ -34,6 +34,15 @@ export function buildLoci(gltfScene, config) {
         description: cfg.description || '',
         position: p,
         anchorFrom: cfg.anchorFrom || null,
+        // Per-locus camera overrides. solar-system needs them: its subjects
+        // range from Mercury (radius 0.05) to the Sun (radius 2.0), a 40:1
+        // spread that no single scene-wide anchorDistance can frame.
+        anchorDistance: cfg.anchorDistance ?? null,
+        eyeHeight: cfg.eyeHeight ?? null,
+        // Same problem for the numbered badges: one world size cannot sit
+        // legibly beside both Mercury and Jupiter.
+        labelScale: cfg.labelScale ?? null,
+        labelOffsetY: cfg.labelOffsetY ?? null,
         link: cfg.link || null,
       };
     });

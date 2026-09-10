@@ -24,7 +24,6 @@ export class Viewer {
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
 
     this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color(SKY);
     // Per-scene lighting / fog overrides, both optional: a scene config may
     // carry `lighting: { hemisphere, ambient, ambientColor, sun, shadowExtent }`
     // and `fog: { near, far }`. Scenes that omit them keep exactly the values
@@ -34,7 +33,15 @@ export class Viewer {
     // constants left 6 m rooms nearly black and the far wing lost in fog.
     const L = (this.config && this.config.lighting) || {};
     const F = (this.config && this.config.fog) || {};
-    this.scene.fog = new THREE.Fog(SKY, F.near ?? 60, F.far ?? 220);
+    // `background` replaces the daylight sky colour; `fog: false` switches
+    // distance fog off entirely. solar-system needs both -- it is deep space,
+    // and it is ~110 units across, so the default 60/220 fog would bury
+    // everything past Jupiter. Scenes that set neither are unchanged.
+    const bg = (this.config && this.config.background) ?? SKY;
+    this.scene.background = new THREE.Color(bg);
+    if (!this.config || this.config.fog !== false) {
+      this.scene.fog = new THREE.Fog(bg, F.near ?? 60, F.far ?? 220);
+    }
 
     this.camera = new THREE.PerspectiveCamera(
       50,
@@ -65,6 +72,27 @@ export class Viewer {
     });
     this.scene.add(sun);
 
+    // An optional point light, for a scene whose light has a place in it
+    // rather than a direction. `lighting: { point: { position, intensity,
+    // decay, distance, color } }`.
+    //
+    // solar-system sets `decay: 0` on purpose. Real inverse-square falloff
+    // across this scene spans roughly 60:1 from Mercury to Eris, so any
+    // exposure that keeps Mercury from blowing out leaves Neptune black --
+    // the .blend works around it with three light-linked lamps, which glTF
+    // cannot carry. decay 0 lights every body equally while still putting the
+    // terminator on the correct, sunward side, which is the part that teaches.
+    if (L.point) {
+      const p = new THREE.PointLight(
+        L.point.color ?? 0xffffff,
+        L.point.intensity ?? 2,
+        L.point.distance ?? 0,
+        L.point.decay ?? 2,
+      );
+      p.position.fromArray(L.point.position ?? [0, 0, 0]);
+      this.scene.add(p);
+    }
+
     // Metals need reflections. With no `scene.environment`, three.js renders a
     // glTF material with metalness ~1 as BLACK -- which is why the gold
     // pedestal caps and every gilt / brass piece in the White House Library
@@ -94,9 +122,45 @@ export class Viewer {
       pmrem.dispose();
     }
 
+    // `stars: { count, radius, size, milkyWay }` scatters a Points sky.
+    // Deliberately not a sky dome in the glb: Viewer sets castShadow on every
+    // mesh it loads, and an emissive shell around the scene would drop the
+    // whole thing into shadow (see the Rosetta_SkyDome note in build_glb.py).
+    if (this.config && this.config.stars) this._addStars(this.config.stars);
+
     this.clock = new THREE.Clock();
     this._onResize = this._onResize.bind(this);
     window.addEventListener('resize', this._onResize);
+  }
+
+  _addStars({ count = 4500, radius = 700, size = 1.7, milkyWay = true } = {}) {
+    const pos = new Float32Array(count * 3);
+    const col = new Float32Array(count * 3);
+    const c = new THREE.Color();
+    const bandAxis = new THREE.Vector3(0, 0, 1);
+    for (let i = 0; i < count; i += 1) {
+      let u = Math.random() * 2 - 1;          // uniform on a sphere...
+      if (milkyWay && i % 3 === 0) u *= 0.2;  // ...with a third pulled into a band
+      const th = Math.random() * Math.PI * 2;
+      const r = Math.sqrt(Math.max(0, 1 - u * u));
+      const dir = new THREE.Vector3(r * Math.cos(th), u, r * Math.sin(th));
+      dir.applyAxisAngle(bandAxis, 1.05).multiplyScalar(radius);
+      pos[i * 3] = dir.x; pos[i * 3 + 1] = dir.y; pos[i * 3 + 2] = dir.z;
+      const b = Math.random();
+      c.setHSL(0.56 + (Math.random() - 0.5) * 0.22, 0.3 * Math.random(),
+               0.35 + 0.6 * b * b);
+      col[i * 3] = c.r; col[i * 3 + 1] = c.g; col[i * 3 + 2] = c.b;
+    }
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    g.setAttribute('color', new THREE.BufferAttribute(col, 3));
+    const points = new THREE.Points(g, new THREE.PointsMaterial({
+      size, sizeAttenuation: false, vertexColors: true,
+      transparent: true, depthWrite: false, fog: false,
+    }));
+    points.frustumCulled = false;
+    points.name = 'starfield';
+    this.scene.add(points);
   }
 
   start() {

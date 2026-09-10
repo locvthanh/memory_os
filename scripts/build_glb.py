@@ -12,6 +12,7 @@ three.js (x, z, -y) -- keep that in mind when tuning against the viewer.
 import bpy, sys, os, mathutils
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(REPO, "scripts"))  # sibling helper modules
 
 # id -> ordered locus positions in Blender coords (x, y, z-up). z ~ eye height.
 # Starting values; refine by eye in the viewer then re-export.
@@ -64,6 +65,13 @@ SCENES = {
     # State Floor 6-16, Second Floor 17-29, Coolidge's Third Floor 30-35, and
     # the West Wing / East Wing / grounds 36-47.
     "the-white-house": [],
+    # SolarSystem.blend: Locus_01_sun .. Locus_12_kuiper_belt (collection
+    # 09_Loci) are baked into the source .blend, one per body, so this list is
+    # empty and the export loop passes the existing empties through untouched.
+    # Everything else this scene needs happens in scripts/solar_system_export.py
+    # -- its planets are procedurally shaded and have to be baked to textures
+    # before glTF can carry them.
+    "solar-system": [],
     "writing-room": [
         [0, 3.6, 1.2], [-2.2, 2.5, 1.4], [-0.8, 3.6, 1.1],
         [0.8, 3.6, 1.1], [2.2, 1.0, 1.0], [0, 4.0, 1.3],
@@ -108,6 +116,9 @@ DROP_COLLECTIONS = {
     # civil-war-map: "Rig" holds the Blender sun, the two area fills and the
     # stills camera; the web viewer lights the scene itself.
     "civil-war-map": ("Rig",),
+    # solar-system: the two label collections are Blender-side 3D text; the
+    # viewer draws its own locus labels (src/viewer/LocusLabels.js).
+    "solar-system": ("07_Labels_Overview", "08_Labels_Closeup"),
 }
 
 
@@ -598,6 +609,15 @@ def main():
 
     if scene_id == "civil-war-map":
         bake_curves_to_meshes()
+
+    if scene_id == "solar-system":
+        import solar_system_export
+        solar_system_export.prepare()
+        # orbit paths and the ring annuli are curves/pydata meshes; the text
+        # labels are dropped with 07_/08_ so only the orbits need baking
+        bake_curves_to_meshes()
+        export_kwargs.setdefault("export_cameras", False)
+        export_kwargs.setdefault("export_lights", False)
 
     drop_render_only(scene_id)
     drop_collections(scene_id)
