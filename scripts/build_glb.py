@@ -89,6 +89,12 @@ SCENES = {
     # flattening, recentring and its own terrain-safe merge -- lives in
     # scripts/war_museum_export.py.
     "war-museum": [],
+    # pin-factory: Locus_01..16 are baked into PinFactory.blend (collection
+    # 12_Loci: Smith's statue, the lone pin-maker, the ten stations, the tally
+    # board, the three reasons, the quay, the open door). Export prep -- rig
+    # drop, text flattening, emissive tone-down and a ROOF_-aware merge -- lives
+    # in scripts/pin_factory_export.py.
+    "pin-factory": [],
     "writing-room": [
         [0, 3.6, 1.2], [-2.2, 2.5, 1.4], [-0.8, 3.6, 1.1],
         [0.8, 3.6, 1.1], [2.2, 1.0, 1.0], [0, 4.0, 1.3],
@@ -664,6 +670,15 @@ def main():
         war_museum_export.prepare()
         bake_curves_to_meshes()
         war_museum_export.merge()
+        export_kwargs.setdefault("export_cameras", False)
+        export_kwargs.setdefault("export_lights", False)
+        export_kwargs.setdefault("export_animations", False)
+
+    if scene_id == "pin-factory":
+        import pin_factory_export
+        pin_factory_export.prepare()
+        bake_curves_to_meshes()
+        pin_factory_export.merge()
         export_kwargs.setdefault("export_cameras", False)
         export_kwargs.setdefault("export_lights", False)
         export_kwargs.setdefault("export_animations", False)

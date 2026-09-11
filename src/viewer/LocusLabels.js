@@ -45,6 +45,7 @@ export function buildLocusLabels(loci, options = {}) {
   const group = new THREE.Group();
   group.name = 'locus-labels';
   loci.forEach((locus, i) => {
+    if (locus.hideLabel) return;
     // A locus may size and lift its own badge (see loci.js): solar-system's
     // subjects differ in radius by 40x, so one size fits none.
     const s = locus.labelScale ?? worldSize;

@@ -26,6 +26,7 @@ $map = @{
     "india-history"    = "IndiaHistory.blend"
     "world-war-2"      = "WorldWarII.blend"
     "war-museum"       = "WarMuseum.blend"
+    "pin-factory"      = "PinFactory.blend"
 }
 
 foreach ($id in $map.Keys) {

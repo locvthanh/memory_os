@@ -88,6 +88,13 @@ export const SCENES = [
     blurb: 'A grand stone gallery of seven military sand tables, walked in date order down a red carpet with a brass timeline: Cannae (216 BC), Bạch Đằng (1288), Gettysburg (1863), the Somme (1916), D-Day (1944), Điện Biên Phủ (1954) and the Fall of Sài Gòn (1975). Every table is a miniature battlefield with its armies, arrows and flags; behind each, a glowing arch is a portal to that war’s own scene, and a glass case opposite holds one artifact. An eternal flame closes the hall. Nine loci.',
     model: 'models/war-museum.glb',
     config: () => import('./war-museum.js').then((m) => m.default),
+  },
+  {
+    id: 'pin-factory',
+    title: 'The Pin Factory',
+    blurb: 'Adam Smith’s division of labour, walked down one low-poly Georgian street in Kirkcaldy. First the lone pin-maker in his cottage, doing all eighteen steps himself for one pin a day; then the manufactory next door, where ten workers at one long bench each do a single step, in Smith’s own words (one draws the wire, another straightens it, a third cuts it…), and together make 48,000 pins a day. Then Smith’s three reasons, the ship that carries the pins to market, and an open door on two questions still argued about. Sixteen loci.',
+    model: 'models/pin-factory.glb',
+    config: () => import('./pin-factory.js').then((m) => m.default),
   }
 ];
 

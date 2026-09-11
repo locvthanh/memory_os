@@ -48,6 +48,11 @@ export function buildLoci(gltfScene, config) {
         // tints it with the event's year colour (labelColor, any CSS colour).
         labelPosition: cfg.labelPosition ?? null,
         labelColor: cfg.labelColor ?? null,
+        // pin-factory's ten station stops already carry their own numbers
+        // (Smith's step 1..10, on the sign board and the bench disc); a tour
+        // badge reading 3..12 beside them would contradict them, so those
+        // loci set `hideLabel: true` and show no badge.
+        hideLabel: cfg.hideLabel ?? false,
         link: cfg.link || null,
         // Optional text for the cross-scene link; war-museum's portals read
         // 'Enter the portal: World War II ->' instead of 'Go to scene ->'.
