@@ -125,6 +125,13 @@ number is read. A locus present in the glb but missing from the scene config
 still appears in the tour, titled `Locus N` with no description, so add a
 config entry for every empty you bake.
 
+A locus can also place and colour its own numbered badge:
+`labelPosition: [x, y, z]` (three.js space) replaces `position` + `labelOffsetY`,
+and `labelColor` (any CSS colour) replaces the default dark fill.
+`world-war-2` uses both: each badge sits on top of a brass pole beside its
+monument, where the date-order arcs start and end, and is tinted with the
+event's year colour.
+
 ## Adding a scene
 
 1. Build the model in Blender. Add Empties named `Locus_01..NN` where each

@@ -74,6 +74,13 @@ export const SCENES = [
     blurb: 'A low-poly valley where a road winds beside a river past 4,500 years of Indian history — from the Great Bath of Mohenjo-daro to the Constitution of 1950. Each stop is a monument you can picture (Ashoka’s lion pillar, the Chola temple, Babur’s cannon, the Taj Mahal, Gandhi’s glasses) beside a numbered sign, and six coloured era gates mark where the story turns. Twenty-five loci, in chronological order.',
     model: 'models/india-history.glb',
     config: () => import('./india-history.js').then((m) => m.default),
+  },
+  {
+    id: 'world-war-2',
+    title: 'World War II: Theatre of War',
+    blurb: 'A low-poly war-room map table of the whole world at war, 1937–1945. Thirty-two turning points stand where they happened — from the Marco Polo Bridge to the surrender on the USS Missouri — each with a monument you can picture (a lightning bolt for Blitzkrieg, a loaf of bread for besieged Leningrad, a literal torch for Operation Torch) and glowing arcs joining them in date order, so the tour jumps between Europe and the Pacific the way the war did. Colour tells the year.',
+    model: 'models/world-war-2.glb',
+    config: () => import('./world-war-2.js').then((m) => m.default),
   }
 ];
 

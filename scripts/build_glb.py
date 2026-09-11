@@ -79,6 +79,11 @@ SCENES = {
     # (dropping the rig and clouds, flattening text, recentring) happens in
     # scripts/india_history_export.py.
     "india-history": [],
+    # world-war-2: Locus_01..32 are baked into WorldWarII.blend (one per event,
+    # on the monument's aim point); export prep -- dropping the rig and the
+    # number medallions, flattening text, scaling x5 -- is in
+    # scripts/world_war_2_export.py.
+    "world-war-2": [],
     "writing-room": [
         [0, 3.6, 1.2], [-2.2, 2.5, 1.4], [-0.8, 3.6, 1.1],
         [0.8, 3.6, 1.1], [2.2, 1.0, 1.0], [0, 4.0, 1.3],
@@ -164,6 +169,9 @@ MERGE_BY_MATERIAL = {
     # primitives, every sign a board plus four text objects). Nothing is
     # decimated: it is all flat-shaded low-poly, which decimation destroys.
     "india-history": {},
+    # world-war-2 ships ~540 objects (monuments, plinths, signs, ~200 texts, 31
+    # path arcs); all flat-shaded low-poly, so merged but never decimated.
+    "world-war-2": {},
 }
 
 # Materials that belong to roofs/ceilings. Merged meshes with these materials
@@ -633,6 +641,14 @@ def main():
     if scene_id == "india-history":
         import india_history_export
         india_history_export.prepare()
+        bake_curves_to_meshes()
+        export_kwargs.setdefault("export_cameras", False)
+        export_kwargs.setdefault("export_lights", False)
+        export_kwargs.setdefault("export_animations", False)
+
+    if scene_id == "world-war-2":
+        import world_war_2_export
+        world_war_2_export.prepare()
         bake_curves_to_meshes()
         export_kwargs.setdefault("export_cameras", False)
         export_kwargs.setdefault("export_lights", False)

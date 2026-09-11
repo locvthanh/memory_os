@@ -7,14 +7,14 @@ import * as THREE from 'three';
 const LABEL_OFFSET_Y = 1.6;
 const LABEL_WORLD_SIZE = 1.1;
 
-function makeNumberSprite(number, worldSize) {
+function makeNumberSprite(number, worldSize, color) {
   const size = 128;
   const canvas = document.createElement('canvas');
   canvas.width = size;
   canvas.height = size;
   const ctx = canvas.getContext('2d');
 
-  ctx.fillStyle = 'rgba(28, 39, 51, 0.85)';
+  ctx.fillStyle = color || 'rgba(28, 39, 51, 0.85)';
   ctx.beginPath();
   ctx.arc(size / 2, size / 2, size / 2 - 6, 0, Math.PI * 2);
   ctx.fill();
@@ -49,8 +49,9 @@ export function buildLocusLabels(loci, options = {}) {
     // subjects differ in radius by 40x, so one size fits none.
     const s = locus.labelScale ?? worldSize;
     const o = locus.labelOffsetY ?? offsetY;
-    const sprite = makeNumberSprite(i + 1, s);
-    sprite.position.copy(locus.position).add(new THREE.Vector3(0, o, 0));
+    const sprite = makeNumberSprite(i + 1, s, locus.labelColor);
+    if (locus.labelPosition) sprite.position.set(...locus.labelPosition);
+    else sprite.position.copy(locus.position).add(new THREE.Vector3(0, o, 0));
     group.add(sprite);
   });
   return group;

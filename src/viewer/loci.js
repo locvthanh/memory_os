@@ -43,6 +43,11 @@ export function buildLoci(gltfScene, config) {
         // legibly beside both Mercury and Jupiter.
         labelScale: cfg.labelScale ?? null,
         labelOffsetY: cfg.labelOffsetY ?? null,
+        // world-war-2 parks each badge on a brass pole beside its monument
+        // (labelPosition, three.js space, replaces position + offsetY) and
+        // tints it with the event's year colour (labelColor, any CSS colour).
+        labelPosition: cfg.labelPosition ?? null,
+        labelColor: cfg.labelColor ?? null,
         link: cfg.link || null,
       };
     });
