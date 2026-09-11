@@ -324,6 +324,10 @@ export default {
       eyeHeight: 12.71,
       labelPosition: [-90.99, 10.9, -26.72],
       labelColor: "#d8323c",
+      // Two-way portal: the War Museum has a D-Day sand table whose glowing
+      // arch leads here.
+      link: "war-museum",
+      linkLabel: "Visit the D-Day sand table in the War Museum \u2192",
     },
     {
       id: 23,

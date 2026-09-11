@@ -84,6 +84,11 @@ SCENES = {
     # number medallions, flattening text, scaling x5 -- is in
     # scripts/world_war_2_export.py.
     "world-war-2": [],
+    # war-museum: Locus_01..09 are baked into WarMuseum.blend (entrance plinth,
+    # the seven sand tables, the memorial flame). Export prep -- rig drop, text
+    # flattening, recentring and its own terrain-safe merge -- lives in
+    # scripts/war_museum_export.py.
+    "war-museum": [],
     "writing-room": [
         [0, 3.6, 1.2], [-2.2, 2.5, 1.4], [-0.8, 3.6, 1.1],
         [0.8, 3.6, 1.1], [2.2, 1.0, 1.0], [0, 4.0, 1.3],
@@ -650,6 +655,15 @@ def main():
         import world_war_2_export
         world_war_2_export.prepare()
         bake_curves_to_meshes()
+        export_kwargs.setdefault("export_cameras", False)
+        export_kwargs.setdefault("export_lights", False)
+        export_kwargs.setdefault("export_animations", False)
+
+    if scene_id == "war-museum":
+        import war_museum_export
+        war_museum_export.prepare()
+        bake_curves_to_meshes()
+        war_museum_export.merge()
         export_kwargs.setdefault("export_cameras", False)
         export_kwargs.setdefault("export_lights", False)
         export_kwargs.setdefault("export_animations", False)

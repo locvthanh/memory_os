@@ -123,6 +123,8 @@ export default {
       year: 1863,
       w: 240,
       reveal: ['lee-north'],
+      // Two-way portal: the War Museum's Gettysburg sand table leads here.
+      link: 'war-museum',
       title: 'Gettysburg · Jul 1-3 1863',
       description:
         "Lee's second and last invasion of the North, fought by accident over a road junction. Three days: the seminary ridge, Little Round Top, and finally Pickett's Charge across three-quarters of a mile of open ground into massed artillery. Lee lost a third of his army and never invaded again.",

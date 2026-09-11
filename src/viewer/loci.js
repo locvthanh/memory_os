@@ -49,6 +49,9 @@ export function buildLoci(gltfScene, config) {
         labelPosition: cfg.labelPosition ?? null,
         labelColor: cfg.labelColor ?? null,
         link: cfg.link || null,
+        // Optional text for the cross-scene link; war-museum's portals read
+        // 'Enter the portal: World War II ->' instead of 'Go to scene ->'.
+        linkLabel: cfg.linkLabel || null,
       };
     });
 

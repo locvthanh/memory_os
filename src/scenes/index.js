@@ -81,6 +81,13 @@ export const SCENES = [
     blurb: 'A low-poly war-room map table of the whole world at war, 1937–1945. Thirty-two turning points stand where they happened — from the Marco Polo Bridge to the surrender on the USS Missouri — each with a monument you can picture (a lightning bolt for Blitzkrieg, a loaf of bread for besieged Leningrad, a literal torch for Operation Torch) and glowing arcs joining them in date order, so the tour jumps between Europe and the Pacific the way the war did. Colour tells the year.',
     model: 'models/world-war-2.glb',
     config: () => import('./world-war-2.js').then((m) => m.default),
+  },
+  {
+    id: 'war-museum',
+    title: 'War Museum: Hall of Sand Tables',
+    blurb: 'A grand stone gallery of seven military sand tables, walked in date order down a red carpet with a brass timeline: Cannae (216 BC), Bạch Đằng (1288), Gettysburg (1863), the Somme (1916), D-Day (1944), Điện Biên Phủ (1954) and the Fall of Sài Gòn (1975). Every table is a miniature battlefield with its armies, arrows and flags; behind each, a glowing arch is a portal to that war’s own scene, and a glass case opposite holds one artifact. An eternal flame closes the hall. Nine loci.',
+    model: 'models/war-museum.glb',
+    config: () => import('./war-museum.js').then((m) => m.default),
   }
 ];
 

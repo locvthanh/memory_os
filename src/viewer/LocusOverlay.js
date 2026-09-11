@@ -46,6 +46,7 @@ export class LocusOverlay {
     const href = locus.link ? sceneHref(locus.link) : null;
     if (href) {
       this.link.href = href;
+      this.link.textContent = locus.linkLabel || 'Go to scene \u2192';
       this.link.hidden = false;
     } else {
       this.link.hidden = true;

@@ -132,6 +132,11 @@ and `labelColor` (any CSS colour) replaces the default dark fill.
 monument, where the date-order arcs start and end, and is tinted with the
 event's year colour.
 
+A locus with a cross-scene `link` can also set `linkLabel` to replace the
+panel's default "Go to scene →" text. `war-museum` uses it for its portal
+arches ("Enter the portal: World War II →"), and the two scenes those portals
+open (`world-war-2`'s D-Day stop, `civil-war`'s Gettysburg stop) link back.
+
 ## Adding a scene
 
 1. Build the model in Blender. Add Empties named `Locus_01..NN` where each
