@@ -72,6 +72,13 @@ SCENES = {
     # -- its planets are procedurally shaded and have to be baked to textures
     # before glTF can carry them.
     "solar-system": [],
+    # IndiaHistory.blend ("River of Time"): Locus_01..25 are baked into the
+    # source .blend as children of the Station_NN empties, one per event in
+    # chronological order, each on its monument's aim point. The list is empty
+    # and the export loop passes them through; everything else this scene needs
+    # (dropping the rig and clouds, flattening text, recentring) happens in
+    # scripts/india_history_export.py.
+    "india-history": [],
     "writing-room": [
         [0, 3.6, 1.2], [-2.2, 2.5, 1.4], [-0.8, 3.6, 1.1],
         [0.8, 3.6, 1.1], [2.2, 1.0, 1.0], [0, 4.0, 1.3],
@@ -153,6 +160,10 @@ MERGE_BY_MATERIAL = {
     # ~34 nodes. Nothing is decimated: this scene is entirely flat-shaded
     # architecture, which decimation destroys.
     "the-white-house": {},
+    # india-history ships ~1,700 objects (every monument is dozens of
+    # primitives, every sign a board plus four text objects). Nothing is
+    # decimated: it is all flat-shaded low-poly, which decimation destroys.
+    "india-history": {},
 }
 
 # Materials that belong to roofs/ceilings. Merged meshes with these materials
@@ -619,6 +630,14 @@ def main():
         export_kwargs.setdefault("export_cameras", False)
         export_kwargs.setdefault("export_lights", False)
 
+    if scene_id == "india-history":
+        import india_history_export
+        india_history_export.prepare()
+        bake_curves_to_meshes()
+        export_kwargs.setdefault("export_cameras", False)
+        export_kwargs.setdefault("export_lights", False)
+        export_kwargs.setdefault("export_animations", False)
+
     drop_render_only(scene_id)
     drop_collections(scene_id)
 
@@ -630,6 +649,8 @@ def main():
         bpy.context.scene.collection.objects.link(empty)
 
     merge_by_material(scene_id)
+    if scene_id == "india-history":
+        india_history_export.prune_empties()
 
     out = os.path.join(REPO, "models", scene_id + ".glb")
     if scene_id == "civil-war-map":

@@ -23,6 +23,7 @@ $map = @{
     "time-machine"     = "TimeMachineTimeline.blend"
     "civil-war-map"    = "CivilWarMap.blend"
     "solar-system"     = "SolarSystem.blend"
+    "india-history"    = "IndiaHistory.blend"
 }
 
 foreach ($id in $map.Keys) {

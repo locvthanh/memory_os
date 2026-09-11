@@ -67,6 +67,13 @@ export const SCENES = [
     blurb: 'The Sun, the eight planets, both belts and three dwarf planets, built at readable scale: planet sizes are true relative to each other, but distances are square-root compressed so the whole system fits in one view. Axial tilts, orbital inclinations, the Cassini Division and the Kirkwood gaps are all real. The tour runs outward from the Sun to the Kuiper Belt. Twelve loci.',
     model: 'models/solar-system.glb',
     config: () => import('./solar-system.js').then((m) => m.default),
+  },
+  {
+    id: 'india-history',
+    title: 'River of Time: India',
+    blurb: 'A low-poly valley where a road winds beside a river past 4,500 years of Indian history — from the Great Bath of Mohenjo-daro to the Constitution of 1950. Each stop is a monument you can picture (Ashoka’s lion pillar, the Chola temple, Babur’s cannon, the Taj Mahal, Gandhi’s glasses) beside a numbered sign, and six coloured era gates mark where the story turns. Twenty-five loci, in chronological order.',
+    model: 'models/india-history.glb',
+    config: () => import('./india-history.js').then((m) => m.default),
   }
 ];
 
