@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>memoryOS — The Civil War</title>
+  <!-- 2D scene: no Three.js, no import map, no glb. Everything on this page is
+       SVG built at runtime from src/scenes2d/civil-war.data.js. -->
+  <link rel="stylesheet" href="src/scenes2d/civil-war.css" />
+</head>
+<body class="cw">
+  <a class="cw-back" href="./">&larr; scenes</a>
+
+  <!-- The map. viewBox is animated by the tour; contents are built in JS. -->
+  <svg id="cw-map" class="cw-map" xmlns="http://www.w3.org/2000/svg"
+       viewBox="-14 -12 1028 658" preserveAspectRatio="xMidYMid meet"
+       role="img" aria-label="Animated map of the United States, 1861 to 1865">
+    <defs>
+      <filter id="cw-glow" x="-40%" y="-40%" width="180%" height="180%">
+        <feGaussianBlur stdDeviation="2.4" result="b" />
+        <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+      </filter>
+      <marker id="cw-arrowhead" viewBox="0 0 10 10" refX="8" refY="5"
+              markerWidth="3.4" markerHeight="3.4" orient="auto-start-reverse">
+        <path d="M0 0 L10 5 L0 10 z" fill="currentColor" />
+      </marker>
+    </defs>
+
+    <g id="cw-ocean"></g>
+    <g id="cw-states"></g>
+    <g id="cw-rivers"></g>
+    <g id="cw-front"></g>
+    <g id="cw-blockade"></g>
+    <g id="cw-arrows"></g>
+    <g id="cw-effects"></g>
+    <g id="cw-cities"></g>
+    <g id="cw-statelabels"></g>
+    <g id="cw-pins"></g>
+  </svg>
+
+  <!-- Year stamp, top centre. Cross-fades as the tour crosses into a new year. -->
+  <div id="cw-year" class="cw-year" aria-live="polite">
+    <span id="cw-year-num">1861</span>
+    <em id="cw-year-note"></em>
+  </div>
+
+  <header class="cw-head">
+    <h1>The Civil War</h1>
+    <p>Guided walkthrough &middot; drag to pan, scroll to zoom</p>
+  </header>
+
+  <!-- Legend. Collapsed to a puck on small screens. -->
+  <button id="cw-legend-toggle" class="cw-legend-toggle" type="button"
+          aria-expanded="false" aria-controls="cw-legend">Legend</button>
+  <aside id="cw-legend" class="cw-legend" hidden>
+    <ul>
+      <li><i class="sw sw-conf"></i>Confederate, 1861</li>
+      <li><i class="sw sw-fallen"></i>Under Union control</li>
+      <li><i class="sw sw-border"></i>Border slave state (stayed)</li>
+      <li><i class="sw sw-union"></i>Union</li>
+      <li><i class="sw sw-terr"></i>Territory</li>
+      <li><i class="sw sw-front"></i>Front line (approx.)</li>
+      <li><i class="sw sw-block"></i>Blockade</li>
+      <li><i class="sw sw-arrow"></i>Campaign movement</li>
+    </ul>
+  </aside>
+
+  <!-- Locus panel. Same head/body split as scene.html: on a phone this docks as
+       a bottom sheet and a long description scrolls under a fixed heading. -->
+  <div id="cw-panel" class="cw-panel" role="dialog" aria-labelledby="cw-title" hidden>
+    <div class="cw-grabber" aria-hidden="true"></div>
+    <button id="cw-close" class="cw-close" type="button" aria-label="Close">&times;</button>
+    <div class="cw-panel-head">
+      <span id="cw-progress" class="cw-progress"></span>
+      <h2 id="cw-title"></h2>
+    </div>
+    <div id="cw-body" class="cw-panel-body">
+      <p id="cw-description"></p>
+      <a id="cw-link" class="cw-link" href="#" hidden>Go to scene &rarr;</a>
+    </div>
+  </div>
+
+  <!-- Timeline scrubber: one tick per locus, grouped under its year. -->
+  <div id="cw-timeline" class="cw-timeline" aria-label="Timeline"></div>
+
+  <div class="cw-transport">
+    <div id="cw-tour-controls" class="cw-tour-controls">
+      <button id="cw-prev" type="button">Prev</button>
+      <button id="cw-playpause" type="button">Pause</button>
+      <button id="cw-next" type="button">Next</button>
+      <button id="cw-restart" type="button">Restart</button>
+    </div>
+    <button id="cw-freemove" type="button">Free Move</button>
+  </div>
+
+  <div id="cw-error" class="cw-error" hidden></div>
+
+  <script type="module" src="src/scenes2d/civil-war.js"></script>
+</body>
+</html>

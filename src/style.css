@@ -68,6 +68,24 @@ body.hub {
 .scene-card-body h2 { margin: 0 0 6px; font-size: 18px; }
 .scene-card-body p { margin: 0; font-size: 13px; opacity: 0.7; line-height: 1.45; }
 
+/* A 2D scene's card. The badge says the scene opens on its own animated page
+   rather than in the 3D viewer, so the change of medium is not a surprise. */
+.scene-thumb { position: relative; }
+.scene-tag {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.32);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+.scene-card.is-2d .scene-thumb {
+  background: linear-gradient(135deg, #b8674f, #4a6f97);
+}
+
 /* ---------- viewer page ---------- */
 body.viewer {
   overflow: hidden;

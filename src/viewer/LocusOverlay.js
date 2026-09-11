@@ -1,3 +1,5 @@
+import { sceneHref } from '../scenes/index.js';
+
 // Thin wrapper around the locus DOM panel in scene.html.
 export class LocusOverlay {
   constructor(total) {
@@ -39,8 +41,11 @@ export class LocusOverlay {
     this.progress.textContent = `${index + 1} / ${this.total}`;
     this.title.textContent = locus.title;
     this.description.textContent = locus.description;
-    if (locus.link) {
-      this.link.href = `scene.html?id=${locus.link}`;
+    // Resolved through the registry rather than hardcoding scene.html, so a
+    // locus can link to a 2D scene (its own page) as easily as a 3D one.
+    const href = locus.link ? sceneHref(locus.link) : null;
+    if (href) {
+      this.link.href = href;
       this.link.hidden = false;
     } else {
       this.link.hidden = true;

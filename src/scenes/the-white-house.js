@@ -320,6 +320,10 @@ export default {
       id: 16,
       title: "16. Abraham Lincoln",
       description: "Stair Hall - foot of the Grand Staircase. At the foot of the Grand Staircase. Look up - his successor is standing at the top of it. (1861-1865)",
+      // Lincoln's whole presidency is the war, so his stop is the door into it.
+      // `link` resolves through sceneHref(), which knows the Civil War is a 2D
+      // scene on its own page rather than a glb in the viewer.
+      link: "civil-war",
       position: [-30.4, 8.464, 3.84],
       anchorFrom: [-19.2, 8.464, 3.84],
     },

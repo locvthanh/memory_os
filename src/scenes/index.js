@@ -1,4 +1,20 @@
-// Registry of available 3D scenes. Add an entry per exported .glb.
+// Registry of available scenes.
+//
+// Most scenes are 3D: a .glb exported from Blender, opened by scene.html and
+// flown past by the camera rig in src/viewer/. A scene can also be **2D** — its
+// own standalone page built from HTML, CSS and SVG with no Three.js at all. Set
+// `kind: '2d'` and give it an `href`; everything that links to a scene goes
+// through `sceneHref()` below, so a 2D scene appears on the hub and can be
+// reached from a 3D locus exactly like any other.
+//
+// Entry shape:
+//   id      slug, unique; what `?id=` and cross-scene `link:` values use
+//   title   card heading
+//   blurb   card copy
+//   kind    '3d' (default) or '2d'
+//   model   3D only — path to the .glb
+//   href    2D only — path to the scene's own page
+//   config  () => Promise of the scene's config module default export
 export const SCENES = [
   {
     id: 'chinatown-street',
@@ -36,11 +52,14 @@ export const SCENES = [
     config: () => import('./wisdom-village.js').then((m) => m.default),
   },
   {
-    id: 'civil-war-map',
+    // Replaces the 3D `civil-war-map` relief plate. Same eighteen loci, same
+    // Albers projection, no WebGL: the map is SVG and the camera is a transform.
+    id: 'civil-war',
     title: 'The Civil War',
-    blurb: 'A relief map of the United States built from real ETOPO elevation on an Albers equal-area projection, with the war of 1861\u201365 laid over it: states coloured by allegiance, the front line redrawn for each year, movement arrows for the blockade and the great campaigns, and eighteen numbered pins in chronological order from Fort Sumter to Appomattox. The tour follows the calendar, not the geography. Eighteen loci.',
-    model: 'models/civil-war-map.glb',
-    config: () => import('./civil-war-map.js').then((m) => m.default),
+    blurb: 'A drawn map of the United States with the war of 1861–65 animated over it: states coloured by allegiance and draining as they fall, the front line morphing year by year, the blockade closing on both coasts, and the great campaigns drawing themselves as you reach them. Eighteen pins in chronological order from Fort Sumter to Appomattox — the tour follows the calendar, not the geography.',
+    kind: '2d',
+    href: 'civil-war.html',
+    config: () => import('./civil-war.js').then((m) => m.default),
   },
   {
     id: 'solar-system',
@@ -53,4 +72,18 @@ export const SCENES = [
 
 export function getScene(id) {
   return SCENES.find((s) => s.id === id) || null;
+}
+
+// The one place that knows how to open a scene. Both the hub cards and the
+// cross-scene "Go to scene →" links in a locus panel go through here, so
+// pointing a link at a 2D scene needs nothing more than its id.
+//
+// Paths are relative and every page that calls this sits at the repo root,
+// which is what GitHub Pages needs — the site is served under /memory_os/, so a
+// site-absolute path would 404 there.
+export function sceneHref(idOrScene) {
+  const scene = typeof idOrScene === 'string' ? getScene(idOrScene) : idOrScene;
+  if (!scene) return null;
+  if (scene.kind === '2d') return scene.href;
+  return `scene.html?id=${encodeURIComponent(scene.id)}`;
 }

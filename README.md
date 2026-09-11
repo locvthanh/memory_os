@@ -1,8 +1,12 @@
 # memoryOS
 
-A "memory palace" web app. The home page lists 3D scenes; opening one runs a
+A "memory palace" web app. The home page lists scenes; opening one runs a
 system-controlled walkthrough past that scene's predefined memory loci. You
 can look around during the tour but you cannot move — the camera is on rails.
+
+Most scenes are 3D models built in Blender. A scene can also be **2D** — its
+own animated HTML/CSS/SVG page, no Three.js — and sits on the same hub, with
+the same tour and the same cross-scene links. `The Civil War` is one.
 
 **Live:** https://locvthanh.github.io/memory_os/ — auto-deployed from `main`
 by `.github/workflows/deploy.yml` (GitHub Pages, no build step).
@@ -17,7 +21,8 @@ Open http://localhost:5173 . There is **no build step and no npm
 dependencies** — the app is plain ES modules. Three.js is vendored into
 `vendor/three/` and wired up with an import map in each HTML page. A tiny
 zero-dependency Node static server (`server.js`) serves the files; any static
-server works. Two pages: `index.html` (hub), `scene.html?id=<scene>`.
+server works. Pages: `index.html` (hub), `scene.html?id=<scene>` for 3D scenes,
+and one page per 2D scene (`civil-war.html`).
 
 All asset paths are **relative** (`src/…`, `models/…`, `./vendor/…`) so the
 site works both locally and under the GitHub Pages project path
@@ -28,10 +33,13 @@ site works both locally and under the GitHub Pages project path
 
 ## Structure
 
-- `src/scenes/index.js` — registry of scenes (id, title, blurb, model URL).
+- `src/scenes/index.js` — registry of scenes (id, title, blurb, and either a
+  model URL or, for a 2D scene, `kind: '2d'` + `href`), plus `sceneHref()`,
+  the one function that knows how to open either kind.
 - `src/scenes/<id>.js` — per-scene walkthrough tuning + loci (title,
-  description, fallback position).
+  description, fallback position). Same file for 2D scenes.
 - `src/viewer/` — Three.js viewer, loci extraction, camera rig, overlay.
+- `src/scenes2d/<id>.js` + `.css` — a 2D scene's renderer and styles.
 - `models/<id>.glb` — exported Blender models, fetched at runtime.
 - `vendor/three/` — vendored Three.js (build + GLTFLoader/OrbitControls/BufferGeometryUtils).
 
@@ -46,7 +54,11 @@ site works both locally and under the GitHub Pages project path
    missing).
 4. Add an entry to `src/scenes/index.js`.
 
-See `CLAUDE.md` for the Blender / Blender-MCP workflow and its gotchas.
+For a 2D scene, skip steps 1–2, put the page at the repo root and its renderer
+in `src/scenes2d/`, and give the registry entry `kind: '2d'` and an `href`.
+
+See `CLAUDE.md` for the 2D scene contract and the Blender / Blender-MCP
+workflow with its gotchas.
 
 ## Music credits
 

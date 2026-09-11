@@ -61,13 +61,15 @@ scene.html             viewer page + import map; reads ?id=<scene>
 models/<id>.glb         exported Blender models, fetched at runtime
 vendor/three/           vendored Three.js
 scripts/generate_city.py   reference only (Blender bpy, not run by the app)
+civil-war.html         a 2D scene's own page (see “2D scenes” below)
 src/
   main.js              hub: builds scene cards from the registry
   scene.js             viewer entry: reads ?id, boots Viewer, shows errors
   style.css            all CSS (linked via <link>, NOT imported in JS —
                        there is no bundler to handle CSS imports)
-  scenes/index.js      SCENES registry + getScene(id)
+  scenes/index.js      SCENES registry + getScene(id) + sceneHref(id)
   scenes/<id>.js       per-scene: { walkthrough: {...}, loci: [...] }
+  scenes2d/<id>.js     2D scene renderer (+ .css, + generated .data.js)
   viewer/Viewer.js     renderer/scene/lights/raf loop; loads glb; wires transport
   viewer/Walkthrough.js  camera rig (see below)
   viewer/loci.js       buildLoci(gltfScene, config)
@@ -132,12 +134,69 @@ config entry for every empty you bake.
    Empty id (`title`, `description`; `position` optional fallback).
 4. Add an entry to `src/scenes/index.js`.
 
+For a scene with no model at all, see **2D scenes** below — steps 1 and 2
+drop away and the registry entry gains `kind: '2d'` and an `href`.
+
 `scripts/build_glb.py` exports the whole Blender scene, so anything that
 exists only for Blender's still renders has to be dropped first — see its
 `RENDER_ONLY` dict. `portal-island` drops its backdrop plane, its sky dome and
 its two framing cameras; the dome especially, because `Viewer` sets
 `castShadow` on every mesh it loads and a 2300-unit emissive shell around the
 scene would put the whole island in shadow.
+
+## 2D scenes
+
+Not every palace has to be a model. A scene can be **2D**: its own standalone
+page built from HTML, CSS and SVG, with no Three.js, no import map and no glb.
+`civil-war` is the first one — it replaced the 3D `civil-war-map` relief plate.
+
+The registry carries the difference, and **nothing else has to know**:
+
+```js
+{ id: 'civil-war', title: '...', blurb: '...',
+  kind: '2d', href: 'civil-war.html',
+  config: () => import('./civil-war.js').then((m) => m.default) }
+```
+
+Everything that opens a scene goes through `sceneHref(idOrScene)` in
+`src/scenes/index.js` — the hub cards in `main.js` and the cross-scene
+"Go to scene →" link in `LocusOverlay`. So a locus in a **3D** scene can link to
+a 2D one with the same one-line `link: 'civil-war'` it would use for any other
+scene, and the White House's Lincoln locus does exactly that. The 2D page links
+back the same way (Appomattox → the White House).
+
+Conventions a 2D scene follows so it still feels like the rest of the app:
+
+- **Live at the repo root** (`civil-war.html`), so every relative path sits at
+  the same depth as `scene.html` and the `/memory_os/` Pages prefix keeps working.
+- **Content stays in `src/scenes/<id>.js`**, same as a 3D scene: `walkthrough`
+  timings plus a `loci` array of `{ id, title, description }`. Only the framing
+  fields differ — a 2D scene has no camera, so instead of `anchorDistance` its
+  loci carry whatever the renderer needs. `civil-war` uses `w`, the viewBox
+  width in map units at that stop.
+- **Renderer and styling in `src/scenes2d/<id>.js` / `.css`**, with the CSS
+  scoped to a body class (`body.cw`) so it can never collide with
+  `src/style.css`.
+- **Same transport contract**: Prev / Pause / Next / Restart / Free Move, a
+  locus panel that docks as a bottom sheet on a phone, and a `--*-sheet-h`
+  custom property published from JS so the controls clear it.
+
+How `civil-war` works: the whole map lives in one `#cw-world` group and the
+"camera" is a translate+scale on it, tweened between stops with the same
+smoothstep the 3D `Walkthrough` rig uses (zoom is interpolated in log space).
+State borders, rivers, the front line and the blockade opt out of that scale
+with `vector-effect="non-scaling-stroke"`; pins and labels counter-scale by
+`1/k` to hold a constant on-screen size; campaign arrows deliberately do
+neither, because their draw-on is a dash offset measured in user units.
+
+Its geometry is generated, not hand-drawn. `scripts/build_civil_war_2d.py`
+projects us-atlas `states-10m.json` (public domain) onto the same US Albers
+conic the 3D plate used, simplifies it, and writes
+`src/scenes2d/civil-war.data.js` together with the hand-authored rivers, front
+lines, blockade arcs, campaign arrows and locus pins. Re-run it after editing
+any of those; never hand-edit the generated file. The old
+`models/civil-war-map.glb` is still on disk and `scripts/build_glb.py` can still
+rebuild it, but nothing in the app loads it any more.
 
 ## Blender / Blender-MCP workflow
 

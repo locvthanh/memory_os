@@ -1,0 +1,583 @@
+/* The Civil War — 2D animated map scene.
+ *
+ * Scoped to body.cw so it can never collide with src/style.css, which the hub
+ * and the 3D viewer share. Loaded via <link> (there is no bundler in this repo
+ * to handle a CSS import from JS).
+ *
+ * Palette: aged survey map. Confederate states are a muted brick that washes
+ * toward Union slate as the war reaches them; the background is ocean ink so
+ * the landmass reads as the lit object on the page.
+ */
+
+:root {
+  --cw-ink: #16202b;
+  --cw-sea: #0e1a24;
+  --cw-sea-2: #16293a;
+  --cw-paper: #f2ece0;
+  --cw-union: #4a6f97;
+  --cw-union-lit: #6f97bd;
+  --cw-conf: #b8674f;
+  --cw-conf-dim: #8d5b4d;
+  --cw-border: #cda85c;
+  --cw-terr: #6d6f6b;
+  --cw-front: #f6e3b8;
+  --cw-block: #34b5ab;
+  --cw-move: #e0563c;
+  --cw-gold: #e6c675;
+  --cw-panel-bg: rgba(15, 24, 33, 0.93);
+  --cw-sheet-h: 0px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--cw-sea);
+  color: var(--cw-paper);
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.cw {
+  /* A slow vignette so the eye settles on the middle of the map. */
+  background:
+    radial-gradient(120% 90% at 50% 45%, var(--cw-sea-2) 0%, var(--cw-sea) 62%, #070d13 100%);
+}
+
+/* ---------------------------------------------------------------- the map */
+
+.cw-map {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: grab;
+  touch-action: none;
+}
+.cw-map.dragging { cursor: grabbing; }
+
+/* Land. Fill is set per state in JS via the `side` class; the transition is
+   what makes a state "fall" when its year arrives. */
+.cw-state {
+  stroke: rgba(10, 18, 26, 0.55);
+  stroke-width: 0.7;
+  stroke-linejoin: round;
+  transition: fill 1.4s ease, opacity 0.9s ease;
+  opacity: 0;
+}
+.cw-state.in { opacity: 1; }
+.cw-state.union       { fill: var(--cw-union); }
+.cw-state.border      { fill: var(--cw-border); }
+.cw-state.territory   { fill: var(--cw-terr); }
+.cw-state.confederate { fill: var(--cw-conf); }
+/* A Confederate state the tour has passed the fall of. Not Union blue — the
+   war is not over for it — but visibly drained. */
+.cw-state.fallen      { fill: var(--cw-conf-dim); }
+
+.cw-coast {
+  fill: none;
+  stroke: rgba(230, 198, 117, 0.28);
+  stroke-width: 1.6;
+}
+
+.cw-river {
+  fill: none;
+  stroke: #2f6f9e;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.75;
+}
+/* The Mississippi is a character in this story, not scenery. */
+.cw-river.mississippi { stroke-width: 2.4; stroke: #3f88bd; opacity: 0.95; }
+
+/* Front line. Two strokes: a soft glow underneath, the dashed line on top. */
+.cw-front-glow {
+  fill: none;
+  stroke: var(--cw-front);
+  stroke-width: 5;
+  opacity: 0.16;
+  filter: url(#cw-glow);
+  stroke-linecap: round;
+}
+.cw-front-line {
+  fill: none;
+  stroke: var(--cw-front);
+  stroke-width: 1.9;
+  stroke-dasharray: 7 4.5;
+  stroke-linecap: round;
+  animation: cw-march 2.6s linear infinite;
+}
+@keyframes cw-march { to { stroke-dashoffset: -11.5; } }
+
+/* Blockade arcs: drawn on once, then a permanent slow crawl seaward. */
+.cw-blockade {
+  fill: none;
+  stroke: var(--cw-block);
+  color: var(--cw-block);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-dasharray: 10 7;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.cw-blockade.on { opacity: 0.9; animation: cw-crawl 3.4s linear infinite; }
+@keyframes cw-crawl { to { stroke-dashoffset: -17; } }
+
+/* Campaign arrows draw themselves in when their locus is reached. The dash
+   length is set per-arrow in JS from getTotalLength(). */
+.cw-arrow {
+  fill: none;
+  stroke: var(--cw-move);
+  color: var(--cw-move);
+  /* stroke-width is inherited from #cw-arrows, which applyView keeps at a
+     constant on-screen weight — do not set it here or the group is overridden. */
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0;
+}
+.cw-arrow.on {
+  opacity: 0.95;
+  transition: stroke-dashoffset 1.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+  stroke-dashoffset: 0 !important;
+}
+
+/* ------------------------------------------------------------ map labels */
+
+.cw-state-label {
+  fill: rgba(242, 236, 224, 0.5);
+  font-family: "Segoe UI", system-ui, sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-anchor: middle;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.cw-state-label.in { opacity: 1; }
+
+.cw-city { pointer-events: none; opacity: 0; transition: opacity 0.6s ease; }
+.cw-city.in { opacity: 1; }
+.cw-city circle { fill: rgba(242, 236, 224, 0.75); }
+.cw-city text {
+  fill: rgba(242, 236, 224, 0.72);
+  font-family: "Segoe UI", system-ui, sans-serif;
+  font-size: 9px;
+}
+
+/* ------------------------------------------------------------------ pins */
+
+.cw-pin { opacity: 0; transition: opacity 0.5s ease; cursor: pointer; }
+.cw-pin.seen { opacity: 1; }
+.cw-pin .dot {
+  fill: var(--cw-gold);
+  stroke: #1a1208;
+  stroke-width: 0.9;
+  transition: fill 0.4s ease;
+}
+.cw-pin .num {
+  fill: #1a1208;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  font-weight: 700;
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+.cw-pin .ring {
+  fill: none;
+  stroke: var(--cw-gold);
+  stroke-width: 1;
+  opacity: 0;
+}
+.cw-pin.active .dot { fill: #fff2cf; }
+.cw-pin.active .ring { animation: cw-ping 1.9s ease-out infinite; }
+@keyframes cw-ping {
+  0%   { opacity: 0.9; transform: scale(1); }
+  70%  { opacity: 0;   transform: scale(3.4); }
+  100% { opacity: 0;   transform: scale(3.4); }
+}
+/* transform-box so scale() pivots on the pin, not the SVG origin. */
+.cw-pin .ring { transform-box: fill-box; transform-origin: center; }
+
+/* -------------------------------------------------------------- effects */
+
+.cw-shell {
+  fill: none;
+  stroke: #ffce7a;
+  stroke-width: 1.1;
+  opacity: 0.85;
+}
+.cw-burst { fill: #ffd489; }
+.cw-smoke { fill: rgba(230, 220, 205, 0.5); }
+.cw-fire  { fill: #ff8a3d; }
+.cw-siege-ring {
+  fill: none;
+  stroke: #f3d089;
+  stroke-width: 1.2;
+  stroke-dasharray: 3 3.5;
+  animation: cw-spin 14s linear infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+@keyframes cw-spin { to { transform: rotate(360deg); } }
+.cw-peace {
+  fill: none;
+  stroke: #dff0e2;
+  stroke-width: 1.4;
+  opacity: 0.9;
+}
+
+/* ------------------------------------------------------------------ chrome */
+
+.cw-back {
+  position: fixed;
+  top: 14px;
+  left: 16px;
+  z-index: 20;
+  color: rgba(242, 236, 224, 0.8);
+  text-decoration: none;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  font-size: 13px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+}
+.cw-back:hover { color: #fff; }
+
+.cw-head {
+  position: fixed;
+  top: 38px;
+  left: 16px;
+  z-index: 10;
+  pointer-events: none;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+.cw-head h1 {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.cw-head p {
+  margin: 3px 0 0;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  font-size: 12px;
+  opacity: 0.65;
+}
+
+.cw-year {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 12;
+  text-align: center;
+  pointer-events: none;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.85);
+}
+.cw-year span {
+  display: block;
+  font-size: 40px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--cw-gold);
+  line-height: 1;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+.cw-year em {
+  display: block;
+  margin-top: 4px;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  font-size: 11.5px;
+  font-style: normal;
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+  transition: opacity 0.45s ease;
+}
+.cw-year.turning span { opacity: 0; transform: translateY(-8px); }
+.cw-year.turning em { opacity: 0; }
+
+/* ------------------------------------------------------------------ legend */
+
+.cw-legend-toggle {
+  position: fixed;
+  top: 14px;
+  right: 16px;
+  z-index: 21;
+  border: 1px solid rgba(242, 236, 224, 0.22);
+  border-radius: 999px;
+  background: rgba(15, 24, 33, 0.72);
+  color: rgba(242, 236, 224, 0.85);
+  font-family: "Segoe UI", system-ui, sans-serif;
+  font-size: 12px;
+  padding: 6px 13px;
+  cursor: pointer;
+}
+.cw-legend-toggle:hover { background: rgba(28, 44, 60, 0.9); color: #fff; }
+
+.cw-legend {
+  position: fixed;
+  top: 50px;
+  right: 16px;
+  z-index: 20;
+  background: var(--cw-panel-bg);
+  border: 1px solid rgba(242, 236, 224, 0.14);
+  border-radius: 10px;
+  padding: 12px 14px;
+  backdrop-filter: blur(6px);
+}
+.cw-legend[hidden] { display: none; }
+.cw-legend ul { margin: 0; padding: 0; list-style: none; }
+.cw-legend li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  font-size: 11.5px;
+  line-height: 1.9;
+  opacity: 0.85;
+  white-space: nowrap;
+}
+.cw-legend .sw {
+  width: 15px;
+  height: 10px;
+  border-radius: 2px;
+  flex: 0 0 auto;
+}
+.sw-conf   { background: var(--cw-conf); }
+.sw-fallen { background: var(--cw-conf-dim); }
+.sw-border { background: var(--cw-border); }
+.sw-union  { background: var(--cw-union); }
+.sw-terr   { background: var(--cw-terr); }
+.sw-front  { background: repeating-linear-gradient(90deg, var(--cw-front) 0 4px, transparent 4px 7px); }
+.sw-block  { background: var(--cw-block); }
+.sw-arrow  { background: var(--cw-move); }
+
+/* ------------------------------------------------------------- locus panel */
+
+.cw-panel {
+  position: fixed;
+  right: 20px;
+  bottom: 104px;
+  width: 370px;
+  max-height: 54vh;
+  z-index: 18;
+  display: flex;
+  flex-direction: column;
+  background: var(--cw-panel-bg);
+  border: 1px solid rgba(230, 198, 117, 0.22);
+  border-radius: 12px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+.cw-panel[hidden] { display: none; }
+.cw-panel.visible { opacity: 1; transform: none; }
+
+.cw-grabber { display: none; }
+
+.cw-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  width: 26px;
+  height: 26px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: rgba(242, 236, 224, 0.55);
+  font-size: 19px;
+  line-height: 1;
+  cursor: pointer;
+}
+.cw-close:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
+
+.cw-panel-head { padding: 15px 40px 8px 18px; flex: 0 0 auto; }
+.cw-progress {
+  display: block;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--cw-gold);
+  opacity: 0.85;
+}
+.cw-panel-head h2 {
+  margin: 5px 0 0;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.cw-panel-body {
+  padding: 0 18px 18px;
+  overflow-y: auto;
+  flex: 1 1 auto;
+}
+.cw-panel-body p {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.62;
+  opacity: 0.9;
+}
+.cw-link {
+  display: inline-block;
+  margin-top: 12px;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  font-size: 13px;
+  color: var(--cw-gold);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(230, 198, 117, 0.4);
+}
+.cw-link[hidden] { display: none; }
+.cw-link:hover { color: #fff; border-bottom-color: #fff; }
+
+/* --------------------------------------------------------------- timeline */
+
+.cw-timeline {
+  position: fixed;
+  left: 50%;
+  bottom: 62px;
+  transform: translateX(-50%);
+  z-index: 16;
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(15, 24, 33, 0.62);
+  backdrop-filter: blur(6px);
+}
+.cw-tl-year { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+.cw-tl-ticks { display: flex; gap: 5px; }
+.cw-tl-tick {
+  width: 9px;
+  height: 9px;
+  border: 0;
+  padding: 0;
+  border-radius: 50%;
+  background: rgba(242, 236, 224, 0.22);
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.cw-tl-tick:hover { background: rgba(242, 236, 224, 0.5); }
+.cw-tl-tick.seen { background: rgba(230, 198, 117, 0.55); }
+.cw-tl-tick.active { background: var(--cw-gold); transform: scale(1.45); }
+.cw-tl-label {
+  font-family: "Segoe UI", system-ui, sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  opacity: 0.5;
+}
+
+/* -------------------------------------------------------------- transport */
+
+.cw-transport {
+  position: fixed;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  z-index: 17;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.cw-tour-controls { display: flex; gap: 8px; }
+.cw-transport button {
+  border: 1px solid rgba(242, 236, 224, 0.2);
+  border-radius: 8px;
+  background: rgba(15, 24, 33, 0.78);
+  color: rgba(242, 236, 224, 0.9);
+  font-family: "Segoe UI", system-ui, sans-serif;
+  font-size: 12.5px;
+  padding: 8px 14px;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.cw-transport button:hover { background: rgba(38, 58, 78, 0.92); color: #fff; }
+.cw-transport button.on {
+  background: rgba(230, 198, 117, 0.85);
+  color: #1a1208;
+  border-color: transparent;
+}
+.cw-tour-controls.disabled { opacity: 0.35; pointer-events: none; }
+
+.cw-error {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 40;
+  max-width: 420px;
+  padding: 16px 20px;
+  border-radius: 10px;
+  background: rgba(120, 40, 30, 0.95);
+  font-family: "Segoe UI", system-ui, sans-serif;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+.cw-error[hidden] { display: none; }
+
+/* ------------------------------------------------------------------ phone */
+
+@media (max-width: 720px) {
+  .cw-head { top: 34px; }
+  .cw-head h1 { font-size: 17px; }
+  .cw-head p { display: none; }
+  .cw-year { top: 14px; }
+  .cw-year span { font-size: 27px; }
+  .cw-year em { display: none; }
+
+  .cw-legend { top: 46px; right: 10px; left: 10px; }
+  .cw-legend ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 12px;
+  }
+
+  /* Panel docks as a bottom sheet; the transport and the timeline ride above
+     whatever height it takes, via --cw-sheet-h published from JS. */
+  .cw-panel {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    max-height: 46vh;
+    border-radius: 16px 16px 0 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    transform: translateY(100%);
+  }
+  .cw-panel.visible { transform: none; }
+  .cw-grabber {
+    display: block;
+    width: 36px;
+    height: 4px;
+    margin: 8px auto 0;
+    border-radius: 999px;
+    background: rgba(242, 236, 224, 0.28);
+  }
+  .cw-panel-head { padding-top: 10px; }
+  .cw-panel-body p { font-size: 14px; }
+
+  .cw-transport { bottom: calc(12px + var(--cw-sheet-h)); }
+  .cw-timeline {
+    bottom: calc(56px + var(--cw-sheet-h));
+    gap: 9px;
+    padding: 6px 10px;
+  }
+  .cw-tl-tick { width: 7px; height: 7px; }
+  .cw-transport button { padding: 7px 11px; font-size: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cw-front-line, .cw-blockade.on, .cw-pin.active .ring, .cw-siege-ring {
+    animation: none;
+  }
+  .cw-state, .cw-panel, .cw-year span, .cw-year em { transition-duration: 0.01ms; }
+}
