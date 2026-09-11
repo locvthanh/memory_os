@@ -102,6 +102,13 @@ export const SCENES = [
     blurb: 'Every Nobel Prize from 2021 to 2025 — all six prizes, 64 laureates — on a low-poly plaza shaped like a gold medal lying on the water. Six coloured paths run out from a giant medal in the order of Nobel’s will (Physics, Chemistry, Medicine, Literature, Peace, Economics), and the years grow outward like tree rings. Each prize-year stands on its own plinth as one object you can picture: a globe with a fever for climate models, a whale on a circus wagon for Krasznahorkai, a burger split by a state line for natural experiments. Empty plinths at the rim wait for 2026. Thirty-two loci.',
     model: 'models/nobel-hall.glb',
     config: () => import('./nobel-hall.js').then((m) => m.default),
+  },
+  {
+    id: 'macro-hydraulic-hall',
+    title: 'The Hydraulic Hall',
+    blurb: 'Scene 0 of the macroeconomics series, and its hub: a steampunk engine hall around a giant MONIAC, Bill Phillips’s 1949 computer that modelled an economy with coloured water. The circular flow is laid out on one brass-and-glass board: households and firms as two tall tanks, spending pumped along the bottom, income returning across the top, and the three side circuits between them (saving and investment through the banks, taxes and government spending, imports and exports). The series’ recurring cast (the Baker, the Banker, the Governor, the Treasurer and the Trader) stands at the foot of the machine, with the price-tagged loaf. Then the GDP gauge, the nine doors to the rest of the series, and an open question. Eleven loci.',
+    model: 'models/macro-hydraulic-hall.glb',
+    config: () => import('./macro-hydraulic-hall.js').then((m) => m.default),
   }
 ];
 

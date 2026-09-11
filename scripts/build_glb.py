@@ -99,6 +99,11 @@ SCENES = {
     # 09_Loci) on each peg's aim point; export prep (drop rig, flatten text,
     # tone emissives, merge by material) is in scripts/nobel_hall_export.py.
     "nobel-hall": [],
+    # macro-hydraulic-hall: Locus_01..11 are baked into HydraulicHall.blend
+    # (collection 11_Loci) on each stop's aim point; export prep (drop rig,
+    # flatten text, tone emissives, merge by material with walls and glass kept
+    # shadowless) is in scripts/macro_hydraulic_hall_export.py.
+    "macro-hydraulic-hall": [],
     "writing-room": [
         [0, 3.6, 1.2], [-2.2, 2.5, 1.4], [-0.8, 3.6, 1.1],
         [0.8, 3.6, 1.1], [2.2, 1.0, 1.0], [0, 4.0, 1.3],
@@ -692,6 +697,15 @@ def main():
         nobel_hall_export.prepare()
         bake_curves_to_meshes()
         nobel_hall_export.merge()
+        export_kwargs.setdefault("export_cameras", False)
+        export_kwargs.setdefault("export_lights", False)
+        export_kwargs.setdefault("export_animations", False)
+
+    if scene_id == "macro-hydraulic-hall":
+        import macro_hydraulic_hall_export
+        macro_hydraulic_hall_export.prepare()
+        bake_curves_to_meshes()
+        macro_hydraulic_hall_export.merge()
         export_kwargs.setdefault("export_cameras", False)
         export_kwargs.setdefault("export_lights", False)
         export_kwargs.setdefault("export_animations", False)
