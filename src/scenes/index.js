@@ -95,6 +95,13 @@ export const SCENES = [
     blurb: 'Adam Smith’s division of labour, walked down one low-poly Georgian street in Kirkcaldy. First the lone pin-maker in his cottage, doing all eighteen steps himself for one pin a day; then the manufactory next door, where ten workers at one long bench each do a single step, in Smith’s own words (one draws the wire, another straightens it, a third cuts it…), and together make 48,000 pins a day. Then Smith’s three reasons, the ship that carries the pins to market, and an open door on two questions still argued about. Sixteen loci.',
     model: 'models/pin-factory.glb',
     config: () => import('./pin-factory.js').then((m) => m.default),
+  },
+  {
+    id: 'nobel-hall',
+    title: 'The Nobel Medal Hall',
+    blurb: 'Every Nobel Prize from 2021 to 2025 — all six prizes, 64 laureates — on a low-poly plaza shaped like a gold medal lying on the water. Six coloured paths run out from a giant medal in the order of Nobel’s will (Physics, Chemistry, Medicine, Literature, Peace, Economics), and the years grow outward like tree rings. Each prize-year stands on its own plinth as one object you can picture: a globe with a fever for climate models, a whale on a circus wagon for Krasznahorkai, a burger split by a state line for natural experiments. Empty plinths at the rim wait for 2026. Thirty-two loci.',
+    model: 'models/nobel-hall.glb',
+    config: () => import('./nobel-hall.js').then((m) => m.default),
   }
 ];
 

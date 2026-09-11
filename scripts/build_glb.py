@@ -95,6 +95,10 @@ SCENES = {
     # drop, text flattening, emissive tone-down and a ROOF_-aware merge -- lives
     # in scripts/pin_factory_export.py.
     "pin-factory": [],
+    # nobel-hall: Locus_01..32 are baked into NobelHall.blend (collection
+    # 09_Loci) on each peg's aim point; export prep (drop rig, flatten text,
+    # tone emissives, merge by material) is in scripts/nobel_hall_export.py.
+    "nobel-hall": [],
     "writing-room": [
         [0, 3.6, 1.2], [-2.2, 2.5, 1.4], [-0.8, 3.6, 1.1],
         [0.8, 3.6, 1.1], [2.2, 1.0, 1.0], [0, 4.0, 1.3],
@@ -679,6 +683,15 @@ def main():
         pin_factory_export.prepare()
         bake_curves_to_meshes()
         pin_factory_export.merge()
+        export_kwargs.setdefault("export_cameras", False)
+        export_kwargs.setdefault("export_lights", False)
+        export_kwargs.setdefault("export_animations", False)
+
+    if scene_id == "nobel-hall":
+        import nobel_hall_export
+        nobel_hall_export.prepare()
+        bake_curves_to_meshes()
+        nobel_hall_export.merge()
         export_kwargs.setdefault("export_cameras", False)
         export_kwargs.setdefault("export_lights", False)
         export_kwargs.setdefault("export_animations", False)

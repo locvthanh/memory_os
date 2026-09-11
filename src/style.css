@@ -151,7 +151,7 @@ body.viewer {
 .locus-panel.visible { opacity: 1; transform: none; }
 .locus-progress { font-size: 11px; letter-spacing: 1px; opacity: 0.55; }
 .locus-panel h2 { margin: 4px 0 6px; font-size: 17px; }
-.locus-panel p { margin: 0; font-size: 13px; line-height: 1.5; opacity: 0.8; }
+.locus-panel p { margin: 0; font-size: 13px; line-height: 1.5; opacity: 0.8; white-space: pre-line; }
 .locus-link {
   display: block;
   margin-top: 10px;
