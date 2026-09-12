@@ -77,7 +77,8 @@ scene is English-only.
 ## Web app export & integration
 
 - Procedural path: `build_heart.py` bakes the `Locus_NN` empties and exports
-  `models/body-heart.glb` (8.6 MB) itself — nothing to add to
+  `models/body-heart.glb` (3.1 MB; label text is flat, not extruded, which is
+  most of that saving) itself — nothing to add to
   `scripts/build_glb.py` or `build_glb.ps1`.
 - `src/scenes/body-heart.js`: background `0x140e13`, fog 90/620, hemisphere
   1.15 / ambient 0.9 warm / sun 1.5 / shadowExtent 60, travel 7 s, dwell 12 s.

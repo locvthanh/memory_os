@@ -54,6 +54,10 @@ neighbours; the barrier really is water film → alveolar cell → capillary cel
 - Two local primitives were added here: `add_arc` (a partial torus — the C of
   a cartilage ring) and `add_dome` (an icosphere with the faces pointing one
   way deleted, so you can walk into it).
+- **Label text is flat, not extruded** (`extrude=0.0`). The side faces of an
+  extrusion are never seen and they were most of the file: this one change
+  took this glb from 15.3 MB to 5.0 MB, and [[body-heart]] from 8.6 to 3.1.
+  Do it in every scene in this series.
 - **A capped cylinder seen end-on is a wall.** Three stops on the first pass
   were staring at the end cap of the nave, the larynx collar and the
   bronchiole cones. `add_pipe` builds them with `cap_ends=False`.
@@ -71,7 +75,7 @@ neighbours; the barrier really is water film → alveolar cell → capillary cel
 ## Web app export & integration
 
 - `build_lungs.py` bakes the `Locus_NN` empties and exports
-  `models/body-lungs.glb` (15.3 MB, 714 objects) directly.
+  `models/body-lungs.glb` (5.0 MB, 714 objects) directly.
 - `src/scenes/body-lungs.js`: background `0xdfe7ec`, fog 140/900, hemisphere
   1.2 / ambient 0.95 warm / sun 2.2 / shadowExtent 120, travel 7 s, dwell 12 s,
   default `anchorDistance` -24 — much larger stand-offs than the other rooms,
@@ -81,8 +85,6 @@ neighbours; the barrier really is water film → alveolar cell → capillary cel
 
 - Real memory pegs; the descriptions teach the lung but hold nothing yet.
 - Animate one breath: the diaphragm has both positions modelled already.
-- The glb is the largest in the repo. Most of it is extruded text; dropping
-  `extrude` on the small labels would take a good slice off.
 - A second exhibit for the pressure story (a bell jar with a rubber sheet),
   which is what actually makes stop 13 click for most people.
 
