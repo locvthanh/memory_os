@@ -53,6 +53,9 @@ SCENES = {
     # on the origin, so this list is empty and the export loop passes the
     # existing empties through untouched.
     "cfa-level-1": [],
+    # grab-workplace: Locus_01..25 are baked into GrabCourtyard.blend
+    # (collection 09_Loci) by blender_models/grab_scenegen/grab_build.py.
+    "grab-workplace": [],
     # CivilWarMap.blend: Locus_01..18 (collection "Loci") are baked into the
     # source .blend by build_civilwar_map.py, one per event pin in
     # chronological order, so this list is empty and the export loop passes the
@@ -747,6 +750,9 @@ def main():
     if scene_id == "cfa-level-1":
         import cfa_level_1_export
         cfa_level_1_export.prepare()
+    if scene_id == "grab-workplace":
+        import grab_workplace_export
+        grab_workplace_export.prepare()
         bake_curves_to_meshes()
         export_kwargs.setdefault("export_cameras", False)
         export_kwargs.setdefault("export_lights", False)
