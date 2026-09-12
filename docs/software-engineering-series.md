@@ -6,7 +6,7 @@ district is its level of abstraction. This is the living design doc: edit it as
 districts get built, and move the detailed notes into `claude/the-stack-scene.md`
 once work starts.
 
-- **Status:** building — phase 1 (the pit, districts 1–2, loci 1–16) is live
+- **Status:** complete — all six districts built, 51 loci, 2026-09-12
 - **Started:** 2026-09-12
 - **Proposed scene id:** `the-stack` (`models/the-stack.glb`, `src/scenes/the-stack.js`)
 - **Shape:** one city, six districts, 51 loci, shipped in five phases
@@ -420,20 +420,21 @@ the amber street.
 | Phase | Contents | Ships |
 |---|---|---|
 | 1 | The pit + The Bedrock + The Mines (16 loci) | **built 2026-09-12** |
-| 2 | The Artisans' Quarter (10) | |
-| 3 | The Grid (12) | |
-| 4 | The Rim (10) | |
-| 5 | The Summit, the five doors, cross-links, polish | |
+| 2 | The Artisans' Quarter (10) | **built 2026-09-12** |
+| 3 | The Grid (12) | **built 2026-09-12** |
+| 4 | The Rim (10) | **built 2026-09-12** |
+| 5 | The Summit, the five doors, cross-links | **built 2026-09-12** |
 
 Each phase: build → render checks → re-export `models/the-stack.glb` → extend
 `src/scenes/the-stack.js` → commit and push to `main`.
 
 ---
 
-## As built — phase 1 (2026-09-12)
+## As built (2026-09-12)
 
-`blender_models/TheStack.blend`, `models/the-stack.glb` (1.8 MB, 149 objects,
-~8.1k faces), `src/scenes/the-stack.js`, registered in `src/scenes/index.js`.
+`blender_models/TheStack.blend`, `models/the-stack.glb` (4.7 MB, 449 objects,
+~13.9k faces), `src/scenes/the-stack.js`, registered in `src/scenes/index.js`.
+All 51 loci carry real content — no placeholders anywhere in the scene.
 
 - **The pit**: six terraces and risers as bands and annuli, a lit kerb on every
   terrace lip in that district's hue, 13 vertical neon traces and one horizontal
@@ -454,17 +455,57 @@ Each phase: build → render checks → re-export `models/the-stack.glb` → ext
   crews, hump yard, five ramps of Gradient Street with the O(n!) shaft sealed,
   the hall of mirrors with its base-case door, the one-track lock bridge with two
   trains nose to nose, and the P vs NP door.
-- Descriptions are **real content**, not placeholders.
+- **Artisans' Quarter (17–26)**: the sign painter's blank shopfront over an
+  alley of bad names, three one-job machines of which one has a drain pipe, two
+  buildings fused by pipes facing two joined by a doorway, SOLID as five columns
+  with the fourth deliberately short, the pattern book shop with Alexander above
+  the Gang of Four, a tenement under scaffolding with an interest meter, the
+  test pyramid beside its upside-down twin, the guild hall with n(n−1)/2 on the
+  wall, a half-renovated building beside the cleared lot marked REWRITE, and the
+  evidence door.
+- **The Grid (27–38)**: traffic circle with a health-check signal, warehouse
+  with its card catalogue, three mirror warehouses whose clocks disagree, a split
+  ledger with a queue at the hot shard, the cache cart with its LRU bouncer, a
+  canal of queued boats with a dead-letter dock, CAP as three bridges with the
+  middle one cut under lightning, three lighthouses of which one is lit, the post
+  office of stamped receipts, the token booth with its dripping bucket, the
+  monolith facing a bazaar wired together by courier lines, and the distribution
+  door.
+- **The Rim (39–48)**: the grafted branch orchard with its blame shed, the CI
+  funicular climbing across the view through four gates (two green, two red), the
+  three model houses in decreasing fidelity, blue/green bridges with a switch, a
+  canary cart and a flag wall, the control tower with gauge, ledger and thread
+  boards under an ALL GREEN sign, the fire station's round table with a gap where
+  the accusation chair would be, a monkey with a wrench on a junction box, the
+  gatehouse with key ring, sealed vault and inspection dock, the tally office's
+  four DORA dials over a dusty lines-of-code counter, and the measurement door.
+- **The Summit (49–51)**: five plinths each ten times the last with the Bug's
+  price on them, an empty lit vitrine, and the Antilibrary Gate in the outer
+  wall — five arches, one per district door, each in its district's colour, under
+  the three questions the city cannot answer.
+- **Signs sit at the kerb** (y = −3.0, plate at z = 2.3), in front of and below
+  each prop. They were at head height at first and crossed the very thing they
+  named; if a new prop is ever taller at the front than at the back, check this.
 - Camera: `travelSeconds 3.6`, `dwellSeconds 13`, `eyeHeight 2.2`,
   `anchorDistance −19`, `background #070a12`, `fog 95/460`, lights turned down
   (`hemisphere 0.42`, `sun 0.7`, `ambient 0.14`) so the neon carries the colour.
 
-## Open after phase 1
+## Open after the build
 
-- The scene has not yet been seen in a browser — this session had no way to run
-  the dev server or reach GitHub Pages; framing was verified with Blender renders
-  that reproduce the web rig exactly. First thing to check on the next run.
-- Should the Bug be a visible character the tour keeps finding, or only implied
-  by the five price tags at the Summit?
-- Phase 2 starts at the Artisans' Quarter (z=30, r=88, 10 loci, amber, arc runs
-  192° → 348°).
+- **The scene has still not been seen in a browser.** This session could not run
+  the dev server (the app is on Windows; this session's shell is not) and could
+  not push (the remote is SSH), so GitHub Pages has not been updated. Framing was
+  verified with Blender renders that reproduce the web rig exactly — same 50°
+  vertical FOV, same negative stand-off — but the lighting numbers, the fog
+  distances and the label sprites are a first guess. Check these first.
+- The Bug is currently implied (the moth in the case at locus 1, the price tags
+  at locus 49) rather than a character you keep finding in every district. One
+  beetle per district, caught by that district's mechanism, is still the better
+  version of the idea.
+- Smaller things the renders show: the pit floor inside the Bedrock ring is a
+  large empty expanse; the Three-Bridge Storm and the Silver Bullet Vitrine are
+  small for their 19 m stand-off; district nameplates sit close above the props
+  at mid-arc loci.
+- Growth path unchanged: any district can grow its own deeper scene behind a
+  portal locus (the `war-museum` pattern), and the Unbuilt Quarter — the northern
+  204° of every ring — is where new loci go without moving anything.

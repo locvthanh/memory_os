@@ -8,10 +8,10 @@
 // rim, which is the organisation. Six concentric terraces:
 //   -2 The Bedrock (indigo, z=0)    the machine
 //   -1 The Mines (teal, z=15)       data structures & algorithms
-//    0 The Artisans' Quarter (amber, z=30)   writing the code      [phase 2]
-//   +1 The Grid (cyan, z=45)        systems & distributed systems  [phase 3]
-//   +2 The Rim (green, z=60)        delivery & operations          [phase 4]
-//    ^ The Summit (violet, z=74)    the antilibrary                [phase 5]
+//    0 The Artisans' Quarter (amber, z=30)   writing the code
+//   +1 The Grid (cyan, z=45)        systems & distributed systems
+//   +2 The Rim (green, z=60)        delivery & operations
+//    ^ The Summit (violet, z=74)    the antilibrary
 //
 // Every district's content sits on the southern arc, 192°–348°. The northern
 // 204° of every ring is left empty on purpose — THE UNBUILT QUARTER, pegged out
@@ -24,15 +24,23 @@
 // nameplate behind it. Doors are set into the wall itself, so they stand off a
 // little less.
 //
-// Phase 1 (this file): the pit + districts 1 and 2, loci 1–16.
+// All six districts are built: 51 loci, ending at the Antilibrary Gate in the
+// outer wall, whose five arches are the five open-question doors of the tour.
 
 const AXIS = [0, 0, 0];            // every terrace is concentric — one centre
 const IND = '#6d7cff';             // -2 The Bedrock
 const TEA = '#1fe3cf';             // -1 The Mines
-const VIO = '#b478ff';             // the antilibrary doors
+const AMB = '#ffad4f';             //  0 The Artisans' Quarter
+const CYA = '#cfe9ff';             // +1 The Grid
+const GRN = '#56ff9e';             // +2 The Rim
+const VIO = '#b478ff';             //  ^ The Summit, and every open-question door
 
 const D1 = { anchorFrom: AXIS, anchorDistance: -19, labelColor: IND };
 const D2 = { anchorFrom: AXIS, anchorDistance: -19, labelColor: TEA };
+const D3 = { anchorFrom: AXIS, anchorDistance: -19, labelColor: AMB };
+const D4 = { anchorFrom: AXIS, anchorDistance: -19, labelColor: CYA };
+const D5 = { anchorFrom: AXIS, anchorDistance: -19, labelColor: GRN };
+const D6 = { anchorFrom: AXIS, anchorDistance: -23, labelColor: VIO };
 const DOOR = { anchorFrom: AXIS, anchorDistance: -17, labelColor: VIO };
 
 export default {
@@ -137,6 +145,185 @@ export default {
       id: 16, ...DOOR, position: [-63.38, 19.4, 13.47],
       title: 'The P vs NP Door — an open question',
       description: `Some problems are quick to check but appear to need a search to solve. If P = NP, every one of those searches has a shortcut nobody has found, and most of the cryptography holding up the modern world falls over. Fifty years on we cannot prove it either way — and worse, for almost no specific problem can we prove that no fast algorithm exists. The stair beyond this door climbs to the Artisans' Quarter.`,
+    },
+    {
+      id: 17, ...D3, position: [-79.23, 3.2, 16.84],
+      title: 'The Sign Painter',
+      description: `0 THE ARTISANS' QUARTER — the only warm-lit level, because this one is about people. It starts at the shop that names everything else in the city. A name is the cheapest documentation there is and the most-read line of the program; getUserData2() tells you someone gave up. Phil Karlton's line — there are only two hard things in computer science, cache invalidation and naming things — is a joke about how much of the job is deciding what a thing actually is.`,
+    },
+    {
+      id: 18, ...D3, position: [-70.61, 2.8, 39.68],
+      title: 'The One-Job Machines',
+      description: `A function should do one thing, at one level of abstraction, and be named for it. Two of these machines take material in and hand it back changed — same input, same output, every time, and you can test them in isolation. The third has a drain pipe: it writes to a database, mutates a global, sends an email. That pipe is a side effect, and side effects are what make code hard to test, hard to move and hard to reason about. Push them to the edges.`,
+    },
+    {
+      id: 19, ...D3, position: [-55.59, 3.4, 58.92],
+      title: 'Coupling Alley',
+      description: `Two buildings fused by a dozen pipes through the wall; two joined by one clean doorway. Coupling is how much one piece must know about another's insides, cohesion is how much a piece's own parts belong together, and the whole craft is low coupling with high cohesion. The doorway has a draught under it, because every abstraction leaks — Spolsky's law, 2002: the thing you were promised you'd never have to think about will eventually be the thing you have to think about.`,
+    },
+    {
+      id: 20, ...D3, position: [-35.51, 4.0, 72.8],
+      title: 'The Five Pillars',
+      description: `SOLID, as five columns. Single responsibility: one reason to change. Open–closed: extend without editing. Liskov: a subtype must be usable wherever its parent is. Interface segregation: no client forced to depend on methods it never calls. Dependency inversion: depend on the abstraction, not the concrete thing. Behind each is the crack that appears when it is removed — but note the fourth column is short: these are heuristics from 1990s object-oriented practice, not laws of physics.`,
+    },
+    {
+      id: 21, ...D3, position: [-12.21, 3.2, 80.08],
+      title: 'The Pattern Book Shop',
+      description: `On the top shelf, Christopher Alexander's A Pattern Language (1977) — patterns for buildings, each a recurring problem with a shape of solution. Below it the Gang of Four (1994), which borrowed the idea for code. Patterns are vocabulary, not law: their value is that "observer" or "adapter" names a shape two people can discuss. The shelf at the back holds patterns applied where they were not needed, which is the commonest way this book does harm.`,
+    },
+    {
+      id: 22, ...D3, position: [12.21, 5.0, 80.08],
+      title: 'The Scaffold Tenement',
+      description: `Scaffolding up since 1992, with an interest meter still running. Ward Cunningham coined technical debt that year to mean something precise: you ship with a model you know is not right yet, in order to learn, and you pay interest until you go back and fix the model. He spent years objecting that people had reduced it to "messy code we didn't have time to clean". Both kinds exist; only one of them was a deliberate trade.`,
+    },
+    {
+      id: 23, ...D3, position: [35.51, 2.8, 72.8],
+      title: 'The Test Pyramid',
+      description: `Many fast unit tests at the base, fewer integration tests above them, a handful of end-to-end tests at the tip — because the higher you go the slower, flakier and more expensive a failure is to diagnose. Beside it, standing on its point, the ice-cream cone: mostly end-to-end, nothing underneath, a suite nobody trusts and everybody re-runs. Tests are not there to prove the code right; they are there to let you change it without fear.`,
+    },
+    {
+      id: 24, ...D3, position: [55.59, 4.2, 58.92],
+      title: 'The Guild Hall',
+      description: `A door nobody opens alone: code review, the cheapest defect-removal there is, and worth more as knowledge-sharing than as bug-catching. On the wall, n(n−1)/2 — the communication paths between n people, which is why Brooks' law holds that adding people to a late project makes it later. The pin factory two levels down says specialisation multiplies output; this hall is where that argument meets coordination cost.`,
+      link: 'pin-factory',
+      linkLabel: 'The other side of the argument →',
+    },
+    {
+      id: 25, ...D3, position: [70.61, 4.0, 39.68],
+      title: 'The Renovation',
+      description: `A building rebuilt room by room while people live in it — that is refactoring: changing structure without changing behaviour, in steps small enough that the tests stay green. Next to it, the cleared lot: the full rewrite. Spolsky's "Things You Should Never Do" (2000) watched Netscape do it and lose three years and the browser war, because the ugly code you want to throw away encodes a thousand bug fixes nobody remembers making.`,
+    },
+    {
+      id: 26, ...DOOR, position: [84.9, 4.4, 18.05],
+      title: 'The Evidence Door — an open question',
+      description: `Almost everything on this street is received wisdom. Which practices actually reduce defects or delivery time, by how much, and under what conditions? The empirical software-engineering literature is thin, the studies are small and confounded, and much of what is taught with total confidence — pairing, TDD, a particular review ritual — has never been shown to work outside the room it was invented in. Hold the craft loosely.`,
+    },
+    {
+      id: 27, ...D4, position: [102.71, 2.6, 21.83],
+      title: 'The Traffic Circle',
+      description: `+1 THE GRID — where one machine is no longer enough and the network starts lying to you. First, the load balancer: requests go round and out to whichever lane is free, and a lane that fails its health check has the barrier dropped in front of it. Scaling vertically is a bigger lane and runs out; scaling horizontally is more lanes and needs everything behind it to stop keeping state in the lane.`,
+    },
+    {
+      id: 28, ...D4, position: [94.23, 3.4, 46.33],
+      title: 'The Warehouse',
+      description: `The database. Its promise is the transaction: the ledger is either fully written or not written at all, even if the power fails mid-entry — atomic, consistent, isolated, durable. Beside it the card catalogue: an index, which turns a search of everything into a search of a sorted list. Indexes are paid for on every write, and isolation levels are where most teams discover their "impossible" bug was a read they assumed was safe.`,
+    },
+    {
+      id: 29, ...D4, position: [80.0, 3.0, 68.0],
+      title: 'The Mirror Warehouses',
+      description: `One warehouse takes the writes; copies follow. Replication buys read capacity and survival, and charges for it in lag: every clock on these buildings shows a slightly different time, so a customer who just handed something in can look at a replica and not find it. Read-your-own-writes is a promise you have to engineer, not a property you get. When the primary dies, someone must decide who is primary now — see the lighthouses.`,
+    },
+    {
+      id: 30, ...D4, position: [60.91, 2.8, 85.53],
+      title: 'The Split Ledger',
+      description: `When one warehouse cannot hold it, cut the data across several by a key — A–F here, G–L there. Sharding is the only way to scale writes and it costs you: queries that span shards get slow or impossible, transactions across them get hard, and one shard always ends up with the queue round the block because the key was not as evenly spread as you thought. Moving the line between shards while open is the hardest part.`,
+    },
+    {
+      id: 31, ...D4, position: [38.09, 2.8, 97.85],
+      title: 'The Vendor Cart',
+      description: `A cart outside the warehouse selling only the most-asked-for item. Caching is the standard answer to "it's too slow", and it brings three problems: what to throw out when the cart is full (least-recently-used, here as a bouncer), how long a crate stays fresh (TTL), and how you know when the answer has changed. The crowd that arrives the instant the cart closes is the thundering herd, and it takes down the warehouse behind it.`,
+    },
+    {
+      id: 32, ...D4, position: [12.96, 2.4, 104.2],
+      title: 'The Canal of Queues',
+      description: `Put the work in boats instead of holding it in your hand. A queue decouples the sender from the receiver, absorbs spikes, and lets the slow part be slow. The lock filling up is backpressure — the signal to stop accepting, which a system without it replaces with a crash. Most queues promise at-least-once delivery, so some crates arrive twice and the receiver must not care. What can never be delivered ends up on the dead-letter dock, which someone has to actually read.`,
+    },
+    {
+      id: 33, ...D4, position: [-12.96, 4.2, 104.2],
+      title: 'The Three-Bridge Storm',
+      description: `Three bridges to the island, and a storm takes one out. Once the network partitions — and it will — you may keep answering with possibly-stale stock (available) or refuse to answer until the bridge is back (consistent). You cannot have both, and "we'll just avoid partitions" is not on the menu. Amazon's Dynamo paper (2007) chose availability for the shopping cart; Google's Spanner (2012) bought its way toward consistency with atomic clocks in every datacentre.`,
+    },
+    {
+      id: 34, ...D4, position: [-38.09, 5.4, 97.85],
+      title: 'The Lighthouse Council',
+      description: `Several machines, one answer. Consensus protocols — Paxos, and Raft, which exists mainly because Paxos was too hard to teach — elect a leader and replicate a log so that a majority agrees on the order of events; with 2f+1 nodes they survive f failures. The night two lighthouses each believe they lead is split brain, and it is how distributed systems corrupt data rather than merely stop. This is what your database, your queue and your service registry are all quietly doing underneath.`,
+    },
+    {
+      id: 35, ...D4, position: [-60.91, 3.0, 85.53],
+      title: 'The Post Office',
+      description: `Every crate carries a receipt number, so posting it twice changes nothing: that is idempotency, and it is what makes retries safe. Without it, the retry is a second payment. And retries need jitter — if every client retries at the same polite interval after a blip, they arrive together and turn a stumble into an outage. The pattern that stops that is the circuit breaker: after enough failures, stop calling for a while.`,
+    },
+    {
+      id: 36, ...D4, position: [-80.0, 2.8, 68.0],
+      title: 'The Token Booth',
+      description: `Tokens drip into a bucket at a fixed rate and you pass by spending one; the bucket's size is how much burst you tolerate. That is the token bucket, the rate limiter behind nearly every API you have ever been throttled by. It exists for the noisy neighbour — the one client whose retry loop or bad query would otherwise spend everyone's capacity — and for the day your own service becomes that client to someone else.`,
+    },
+    {
+      id: 37, ...D4, position: [-94.23, 4.4, 46.33],
+      title: 'The Monolith and the Bazaar',
+      description: `One hall you deploy at once, across the square from a market of small stalls you deploy separately. Splitting buys independent deploys, independent scaling and team autonomy; it charges you in network calls that can be slow or fail, in data that no longer fits in one transaction, and in the tracing you now need to answer "where did the request go?". Amazon's 2002 API mandate is the famous case for; Segment's 2018 move back to a monolith is the famous case against.`,
+    },
+    {
+      id: 38, ...DOOR, position: [-108.38, 4.4, 23.04],
+      title: 'The Distribution Door — an open question',
+      description: `Nobody can tell you in advance where your line is. Distribute too little and you have a hall that cannot be deployed, scaled or staffed; too much and you have built a distributed system's failure modes into a problem that did not need them. The honest answer is that the right architecture depends on the team, the load and the domain — three things you cannot measure until you are already committed.`,
+    },
+    {
+      id: 39, ...D5, position: [-126.18, 3.6, 26.82],
+      title: 'The Branch Orchard',
+      description: `+2 THE RIM — everything between "it works on my machine" and "it works for everyone, and we know when it doesn't". Version control first: commits as grafts on a tree you can walk, branches as limbs, merge as a join that either takes or scars. A limb six months from the trunk cannot be grafted back, which is the whole argument for trunk-based development and small changes. The blame ledger in the shed is for finding a reason, not a culprit.`,
+    },
+    {
+      id: 40, ...D5, position: [-112.46, 4.6, 63.2],
+      title: 'The Funicular',
+      description: `Continuous integration: the crate rides up through gates — build, test, scan, sign — and a red gate sends it back down. The point is not the gates, it is the frequency: merging everyone's work several times a day so that conflicts stay small and breakage is found while its cause is still obvious. The only number that really matters is how long the ride takes, because a pipeline slow enough to wait out is a pipeline people learn to route around.`,
+    },
+    {
+      id: 41, ...D5, position: [-88.53, 3.0, 93.83],
+      title: 'The Three Model Houses',
+      description: `Dev, staging and production were identical when they were built, and are not now. Every difference is a bug you will only see once it is expensive: different data volumes, different configuration, a library version nobody pinned. The answers are to move configuration out of the build and into the environment, and to make the blueprint itself be the house — infrastructure as code, so an environment is rebuilt from a file rather than remembered.`,
+    },
+    {
+      id: 42, ...D5, position: [-56.55, 2.2, 115.94],
+      title: 'The Bridge Swap',
+      description: `Releasing without holding your breath: two identical bridges and a switch (blue/green), one cart sent first with a canary on it, a wall of feature flags that separates deploying code from turning it on, and a rollback lever you have actually pulled before. On 1 August 2012 Knight Capital deployed to seven servers out of eight and a repurposed flag woke dormant code on the eighth: $440 million in 45 minutes, and the firm was gone within days.`,
+    },
+    {
+      id: 43, ...D5, position: [-19.44, 5.6, 127.53],
+      title: 'The Control Tower',
+      description: `Three instruments. Metrics: numbers over time, cheap, good for "is it bad?". Logs: what happened, expensive at volume, good for "what exactly happened?". Traces: one request's path through every stall in the bazaar below, the only thing that answers "which of the twelve services was slow?". Define what "working" means as an SLO with an error budget, and alert on symptoms users feel — because the dashboard on the balcony is all green, and it is facing away from the fire.`,
+    },
+    {
+      id: 44, ...D5, position: [19.44, 3.4, 127.53],
+      title: 'The Fire Station',
+      description: `The rota, the runbooks, and a round table with no accusation chair. Incidents are normal; what distinguishes good operations is a rehearsed response and a blameless postmortem that asks what made the mistake possible. On 28 February 2017 an AWS engineer mistyped one argument of a routine command and took out S3 in us-east-1, and with it a large part of the web — including the dashboard AWS used to report that anything was wrong.`,
+    },
+    {
+      id: 45, ...D5, position: [56.55, 3.2, 115.94],
+      title: 'The Monkey',
+      description: `A monkey loose in the city with a wrench, breaking one thing on purpose, in daylight, while everyone is watching. Netflix's Chaos Monkey (2011) killed production instances at random so that surviving them had to be designed in rather than hoped for. The general principle is that resilience is a thing you practise — game days, failover drills, restoring the backup you have never restored — not a property you can claim.`,
+    },
+    {
+      id: 46, ...D5, position: [88.53, 3.8, 93.83],
+      title: 'The Gatehouse',
+      description: `A key ring with exactly the keys this job needs and no more (least privilege), a sealed vault for secrets that are never built into the walls (never in the repo, never in the image), and an inspection dock for every crate that arrives — because most of your code is other people's. Log4shell (2021) was one logging library everybody had; the xz backdoor (2024) was a person who spent two years becoming a trusted maintainer.`,
+    },
+    {
+      id: 47, ...D5, position: [112.46, 3.2, 63.2],
+      title: 'The Tally Office',
+      description: `Four dials on the wall — the DORA measures: how long a change takes to reach production, how often you deploy, how often a change breaks something, how fast you recover. They are useful because they measure the system rather than the person. In the basement, still turning, is the lines-of-code counter. Goodhart's law is framed above the desk: when a measure becomes a target, it stops being a good measure.`,
+    },
+    {
+      id: 48, ...DOOR, position: [131.85, 4.4, 28.03],
+      title: 'The Measurement Door — an open question',
+      description: `Every attempt to measure individual developer productivity has ended up measuring something else: typing, tickets, hours, or how well someone games the metric. The output is not the code, it is the working system and the understanding in the team, and neither is countable. Yet the question will not go away, because organisations must make decisions about people — and this door is why so many of them are made on vibes.`,
+    },
+    {
+      id: 49, ...D6, anchorDistance: -25, position: [132.5, 4.4, 76.5],
+      title: 'The Cost Ladder',
+      description: `^ THE SUMMIT. The Bug's price at each level of the city: caught in design, in code, in test, in staging, in production — each about ten times the last. Barry Boehm put numbers on that curve in 1981, and the whole industry's instinct to "shift left" rests on it. It is also the most disputed number in software engineering: later studies find the curve far flatter for small, frequently-deployed changes, which is exactly what the Rim above is designed to produce.`,
+    },
+    {
+      id: 50, ...D6, anchorDistance: -22, position: [89.93, 3.6, 123.78],
+      title: 'The Silver Bullet Vitrine',
+      description: `An empty case, lit. Fred Brooks, 1986: the work splits into accidental complexity — languages, tooling, plumbing, the parts we keep making easier — and essential complexity, which is working out what the thing must actually do, for whom, with which trade-offs. He predicted no single development in a decade would give an order-of-magnitude improvement, because what remains after the tools improve is the essential part, and there is no tool for it.`,
+    },
+    {
+      id: 51, ...D6, anchorDistance: -34, eyeHeight: 3.4, position: [33.02, 6.0, 155.33],
+      title: 'The Antilibrary Gate',
+      description: `The five doors of the tour arrive here as five arches — halting, P vs NP, evidence, distribution, measurement — and the city ends at the questions it cannot answer. Is software engineering engineering, or a craft with a borrowed name? Why do estimates never work, after fifty years of trying? And what is left of the craft when the machine writes the code? Beyond the wall is the Unbuilt Quarter you have been walking past on every terrace.`,
+      link: 'chroniclers-athenaeum',
+      linkLabel: 'What is known, next door →',
     },
   ],
 };
