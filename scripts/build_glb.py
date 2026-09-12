@@ -48,6 +48,10 @@ SCENES = {
     # HutongCorner.blend: built procedurally by
     # blender_models/hutong_scenegen/build_hutong.py, which bakes Locus_01..14
     # (collection 09_Loci) itself, so nothing to inject here.
+    # LunarBase.blend: Locus_01..10 (collection Loci) are baked into the
+    # source .blend by blender_models/scenegen_lunar/build_lunar.py -- three
+    # pegs inside the observation lounge, seven out on the base itself.
+    "lunar-base": [],
     "hutong-corner": [],
     "portal-island": [],
     # CFAFinancialDistrict.blend: Locus_01..27 (collection 09_Loci) are baked
@@ -708,6 +712,13 @@ def main():
             # Current source (chinatown_street.blend) -- see docstring.
             fix_chinatown_materials_for_export()
             export_kwargs["export_vertex_color"] = "ACTIVE"
+
+    if scene_id == "lunar-base":
+        import lunar_base_export
+        lunar_base_export.prepare()
+        export_kwargs.setdefault("export_cameras", False)
+        export_kwargs.setdefault("export_lights", False)
+        export_kwargs.setdefault("export_animations", False)
 
     if scene_id == "the-white-house":
         fix_white_house_labels_for_export()

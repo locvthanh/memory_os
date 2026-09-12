@@ -17,6 +17,13 @@
 //   config  () => Promise of the scene's config module default export
 export const SCENES = [
   {
+    id: 'lunar-base',
+    title: 'Lunar Base',
+    blurb: 'The observation lounge of a Moon settlement on a crater rim, and the settlement below it through a canted hexagonal window: habitat dome, connector tubes, solar field, rover, comms mast and a landing pad, with Earth low over the ridge. Recreated from a reference illustration by solving its camera first. Three pegs indoors, seven out on the plain. Ten loci.',
+    model: 'models/lunar-base.glb',
+    config: () => import('./lunar-base.js').then((m) => m.default),
+  },
+  {
     id: 'chinatown-street',
     title: 'Chinatown Street',
     blurb: 'A lantern-lit lane past a paifang gate and red shopfronts. Six loci down the street.',

@@ -33,6 +33,7 @@ $map = @{
     "sky-loft"         = "SkyLoft.blend"
     "cfa-level-1"      = "CFAFinancialDistrict.blend"
     "grab-workplace"   = "GrabCourtyard.blend"
+    "lunar-base"       = "LunarBase.blend"
     "misty-valley"     = "LOTR_MistyValley.blend"
     "hutong-corner"    = "HutongCorner.blend"
     "meditation-ledge" = "MeditationLedge.blend"
