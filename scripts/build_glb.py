@@ -67,6 +67,14 @@ SCENES = {
     # deck is on the origin, so this list is empty and the export loop passes
     # the existing empties through untouched.
     "meditation-ledge": [],
+    # GlacierDeck.blend: Locus_01..12 (collection 09_Loci) are baked into the
+    # source .blend by blender_models/scenegen_glacierdeck/gd_loci.py -- the
+    # setts, the gate, the lantern, the cairn shelf, the bonsai, the cushions,
+    # the incense tray, the pine, the far rail, then the glacier, the river and
+    # the sunset peak. scripts/glacier_deck_export.py recentres the deck on the
+    # origin and compresses depth radially about the hero eye, so this list is
+    # empty and the export loop passes the existing empties through untouched.
+    "glacier-deck": [],
     # CivilWarMap.blend: Locus_01..18 (collection "Loci") are baked into the
     # source .blend by build_civilwar_map.py, one per event pin in
     # chronological order, so this list is empty and the export loop passes the
@@ -796,6 +804,14 @@ def main():
         export_kwargs.setdefault("export_animations", False)
 
     if scene_id == "meditation-ledge":
+        export_kwargs.setdefault("export_cameras", False)
+        export_kwargs.setdefault("export_lights", False)
+        export_kwargs.setdefault("export_animations", False)
+
+    if scene_id == "glacier-deck":
+        import glacier_deck_export
+        glacier_deck_export.prepare()
+        export_kwargs.setdefault("export_vertex_color", "ACTIVE")
         export_kwargs.setdefault("export_cameras", False)
         export_kwargs.setdefault("export_lights", False)
         export_kwargs.setdefault("export_animations", False)

@@ -165,6 +165,14 @@ export const SCENES = [
     blurb: 'A timber deck cantilevered off a granite cliff at dawn, with a sea of cloud ninety-five metres below it and a snow range on the far side. Built to sit in as much as to remember from, so the ten stops are also the ten stations of a sit \u2014 the approach first (a cedar gate, a stone basin fed by a bamboo spout, a lantern still lit at sunrise, a cairn of five stones), then the cushion at the centre of the deck, then attention moving outward (the wind bell on the east rail, the far rail with nothing past it, a pine bent flat over the drop by the wind and still alive), and finally away (the cloud filling the valley, and the snow summit with the sun cresting the saddle beside it). The camera never leaves the deck. Every peg is still blank. Ten loci.',
     model: 'models/meditation-ledge.glb',
     config: () => import('./meditation-ledge.js').then((m) => m.default),
+  },
+  {
+    id: 'glacier-deck',
+    title: 'The Glacier Deck',
+    blurb:
+      'A timber sitting platform on a cobbled promontory at sunset, a gnarled pine leaning over it, and a crevassed glacier two hundred metres below running out to a snow range still holding the last light. Recreated from a photograph: the camera projection was solved first, so the opening frame is the photograph\u2019s frame. The twelve stops run the way you would arrive \u2014 up the setts, through the gate, then the objects on the deck (the lantern, the shelf of stacked cairns, the bonsai, the two cushions, the incense tray), then attention outward to the pine and the far rail, and finally away down the valley to the glacier, the river and the peak. The camera never leaves the deck. Every peg is still blank. Twelve loci.',
+    model: 'models/glacier-deck.glb',
+    config: () => import('./glacier-deck.js').then((m) => m.default),
   }
 ];
 
