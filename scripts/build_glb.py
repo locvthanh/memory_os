@@ -45,6 +45,10 @@ SCENES = {
     # empties through untouched. Currently Locus_01..08 (the gate ring at
     # radius ~12, z~3.41), Locus_09_piano, and Locus_10..13 on the Rosetta
     # language square out on the NW peninsula (isl_rosetta.py).
+    # HutongCorner.blend: built procedurally by
+    # blender_models/hutong_scenegen/build_hutong.py, which bakes Locus_01..14
+    # (collection 09_Loci) itself, so nothing to inject here.
+    "hutong-corner": [],
     "portal-island": [],
     # CFAFinancialDistrict.blend: Locus_01..27 (collection 09_Loci) are baked
     # into the source .blend by blender_models/cfa_scenegen/cfa_build.py -- the

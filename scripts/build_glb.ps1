@@ -34,6 +34,7 @@ $map = @{
     "cfa-level-1"      = "CFAFinancialDistrict.blend"
     "grab-workplace"   = "GrabCourtyard.blend"
     "misty-valley"     = "LOTR_MistyValley.blend"
+    "hutong-corner"    = "HutongCorner.blend"
 }
 
 foreach ($id in $map.Keys) {
