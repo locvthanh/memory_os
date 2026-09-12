@@ -31,6 +31,7 @@ $map = @{
     "macro-hydraulic-hall" = "HydraulicHall.blend"
     "seaside-bungalow" = "SeasideBungalow.blend"
     "sky-loft"         = "SkyLoft.blend"
+    "cfa-level-1"      = "CFAFinancialDistrict.blend"
 }
 
 foreach ($id in $map.Keys) {

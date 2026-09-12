@@ -118,6 +118,13 @@ export const SCENES = [
     config: () => import('./sky-loft.js').then((m) => m.default),
   },
   {
+    id: 'cfa-level-1',
+    title: 'The CFA Financial District',
+    blurb: 'The whole CFA Level I curriculum as one low-poly island city, walked in 27 stops. The rule the island encodes: EVERY BUILDING\'S HEIGHT IS ITS EXAM WEIGHT — a 28 m marble Ethics courthouse (15–20%), three equal 20 m slabs for Financial Statement Analysis, Equity and Fixed Income, and a 10.4 m Derivatives pit (5–8%), so the skyline you see from the gate is the weighting. Ten buildings ring a plaza in curriculum order, each in its own architecture — a colonnaded courthouse, a bell-curve observatory, a central bank over a market square, a glass ledger block lit on three floors, a boardroom crown, a stepped exchange with a ticker, a bond vault with its door open, a steel pit standing over water, a warehouse yard, a harbour lighthouse. On the forecourts, 25 plinths carry the pegs: the Code open under six gold pips, the seven Standards as seven columns, duration as a plank balancing its coupons on a fulcrum, put–call parity as a scale, the efficient frontier with the capital allocation line lifting off it. Twenty-seven loci.',
+    model: 'models/cfa-level-1.glb',
+    config: () => import('./cfa-level-1.js').then((m) => m.default),
+  },
+  {
     id: 'seaside-bungalow',
     title: 'The Seaside Bungalow',
     blurb: 'An empty palace, ready for anything you want to remember: a sunlit beach-house living room at midday. White walls under dark teak beams, a linen sofa, a rattan pendant, a cane armchair, and a whole wall of glass sliding doors opening onto a teak deck, the sand, two leaning coconut palms, turquoise water and a hazy island on the horizon. And one thing that doesn’t belong: a wizard’s hat floating over the coffee table. Eleven stops inside, five outside, from the sofa round the room, through the glass and down to the waterline. Every peg is still blank. Sixteen loci.',

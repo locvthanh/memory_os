@@ -46,6 +46,13 @@ SCENES = {
     # radius ~12, z~3.41), Locus_09_piano, and Locus_10..13 on the Rosetta
     # language square out on the NW peninsula (isl_rosetta.py).
     "portal-island": [],
+    # CFAFinancialDistrict.blend: Locus_01..27 (collection 09_Loci) are baked
+    # into the source .blend by blender_models/cfa_scenegen/cfa_build.py -- the
+    # south gate, the Charterholder's Compass on the plaza, then 25 forecourt
+    # plinths walked clockwise from the Ethics courthouse. The city is centred
+    # on the origin, so this list is empty and the export loop passes the
+    # existing empties through untouched.
+    "cfa-level-1": [],
     # CivilWarMap.blend: Locus_01..18 (collection "Loci") are baked into the
     # source .blend by build_civilwar_map.py, one per event pin in
     # chronological order, so this list is empty and the export loop passes the
@@ -733,6 +740,14 @@ def main():
     if scene_id == "seaside-bungalow":
         import seaside_bungalow_export
         seaside_bungalow_export.prepare()
+        export_kwargs.setdefault("export_cameras", False)
+        export_kwargs.setdefault("export_lights", False)
+        export_kwargs.setdefault("export_animations", False)
+
+    if scene_id == "cfa-level-1":
+        import cfa_level_1_export
+        cfa_level_1_export.prepare()
+        bake_curves_to_meshes()
         export_kwargs.setdefault("export_cameras", False)
         export_kwargs.setdefault("export_lights", False)
         export_kwargs.setdefault("export_animations", False)
