@@ -163,7 +163,31 @@ export class Walkthrough {
   // current stop's official anchor/look so the tour resumes predictably.
   setFreeMode(active) {
     this.freeMode = active;
-    if (!active && !this.empty) this._applyStop(this.index);
+    if (active) {
+      // _startTravel disables OrbitControls and only _arrive turns it back on
+      // -- and update() no-ops in free mode, so _arrive never runs. Switching
+      // to Free Move *during* a travel therefore left the controls disabled
+      // and drag-to-look dead for the rest of the visit. The rails are
+      // suspended now, so hand input back unconditionally.
+      this.controls.enabled = true;
+      // Drop the half-finished travel too: _startTravel has already moved
+      // `index` to the destination, so treating that stop as the current one
+      // lets Tour Mode resume from a real anchor instead of lerping out of a
+      // stale `from` the free camera has since wandered away from.
+      if (this.phase === 'travel') {
+        this.phase = 'dwell';
+        this.clock = 0;
+        this.from = null;
+      }
+      return;
+    }
+    if (!this.empty) {
+      this._applyStop(this.index);
+      // Re-announce the stop: if free mode was entered mid-travel the arrival
+      // was never narrated, so the panel would come back showing the locus we
+      // left rather than the one the camera is now parked at.
+      this.onLocusChange(this.index, this.loci[this.index]);
+    }
   }
 
   update(dt) {

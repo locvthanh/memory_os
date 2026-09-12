@@ -213,6 +213,13 @@ button {
    desktop; on a phone it would have blocked the bottom half of the scene. */
 .locus-panel { pointer-events: none; }
 .locus-panel.visible { pointer-events: auto; }
+/* On phones `.locus-panel` sets its own `display: flex` (the bottom sheet),
+   which beats the UA `[hidden]` rule -- so Viewer setting `hidden` on it for
+   free move left a full-width, pointer-events: auto sheet sitting over the
+   bottom quarter of the screen, swallowing every drag-to-look that started
+   there. Same fix as `.transport[hidden]`; the attribute selector outranks the
+   media-query rule, so one line covers both layouts. */
+.locus-panel[hidden] { display: none; }
 
 /* Free Move's up/down buttons sit where the tour bottom-right panel
    normally does, so lift it clear of them while free-moving. */
