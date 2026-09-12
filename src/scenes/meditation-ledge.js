@@ -25,10 +25,10 @@ export default {
   background: 0xe0a877,
   fog: { near: 70, far: 1900 },
   lighting: {
-    hemisphere: 0.85,
-    ambient: 0.35,
+    hemisphere: 1.0,
+    ambient: 0.5,
     ambientColor: 0xffd9b0,
-    sun: 1.6,
+    sun: 2.1,
     shadowExtent: 45,
   },
   walkthrough: {
@@ -124,20 +124,25 @@ export default {
       title: 'The Sea of Cloud',
       description:
         'The valley filled to the brim with cloud, moving too slowly to see. Good for the large, slow and unordered — a set too big to count, where only the shape of the whole matters.',
-      position: [16, -22, -70],
+      // 180 m out and 40 m down, which is a 12-degree look-down from the
+      // rail -- far enough that the shot reads as a valley rather than as
+      // standing on top of the cloud.
+      position: [30, -40, -180],
       anchorFrom: [0, 0, 0],
-      anchorDistance: -62,
-      eyeHeight: 24,
+      anchorDistance: -172,
+      eyeHeight: 42,
     },
     {
       id: 10,
       title: 'The Far Peak',
       description:
         'The snow summit across the valley with the sun cresting the saddle beside it — the furthest thing in the room and the first thing lit. Reserve it for the goal: what the whole sequence is for.',
-      position: [-60, 190, -420],
+      // aimed at the mid-flank of the big peak, 1.18 km out, so its summit
+      // sits high in frame with the cloud sea running in underneath it.
+      position: [-120, 240, -1180],
       anchorFrom: [0, 0, 0],
-      anchorDistance: -415,
-      eyeHeight: -188,
+      anchorDistance: -1176,
+      eyeHeight: -238,
     },
   ],
 };
