@@ -196,6 +196,14 @@ export const SCENES = [
       'The lungs as a pale, tall building walked in the direction the air goes \u2014 deliberately the opposite room to The Pump House, because what this organ is about is surface. Fourteen stops: in at the portico where every breath is warmed and filtered, past the gate that shuts when you swallow, down a nave held open by C-shaped rings with the mucus escalator running the other way under your feet, through the fork where inhaled peanuts go right, out across a branching hall where the pipes double until the air stops moving, past two bronchioles side by side \u2014 one at rest, one in spasm \u2014 and over the line where dead space ends and the lung actually begins. Beyond it the domes are alveoli: one is cut open so you can stand inside it and look at the wall mounted in section, half a micron of water, cell, cell and blood. The floor of the whole cathedral is held up by the diaphragm, which is domed only at rest. It ends at a tennis court built at true size \u2014 the one object here not magnified \u2014 because that is the area of all of it, folded into your chest. Scene two of the Human Body series. Fourteen loci.',
     model: 'models/body-lungs.glb',
     config: () => import('./body-lungs.js').then((m) => m.default),
+  },
+  {
+    id: 'future-city',
+    title: 'Future City',
+    blurb:
+      'A solarpunk river capital at the end of a bright afternoon, seen from a planted terrace ninety metres above the water \u2014 one person at the glass rail, the river running out between stone quays, a ring threaded around a cluster of five-hundred-metre shards, a glass dome, an elevated line, airships on the lane and a low sun over the far mountains. Recreated from an illustration camera-first: the elevation was solved from the ellipse ratios of the sky ring and the ring road, then every landmark was back-projected from its pixel position, so the opening frame is the picture\u2019s frame \u2014 and then the city was built out past it so you can leave the frame and fly around. Twelve loci, pegs still blank.',
+    model: 'models/future-city.glb',
+    config: () => import('./future-city.js').then((m) => m.default),
   }
 ];
 

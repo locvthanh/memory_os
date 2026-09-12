@@ -38,6 +38,7 @@ $map = @{
     "hutong-corner"    = "HutongCorner.blend"
     "meditation-ledge" = "MeditationLedge.blend"
     "glacier-deck"     = "GlacierDeck.blend"
+    "future-city"      = "FutureCity.blend"
 }
 
 foreach ($id in $map.Keys) {

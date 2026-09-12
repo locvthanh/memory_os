@@ -148,6 +148,14 @@ SCENES = {
     # facades and camera-distance haze shaders, SL_-prefix the materials so the
     # shell can be ROOF-tagged) is in scripts/sky_loft_export.py.
     "sky-loft": [],
+    # future-city: Locus_01..12 are baked into FutureCity.blend (collection
+    # Loci) by blender_models/futurecity_scenegen/build_city.py -- the terrace
+    # and its two signs, the river, the near bridge, the monorail train, the
+    # dome, the ring road, the spire, the halo ring, the sky garden and the
+    # airship. The scene is authored across ~30 km at 1 unit = 1 m, so
+    # scripts/future_city_export.py compresses it radially about the hero eye
+    # (and moves these empties with it) before export.
+    "future-city": [],
     # misty-valley: Locus_01..08 are baked into LOTR_MistyValley.blend
     # (collection 09_Loci, Locus_NN_<key>) -- the ford, the standing stones,
     # the watchtower, the bridge, the pine wood, the east moor, the gorge and
@@ -801,6 +809,15 @@ def main():
         import grab_workplace_export
         grab_workplace_export.prepare()
         bake_curves_to_meshes()
+        export_kwargs.setdefault("export_cameras", False)
+        export_kwargs.setdefault("export_lights", False)
+        export_kwargs.setdefault("export_animations", False)
+
+    if scene_id == "future-city":
+        import future_city_export
+        future_city_export.prepare()
+        bake_curves_to_meshes()
+        export_kwargs.setdefault("export_vertex_color", "ACTIVE")
         export_kwargs.setdefault("export_cameras", False)
         export_kwargs.setdefault("export_lights", False)
         export_kwargs.setdefault("export_animations", False)
