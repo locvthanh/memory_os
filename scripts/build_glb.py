@@ -104,6 +104,12 @@ SCENES = {
     # flatten text, tone emissives, merge by material with walls and glass kept
     # shadowless) is in scripts/macro_hydraulic_hall_export.py.
     "macro-hydraulic-hall": [],
+    # seaside-bungalow: Locus_01..16 are baked into SeasideBungalow.blend
+    # (collection 10_Loci, Locus_NN_<key>) on each object's aim point; export
+    # prep (drop rig and cloud cards, pull the horizon inside the 2 km far
+    # plane, flatten the procedural Cycles materials, ROOF_-tag the house shell,
+    # glass and curtains) is in scripts/seaside_bungalow_export.py.
+    "seaside-bungalow": [],
     "writing-room": [
         [0, 3.6, 1.2], [-2.2, 2.5, 1.4], [-0.8, 3.6, 1.1],
         [0.8, 3.6, 1.1], [2.2, 1.0, 1.0], [0, 4.0, 1.3],
@@ -706,6 +712,13 @@ def main():
         macro_hydraulic_hall_export.prepare()
         bake_curves_to_meshes()
         macro_hydraulic_hall_export.merge()
+        export_kwargs.setdefault("export_cameras", False)
+        export_kwargs.setdefault("export_lights", False)
+        export_kwargs.setdefault("export_animations", False)
+
+    if scene_id == "seaside-bungalow":
+        import seaside_bungalow_export
+        seaside_bungalow_export.prepare()
         export_kwargs.setdefault("export_cameras", False)
         export_kwargs.setdefault("export_lights", False)
         export_kwargs.setdefault("export_animations", False)

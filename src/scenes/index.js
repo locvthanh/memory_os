@@ -109,6 +109,13 @@ export const SCENES = [
     blurb: 'Scene 0 of the macroeconomics series, and its hub: a steampunk engine hall around a giant MONIAC, Bill Phillips’s 1949 computer that modelled an economy with coloured water. The circular flow is laid out on one brass-and-glass board: households and firms as two tall tanks, spending pumped along the bottom, income returning across the top, and the three side circuits between them (saving and investment through the banks, taxes and government spending, imports and exports). The series’ recurring cast (the Baker, the Banker, the Governor, the Treasurer and the Trader) stands at the foot of the machine, with the price-tagged loaf. Then the GDP gauge, the nine doors to the rest of the series, and an open question. Eleven loci.',
     model: 'models/macro-hydraulic-hall.glb',
     config: () => import('./macro-hydraulic-hall.js').then((m) => m.default),
+  },
+  {
+    id: 'seaside-bungalow',
+    title: 'The Seaside Bungalow',
+    blurb: 'An empty palace, ready for anything you want to remember: a sunlit beach-house living room at midday. White walls under dark teak beams, a linen sofa, a rattan pendant, a cane armchair, and a whole wall of glass sliding doors opening onto a teak deck, the sand, two leaning coconut palms, turquoise water and a hazy island on the horizon. And one thing that doesn’t belong: a wizard’s hat floating over the coffee table. Eleven stops inside, five outside, from the sofa round the room, through the glass and down to the waterline. Every peg is still blank. Sixteen loci.',
+    model: 'models/seaside-bungalow.glb',
+    config: () => import('./seaside-bungalow.js').then((m) => m.default),
   }
 ];
 
