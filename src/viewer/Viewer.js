@@ -203,6 +203,15 @@ export class Viewer {
         this.overlay.dismiss();
       });
       this._setFreeMode(true); // free exploration is the default on entering a scene
+      // A scene with no loci is a place, not a tour (glacier-deck): there is
+      // nothing to walk between and nothing to narrate, so the whole transport
+      // bar goes -- including the Free Move / Tour Mode toggle, since free move
+      // is now the only mode.
+      if (!loci.length) {
+        document.getElementById('transport').hidden = true;
+        document.getElementById('overlay').hidden = true;
+        document.getElementById('locus-panel').hidden = true;
+      }
       this._applyStartView();
 
       document.getElementById('loading').classList.add('hidden');

@@ -170,7 +170,7 @@ export const SCENES = [
     id: 'glacier-deck',
     title: 'The Glacier Deck',
     blurb:
-      'A timber sitting platform on a cobbled promontory at sunset, a gnarled pine leaning over it, and a crevassed glacier two hundred metres below running out to a snow range still holding the last light. Recreated from a photograph: the camera projection was solved first, so the opening frame is the photograph\u2019s frame. The twelve stops run the way you would arrive \u2014 up the setts, through the gate, then the objects on the deck (the lantern, the shelf of stacked cairns, the bonsai, the two cushions, the incense tray), then attention outward to the pine and the far rail, and finally away down the valley to the glacier, the river and the peak. The camera never leaves the deck. Every peg is still blank. Twelve loci.',
+      'A timber sitting platform on a cobbled promontory at sunset, a gnarled pine leaning over it, and a crevassed glacier two hundred metres below running out to a snow range still holding the last light. Recreated from a photograph: the camera projection was solved first, so the opening frame is the photograph\u2019s frame. The only room here with no loci and no tour \u2014 no pegs, no numbers, no rails. It is a place to be in: open it and look around.',
     model: 'models/glacier-deck.glb',
     config: () => import('./glacier-deck.js').then((m) => m.default),
   }

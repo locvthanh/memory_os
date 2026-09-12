@@ -8,9 +8,14 @@ photograph: the camera projection was solved first and the deck corners,
 cushions and lantern back-projected from the photo, so the hero framing matches
 the source image.
 
-Locus_01..12 are baked into the .blend (collection 09_Loci, Locus_NN_<key>), so
-build_glb.py's SCENES entry is empty. Blender +Y runs out over the glacier,
-which becomes three.js -Z.
+This scene has no loci: it is a place to be in rather than a sequence to be
+walked, so nothing is baked into the .blend and nothing is injected by
+build_glb.py. src/scenes/glacier-deck.js ships `loci: []` and the viewer drops
+its transport bar. Blender +Y runs out over the glacier, which becomes
+three.js -Z.
+
+The recentring below is kept even without loci: it puts the deck on the origin,
+which is what makes `startView` and any future locus rig readable.
 
 Sibling scene: [[meditation-ledge]] is the same idea at dawn above a cloud sea.
 This one is deliberately a different room -- sunset instead of dawn, ice
@@ -32,10 +37,8 @@ What this module does, in memory only (the .blend is never saved):
     depth order while landing inside 1.1 km. Anything nearer than A is untouched,
     so the deck and its props keep true scale and true parallax;
 
-  * recentres the deck on the origin (it is authored at Blender x -0.26, y 3.25)
-    so every locus can use anchorFrom [0,0,0] -- the rig that keeps the
-    walkthrough camera standing on the deck while it looks out at loci hundreds
-    of metres away;
+  * recentres the deck on the origin (it is authored at Blender x -0.26, y 3.25),
+    so the scene's own centre is the world's;
 
   * bakes colour into vertices. The whole scene is procedural: terrain colour
     already lives in a POINT attribute named `fvar`, and everything else is

@@ -90,6 +90,14 @@ export class Walkthrough {
     this.from = null;
     this.done = false;
 
+    // A scene may have no loci at all -- glacier-deck is a place to be in
+    // rather than a sequence to be walked, so it ships none. There is nothing
+    // to park the camera on and nothing to narrate, so the rig stays inert and
+    // every transport method is a no-op; Viewer hides the transport bar and
+    // leaves free move as the only mode.
+    this.empty = this.stops.length === 0;
+    if (this.empty) return;
+
     this._applyStop(0);
     this.onLocusChange(0, this.loci[0]);
   }
@@ -125,6 +133,7 @@ export class Walkthrough {
   }
 
   next() {
+    if (this.empty) return;
     if (this.index >= this.stops.length - 1 && !this.loop) return;
     const to = (this.index + 1) % this.stops.length;
     this._startTravel(to);
@@ -132,12 +141,14 @@ export class Walkthrough {
   }
 
   prev() {
+    if (this.empty) return;
     const to = (this.index - 1 + this.stops.length) % this.stops.length;
     this._startTravel(to);
     this.done = false;
   }
 
   restart() {
+    if (this.empty) return;
     this.index = 0;
     this.done = false;
     this._arrive();
@@ -152,11 +163,11 @@ export class Walkthrough {
   // current stop's official anchor/look so the tour resumes predictably.
   setFreeMode(active) {
     this.freeMode = active;
-    if (!active) this._applyStop(this.index);
+    if (!active && !this.empty) this._applyStop(this.index);
   }
 
   update(dt) {
-    if (this.freeMode) return;
+    if (this.freeMode || this.empty) return;
 
     if (this.phase === 'travel') {
       this.clock += dt;

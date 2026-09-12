@@ -243,6 +243,10 @@ button {
   gap: 8px;
 }
 .tour-controls[hidden] { display: none; }
+/* `.transport` sets its own display, which beats the UA `[hidden]` rule, so
+   restate it — a scene with no loci (glacier-deck) hides the whole bar,
+   Free Move toggle included, because free move is then the only mode. */
+.transport[hidden] { display: none; }
 .transport button.active {
   background: var(--ink);
   color: #fff;

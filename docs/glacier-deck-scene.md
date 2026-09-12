@@ -23,28 +23,37 @@ dawn, ice not cloud, a cobbled approach and a shelf of cairns instead of a gate
 and a basin. The two are close enough in idea that they had to be kept far
 apart in look, or they would blur into one memory.
 
-The twelve loci run the way you would actually arrive — up the setts, through
-the gate, then the objects on the deck, then attention outward, then away down
-the valley:
+## No loci, deliberately
 
-| # | Locus | Object | What it is for |
-|---|-------|--------|----------------|
-| 1 | The Setts | the cobbled apron | many small similar units that only mean something in aggregate |
-| 2 | The Gate | slatted gate, standing ajar | a condition of entry |
-| 3 | The Lantern | brass-and-glass lamp, already lit | the one thing that must stay lit |
-| 4 | The Cairn Shelf | open rack, four stone stacks | an ordered set you can count; a narrowing hierarchy |
-| 5 | The Bonsai | a pine kept to 30 cm | a model, a scaled-down case |
-| 6 | The Two Cushions | two linen zafu, offset | a pair that belongs together but is not symmetrical |
-| 7 | The Incense Tray | burner and one stick | anything spent as it is used |
-| 8 | The Leaning Pine | 13 m trunk, needles all downwind | a lopsided thing; a long tail |
-| 9 | The Far Rail | where the planks stop | a boundary, a limit case |
-| 10 | The Glacier | the crevassed ice below | a coherent body whose failures all lie one way |
-| 11 | The River | meltwater in the gorge, 300 m down | a slow process that outlasts what is above it |
-| 12 | The Sunset Peak | the last summit in the light | the goal |
+This is the first scene in MemoryOS with **no loci at all**: no pegs, no
+numbered badges, no rails. It was asked for as "just the scene" from the
+start, and after seeing it wired up as a twelve-stop empty palace the call was
+to take the stops out again. It is a place to be in, not a sequence to be
+walked — you open it and look around.
 
-Every peg is still a placeholder: the `title` names the object, the
-`description`'s last sentence says what it is shaped to hold. Both need
-replacing with real content.
+That needed three small, general changes in the viewer rather than a
+scene-specific hack:
+
+- `Walkthrough` now sets an `empty` flag when it is handed no loci and returns
+  from its constructor before parking the camera on a stop that does not
+  exist; `update`, `next`, `prev`, `restart` and `setFreeMode` all no-op on it.
+  Previously zero loci threw on `this.stops[0].anchor`.
+- `Viewer.start` hides the whole transport bar when `loci.length === 0` —
+  including the Free Move / Tour Mode toggle, since free move is then the only
+  mode — along with the tour caption and the locus panel.
+- `.transport` sets its own `display: flex`, which beats the UA `[hidden]`
+  rule, so `style.css` restates `.transport[hidden] { display: none; }` the way
+  `.tour-controls` and `.music-toggle` already do. Without it the element is
+  `hidden` and still on screen.
+
+Every other scene is untouched: they all have loci, so none of these branches
+fire.
+
+The objects are all still there if it ever wants pegs — the setts, the gate,
+the lantern, the shelf of stacked cairns, the bonsai, the two cushions, the
+incense tray, the pine, the far rail, and the glacier, river and peak below.
+Git history has the twelve-locus version (`gd_loci.py`, and the `loci` array in
+`src/scenes/glacier-deck.js`) if it is ever wanted back.
 
 ## Solving the photograph first
 
@@ -117,7 +126,8 @@ Things that cost time and are worth not rediscovering:
 ## Web app export & integration
 
 `scripts/glacier_deck_export.py`, wired into `build_glb.py` under
-`"glacier-deck": []` (loci are baked in the .blend, nothing to inject). Export:
+`"glacier-deck": []` (there are no loci at all — nothing baked, nothing
+injected). Export:
 `blender -b ...\GlacierDeck.blend -P scripts/build_glb.py -- glacier-deck`
 → `models/glacier-deck.glb`, 14.3 MB, 29 nodes, no merge step.
 
@@ -140,10 +150,9 @@ Two problems specific to this scene:
   Principled + Color Attribute and the export runs with
   `export_vertex_color="ACTIVE"`.
 
-The deck is also recentred on the origin at export, which is what lets every
-locus use `anchorFrom: [0, 0, 0]` with a negative `anchorDistance` — the Ledge's
-rig, and the reason the camera stays on the deck even for the three stops that
-are hundreds of metres out over the ice. `ROOF_` is prefixed onto `FarLand`,
+The deck is also recentred on the origin at export, so the scene's own centre
+is the world's — which is what makes `startView` readable, and what a locus rig
+would need if one is ever added back. `ROOF_` is prefixed onto `FarLand`,
 `River` and `LeftSpur` so the viewer skips `castShadow` on them.
 
 Lighting note: the viewer's sun is a fixed overhead **white** light, so the
@@ -152,13 +161,13 @@ sunset has to come from the ambient term — `hemisphere: 0.5`, `ambient: 0.8` a
 blue-ish hemisphere high makes the whole valley read as an overcast noon.
 
 Verified live at
-`https://locvthanh.github.io/memory_os/scene.html?id=glacier-deck` — twelve
-loci, badge scales applied, tour running.
+`https://locvthanh.github.io/memory_os/scene.html?id=glacier-deck` — no badges,
+no transport bar, free move only, opening on the photograph's framing.
 
 ## Possible follow-ups
 
-- **Fill the pegs.** Twelve blank loci; this is an empty palace until they carry
-  something.
+- **Pegs, if it ever wants them.** It ships with none on purpose; the objects
+  are there to hang them on, and git history has the twelve-stop version.
 - The glacier's crevasse field is still noticeably periodic — two warped sine
   bands. A Voronoi-based fracture would read better close up.
 - The far horizon above the peaks is a flat hazy band where the terrain simply

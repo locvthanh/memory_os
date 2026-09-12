@@ -67,13 +67,12 @@ SCENES = {
     # deck is on the origin, so this list is empty and the export loop passes
     # the existing empties through untouched.
     "meditation-ledge": [],
-    # GlacierDeck.blend: Locus_01..12 (collection 09_Loci) are baked into the
-    # source .blend by blender_models/scenegen_glacierdeck/gd_loci.py -- the
-    # setts, the gate, the lantern, the cairn shelf, the bonsai, the cushions,
-    # the incense tray, the pine, the far rail, then the glacier, the river and
-    # the sunset peak. scripts/glacier_deck_export.py recentres the deck on the
-    # origin and compresses depth radially about the hero eye, so this list is
-    # empty and the export loop passes the existing empties through untouched.
+    # GlacierDeck.blend: this scene has NO loci at all -- it is a place to be in
+    # rather than a sequence to be walked, so nothing is baked into the .blend
+    # and nothing is injected here. src/scenes/glacier-deck.js ships `loci: []`
+    # and the viewer drops its transport bar. scripts/glacier_deck_export.py
+    # still recentres the deck on the origin and compresses depth radially about
+    # the hero eye so the 16 km landscape fits the viewer's 2000-unit far plane.
     "glacier-deck": [],
     # CivilWarMap.blend: Locus_01..18 (collection "Loci") are baked into the
     # source .blend by build_civilwar_map.py, one per event pin in
