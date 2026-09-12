@@ -173,6 +173,14 @@ export const SCENES = [
       'A timber sitting platform on a cobbled promontory at sunset, a gnarled pine leaning over it, and a crevassed glacier two hundred metres below running out to a snow range still holding the last light. Recreated from a photograph: the camera projection was solved first, so the opening frame is the photograph\u2019s frame. The only room here with no loci and no tour \u2014 no pegs, no numbers, no rails. It is a place to be in: open it and look around.',
     model: 'models/glacier-deck.glb',
     config: () => import('./glacier-deck.js').then((m) => m.default),
+  },
+  {
+    id: 'body-heart',
+    title: 'The Pump House',
+    blurb:
+      'The heart as a two-storey building you walk through at 1:130,000 scale, where one red blood cell is a metre across. Right side blue, left side red, a septum down the middle, atria upstairs and ventricles below. Seventeen stops follow one drop of blood: in through the vena cavae, past the pacemaker that starts every beat on its own, down through the three-leaflet tricuspid door and the tendon cords that stop it blowing inside out, out to the lungs where blue becomes red, back into the left atrium, through the two-leaflet mitral door, past the wall the whole room exists to show \u2014 three times thicker than its blue twin, because this side pushes blood to your toes and that side pushes it ten centimetres \u2014 then out by the aortic arch, round the crown of coronary arteries that feed the muscle first, down the wiring that makes the squeeze start at the bottom, and finally to the capillary bed, the only place in the entire circuit where anything actually crosses. Scene one of the Human Body series. Seventeen loci.',
+    model: 'models/body-heart.glb',
+    config: () => import('./body-heart.js').then((m) => m.default),
   }
 ];
 
