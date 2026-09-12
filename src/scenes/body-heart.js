@@ -48,8 +48,8 @@ export default {
         'Two blue pipes, and everything that has already been spent arrives through them: the superior vena cava down from the head and arms, the inferior vena cava up from everything below the diaphragm. No pump pushes blood in here — it arrives because the atrium is momentarily emptier than the veins are. Good peg for anything that collects from everywhere before it is dealt with.',
       position: [-16, 29, -7],
       anchorFrom: [-15, 0, 0],
-      anchorDistance: -10,
-      eyeHeight: -2.5,
+      anchorDistance: -12,
+      eyeHeight: -5,
     },
     {
       id: 2,
@@ -57,9 +57,9 @@ export default {
       description:
         'The blue holding hall. It is a waiting room, not an engine: its walls are thin because all it has to do is top up the ventricle below with the last 20% after gravity has done the rest. Hold here the idea of a buffer that barely works and still matters.',
       position: [-15, 25, 0],
-      anchorFrom: [-15, 0, 10],
-      anchorDistance: -11,
-      eyeHeight: 1,
+      anchorFrom: [-15, 0, 9],
+      anchorDistance: -9,
+      eyeHeight: 2,
     },
     {
       id: 3,
@@ -106,30 +106,30 @@ export default {
       title: 'The Pulmonary Door',
       description:
         'Three pocket-shaped cusps at the ventricle ceiling. They have no cords: they are shaped like cups facing backwards, so any blood trying to fall back fills them and wedges them shut. Through it goes the pulmonary artery — the one artery in the body carrying blue blood, because artery means "away from the heart", not "oxygenated".',
-      position: [-14, 17.6, -11.6],
-      anchorFrom: [-14, 0, 6],
+      position: [-14, 17.6, -7],
+      anchorFrom: [-20, 0, 6],
       anchorDistance: -14,
-      eyeHeight: -5,
+      eyeHeight: -7,
     },
     {
       id: 8,
       title: 'The Lung Loop',
       description:
         'Out to the lungs and back — the short circuit, about 10% of the body by distance and half the heart by design. In the honeycomb the blood is separated from the air by a wall one cell thick on each side; oxygen crosses one way, carbon dioxide the other, by nothing more than concentration. Blue goes in, red comes out. This is the only stop on the tour that leaves the building.',
-      position: [-2, 28, -48],
-      anchorFrom: [-8, 0, 0],
-      anchorDistance: -22,
-      eyeHeight: 4,
+      position: [-2, 24, -46],
+      anchorFrom: [-2, 0, 30],
+      anchorDistance: -30,
+      eyeHeight: 22,
     },
     {
       id: 9,
       title: 'The Returns',
       description:
         'Four pulmonary veins entering the left atrium — the only veins in the body carrying red blood, for the same reason the pulmonary artery carries blue: the names are about direction, not colour. If you can hold this pair of exceptions, you will never mix up artery and vein again.',
-      position: [16, 30, -15],
+      position: [16, 29, -8],
       anchorFrom: [15, 0, 0],
-      anchorDistance: -12,
-      eyeHeight: -3,
+      anchorDistance: -11,
+      eyeHeight: -2,
     },
     {
       id: 10,
@@ -137,9 +137,9 @@ export default {
       description:
         'The red holding hall, the quietest room in the building and the one furthest back in the chest. Same job as its blue twin across the septum: hold, then top up. Worth pegging as the mirror that is not quite a mirror — everything about the left side is the same shape and three times the force.',
       position: [15, 25, 0],
-      anchorFrom: [15, 0, 10],
-      anchorDistance: -11,
-      eyeHeight: 1,
+      anchorFrom: [15, 0, 9],
+      anchorDistance: -9,
+      eyeHeight: 2,
     },
     {
       id: 11,
@@ -155,11 +155,11 @@ export default {
       id: 12,
       title: 'The Thick Wall',
       description:
-        'The comparison the whole building exists for. This wall is roughly three times the thickness of the one you walked past on the blue side, and the muscle is wound in a helix so the chamber wrings rather than squeezes. It raises the blood to about 120 mmHg, enough to reach your foot and come back. Thickness here is not strength in reserve, it is the price of distance.',
-      position: [22.5, 9, 0],
-      anchorFrom: [14, 0, 0],
-      anchorDistance: -12,
-      eyeHeight: 2,
+        'The comparison the whole building exists for, taken out of the walls and stood up in the open: a 1.2 m sample of the wall you walked past on the blue side, beside a 4.0 m sample of the one you just came down. Same stroke volume, same beat. The left muscle is wound in a helix so the chamber wrings rather than squeezes, and it raises the blood to about 120 mmHg \u2014 enough to reach your foot and come back. Thickness here is not strength in reserve, it is the price of distance.',
+      position: [0, 6, 24],
+      anchorFrom: [0, 0, 60],
+      anchorDistance: -22,
+      eyeHeight: 4,
     },
     {
       id: 13,
@@ -167,8 +167,8 @@ export default {
       description:
         'The last door out: three cusps, same pocket trick as the pulmonary. It opens only when the ventricle has already built more pressure than the aorta holds — which is why there is a brief moment each beat when all four doors are shut and the chamber squeezes against a closed box. Its slam is the second heart sound, the "dub".',
       position: [12, 17.6, -2],
-      anchorFrom: [14, 0, 6],
-      anchorDistance: -12,
+      anchorFrom: [14, 0, 4],
+      anchorDistance: -9,
       eyeHeight: -4,
     },
     {
@@ -176,9 +176,9 @@ export default {
       title: 'The Arch',
       description:
         'The aorta leaves upward, turns over, and heads down the body, with three branches off the top of the turn for the head and both arms. Its wall is elastic on purpose: it balloons on each beat and recoils between them, which is what turns a series of shoves into something like continuous flow by the time blood reaches your fingers.',
-      position: [11, 48, 10],
-      anchorFrom: [12, 0, -2],
-      anchorDistance: -26,
+      position: [11, 48, 22],
+      anchorFrom: [11, 0, 70],
+      anchorDistance: -22,
       eyeHeight: -8,
     },
     {
@@ -186,20 +186,20 @@ export default {
       title: 'The Crown',
       description:
         'The coronary arteries — the very first branches off the aorta, before the brain gets anything, wrapping the outside of the muscle like a crown. The heart cannot use the blood inside its own chambers; it has to be plumbed like any other organ. And because it only fills between beats, a heart that races too long starves itself. Block one of these branches and the muscle downstream dies: that is a heart attack, and it is a plumbing event, not an electrical one.',
-      position: [18, 17.5, 7],
+      position: [16, 12, 12.6],
       anchorFrom: [14, 0, 30],
-      anchorDistance: -14,
-      eyeHeight: 3,
+      anchorDistance: -20,
+      eyeHeight: 4,
     },
     {
       id: 16,
       title: 'The Wiring',
       description:
         'The signal from the clock crosses to the AV node on the septum — the only electrical door between the upper and lower floors — and there it deliberately waits about a tenth of a second so the atria finish emptying before the ventricles start. Then the bundle of His carries it down the septum and the Purkinje fibres fan across both ventricle floors, so the squeeze starts at the bottom and wrings upward toward the exits. A pump that contracted top-down would push its contents into a closed floor.',
-      position: [-3.4, 12, 0],
+      position: [-3.4, 6, 0],
       anchorFrom: [-14, 0, 0],
-      anchorDistance: -10,
-      eyeHeight: 1,
+      anchorDistance: -9,
+      eyeHeight: 3,
     },
     {
       id: 17,
