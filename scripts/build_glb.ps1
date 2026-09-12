@@ -30,6 +30,7 @@ $map = @{
     "nobel-hall"       = "NobelHall.blend"
     "macro-hydraulic-hall" = "HydraulicHall.blend"
     "seaside-bungalow" = "SeasideBungalow.blend"
+    "sky-loft"         = "SkyLoft.blend"
 }
 
 foreach ($id in $map.Keys) {

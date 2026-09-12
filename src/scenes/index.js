@@ -111,6 +111,13 @@ export const SCENES = [
     config: () => import('./macro-hydraulic-hall.js').then((m) => m.default),
   },
   {
+    id: 'sky-loft',
+    title: 'The Sky Loft',
+    blurb: 'Another empty palace, this one in the future: a pale sci-fi apartment high in a tower at midday. A glazed wall floor to ceiling, a ribbed ceiling with lit coves, cyan inlays running across the floor to the sill, a lounge chair hovering over its plinth, a holo panel and a console. Outside: a balcony ledge, a flying car banking past thirty metres out, and a skyline of twisted, tapered and portal towers — a tilted ring, an hourglass, a sphere on a shaft, skyways on piers. Eight stops inside, eight through the glass, near to far. Every peg is still blank. Sixteen loci.',
+    model: 'models/sky-loft.glb',
+    config: () => import('./sky-loft.js').then((m) => m.default),
+  },
+  {
     id: 'seaside-bungalow',
     title: 'The Seaside Bungalow',
     blurb: 'An empty palace, ready for anything you want to remember: a sunlit beach-house living room at midday. White walls under dark teak beams, a linen sofa, a rattan pendant, a cane armchair, and a whole wall of glass sliding doors opening onto a teak deck, the sand, two leaning coconut palms, turquoise water and a hazy island on the horizon. And one thing that doesn’t belong: a wizard’s hat floating over the coffee table. Eleven stops inside, five outside, from the sofa round the room, through the glass and down to the waterline. Every peg is still blank. Sixteen loci.',

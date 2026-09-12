@@ -110,6 +110,12 @@ SCENES = {
     # plane, flatten the procedural Cycles materials, ROOF_-tag the house shell,
     # glass and curtains) is in scripts/seaside_bungalow_export.py.
     "seaside-bungalow": [],
+    # sky-loft: Locus_01..16 are baked into SkyLoft.blend (collection 10_Loci,
+    # Locus_NN_<key>) -- eight stops inside the apartment, eight out through the
+    # glass. Export prep (drop rig and haze decks, flatten the world-space city
+    # facades and camera-distance haze shaders, SL_-prefix the materials so the
+    # shell can be ROOF-tagged) is in scripts/sky_loft_export.py.
+    "sky-loft": [],
     "writing-room": [
         [0, 3.6, 1.2], [-2.2, 2.5, 1.4], [-0.8, 3.6, 1.1],
         [0.8, 3.6, 1.1], [2.2, 1.0, 1.0], [0, 4.0, 1.3],
@@ -181,6 +187,11 @@ def drop_collections(scene_id):
 # merged but never decimated, because flat-shaded architecture does not survive
 # it.
 MERGE_BY_MATERIAL = {
+    # sky-loft ships 650+ boxes (every tower segment, mullion and flying-car
+    # part). Merging by material collapses them to ~22 nodes; nothing is
+    # decimated -- it is all flat-shaded hard-surface geometry.
+    "sky-loft": {},
+
     "chroniclers-athenaeum": {
         "Star_Glow": 0.30, "Lamp_Glow": 0.32, "Leaf_Green": 0.30,
         "Leaf_Light": 0.30, "Water": 0.5, "Marble_White": 0.6,
@@ -211,6 +222,9 @@ ROOF_MATERIALS = {
     # WH_Stone_Shadow is shared with the interior partitions, which must keep
     # casting shadows or the rooms read flat.
     "WH_Ceiling", "WH_Roof_Slate",
+    # sky-loft: the apartment shell. Its glazed wall and ceiling sit between the
+    # viewer's overhead sun and everything in the room.
+    "SL_Ceiling", "SL_Wall", "SL_Metal", "SL_Glass",
 }
 
 
@@ -719,6 +733,13 @@ def main():
     if scene_id == "seaside-bungalow":
         import seaside_bungalow_export
         seaside_bungalow_export.prepare()
+        export_kwargs.setdefault("export_cameras", False)
+        export_kwargs.setdefault("export_lights", False)
+        export_kwargs.setdefault("export_animations", False)
+
+    if scene_id == "sky-loft":
+        import sky_loft_export
+        sky_loft_export.prepare()
         export_kwargs.setdefault("export_cameras", False)
         export_kwargs.setdefault("export_lights", False)
         export_kwargs.setdefault("export_animations", False)
