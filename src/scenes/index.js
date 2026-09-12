@@ -139,6 +139,13 @@ export const SCENES = [
     config: () => import('./the-stack.js').then((m) => m.default),
   },
   {
+    id: 'misty-valley',
+    title: 'The Misty Valley',
+    blurb: 'An empty palace the size of a landscape: a Tolkien-flavoured river valley under a ridged, snow-capped range. Eight landmarks, walked south to north up the valley — the ford at the mouth, a ring of eight standing stones (one fallen) on the east knoll, a broken watchtower on its bluff with the stair still climbing the inside wall, a three-arch stone bridge, dark pine wood on the western slope, the boulder-strewn east moor, the gorge at the head of the valley, and the snow peak beyond it, seen from half a kilometre out. Nothing here is a place from the books or the films — every landmark is invented, and picked to be big, silhouetted and impossible to confuse with its neighbour. Every peg is still blank. Eight loci.',
+    model: 'models/misty-valley.glb',
+    config: () => import('./misty-valley.js').then((m) => m.default),
+  },
+  {
     id: 'grab-workplace',
     title: 'The Green Court',
     blurb: 'Tony\u2019s Grab workplace as one building, walked in 25 stops. A hexagonal court in Grab green with a wing off each of its six edges, and the rule it encodes: THE CENTRE IS WHAT MATTERS NOW, THE WINGS ARE WHERE THE WORK LIVES. Six wings, because there are six things \u2014 one org he belongs to (Tech Infra, due north), one site he leads (VN R&D), and four teams he manages (Finapps, UCM, Temporal, Web Platforms), each behind its own coloured portal with its charter under the name, a team room of desks and whiteboards, one plinth, and its own named meeting room at the far end. On the plinths are the six pegs: a model of this whole building for Tech Infra, because infra carries the room you are standing in; a hiring board of filled green tiles and hollow amber outlines; a brass balance with coins on one pan and a receipt tape on the other; a switchboard fanning one jack out to six little screens; an escapement whose pawl is dropped into one tooth, so it still knows its place a week later; and a shopfront facade standing on scaffolding with nothing behind it. The six corners of the court, which fall between the wings, hold everything that moves: reception and the plan of the building, the Now / Next / Waiting wall, a mezzanine balcony that sees down every wing at once, a two-chair glass booth marked 1:1, a standup circle with no chair backs \u2014 and a free-standing door, ajar onto warm light and nothing else, for what he does not yet know about his own org. At the centre, a glass obelisk with five lit slots, all of them deliberately blank. Twenty-five loci.',

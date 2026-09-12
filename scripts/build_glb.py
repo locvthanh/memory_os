@@ -126,6 +126,14 @@ SCENES = {
     # facades and camera-distance haze shaders, SL_-prefix the materials so the
     # shell can be ROOF-tagged) is in scripts/sky_loft_export.py.
     "sky-loft": [],
+    # misty-valley: Locus_01..08 are baked into LOTR_MistyValley.blend
+    # (collection 09_Loci, Locus_NN_<key>) -- the ford, the standing stones,
+    # the watchtower, the bridge, the pine wood, the east moor, the gorge and
+    # the snow peak, walked south to north up the valley. Export prep (drop the
+    # rig and the mist volumes, bake the slope/altitude terrain shader to
+    # vertex colour, flatten the rest, join the pines, trim the river plane)
+    # lives in scripts/misty_valley_export.py.
+    "misty-valley": [],
     "writing-room": [
         [0, 3.6, 1.2], [-2.2, 2.5, 1.4], [-0.8, 3.6, 1.1],
         [0.8, 3.6, 1.1], [2.2, 1.0, 1.0], [0, 4.0, 1.3],
@@ -754,6 +762,14 @@ def main():
         import grab_workplace_export
         grab_workplace_export.prepare()
         bake_curves_to_meshes()
+        export_kwargs.setdefault("export_cameras", False)
+        export_kwargs.setdefault("export_lights", False)
+        export_kwargs.setdefault("export_animations", False)
+
+    if scene_id == "misty-valley":
+        import misty_valley_export
+        misty_valley_export.prepare()
+        export_kwargs.setdefault("export_vertex_color", "ACTIVE")
         export_kwargs.setdefault("export_cameras", False)
         export_kwargs.setdefault("export_lights", False)
         export_kwargs.setdefault("export_animations", False)
