@@ -181,6 +181,14 @@ export const SCENES = [
       'The heart as a two-storey building you walk through at 1:130,000 scale, where one red blood cell is a metre across. Right side blue, left side red, a septum down the middle, atria upstairs and ventricles below. Seventeen stops follow one drop of blood: in through the vena cavae, past the pacemaker that starts every beat on its own, down through the three-leaflet tricuspid door and the tendon cords that stop it blowing inside out, out to the lungs where blue becomes red, back into the left atrium, through the two-leaflet mitral door, past the wall the whole room exists to show \u2014 three times thicker than its blue twin, because this side pushes blood to your toes and that side pushes it ten centimetres \u2014 then out by the aortic arch, round the crown of coronary arteries that feed the muscle first, down the wiring that makes the squeeze start at the bottom, and finally to the capillary bed, the only place in the entire circuit where anything actually crosses. Scene one of the Human Body series. Seventeen loci.',
     model: 'models/body-heart.glb',
     config: () => import('./body-heart.js').then((m) => m.default),
+  },
+  {
+    id: 'body-lungs',
+    title: 'The Bellows Cathedral',
+    blurb:
+      'The lungs as a pale, tall building walked in the direction the air goes \u2014 deliberately the opposite room to The Pump House, because what this organ is about is surface. Fourteen stops: in at the portico where every breath is warmed and filtered, past the gate that shuts when you swallow, down a nave held open by C-shaped rings with the mucus escalator running the other way under your feet, through the fork where inhaled peanuts go right, out across a branching hall where the pipes double until the air stops moving, past two bronchioles side by side \u2014 one at rest, one in spasm \u2014 and over the line where dead space ends and the lung actually begins. Beyond it the domes are alveoli: one is cut open so you can stand inside it and look at the wall mounted in section, half a micron of water, cell, cell and blood. The floor of the whole cathedral is held up by the diaphragm, which is domed only at rest. It ends at a tennis court built at true size \u2014 the one object here not magnified \u2014 because that is the area of all of it, folded into your chest. Scene two of the Human Body series. Fourteen loci.',
+    model: 'models/body-lungs.glb',
+    config: () => import('./body-lungs.js').then((m) => m.default),
   }
 ];
 

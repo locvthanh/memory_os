@@ -3,7 +3,7 @@
 Eleven standalone MemoryOS scenes, one per organ system, built so that you can
 understand how the body works rather than only recite its parts.
 
-Status: **design agreed, scene 1 built** (Sept 2026).
+Status: **design agreed; scenes 1 and 2 built** (Sept 2026).
 Related: [[macroeconomics-series]] (hub-and-spoke, the other multi-scene set),
 [[software-engineering-series]] (one big city, the other approach that was
 rejected here).
@@ -56,7 +56,7 @@ build and control the body.
 | # | Scene id | Title | The metaphor | Loci |
 | --- | --- | --- | --- | --- |
 | 1 | `body-heart` | The Pump House | A two-storey industrial pump house split down the middle; valves are doors, the conduction system is the wiring | 17 |
-| 2 | `body-lungs` | The Bellows Cathedral | A ribbed nave (trachea) branching into 23 smaller naves, ending in a honeycomb of glass domes; the floor is the diaphragm | 14 |
+| 2 | `body-lungs` | The Bellows Cathedral | A ribbed nave (trachea) branching into smaller naves, ending in domes that are alveoli; the floor of the whole cathedral is the diaphragm | 14 | *built* |
 | 3 | `body-gut` | The Long Canal | A nine-metre canal ride through a food factory: grinding hall, acid vat, chemical dock, the villi forest, the drying works | 18 |
 | 4 | `body-brain` | The Signal City | A domed city of lobe districts, with one neuron walked end to end as a cable tunnel and a synapse as a loading dock | 20 |
 | 5 | `body-kidney` | The Filter Works | A water-treatment plant: pressure sieve, three reclaim galleries, the counter-current loop as a pair of stacked tunnels | 14 |
@@ -100,7 +100,25 @@ Loci, in tour order:
 16. **The Wiring** — AV node, bundle of His, Purkinje fibres down the septum
 17. **The Exchange** — a capillary bed where red turns blue, and the one-way gates on the road home
 
-### 2–11 — sketched
+### 2. The Bellows Cathedral — `body-lungs` (built)
+
+Pale, tall and full of light, on purpose: the opposite room to the Pump House,
+because what this organ is about is *surface*. The walk is one-way and it is
+the air's way, portico to alveolus, and the "why" object is the tennis court
+at the end — built at true size, the only unmagnified thing in the building,
+because that is the area of all the alveolar wall you just walked over.
+
+Loci, in tour order: the Door (turbinates), the Gate (epiglottis and folds),
+the Ribbed Nave (C-rings open at the back), the Escalator (cilia and mucus,
+running the other way), the Fork (right bronchus wider and straighter), the
+Branching Hall (cross-section explodes, air stops), the Bronchiole (at rest
+vs in spasm), the Line (dead space ends), the Dome, Half a Micron (the wall
+in section), the Mesh, Both Traffics, the Floor That Moves (diaphragm), the
+Court.
+
+See `docs/body-lungs-scene.md`.
+
+### 3–11 — sketched
 
 Each remaining scene gets its own build session and its own doc under
 `docs/<id>-scene.md`. The loci lists above the fold are the contract; the
