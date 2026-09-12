@@ -60,6 +60,13 @@ SCENES = {
     # grab-workplace: Locus_01..25 are baked into GrabCourtyard.blend
     # (collection 09_Loci) by blender_models/grab_scenegen/grab_build.py.
     "grab-workplace": [],
+    # MeditationLedge.blend: Locus_01..10 (collection 09_Loci) are baked into
+    # the source .blend by blender_models/meditation_scenegen/
+    # build_meditation.py -- the approach (gate, basin, lantern, cairn), the
+    # cushion, then outward (bell, edge, pine) and away (cloud sea, peak). The
+    # deck is on the origin, so this list is empty and the export loop passes
+    # the existing empties through untouched.
+    "meditation-ledge": [],
     # CivilWarMap.blend: Locus_01..18 (collection "Loci") are baked into the
     # source .blend by build_civilwar_map.py, one per event pin in
     # chronological order, so this list is empty and the export loop passes the
@@ -185,6 +192,10 @@ DROP_COLLECTIONS = {
     # solar-system: the two label collections are Blender-side 3D text; the
     # viewer draws its own locus labels (src/viewer/LocusLabels.js).
     "solar-system": ("07_Labels_Overview", "08_Labels_Closeup"),
+    # meditation-ledge: 10_Rig holds the dawn sun, the sky fill, the four still
+    # cameras and MIST_Haze -- a volume-scatter box glTF cannot carry (it would
+    # ship as a 3.6 km opaque cube). The web viewer lights the scene itself.
+    "meditation-ledge": ("10_Rig",),
 }
 
 
@@ -231,6 +242,12 @@ MERGE_BY_MATERIAL = {
     # world-war-2 ships ~540 objects (monuments, plinths, signs, ~200 texts, 31
     # path arcs); all flat-shaded low-poly, so merged but never decimated.
     "world-war-2": {},
+    # meditation-ledge ships ~340 objects (20 deck planks, 17 rail posts, the
+    # boulder field, 46 cloud puffs, 14 peaks with three shoulders each).
+    # Merging by material collapses that to ~30 nodes. The cloud spheres are
+    # the only smooth-shaded geometry and are cheap already, so nothing is
+    # decimated -- everything else is flat-shaded low-poly.
+    "meditation-ledge": {},
 }
 
 # Materials that belong to roofs/ceilings. Merged meshes with these materials
@@ -774,6 +791,11 @@ def main():
         import misty_valley_export
         misty_valley_export.prepare()
         export_kwargs.setdefault("export_vertex_color", "ACTIVE")
+        export_kwargs.setdefault("export_cameras", False)
+        export_kwargs.setdefault("export_lights", False)
+        export_kwargs.setdefault("export_animations", False)
+
+    if scene_id == "meditation-ledge":
         export_kwargs.setdefault("export_cameras", False)
         export_kwargs.setdefault("export_lights", False)
         export_kwargs.setdefault("export_animations", False)

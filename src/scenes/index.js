@@ -158,6 +158,13 @@ export const SCENES = [
     blurb: 'A grey-brick Beijing alley that turns a corner, walked in 14 stops. North up the lane first \u2014 the carved name stone at its mouth, five red lanterns on a sagging cord, the corner shop under its striped awning, the courtyard gate with drum stones and vermilion doors half open, the spirit screen standing behind them so nothing enters in a straight line, washing strung wall to wall, a stone chess table mid-game, the notice board, two bikes and a loaded three-wheeler, the shared standpipe with winter cabbage and coal stacked beside it \u2014 then the turn east at the old scholar tree, past a birdcage on a low limb and a power pole trailing wires, to the round moon gate at the far end with a willow showing through it. Chosen as a memory room because every peg is a different kind of object at a different height: stone at eye level, lanterns overhead, a fridge on the ground, a cage in a tree. Every peg is still blank. Fourteen loci.',
     model: 'models/hutong-corner.glb',
     config: () => import('./hutong-corner.js').then((m) => m.default),
+  },
+  {
+    id: 'meditation-ledge',
+    title: 'The Ledge',
+    blurb: 'A timber deck cantilevered off a granite cliff at dawn, with a sea of cloud ninety-five metres below it and a snow range on the far side. Built to sit in as much as to remember from, so the ten stops are also the ten stations of a sit \u2014 the approach first (a cedar gate, a stone basin fed by a bamboo spout, a lantern still lit at sunrise, a cairn of five stones), then the cushion at the centre of the deck, then attention moving outward (the wind bell on the east rail, the far rail with nothing past it, a pine bent flat over the drop by the wind and still alive), and finally away (the cloud filling the valley, and the snow summit with the sun cresting the saddle beside it). The camera never leaves the deck. Every peg is still blank. Ten loci.',
+    model: 'models/meditation-ledge.glb',
+    config: () => import('./meditation-ledge.js').then((m) => m.default),
   }
 ];
 
