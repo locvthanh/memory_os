@@ -93,6 +93,25 @@ body.viewer {
 }
 #viewer-canvas { display: block; width: 100%; height: 100%; }
 
+/* On-screen controls and HUD text are chrome, not content: a drag or a
+   long-press should never select or highlight them (mobile especially). */
+body.viewer .back-link,
+body.viewer .overlay,
+.freemove-ui,
+.freemove-hint,
+.joystick-base,
+.joystick-knob,
+.vertical-controls,
+.transport,
+.music-toggle,
+button {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
 .back-link {
   position: fixed;
   top: 16px;
