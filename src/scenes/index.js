@@ -130,6 +130,13 @@ export const SCENES = [
     blurb: 'An empty palace, ready for anything you want to remember: a sunlit beach-house living room at midday. White walls under dark teak beams, a linen sofa, a rattan pendant, a cane armchair, and a whole wall of glass sliding doors opening onto a teak deck, the sand, two leaning coconut palms, turquoise water and a hazy island on the horizon. And one thing that doesn’t belong: a wizard’s hat floating over the coffee table. Eleven stops inside, five outside, from the sofa round the room, through the glass and down to the waterline. Every peg is still blank. Sixteen loci.',
     model: 'models/seaside-bungalow.glb',
     config: () => import('./seaside-bungalow.js').then((m) => m.default),
+  },
+  {
+    id: 'the-stack',
+    title: 'The Stack',
+    blurb: 'Software engineering as one city — a round stepped pit at night, six concentric terraces going up and out, and one rule holding it together: ALTITUDE = ABSTRACTION. The pit floor is the machine; every terrace out is one layer further from it, so from any ledge you can look down through the whole stack. Two districts are built so far. On the floor, THE BEDROCK in indigo: Grace Hopper\'s moth taped into the 1947 logbook, one transistor as a lever gate under its NAND table, the CPU as a four-station assembly line, memory as a wall of numbered pigeonholes, and the call stack as a spiral of plates beside the heap\'s open junkyard. One terrace up, THE MINES in teal: arrays as a row of mailboxes, a linked list as barges each carrying the next one\'s address, a hash map as a cloakroom with a stamping machine, a B-tree filing cabinet beside a sorted orchard, graphs as a metro map, merge sort as a railway hump yard, Big-O as five ramps from flat to vertical, recursion as a hall of mirrors with a base-case door at the bottom, and a mutex as a toll gate on a one-track bridge. Each district ends at an antilibrary door — the halting problem, then P vs NP. The northern half of every ring is deliberately empty: the Unbuilt Quarter, pegged out and waiting. Sixteen loci of a planned fifty-one.',
+    model: 'models/the-stack.glb',
+    config: () => import('./the-stack.js').then((m) => m.default),
   }
 ];
 
