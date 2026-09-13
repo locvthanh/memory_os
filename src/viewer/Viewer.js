@@ -64,7 +64,11 @@ export class Viewer {
       this.scene.add(new THREE.AmbientLight(L.ambientColor ?? 0xfff1dd, L.ambient));
     }
     const sun = new THREE.DirectionalLight(0xffffff, L.sun ?? 1.4);
-    sun.position.set(60, 90, 40);
+    // The default is a fixed overhead key. A scene whose light has an hour to
+    // it (tuoitre-vn is lit by whatever time it is in Vietnam right now) sets
+    // `lighting: { sunPosition: [x, y, z] }` and gets a low raking sun at dawn
+    // or dusk instead.
+    sun.position.fromArray(L.sunPosition ?? [60, 90, 40]);
     sun.castShadow = true;
     sun.shadow.mapSize.set(2048, 2048);
     const E = L.shadowExtent ?? 80;
@@ -165,10 +169,30 @@ export class Viewer {
   }
 
   start() {
-    const loader = new GLTFLoader();
-    return loader.loadAsync(this.modelUrl).then((gltf) => {
+    // Two ways in. Almost every scene is a .glb exported from Blender. A scene
+    // whose content cannot be baked ahead of time -- tuoitre-vn, which is
+    // today's newspaper -- exports a `build` hook from its config instead and
+    // hands back an Object3D it assembled in the browser. See
+    // src/scenesjs/tuoitre/index.js for the shape of what `build` returns.
+    const loadingEl = document.getElementById('loading');
+    const setStatus = (text) => {
+      if (loadingEl) loadingEl.textContent = text;
+    };
+    const source = this.config.build
+      ? Promise.resolve(this.config.build({
+        THREE, scene: this.scene, camera: this.camera, renderer: this.renderer, setStatus,
+      })).then((built) => {
+        this.built = built && built.isObject3D ? null : built;
+        return { scene: built && built.isObject3D ? built : built.root };
+      })
+      : new GLTFLoader().loadAsync(this.modelUrl);
+
+    return source.then((gltf) => {
       const model = gltf.scene;
-      model.traverse((n) => {
+      // `shadows: false` skips the per-mesh shadow flags entirely. A generated
+      // scene can be one merged mesh a hundred metres long, where a single
+      // shadow map is a smear and casting it is pure cost.
+      if (this.config.shadows !== false) model.traverse((n) => {
         if (n.isMesh) {
           // Roof/ceiling meshes are tagged ROOF_ by build_glb.py's merge step
           // (see MERGE_BY_MATERIAL/ROOF_MATERIALS there). They're kept in the
@@ -352,6 +376,9 @@ export class Viewer {
       // dedication tablet must not read as "tapped empty scene" and dismiss
       // the locus panel.
       if (this.world && this.world.pick(raycaster)) return;
+      // A generated scene gets the same first refusal: in tuoitre-vn a tap on
+      // a story page opens the article rather than dismissing a panel.
+      if (this.built && this.built.pick && this.built.pick(raycaster)) return;
       const hit = raycaster.intersectObjects(this.locusLabels.children)[0];
 
       if (hit) {
@@ -376,6 +403,7 @@ export class Viewer {
   _animate() {
     requestAnimationFrame(() => this._animate());
     const dt = Math.min(0.05, this.clock.getDelta());
+    if (this.built && this.built.update) this.built.update(dt, this.camera);
     if (this.freeModeActive) {
       this.freeMove.update(dt, this.camera, this.controls); // pins target + calls controls.update() itself
     } else {

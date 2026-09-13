@@ -1,0 +1,505 @@
+{
+ "version": 1,
+ "site": "tuoitre.vn",
+ "title": "Tuổi Trẻ Online",
+ "built": 1789289832,
+ "total": 56,
+ "cats": [
+  {
+   "key": "thoi-su",
+   "label": "Thời sự",
+   "items": [
+    {
+     "t": "Truy tặng danh hiệu Anh hùng lực lượng vũ trang nhân dân cho ông Lâm Kiên Trì và liệt sĩ Huỳnh Văn Thạnh",
+     "link": "https://tuoitre.vn/truy-tang-danh-hieu-anh-hung-luc-luong-vu-trang-nhan-dan-cho-ong-lam-kien-tri-va-liet-si-huynh-van-thanh-100260913131400781.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/truy-tang-danh-hieu-1789279236721817350579-0-0-800-1280-crop-17892795668642123750432.jpg",
+     "desc": "Nguyên Bí thư Tỉnh ủy Kiên Giang Lâm Kiên Trì và liệt sĩ Huỳnh Văn Thạnh được Đảng và Nhà nước truy tặng danh hiệu Anh hùng lực lượng vũ trang nhân dân.",
+     "author": "CHÍ QUỐC",
+     "ts": 1789283880
+    },
+    {
+     "t": "Bị cận thị mấy độ không đi nghĩa vụ?; Chàng trai đột ngột qua đời và món quà ý nghĩa để lại",
+     "link": "https://tuoitre.vn/bi-can-thi-may-do-khong-di-nghia-vu-chang-trai-dot-ngot-qua-doi-va-mon-qua-y-nghia-de-lai-100260913085934725.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/nghia-vu-quan-su-250826-17876336118962123737234-17892633320161363488620-54-134-420-719-crop-17892827227431097555905.jpg",
+     "desc": "Thông tin bị cận thị mấy độ thì không đi nghĩa vụ quân sự?; Chàng trai đột ngột qua đời và món quà để lại; Cải tạo nhà thành 'sleep box' khó bảo đảm thoát nạn... thu hút nhiều bạn đọc quan tâm.",
+     "author": "D.N.HÀ",
+     "ts": 1789282560
+    },
+    {
+     "t": "Khởi tố người con say xỉn đánh mẹ, cầm dao đâm cảnh sát 113",
+     "link": "https://tuoitre.vn/khoi-to-nguoi-con-say-xin-danh-me-cam-dao-dam-canh-sat-113-100260913132643714.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/khoi-to-nghich-tu-danh-me-o-dak-lak-2026-09-13-2-17892802510451508511113-39-0-962-1476-crop-17892828182441601708178.jpg",
+     "desc": "Say xỉn rồi đánh mẹ ruột, ném đá nhiều người trong buôn, khi lực lượng cảnh sát 113 đến trước cổng nhà vận động Y Ỡ Niê Hrah bỏ dao, hợp tác làm việc thì bất ngờ người này cầm dao lao ra đâm nhiều nhát vào một cán bộ cảnh sát 113 gây thương",
+     "author": "LÊ TRUNG",
+     "ts": 1789282440
+    },
+    {
+     "t": "Thủ tướng Lê Minh Hưng dự phiên thảo luận Hội nghị thượng đỉnh BRICS tại Ấn Độ",
+     "link": "https://tuoitre.vn/thu-tuong-le-minh-hung-du-phien-thao-luan-hoi-nghi-thuong-dinh-brics-tai-an-do-100260913094515931.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/edit-img8402-17892796533461313970751-1789281002926-17892810032111651680064-78-23-866-1285-crop-1789281051548420740317.png",
+     "desc": "Thủ tướng Lê Minh Hưng sẽ có bài phát biểu tại hội nghị, chia sẻ tầm nhìn, đánh giá và các đề xuất của Việt Nam về hòa bình, thúc đẩy tăng trưởng kinh tế, phát triển bền vững và giải quyết các thách thức toàn cầu.",
+     "author": "THANH HIỀN",
+     "ts": 1789282320
+    },
+    {
+     "t": "Áp thấp nhiệt đới dự kiến đi vào đất liền từ tối nay, Quảng Trị đến Huế mưa lớn",
+     "link": "https://tuoitre.vn/ap-thap-nhiet-doi-du-kien-di-vao-dat-lien-tu-toi-nay-quang-tri-den-hue-mua-lon-1002609131239209.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/13-9-ap-thap-nhiet-doi-2-17892767863751029737681-265-185-515-584-crop-178927760074152175492.png",
+     "desc": "Dự báo khoảng tối đến đêm nay, áp thấp nhiệt đới đi vào đất liền Quảng Trị - Hà Tĩnh. Các tỉnh miền Trung tiếp tục mưa lớn, với trọng tâm mưa hôm nay ở Hà Tĩnh đến Huế.",
+     "author": "CHÍ TUỆ",
+     "ts": 1789281900
+    },
+    {
+     "t": "Dự án cầu Cần Giờ thay phà Bình Khánh do Masterise làm nhà đầu tư tiến độ ra sao?",
+     "link": "https://tuoitre.vn/du-an-cau-can-gio-thay-pha-binh-khanh-do-masterise-lam-nha-dau-tu-tien-do-ra-sao-100260913110614374.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/can-gio-bridge-2018-9960-17871948988591904725362-1789270571879293049704.jpg",
+     "desc": "Cầu Cần Giờ vượt sông Soài Rạp có tổng chiều dài toàn tuyến khoảng 7,3km, trong đó phần cầu dài khoảng 3km, còn lại là đường dẫn.",
+     "author": "ĐỨC PHÚ",
+     "ts": 1789281600
+    },
+    {
+     "t": "Phát hiện tài xế dương tính với ma túy khi đang lái xe tải trên quốc lộ 1",
+     "link": "https://tuoitre.vn/phat-hien-tai-xe-duong-tinh-voi-ma-tuy-khi-dang-lai-xe-tai-tren-quoc-lo-1-100260913130031333.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/ma-tuy-17892787005511042605808-0-104-726-1266-crop-17892789352552040199158.jpg",
+     "desc": "Công an xã Sen Ngư (Quảng Trị) đang lập hồ sơ xử lý một tài xế xe tải vì bị phát hiện dương tính với ma túy khi đang lái xe trên quốc lộ 1. Người này còn bị phát hiện tàng trữ ma túy.",
+     "author": "QUỐC NAM",
+     "ts": 1789281360
+    }
+   ]
+  },
+  {
+   "key": "the-gioi",
+   "label": "Thế giới",
+   "items": [
+    {
+     "t": "Đặc phái viên Mỹ nêu công thức đạt thỏa thuận hòa bình cho chiến sự Ukraine",
+     "link": "https://tuoitre.vn/dac-phai-vien-my-neu-cong-thuc-dat-thoa-thuan-hoa-binh-cho-chien-su-ukraine-100260913140335552.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/afp20260906c7gu8agv3highresukraineusrussiadiplomacyconflictwar-1789282698303437731184-94-0-1694-2560-crop-17892827454171546996998.jpg",
+     "desc": "Đặc phái viên Mỹ Jared Kushner cho biết cả Nga và Ukraine đều thể hiện thiện chí trong việc giải quyết xung đột.",
+     "author": "KHÁNH QUỲNH",
+     "ts": 1789283640
+    },
+    {
+     "t": "Thủ tướng Lê Minh Hưng dự phiên thảo luận Hội nghị thượng đỉnh BRICS tại Ấn Độ",
+     "link": "https://tuoitre.vn/thu-tuong-le-minh-hung-du-phien-thao-luan-hoi-nghi-thuong-dinh-brics-tai-an-do-100260913094515931.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/edit-img8402-17892796533461313970751-1789281002926-17892810032111651680064-78-23-866-1285-crop-1789281051548420740317.png",
+     "desc": "Thủ tướng Lê Minh Hưng sẽ có bài phát biểu tại hội nghị, chia sẻ tầm nhìn, đánh giá và các đề xuất của Việt Nam về hòa bình, thúc đẩy tăng trưởng kinh tế, phát triển bền vững và giải quyết các thách thức toàn cầu.",
+     "author": "THANH HIỀN",
+     "ts": 1789282320
+    },
+    {
+     "t": "Thúc đẩy R&D tư nhân: TP.HCM học được gì từ các địa phương nước ngoài?",
+     "link": "https://tuoitre.vn/thuc-day-rd-tu-nhan-tphcm-hoc-duoc-gi-tu-cac-dia-phuong-nuoc-ngoai-100260913121140552.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/nd260911-doi-thoai-huu-nghi-6-1789275011902936729697-58-0-1658-2560-crop-17892761666801286587297.jpg",
+     "desc": "Đại diện Đức, Pháp, Nhật cùng chia sẻ kinh nghiệm về vai trò của thể chế địa phương trong thúc đẩy đầu tư R&D khu vực tư nhân.",
+     "author": "NGỌC ĐỨC",
+     "ts": 1789281300
+    },
+    {
+     "t": "Tàu chở 243 người gặp nạn ở Indonesia, 140 người mất tích",
+     "link": "https://tuoitre.vn/tau-cho-243-nguoi-gap-nan-o-indonesia-140-nguoi-mat-tich-100260913122743208.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/indonesia-ferry-17892756777792114216756-97-0-1088-1586-crop-1789275706698386615399.png",
+     "desc": "Một chiếc tàu chở 243 người đã gặp nạn ngoài khơi Indonesia ngày 13-9. Khoảng 140 người vẫn đang mất tích.",
+     "author": "TÂM DƯƠNG",
+     "ts": 1789280400
+    },
+    {
+     "t": "Lở tuyết ở Nga, số người chết tăng lên 16",
+     "link": "https://tuoitre.vn/lo-tuyet-o-nga-so-nguoi-chet-tang-len-16-100260913121054509.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/screenshot-2026-09-13-at-115720-1789275692330960276702-85-0-981-1434-crop-1789275982341148083868.png",
+     "desc": "Hai thi thể mới được tìm thấy trong vụ lở tuyết tại hẻm núi Bezengi, vùng Kabardino Balkaria, Nga, nâng số người thiệt mạng lên 16.",
+     "author": "THANH HIỆP",
+     "ts": 1789278240
+    },
+    {
+     "t": "Ông Trump nghi Iran tập kích tuyến vận chuyển dầu của Saudi Arabia, nói Houthi không muốn đối đầu Mỹ",
+     "link": "https://tuoitre.vn/ong-trump-nghi-iran-tap-kich-tuyen-van-chuyen-dau-cua-saudi-arabia-noi-houthi-khong-muon-doi-dau-my-100260913113413332.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/trump-17892714767211458240286-0-0-374-599-crop-17892714811311124601693.png",
+     "desc": "Ông Trump nghi Iran đứng sau vụ tập kích tuyến vận chuyển dầu Saudi Arabia, đồng thời tiết lộ Houthi đã liên lạc với Mỹ.",
+     "author": "TÂM DƯƠNG",
+     "ts": 1789275180
+    },
+    {
+     "t": "Chạm giá 2.000 USD: iPhone Duo đắt gần gấp đôi nhưng nhiều cái còn thua iPhone 18 pro max?",
+     "link": "https://tuoitre.vn/cham-gia-2000-usd-iphone-duo-dat-gan-gap-doi-nhung-nhieu-cai-con-thua-iphone-18-pro-max-100260913102245653.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/178926844886018556191366005064302419635452280695914d4a86b878fb9fed3c6ffcf307f2abdcf-1789268465891536564611-18-180-1295-2224-crop-17892685877901121207130.jpg",
+     "desc": "iPhone Duo có giá khởi điểm 1.999 USD, nhưng mức giá này có mang lại những công nghệ cao cấp nhất?",
+     "author": "THANH HIỆP",
+     "ts": 1789270980
+    }
+   ]
+  },
+  {
+   "key": "kinh-doanh",
+   "label": "Kinh doanh",
+   "items": [
+    {
+     "t": "Đề xuất hộ kinh doanh, doanh nghiệp được giảm ngay 30% thuế kỳ kê khai",
+     "link": "https://tuoitre.vn/de-xuat-ho-kinh-doanh-doanh-nghiep-duoc-giam-ngay-30-thue-ky-ke-khai-100260913134206923.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/cong-nghiep-tp-1771981644311756104352-0-72-1186-1970-crop-17892831325561464952414.jpg",
+     "desc": "Theo đề xuất của Bộ Tài chính, hộ kinh doanh, doanh nghiệp có doanh thu năm dự kiến không quá 10 tỉ đồng được giảm ngay 30% số thuế phải nộp trong kỳ kê khai quý 3 này.",
+     "author": "LÊ THANH\\",
+     "ts": 1789283700
+    },
+    {
+     "t": "Lợi suất trái phiếu toàn cầu tăng cao có ý nghĩa gì với Việt Nam?",
+     "link": "https://tuoitre.vn/loi-suat-trai-phieu-toan-cau-tang-cao-co-y-nghia-gi-voi-viet-nam-100260911155754964.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/bonds-1-1789115150690597643961-0-0-598-956-crop-1789258666873675396200.png",
+     "desc": "Lợi suất trái phiếu chính phủ trên toàn cầu vừa chạm mức kỷ lục của hàng thập kỷ. Đằng sau là một thông điệp quan trọng hơn: thời đại vốn rẻ có thể đã thực sự kết thúc.",
+     "author": "HỒ QUỐC TUẤN (GIẢNG VIÊN ĐẠI HỌC BRISTOL, ANH)",
+     "ts": 1789281720
+    },
+    {
+     "t": "Chuyên gia nói gì về con số nhập siêu hơn 20 tỉ USD?",
+     "link": "https://tuoitre.vn/chuyen-gia-noi-gi-ve-con-so-nhap-sieu-hon-20-ti-usd-100260913030347133.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/z7585968909229-50fc5809216e0ddfef52a06694e424ba-17726196194351321000086-17892419543361759707705-365-7-1089-1165-crop-17892722418302023133704.jpg",
+     "desc": "Cả nước nhập siêu 20,46 tỉ USD sau 8 tháng, riêng nhóm máy vi tính và linh kiện nhập siêu gấp gần ba lần.",
+     "author": "QUÂN NGUYỄN",
+     "ts": 1789269960
+    },
+    {
+     "t": "Thương hiệu tôi yêu: Mùi bồ kết Thorakao trên tóc mẹ",
+     "link": "https://tuoitre.vn/thuong-hieu-toi-yeu-mui-bo-ket-thorakao-tren-toc-me-100260912174300544.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/12/adau-goi-bo-ket-thorakao-me-hay-dung-1789212624391245243665-235-0-573-540-crop-17892126305461551272465.jpg",
+     "desc": "Chiều nay ngồi bên hiên nhà, nhìn mẹ xõa tóc bên chậu nước gội đầu, lòng tôi bỗng chùng xuống một khoảng hoài niệm xa xăm.",
+     "author": "NGUYỄN THỊ THU HIỀN",
+     "ts": 1789268400
+    },
+    {
+     "t": "Bánh Trung thu 'nhà làm' bán tràn lan, người mua cần cân nhắc những điều gì?",
+     "link": "https://tuoitre.vn/banh-trung-thu-nha-lam-ban-tran-lan-nguoi-mua-can-can-nhac-nhung-dieu-gi-100260912173317409.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/picture1-17892076644522017249993-0-89-825-1409-crop-17892669327561247216601.jpg",
+     "desc": "Từ lời giới thiệu của người quen, đánh giá trên mạng đến hình ảnh nguyên liệu, quá trình làm bánh, ngày sản xuất và hạn dùng, người mua bánh Trung thu nhà làm có nhiều cách để tìm sự yên tâm.",
+     "author": "Hà Phương",
+     "ts": 1789267560
+    },
+    {
+     "t": "Nuôi cá rô phi chế biến sashimi xuất khẩu sang Nhật năm 2026",
+     "link": "https://tuoitre.vn/nuoi-ca-ro-phi-che-bien-sashimi-xuat-khau-sang-nhat-nam-2026-100260910165327036.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/10/img-7429-1789033803174626660425-250-0-1500-2000-crop-17890338083091297331092.jpg",
+     "desc": "Gần 14 tháng nuôi thử nghiệm, mạnh dạn thay đổi cách làm, sáng tạo đột phá theo tinh thần Nghị quyết số 19 của Trung ương, người đàn ông ở miền Tây đã thành công khi nuôi cá rô phi đơn tính ở vùng nước lợ, rồi chế biến thành mặt hàng giá tr",
+     "author": "KHẮC TÂM",
+     "ts": 1789266780
+    },
+    {
+     "t": "Thương hiệu tôi yêu: Mùi Cao Sao Vàng của những ngày thương nhớ",
+     "link": "https://tuoitre.vn/thuong-hieu-toi-yeu-mui-cao-sao-vang-cua-nhung-ngay-thuong-nho-10026091219285833.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/12/hon-35-nam-troi-qua-cao-sao-vang-da-tro-thanh-mot-phan-ky-uc-cua-tuoi-tho-toi-17892161499501444004113-158-0-907-1199-crop-17892162485921232490013.jpg",
+     "desc": "Có những mùi hương chỉ cần thoảng qua cũng đủ kéo người ta trở về một thời đã xa. Với tôi, đó là mùi Cao Sao Vàng.",
+     "author": "TUỆ LÂM",
+     "ts": 1789264560
+    }
+   ]
+  },
+  {
+   "key": "cong-nghe",
+   "label": "Công nghệ",
+   "items": [
+    {
+     "t": "Bắc Kinh cấm drone toàn diện, người dân không được giữ thiết bị và linh kiện",
+     "link": "https://tuoitre.vn/bac-kinh-cam-drone-toan-dien-nguoi-dan-khong-duoc-giu-thiet-bi-va-linh-kien-100260913143655252.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/pekine-pardavinejami-dronai-adek-berry-afp-69f20c939dd39-1789283930439656597923-60-0-1260-1920-crop-17892840588572164160.jpg",
+     "desc": "Bắc Kinh cấm cá nhân, tổ chức sở hữu hoặc lập địa điểm lưu trữ drone cùng các bộ phận cốt lõi trên toàn thành phố từ ngày 15-11.",
+     "author": "LIÊN AN",
+     "ts": 1789286220
+    },
+    {
+     "t": "Kính thông minh bị kêu gọi cấm ở châu Âu vì lo quay lén",
+     "link": "https://tuoitre.vn/kinh-thong-minh-bi-keu-goi-cam-o-chau-au-vi-lo-quay-len-100260913134741597.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/kinh-thong-minh-meta-1789281901108107021008-0-12-467-759-crop-17892820275491397508960.png",
+     "desc": "Kính thông minh AI có thể chụp ảnh, quay phim mà người xung quanh không hay biết, khiến nhiều nước châu Âu kêu gọi siết sử dụng thiết bị này.",
+     "author": "TTXVN",
+     "ts": 1789282680
+    },
+    {
+     "t": "Chiêu lừa đảo mới nhắm vào sinh viên, cử người đến tận nơi nhận tiền",
+     "link": "https://tuoitre.vn/chieu-lua-dao-moi-nham-vao-sinh-vien-cu-nguoi-den-tan-noi-nhan-tien-100260913131739695.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/sinh-vien-ai-1789279890593343175650-35-0-995-1536-crop-1789280184265382771894.png",
+     "desc": "Ngân hàng Thái Lan cảnh báo các đối tượng lừa đảo đang nhắm vào sinh viên, ép chuyển tiền hoặc rút tiền, mang vàng và tài sản đến địa điểm do chúng chỉ định.",
+     "author": "TTXVN",
+     "ts": 1789280640
+    },
+    {
+     "t": "Chạm giá 2.000 USD: iPhone Duo đắt gần gấp đôi nhưng nhiều cái còn thua iPhone 18 pro max?",
+     "link": "https://tuoitre.vn/cham-gia-2000-usd-iphone-duo-dat-gan-gap-doi-nhung-nhieu-cai-con-thua-iphone-18-pro-max-100260913102245653.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/178926844886018556191366005064302419635452280695914d4a86b878fb9fed3c6ffcf307f2abdcf-1789268465891536564611-18-180-1295-2224-crop-17892685877901121207130.jpg",
+     "desc": "iPhone Duo có giá khởi điểm 1.999 USD, nhưng mức giá này có mang lại những công nghệ cao cấp nhất?",
+     "author": "THANH HIỆP",
+     "ts": 1789270980
+    },
+    {
+     "t": "CEO Anthropic kêu gọi phát triển AI chậm lại, ưu tiên phòng ngừa rủi ro",
+     "link": "https://tuoitre.vn/ceo-anthropic-keu-goi-phat-trien-ai-cham-lai-uu-tien-phong-ngua-rui-ro-10026091221583951.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/12/1000014339-1789224981300837106169-0-0-640-1024-crop-17892250124481423907106.jpg",
+     "desc": "Theo giám đốc điều hành Anthropic, cuộc đua phát triển trí tuệ nhân tạo (AI) đang rất cần được giảm tốc.",
+     "author": "THANH BÌNH",
+     "ts": 1789229040
+    },
+    {
+     "t": "Nhiều chính phủ dùng mô hình AI Claude để phát triển vũ khí, giám sát?",
+     "link": "https://tuoitre.vn/nhieu-chinh-phu-dung-mo-hinh-ai-claude-de-phat-trien-vu-khi-giam-sat-100260911163304244.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/11/r-17891187502431179732952-50-0-800-1200-crop-1789118978097301466738.png",
+     "desc": "Anthropic cho biết chatbot Claude đã bị lợi dụng trong các hoạt động liên quan vũ khí sinh học, tác chiến điện tử và hệ thống giám sát nghi do nhà nước bảo trợ.",
+     "author": "DƯƠNG KHANG",
+     "ts": 1789122780
+    },
+    {
+     "t": "Kiếm hàng chục triệu USD mỗi năm, nhiều triệu phú AI bận rộn tới mức không có thời gian tiêu tiền",
+     "link": "https://tuoitre.vn/kiem-hang-chuc-trieu-usd-moi-nam-nhieu-trieu-phu-ai-ban-ron-toi-muc-khong-co-thoi-gian-tieu-tien-100260911155014237.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/11/7fmzk6qvvrl6vm3dfvcu4hiisq-1-17891143488931910702853-81-455-744-1516-crop-17891151744871329667573.jpg",
+     "desc": "Nhân sự tại các công ty AI bận rộn đến mức gần như không màng tới những biểu tượng giàu sang truyền thống.",
+     "author": "XUÂN THẢO",
+     "ts": 1789118520
+    }
+   ]
+  },
+  {
+   "key": "the-thao",
+   "label": "Thể thao",
+   "items": [
+    {
+     "t": "Người hâm mộ xếp hàng dài chờ xem chung kết Vietnam Open 2026",
+     "link": "https://tuoitre.vn/nguoi-ham-mo-xep-hang-dai-cho-xem-chung-ket-vietnam-open-2026-10026091314070906.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/1789281947643206641814440293842762258538871957165926c5b37c20eaa31f428f7ba02c4ce81cf-178928269230761496355-57-386-1094-2045-crop-17892829303191794415488.jpg",
+     "desc": "Dù không có đại diện Việt Nam góp mặt ở chung kết, đông đảo người hâm mộ vẫn đến nhà thi đấu Nguyễn Du (TP.HCM), xếp hàng chờ mua vé vào xem Giải cầu lông Vietnam Open 2026 vào chiều ngày 13-9.",
+     "author": "ANH HÀO",
+     "ts": 1789284000
+    },
+    {
+     "t": "Tuyển U23 Việt Nam đến Nhật Bản, sẵn sàng cho Asiad 2026",
+     "link": "https://tuoitre.vn/tuyen-u23-viet-nam-den-nhat-ban-san-sang-cho-asiad-2026-100260913111925265.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/u23-viet-nam-1789273949347163308327-566-533-1458-1959-crop-1789273964745528337921.jpg",
+     "desc": "Đội tuyển U23 Việt Nam đã đến Nhật Bản vào hôm nay (13-9), sẵn sàng cho trận ra quân với U23 Kuwait ở Asiad 2026 diễn ra hai ngày sau đó.",
+     "author": "NGUYÊN KHÔI",
+     "ts": 1789275120
+    },
+    {
+     "t": "Sân vận động 60.000 chỗ tại Hưng Yên chuẩn bị lắp mái vòm hơn 8.500 tấn",
+     "link": "https://tuoitre.vn/san-van-dong-60000-cho-tai-hung-yen-chuan-bi-lap-mai-vom-hon-8500-tan-100260912181721576.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/12/11-1789209762748302993140-25-275-1432-2526-crop-17892204994701135371755.jpg",
+     "desc": "Điểm nhấn nổi bật nhất trong thiết kế sân vận động PVF là hệ thống mái vòm có khả năng đóng - mở hoàn toàn tự động. Theo thiết kế, toàn bộ mái có thể vận hành trong khoảng 12 - 20 phút, giúp sân chủ động ứng phó với điều kiện thời tiết.",
+     "author": "HỒNG QUANG",
+     "ts": 1789272600
+    },
+    {
+     "t": "Vị cao thủ tài ba, chịu nỗi oan lớn ở đời thật nhưng lại bị Kim Dung viết thành phản diện",
+     "link": "https://tuoitre.vn/vi-cao-thu-tai-ba-chiu-noi-oan-lon-o-doi-that-nhung-lai-bi-kim-dung-viet-thanh-phan-dien-100260912234639191.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/12/90a40973964f2f36c3e23dbfc40e45fb-1789230479290516964232-0-129-1442-2436-crop-178923049225632879277.jpeg",
+     "desc": "Không ít danh nhân tài ba, lỗi lạc có thật trong lịch sử trở thành \"nạn nhân\" khi được Kim Dung đưa vào vũ trụ tiểu thuyết võ hiệp của mình. Đô đốc hải quân lừng danh Thi Lang đầu thời nhà Thanh là một ví dụ.",
+     "author": "HUY ĐĂNG",
+     "ts": 1789271340
+    },
+    {
+     "t": "Ronaldo 'đứng hình' ở 979 bàn, Messi ghi bàn thắng thứ 928",
+     "link": "https://tuoitre.vn/ronaldo-dung-hinh-o-979-ban-messi-ghi-ban-thang-thu-928-100260913090714635.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/messi-17892671162801617020783-0-0-576-922-crop-17892678316591221566637.jpg",
+     "desc": "Siêu sao 39 tuổi Lionel Messi đã có bàn thắng thứ 928 trong sự nghiệp với cú sút đẹp mắt từ ngoài vòng cấm, trong khi Ronaldo lại tịt ngòi ở Al Nassr và giậm chân ở con số 979 bàn thắng.",
+     "author": "QUỐC THẮNG",
+     "ts": 1789267200
+    },
+    {
+     "t": "Chờ đợi gì ở đội tuyển nữ Việt Nam tại Asiad 2026?",
+     "link": "https://tuoitre.vn/cho-doi-gi-o-doi-tuyen-nu-viet-nam-tai-asiad-2026-100260913084600589.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/nu-viet-nam-3-1-1789263813486239769914-74-0-1325-2002-crop-17892638712241717568235.jpeg",
+     "desc": "Đội tuyển nữ Việt Nam chuẩn bị bước vào tranh tài tại môn bóng đá nữ Asiad 2026 diễn ra tại Nhật Bản từ ngày 14-9 đến 2-10.",
+     "author": "NGỌC LÊ",
+     "ts": 1789265100
+    },
+    {
+     "t": "Những khoảnh khắc đáng nhớ trên đường chạy T&T Group Marathon Vĩnh Long",
+     "link": "https://tuoitre.vn/nhung-khoanh-khac-dang-nho-tren-duong-chay-tt-group-marathon-vinh-long-100260913083908101.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/picture1-17892618492431883081321.png",
+     "desc": "Hơn 5.000 vận động viên hội tụ tại T&T Group Marathon Vĩnh Long.",
+     "author": "PHẠM DIỄM",
+     "ts": 1789264800
+    }
+   ]
+  },
+  {
+   "key": "giai-tri",
+   "label": "Giải trí",
+   "items": [
+    {
+     "t": "Vì sao Anh trai vượt ngàn chông gai mùa 2 chưa bùng nổ như mùa 1?",
+     "link": "https://tuoitre.vn/vi-sao-anh-trai-vuot-ngan-chong-gai-mua-2-chua-bung-no-nhu-mua-1-100260913134400246.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/honeycam-2024-07-28-12-36-38-1722145149369171798912-1722154530707-1722154531189894385311-1789281271177805379233-0-0-572-915-crop-17892817121511602190886.gif",
+     "desc": "Tập 11 Anh trai vượt ngàn chông gai có thể xem là một ‘công văn hóa’ vì toàn các tiết mục khai thác chất liệu văn hóa các vùng miền.",
+     "author": "ĐẬU DUNG",
+     "ts": 1789284600
+    },
+    {
+     "t": "Kim Ji Won và cẩm nang mặc đẹp cho phụ nữ ngoài 30",
+     "link": "https://tuoitre.vn/kim-ji-won-va-cam-nang-mac-dep-cho-phu-nu-ngoai-30-100260913113010506.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/2aoboqyhrgz2cx5sjfvdp8aqxppwe7bbasy9orky-1789273363215598163598-7-0-431-679-crop-178927378792176304127.jpg",
+     "desc": "Tạm biệt những bộ cánh công sở cứng nhắc và nhàm chán, Kim Ji Won khéo léo vận dụng 'triết lý tối giản' cùng nghệ thuật phối lớp có chủ đích.",
+     "author": "Hy Thành",
+     "ts": 1789284480
+    },
+    {
+     "t": "Avengers: Doomsday bắt đầu hái ra tiền cho Disney, dù 3 tháng nữa mới chiếu",
+     "link": "https://tuoitre.vn/avengers-doomsday-bat-dau-hai-ra-tien-cho-disney-du-3-thang-nua-moi-chieu-100260913110424298.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/b0bb524d957c9efe5d1e1bedd9648c-4771-1622-1784605925-17892718886591623389504-0-101-576-1023-crop-17892719179121609341585.jpg",
+     "desc": "Avengers: Doomsday quy tụ các siêu anh hùng từ khắp vũ trụ điện ảnh Marvel, khi sự tồn tại của họ bị đe dọa bởi Doctor Doom do Robert Downey Jr. thủ vai.",
+     "author": "Hy Thành",
+     "ts": 1789284420
+    },
+    {
+     "t": "Pháo trở lại giữa cuộc đua của Jack và Tinh hà say hi",
+     "link": "https://tuoitre.vn/phao-tro-lai-giua-cuoc-dua-cua-jack-va-tinh-ha-say-hi-100260913013751119.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/12/phaoo-17892377917371571357717-137-76-634-872-crop-1789237820720509254032.jpg",
+     "desc": "Pháo trở lại với EP 'Ctrl X' về tan vỡ tình yêu, nhưng giữa cuộc đua V-pop sôi động, dự án chưa tạo được hiệu ứng như những sản phẩm trước đây của nữ rapper.",
+     "author": "MAI NGUYỆT",
+     "ts": 1789281420
+    },
+    {
+     "t": "Dược sư tự sự ra mắt game mới, Maomao và Jinshi cùng phá án",
+     "link": "https://tuoitre.vn/duoc-su-tu-su-ra-mat-game-moi-maomao-va-jinshi-cung-pha-an-100260913103235681.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/the-apothecary-diaries-the-false-imperial-brother-announcement-trailer-ps5-games-1789269833417163066726-0-19-196-333-crop-17892698391471413851736.gif",
+     "desc": "Dược sư tự sự tiếp tục có thêm dự án mới với một trò chơi do Koei Tecmo phát triển. Game đưa Maomao vào một câu chuyện nguyên bản, không xuất hiện trong anime hay tiểu thuyết gốc.",
+     "author": "MAI NGUYỆT",
+     "ts": 1789271400
+    },
+    {
+     "t": "Phim về những phụ nữ vô hình giành Sư tử vàng tại Liên hoan phim Venice 2026",
+     "link": "https://tuoitre.vn/phim-ve-nhung-phu-nu-vo-hinh-gianh-su-tu-vang-tai-lien-hoan-phim-venice-2026-100260913101519777.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/3616-1789268445308488205007-70-0-845-1240-crop-1789269180921306170247.jpg",
+     "desc": "Chiến thắng của Woman Unknown giúp đạo diễn May El-Toukhy trở thành nữ đạo diễn thứ 8 trong lịch sử giành Sư tử vàng tại Liên hoan phim Venice.",
+     "author": "LAN HƯƠNG",
+     "ts": 1789271160
+    },
+    {
+     "t": "The Odyssey là phim ăn khách nhất lịch sử Universal",
+     "link": "https://tuoitre.vn/the-odyssey-la-phim-an-khach-nhat-lich-su-universal-100260913101046848.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/the2520odyssey2520lead-17892687538761444249033-0-34-1440-2338-crop-17892687701111567255943.jpg",
+     "desc": "Chỉ sau chưa đầy hai tháng ra rạp, The Odyssey của Christopher Nolan có một hành trình phòng vé ngoạn mục khi trở thành phim có doanh thu cao nhất mọi thời đại của Universal Pictures.",
+     "author": "Hy Thành",
+     "ts": 1789270260
+    }
+   ]
+  },
+  {
+   "key": "giao-duc",
+   "label": "Giáo dục",
+   "items": [
+    {
+     "t": "Thưởng giáo viên bồi dưỡng học sinh đoạt giải vàng quốc tế: nơi 22,5 triệu, nơi 525 triệu đồng",
+     "link": "https://tuoitre.vn/thuong-giao-vien-boi-duong-hoc-sinh-doat-giai-vang-quoc-te-noi-225-trieu-noi-525-trieu-dong-100260913135531486.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/bon-hoc-sinh-viet-nam-du-thi-olympic-tin-hoc-quoc-te-2023-16936224704052082669824-1789282280713910653546-33-0-489-730-crop-1789282447752615908103.jpg",
+     "desc": "Các địa phương áp dụng mức thưởng khác nhau cho giáo viên bồi dưỡng học sinh đoạt giải quốc tế, với huy chương vàng từ 22,5 triệu đến 525 triệu đồng.",
+     "author": "TRỌNG NHÂN",
+     "ts": 1789284780
+    },
+    {
+     "t": "Mỹ, Anh, Canada, Úc mất sức hút với sinh viên quốc tế, Nhật tăng 20%",
+     "link": "https://tuoitre.vn/my-anh-canada-uc-mat-suc-hut-voi-sinh-vien-quoc-te-nhat-tang-20-10026091313151623.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/shutterstock218239918-17892798484462016899986-107-0-1707-2560-crop-1789279921772802580744.jpg",
+     "desc": "Lượng sinh viên quốc tế mới đến Mỹ, Anh, Canada và Úc đều giảm trong năm 2024, trái chiều với Nhật Bản và một số nước OECD.",
+     "author": "TRỌNG NHÂN",
+     "ts": 1789281840
+    },
+    {
+     "t": "Nên đào tạo bác sĩ nội trú và bác sĩ chuyên sâu như thế nào để Việt Nam nhiều bác sĩ giỏi?",
+     "link": "https://tuoitre.vn/nen-dao-tao-bac-si-noi-tru-va-bac-si-chuyen-sau-nhu-the-nao-de-viet-nam-nhieu-bac-si-gioi-10026091312421777.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/12/anh-bac-si-17891879093561363281017.jpg",
+     "desc": "Có một điểm quan trọng nhưng nhiều người chưa chú ý: người bệnh luôn cố lên tuyến trên vì ở đó mới có nhiều bác sĩ giỏi, vì thế tuyến Trung ương và một số bệnh viện luôn quá tải, trong khi y tế cơ sở lại khó thu hút bệnh nhân.",
+     "author": "LAN ANH",
+     "ts": 1789279680
+    },
+    {
+     "t": "Khánh Hòa: Trẻ em mầm non dân tộc thiểu số, vùng đặc biệt khó khăn sẽ được uống sữa miễn phí 5 lần/tuần",
+     "link": "https://tuoitre.vn/khanh-hoa-tre-em-mam-non-dan-toc-thieu-so-vung-dac-biet-kho-khan-se-duoc-uong-sua-mien-phi-5-lan-tuan-100260913102032854.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/suahocduong-17892691747432025763343-104-377-418-880-crop-1789279862961398421164.jpg",
+     "desc": "Từ năm học 2026-2027, học sinh là con em đồng bào dân tộc thiểu số, miền núi, vùng đặc biệt khó khăn sẽ được uống sữa miễn phí 5 lần/tuần.",
+     "author": "XUÂN HOÁT",
+     "ts": 1789278720
+    },
+    {
+     "t": "Khánh Hòa siết quản lý suất ăn bán trú, tăng kiểm tra đột xuất tại trường học",
+     "link": "https://tuoitre.vn/khanh-hoa-siet-quan-ly-suat-an-ban-tru-tang-kiem-tra-dot-xuat-tai-truong-hoc-100260913094643119.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/edit-kh-17892668717741519337871-64-0-1393-2127-crop-17892668829501166226421.jpeg",
+     "desc": "Khánh Hòa sẽ tổ chức đoàn kiểm tra đột xuất tại bếp ăn bán trú của các trường trên địa bàn, hướng tới đấu thầu công khai suất ăn bán trú.",
+     "author": "NGUYỄN HOÀNG",
+     "ts": 1789274220
+    },
+    {
+     "t": "Kết nối doanh nghiệp ngay trong Ngày hội tân sinh viên Đại học Cần Thơ",
+     "link": "https://tuoitre.vn/ket-noi-doanh-nghiep-ngay-trong-ngay-hoi-tan-sinh-vien-dai-hoc-can-tho-100260913100544241.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/ctu2-1789268467126725530341-209-0-1459-2000-crop-1789268473933396486049.jpg",
+     "desc": "GS.TS Trần Ngọc Hải - Phó giám đốc Đại học Cần Thơ - mong các tân sinh viên của trường giao lưu, học tập và tận dụng cơ hội kết nối với các doanh nghiệp ngay tại ngày hội Tân sinh viên năm 2026.",
+     "author": "LAN NGỌC",
+     "ts": 1789271580
+    },
+    {
+     "t": "Bài văn 'quá hoàn chỉnh' từ AI và nghịch lý năng lực phản biện của học sinh Việt",
+     "link": "https://tuoitre.vn/bai-van-qua-hoan-chinh-tu-ai-va-nghich-ly-nang-luc-phan-bien-cua-hoc-sinh-viet-100260913100412156.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/anh-hs-tphcm-1789268442856652667237-20-0-820-1280-crop-17892684464281330281349-84-0-596-819-crop-178927249740695136236.jpg",
+     "desc": "94% học sinh Việt Nam dùng AI hỗ trợ học tập, trong khi chỉ 70% được học cách đánh giá nội dung AI tạo ra, theo kết quả PISA 2025.",
+     "author": "THẢO THƯƠNG",
+     "ts": 1789270860
+    }
+   ]
+  },
+  {
+   "key": "du-lich",
+   "label": "Du lịch",
+   "items": [
+    {
+     "t": "Đồng nước nổi Hồng Ngự chật kín khách check-in chợ nổi vùng biên, xem đua xuồng, bắt vịt",
+     "link": "https://tuoitre.vn/dong-nuoc-noi-hong-ngu-chat-kin-khach-check-in-cho-noi-vung-bien-xem-dua-xuong-bat-vit-1002609131410525.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/nuoc-noi-hong-ngu8-17892820544931615149250-359-510-1110-1710-crop-178928508090914221663.jpg",
+     "desc": "Ngày 13-9, hàng ngàn người dân và du khách tìm về khu đê bao thuộc khu phố Bình Hòa, phường Hồng Ngự, Đồng Tháp trải nghiệm các hoạt động của ngày hội Sắc nước vùng biên lần thứ 2 với nhiều hoạt động hấp dẫn như check-in chợ nổi, xem đua xu",
+     "author": "ĐẶNG TUYẾT",
+     "ts": 1789284900
+    },
+    {
+     "t": "Hàng ngàn người về xem hội đua bò truyền thống chùa Rô ở An Giang",
+     "link": "https://tuoitre.vn/hang-ngan-nguoi-ve-xem-hoi-dua-bo-truyen-thong-chua-ro-o-an-giang-100260913110220138.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/bo3-17892715053201609340710-0-36-1537-2495-crop-17892719814121216217414.jpg",
+     "desc": "Hàng ngàn người dân và du khách vượt đường xa về xem hội đua bò truyền thống chùa Rô năm 2026 ở ấp Vĩnh Thượng, xã An Cư, tỉnh An Giang.",
+     "author": "CHÍ CÔNG",
+     "ts": 1789278300
+    },
+    {
+     "t": "Đi thật chậm để thấy TP.HCM có gì mà ta yêu đến thế",
+     "link": "https://tuoitre.vn/di-that-cham-de-thay-tphcm-co-gi-ma-ta-yeu-den-the-100260912220904499.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/13/photo-1789223053518-17892230536831885312468-0-89-1126-1891-crop-1789270093301793492611.jpeg",
+     "desc": "Giữa những cao ốc, tuyến đường đông đúc và nhịp sống luôn chuyển động, TP.HCM có những con hẻm nhỏ, hàng quán lâu năm, khu phố cũ và những câu chuyện tình người. Có những điều về thành phố này chỉ nhìn thấy khi ta đi chậm lại.",
+     "author": "ĐỖ ĐẠT",
+     "ts": 1789265520
+    },
+    {
+     "t": "Thu Hà Nội vẫn là gì đó rất riêng, khó tả",
+     "link": "https://tuoitre.vn/thu-ha-noi-van-la-gi-do-rat-rieng-kho-ta-100260912131555444.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/12/mua-thu-ha-noi-anh-phuc-tai-26-17891917094521928736919-194-475-1256-2174-crop-1789201956503476520667.jpg",
+     "desc": "Hà Nội, khi thu về, phố phường dường như dịu lại với tiết trời mát mẻ và ánh nắng trong veo. Bạn trẻ rủ nhau xuống phố.",
+     "author": "PHÚC TÀI",
+     "ts": 1789201680
+    },
+    {
+     "t": "Chuyển mạnh từ ‘liên kết điểm đến’ sang ‘liên kết chuỗi giá trị’ trong phát triển du lịch",
+     "link": "https://tuoitre.vn/chuyen-manh-tu-lien-ket-diem-den-sang-lien-ket-chuoi-gia-tri-trong-phat-trien-du-lich-100260912144414776.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/12/1wupukmqjpzyrezpgo7uhu5mg90szuow7wiofrtfsp1uxzksq5sozyrvxbm2qv4tzbj-17892033167671428615074-312-0-1796-2375-crop-1789203334440425014433.jpg",
+     "desc": "Tại Hội nghị hợp tác phát triển kinh tế - xã hội giữa TP.HCM với một số tỉnh, thành phía Bắc và Bắc Trung Bộ mới đây, ông Cao Văn Chóng, Tổng Giám đốc Saigontourist Group, đã đề xuất nhiều giải pháp nâng cao hiệu quả liên kết du lịch.",
+     "author": "Hà My",
+     "ts": 1789199100
+    },
+    {
+     "t": "'11 điểm đến đẹp nhất Việt Nam' trên báo Anh",
+     "link": "https://tuoitre.vn/11-diem-den-dep-nhat-viet-nam-tren-bao-anh-100260912114230486.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/12/photo-1789185475979-1789185476352378022947-531-374-1244-1514-crop-1789193628179680519108.jpeg",
+     "desc": "Huế, Hà Nội, Sa Pa, Cao Bằng, Phong Nha - Kẻ Bàng hay Côn Đảo nằm trong danh sách 11 điểm đến tại Việt Nam được báo The Times của Anh giới thiệu là những nơi đẹp và đáng khám phá trong năm 2026.",
+     "author": "ĐỖ ĐẠT",
+     "ts": 1789194360
+    },
+    {
+     "t": "Tạm dừng tham quan hang Dơi ở Pù Luông vì đá rơi nguy hiểm",
+     "link": "https://tuoitre.vn/tam-dung-tham-quan-hang-doi-o-pu-luong-vi-da-roi-nguy-hiem-100260912115500968.htm",
+     "img": "https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2026/9/12/khu-vuc-da-roi-nguy-hiem-trong-hang-doi-1789188217955233903589-739-0-1939-1920-crop-17891885714701517158150.jpg",
+     "desc": "Không đưa du khách vào tham quan hang Dơi nằm trong rừng đặc dụng Pù Luông. Tại hang Dơi đang có đá rơi, nguy hiểm cho du khách.",
+     "author": "HÀ ĐỒNG",
+     "ts": 1789191960
+    }
+   ]
+  }
+ ]
+}

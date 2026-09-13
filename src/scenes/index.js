@@ -7,15 +7,29 @@
 // through `sceneHref()` below, so a 2D scene appears on the hub and can be
 // reached from a 3D locus exactly like any other.
 //
+// A 3D scene can also carry no model at all. `tuoitre-vn` is generated in the
+// browser every time it opens, because its content is today's newspaper — its
+// config exports a `build` hook and Viewer calls that instead of GLTFLoader.
+// Nothing here has to know: it is an ordinary `kind: '3d'` entry with `model`
+// left off. See the top of src/scenes/tuoitre-vn.js.
+//
 // Entry shape:
 //   id      slug, unique; what `?id=` and cross-scene `link:` values use
 //   title   card heading
 //   blurb   card copy
 //   kind    '3d' (default) or '2d'
-//   model   3D only — path to the .glb
+//   model   3D only — path to the .glb; omitted by a scene whose config
+//           exports `build` and assembles itself at runtime
 //   href    2D only — path to the scene's own page
 //   config  () => Promise of the scene's config module default export
 export const SCENES = [
+  {
+    id: 'tuoitre-vn',
+    title: 'Ph\u1ed1 B\u00e1o S\u00e1ng',
+    blurb:
+      'tuoitre.vn as a street. A hundred metres of Saigon shophouse with eight alleys off it, one per section of the paper \u2014 Th\u1eddi s\u1ef1, Th\u1ebf gi\u1edbi, Kinh doanh, C\u00f4ng ngh\u1ec7, Th\u1ec3 thao, Gi\u1ea3i tr\u00ed, Gi\u00e1o d\u1ee5c, Du l\u1ecbch \u2014 each with a painted gate and a glazed b\u1ea3ng tin down its wall holding that section\u2019s stories as newsprint, newest nearest the street. Stand and read; press E, or tap a page, and the real article opens on tuoitre.vn. The only scene here with no model behind it: it is built in the browser from the live feed when you open it, and lit by whatever hour it happens to be in Vietnam \u2014 dawn, noon, or nothing but the lane bulbs. No loci, like the Glacier Deck: today\u2019s fourth headline is a different story tomorrow, so there is nothing to peg. Free move only.',
+    config: () => import('./tuoitre-vn.js').then((m) => m.default),
+  },
   {
     id: 'lunar-base',
     title: 'Lunar Base',
@@ -36,16 +50,6 @@ export const SCENES = [
     blurb: 'A floating island ringed by eight portal gates, with a causeway out to the Rosetta language square and a small library rotunda that leads onward to the Chronicler’s Athenaeum. Fourteen loci.',
     model: 'models/portal-island.glb',
     config: () => import('./portal-island.js').then((m) => m.default),
-  },
-  {
-    // Wired 2026-09-13 from the orphan audit in docs/scene-map.md: sixteen
-    // registered scenes had no inbound edge at all. This room gives every one
-    // of them a door, and Portal Island's gate 5 (an `xx` placeholder) opens it.
-    id: 'the-office',
-    title: 'The Back Office',
-    blurb: 'The room where the unwired scenes are kept. A small office in the same key as Room OS \u2014 cream walls, a plank floor, ceiling panels, a desk with the register open on it, a corkboard carrying the whole map of the palace on twenty-six cards, filing cabinets, a whiteboard reading EVERY DOOR IS A PAIR \u2014 and a north wall that opens onto an arcade of sixteen doors, eight a side. One door per orphan: the scenes that sit on this hub page and that nothing else in the world points at. Door colour follows the banner overhead (THE SUBJECTS amber, THE SYSTEMS teal, WORK & WORLDS indigo, THE QUIET ROOMS green) and each door carries its number and the name of the room behind it. The corridor was built one bay longer than it needed to be, and it ends on a cased frame with no leaf in it: NOT YET BUILT. Reached from Portal Island gate 5, and the register desk leads back. Twenty loci.',
-    model: 'models/the-office.glb',
-    config: () => import('./the-office.js').then((m) => m.default),
   },
   {
     id: 'chroniclers-athenaeum',
