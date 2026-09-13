@@ -102,6 +102,7 @@ body.viewer .overlay,
 .joystick-base,
 .joystick-knob,
 .vertical-controls,
+.fly-boost,
 .transport,
 .music-toggle,
 button {
@@ -299,6 +300,32 @@ button {
   transition: transform 0.05s linear;
 }
 
+/* Boost sits above the joystick rather than under the up/down column: a third
+   56px button on the right would have grown that stack past the `.free-mode`
+   locus-panel clearance below. */
+.fly-boost {
+  position: fixed;
+  left: 24px;
+  bottom: 192px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--panel);
+  color: var(--ink);
+  font-size: 22px;
+  line-height: 1;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  touch-action: none;
+  cursor: pointer;
+  z-index: 14;
+}
+.fly-boost:hover { background: #fff; }
+.fly-boost.active {
+  background: var(--ink);
+  color: #fff;
+}
+
 .vertical-controls {
   position: fixed;
   right: 24px;
@@ -441,6 +468,7 @@ button {
   .transport { bottom: calc(var(--locus-sheet-h, 0px) + 20px); }
   .joystick-base,
   .vertical-controls { bottom: calc(var(--locus-sheet-h, 0px) + 84px); }
+  .fly-boost { bottom: calc(var(--locus-sheet-h, 0px) + 192px); }
 }
 
 /* ---------------------------------------------------------------- the world

@@ -194,7 +194,10 @@ export class Viewer {
         config: this.config,
         onLocusChange: (i, locus) => this.overlay.show(i, locus),
       });
-      this.freeMove = new FreeMove({ root: document.body });
+      // `fly: { speed, boost, minY }` on the scene config tunes the free
+      // camera per scene -- a heart interior and a 1 km city cannot share one
+      // speed. Scenes that omit it get FreeMove's defaults.
+      this.freeMove = new FreeMove({ root: document.body, options: this.config.fly || {} });
       this.freeModeActive = false;
 
       this._wireTransport();
@@ -203,7 +206,7 @@ export class Viewer {
       document.getElementById('locus-close').addEventListener('click', () => {
         this.overlay.dismiss();
       });
-      this._setFreeMode(true); // free exploration is the default on entering a scene
+      this._setFreeMode(true); // flying free is the default on entering a scene
       // A scene with no loci is a place, not a tour (glacier-deck): there is
       // nothing to walk between and nothing to narrate, so the whole transport
       // bar goes -- including the Free Move / Tour Mode toggle, since free move
@@ -290,9 +293,11 @@ export class Viewer {
     });
   }
 
-  // Toggles between the system-controlled tour and free exploration. In free
-  // mode the Prev/Pause/Next/Restart tour controls and the narration panels
-  // are hidden — they describe the rails walkthrough, which is paused.
+  // Toggles between the system-controlled tour and free flight. In fly mode the
+  // Prev/Pause/Next/Restart tour controls and the narration panels are hidden —
+  // they describe the rails walkthrough, which is paused. The body class stays
+  // `free-mode`: it is what every layout rule that clears the joystick and the
+  // up/down buttons keys off, and those controls did not move.
   _setFreeMode(active) {
     this.freeModeActive = active;
     this.walkthrough.setFreeMode(active);
@@ -312,7 +317,7 @@ export class Viewer {
       locusPanel.hidden = true;
     } else {
       this.freeMove.hide();
-      freemoveBtn.textContent = 'Free Move';
+      freemoveBtn.textContent = 'Fly';
       freemoveBtn.classList.remove('active');
       tourControls.hidden = false;
       overlay.hidden = false;
