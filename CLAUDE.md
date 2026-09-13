@@ -71,6 +71,9 @@ src/
   scenes/<id>.js       per-scene: { walkthrough: {...}, loci: [...] }
   scenes/the-office.data.js  GENERATED — see “Generated scene data” below
   scenes2d/<id>.js     2D scene renderer (+ .css, + generated .data.js)
+  scenesjs/kit.js      shared kit for scenes GENERATED IN THE BROWSER (Batch,
+                       canvas textures, deterministic rng) -- see below
+  scenesjs/<id>/       one folder per generated scene: tuoitre/, expedition/
   viewer/Viewer.js     renderer/scene/lights/raf loop; loads glb; wires transport
   viewer/Walkthrough.js  camera rig (see below)
   viewer/loci.js       buildLoci(gltfScene, config)
@@ -237,6 +240,26 @@ generator instead.
   excluded from the link scan on purpose — the room links to every orphan, so
   counting its own edges would empty the corridor on the second run. See
   `docs/the-office-scene.md` and `docs/scene-map.md` §0.
+
+## Scenes with no model
+
+A scene can have no `.glb` at all. Its config exports a `build` hook instead of
+a `model` path, `Viewer.start` calls it, and it hands back an `Object3D` it
+assembled in the browser plus `update` / `pick` / `dispose`. Two scenes do this,
+both because their content is live and a model exported last night would be
+yesterday's:
+
+- `tuoitre-vn` — today's tuoitre.vn as a street (`src/scenesjs/tuoitre/`).
+- `endless-survey` — the encyclopedia as an expedition
+  (`src/scenesjs/expedition/`). This one is not even finished when it opens:
+  only the rotunda exists, and every door you walk up to fetches its article and
+  builds the room beyond it. See `docs/endless-survey-scene.md`, especially the
+  section on rate limiting — Wikimedia hands out 429s freely and the whole data
+  layer is a queue plus a cache because of it.
+
+Both set `loci: []`, so the viewer drops the transport bar and the locus panel
+and the scene is free move only. Neither may be added to `scripts/build_glb.py`;
+there is nothing to export.
 
 ## The living world
 

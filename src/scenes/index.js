@@ -24,6 +24,13 @@
 //   config  () => Promise of the scene's config module default export
 export const SCENES = [
   {
+    id: 'endless-survey',
+    title: 'The Endless Survey',
+    blurb:
+      'An encyclopedia you walk into. A twelve-sided rotunda holds today\u2019s anniversaries \u2014 read off your own clock and fetched while the page opens \u2014 one glazed case and one arch each, oldest first. Take an arch and that subject\u2019s room is built beyond it while you are still crossing the floor: its plate on the far wall, its opening paragraph on the lectern, and six more doors around it, one for every cross-reference the article reaches for first. Those rooms have six doors of their own, and each level sits lower than the last, so the survey reads as a descent. Nothing is baked \u2014 no model, no snapshot, no nightly job \u2014 and nothing repeats: tomorrow the rotunda is a different twelve. Meant for britannica.com, which turns out to be unreachable by anything but a real browser, so the prose is Wikipedia\u2019s and every room keeps a brass door out to the Britannica entry for its subject. No loci, like the Glacier Deck: there is nothing here that holds still long enough to peg. Free move only.',
+    config: () => import('./endless-survey.js').then((m) => m.default),
+  },
+  {
     id: 'tuoitre-vn',
     title: 'Ph\u1ed1 B\u00e1o S\u00e1ng',
     blurb:
