@@ -125,6 +125,36 @@ then overwrote `userData` wholesale with what the crosshair needs to read, so
 the disposer was silently thrown away and every canvas leaked on every room
 taken down. It lives on `mesh.disposePlate` now.
 
+## Making a door look like a door
+
+The first version shipped with the openings as plain rectangular holes cut in
+flat panelling, with nothing behind them until you walked up. On a phone that
+read as a closed room: twelve anniversaries and no visible way out. Three
+things fixed it, and all three are worth keeping.
+
+1. **A frame.** Every opening has a pale stone surround standing 0.3 m proud of
+   the wall — jambs, lintel, keystone. A hole is ambiguous; a hole with a frame
+   round it is read as a door by anybody, instantly, whatever is or is not
+   behind it. This did most of the work.
+2. **A lit passage, always there.** `vestibule()` builds five metres of floor,
+   ceiling, walls, carpet runner and two lamps behind every door, merged into
+   the room's own mesh so it costs nothing. Its ceiling and panelling are
+   deliberately *lighter* than the wall they are cut into — a dark passage
+   behind a dark wall is invisible. The generated corridor starts where this
+   ends, which is why `STUB` appears in the placement arithmetic.
+3. **Something to aim at.** `threshold()` hangs a near-invisible pane in the
+   opening, so the crosshair hitting a doorway names the door. Before that only
+   the plate above the lintel was readable, and on a phone that is above the
+   middle of the screen and easy never to find.
+
+Plus: the arch you happen to be looking at when the scene opens builds itself,
+so the mechanic is demonstrated rather than guessed, and a standing hint says
+so until you have walked into your first room.
+
+The opening shot was also aimed dead along -Z, which on a twelve-sided drum
+whose faces sit at 15°, 45°, 75° … lands squarely on the pier *between* two
+arches. Aim `startView` down a face normal, not down an axis.
+
 ## Controls
 
 Free move / fly only — the viewer hides the transport bar and the locus panel
