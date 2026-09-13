@@ -69,6 +69,7 @@ src/
                        there is no bundler to handle CSS imports)
   scenes/index.js      SCENES registry + getScene(id) + sceneHref(id)
   scenes/<id>.js       per-scene: { walkthrough: {...}, loci: [...] }
+  scenes/the-office.data.js  GENERATED — see “Generated scene data” below
   scenes2d/<id>.js     2D scene renderer (+ .css, + generated .data.js)
   viewer/Viewer.js     renderer/scene/lights/raf loop; loads glb; wires transport
   viewer/Walkthrough.js  camera rig (see below)
@@ -215,6 +216,27 @@ lines, blockade arcs, campaign arrows and locus pins. Re-run it after editing
 any of those; never hand-edit the generated file. The old
 `models/civil-war-map.glb` is still on disk and `scripts/build_glb.py` can still
 rebuild it, but nothing in the app loads it any more.
+
+## Generated scene data
+
+Two scenes do not have their content hand-written, and both keep it in a
+`*.data.js` beside the config. **Never hand-edit those files** — re-run their
+generator instead.
+
+- `src/scenes2d/civil-war.data.js` ← `scripts/build_civil_war_2d.py`
+  (projected us-atlas geometry plus the hand-authored overlays).
+- `src/scenes/the-office.data.js` ← `blender_models/office_scenegen/build_office.py`
+  (**the Back Office**). That script *reads this repo* — `src/scenes/index.js`
+  for the registered scenes, every other `src/scenes/*.js` for `link:` edges —
+  works out which scenes nothing points at, and builds a corridor with one door
+  per orphan, as many bays as it needs. It writes `models/the-office.glb`, the
+  data file, and `office_scenegen/stops.json` for its stop checker.
+  `src/scenes/the-office.js` adds only prose on top of it.
+  So: add a scene and re-run it and the corridor grows a door; wire that scene
+  up from somewhere else and re-run it and the door goes away. Its own files are
+  excluded from the link scan on purpose — the room links to every orphan, so
+  counting its own edges would empty the corridor on the second run. See
+  `docs/the-office-scene.md` and `docs/scene-map.md` §0.
 
 ## The living world
 

@@ -38,6 +38,16 @@ export const SCENES = [
     config: () => import('./portal-island.js').then((m) => m.default),
   },
   {
+    // Wired 2026-09-13 from the orphan audit in docs/scene-map.md: sixteen
+    // registered scenes had no inbound edge at all. This room gives every one
+    // of them a door, and Portal Island's gate 5 (an `xx` placeholder) opens it.
+    id: 'the-office',
+    title: 'The Back Office',
+    blurb: 'The room where the unwired scenes are kept. A small office in the same key as Room OS \u2014 cream walls, a plank floor, ceiling panels, a desk with the register open on it, a corkboard carrying the whole map of the palace on twenty-six cards, filing cabinets, a whiteboard reading EVERY DOOR IS A PAIR \u2014 and a north wall that opens onto an arcade of sixteen doors, eight a side. One door per orphan: the scenes that sit on this hub page and that nothing else in the world points at. Door colour follows the banner overhead (THE SUBJECTS amber, THE SYSTEMS teal, WORK & WORLDS indigo, THE QUIET ROOMS green) and each door carries its number and the name of the room behind it. The corridor was built one bay longer than it needed to be, and it ends on a cased frame with no leaf in it: NOT YET BUILT. Reached from Portal Island gate 5, and the register desk leads back. Twenty loci.',
+    model: 'models/the-office.glb',
+    config: () => import('./the-office.js').then((m) => m.default),
+  },
+  {
     id: 'chroniclers-athenaeum',
     title: "The Chroniclers' Athenaeum",
     blurb: 'A great library: a nave of book stacks under a domed reading room, with an alchemist’s lab, a manuscript vault, a glass herbarium and a star observatory off its wings. The Statue of Liberty standing mid-nave is a door through to the White House. Thirteen loci.',

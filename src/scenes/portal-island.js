@@ -92,10 +92,15 @@ export default {
     },
     {
       id: 5,
-      title: 'xx',
-      description: 'xx',
+      title: 'The Back Office',
+      description: 'A plain office door where a portal gate used to be a placeholder. Behind it: the room that keeps the scenes nothing else points at \u2014 a desk with the register, the map of the palace on a corkboard, and an arcade of sixteen doors. Portal to the Back Office scene.',
       position: [-12.7, 3.41, -0.83],
       anchorFrom: PLAZA,
+      // docs/scene-map.md, Phase 4: gate 5 was one of the three `xx` free
+      // slots. It now opens the room that wires up every orphan scene in one
+      // move; the Back Office's register desk is the return leg.
+      link: 'the-office',
+      linkLabel: 'B\u01b0\u1edbc qua c\u1ed5ng: The Back Office \u2192',
     },
     {
       id: 6,

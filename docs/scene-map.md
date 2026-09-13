@@ -1,7 +1,34 @@
 # The Scene Map — orphan audit and a plan to link it up
 
-**Date:** 2026-09-12
+**Date:** 2026-09-12 (updated 2026-09-13, see §0)
 **Scope:** `src/scenes/*.js` — which scenes can be reached from another scene, which cannot, and where the missing doors should go.
+
+---
+
+## 0. Update, 2026-09-13 — the Back Office
+
+Since this audit was written the palace has grown a room whose whole job is the
+problem it describes: **`the-office`, "The Back Office"** — a small office off
+Portal Island gate 5 (one of the three `xx` free slots, Phase 4 below) whose
+north wall opens onto a corridor of doors, **one per orphan**.
+
+It is generated, not drawn. `blender_models/office_scenegen/build_office.py`
+re-runs this audit mechanically on every build: it reads `src/scenes/index.js`
+for the registered scenes and every other `src/scenes/*.js` for `link:` edges,
+gives a door to every scene with no inbound edge, and lays out exactly as many
+bays as that needs. It writes the glb *and* `src/scenes/the-office.data.js`,
+which `src/scenes/the-office.js` reads — so adding a scene grows the corridor a
+bay, and wiring a scene up by hand makes its door disappear. Its own links are
+excluded from the scan, so the room can never count itself out of a job.
+
+At the time of writing it built **16 doors out of 27 registered scenes, 8 bays,
+24 m** — the whole "fully isolated" table in §2 below, plus `lunar-base` and
+`future-city`, which were added after the audit.
+
+**This does not replace the phases below, and is not meant to.** A corridor of
+doors is an index; the point of §4 is that a scene should be reachable from the
+place in the world where it belongs. Every edge added there removes a door here.
+The room is trying to empty itself.
 
 ---
 
