@@ -6,13 +6,13 @@
 // no inbound edge. Re-run it after adding or wiring a scene and the corridor
 // grows or shrinks a bay; src/scenes/the-office.js reads whatever is here.
 //
-// Built 17 doors out of 28 registered scenes, in 9 bays,
-// corridor 26.7 m long.
+// Built 19 doors out of 30 registered scenes, in 10 bays,
+// corridor 29.4 m long.
 export const BUILT = {
-  scenes: 28,
-  orphans: 17,
-  bays: 9,
-  corridorLength: 26.7,
+  scenes: 30,
+  orphans: 19,
+  bays: 10,
+  corridorLength: 29.4,
 };
 
 export const WINGS = [
@@ -38,7 +38,7 @@ export const WINGS = [
   },
   {
     'name': 'The New Wing',
-    'count': 1,
+    'count': 3,
     'leaf': '#6a4a8f'
   }
 ];
@@ -448,23 +448,65 @@ export const LOCI = [
     'anchorDistance': -3.3,
     'eyeHeight': 0.15,
     'door': 17,
+    'scene': 'endless-survey',
+    'sceneTitle': 'The Endless Survey',
+    'section': 'The New Wing',
+    'color': '#6a4a8f'
+  },
+  {
+    'id': 21,
+    'kind': 'door',
+    'position': [
+      2.84,
+      1.75,
+      -24.0
+    ],
+    'anchorFrom': [
+      0.0,
+      0,
+      -24.0
+    ],
+    'anchorDistance': -3.3,
+    'eyeHeight': 0.15,
+    'door': 18,
+    'scene': 'cafef-vn',
+    'sceneTitle': 'Sàn Bảng Điện',
+    'section': 'The New Wing',
+    'color': '#6a4a8f'
+  },
+  {
+    'id': 22,
+    'kind': 'door',
+    'position': [
+      -2.84,
+      1.75,
+      -26.7
+    ],
+    'anchorFrom': [
+      0.0,
+      0,
+      -26.7
+    ],
+    'anchorDistance': -3.3,
+    'eyeHeight': 0.15,
+    'door': 19,
     'scene': 'tuoitre-vn',
     'sceneTitle': 'Phố Báo Sáng',
     'section': 'The New Wing',
     'color': '#6a4a8f'
   },
   {
-    'id': 21,
+    'id': 23,
     'kind': 'end',
     'position': [
       0.0,
       1.35,
-      -26.4
+      -29.1
     ],
     'anchorFrom': [
       0.0,
       0,
-      -20.7
+      -23.4
     ],
     'anchorDistance': -6.0,
     'eyeHeight': 0.35
