@@ -8,6 +8,13 @@
 // proxy, and if every proxy is down the scene falls back to the snapshot in
 // world/tuoitre.json so the street is never empty.
 //
+// Gotcha worth keeping: allorigins answers a browser on an https origin but
+// sends NO CORS header to an http one, so the live feed works on GitHub Pages
+// and never works under `npm run dev` on http://localhost — locally you always
+// get the snapshot. That is why the proxies are RACED rather than tried in
+// turn: eight categories x two proxies x a serial timeout was the best part of
+// a minute of staring at the loading text before the fallback kicked in.
+//
 // The PHOTOS need no proxy. cdn*.tuoitre.vn does send CORS headers, which
 // matters more than it sounds: a cross-origin image without them taints the
 // canvas and WebGL refuses to upload it as a texture, so every story page
@@ -116,7 +123,7 @@ function parseFeed(xml, cat) {
   return { ...cat, items };
 }
 
-async function fetchText(url, ms = 20000) {
+async function fetchText(url, ms = 9000) {
   const ctl = new AbortController();
   const timer = setTimeout(() => ctl.abort(), ms);
   try {
@@ -130,16 +137,14 @@ async function fetchText(url, ms = 20000) {
 
 async function fetchCat(cat) {
   const feed = `https://${HOST}/rss/${cat.key}.rss`;
-  let last;
-  for (const proxy of PROXIES) {
-    try {
-      return parseFeed(await fetchText(proxy(feed)), cat);
-    } catch (err) {
-      last = err;
-    }
+  try {
+    return await Promise.any(
+      PROXIES.map((proxy) => fetchText(proxy(feed)).then((xml) => parseFeed(xml, cat))),
+    );
+  } catch (err) {
+    console.warn(`tuoitre: ${cat.key} unavailable —`, err);
+    return { ...cat, items: [], error: 'every proxy refused' };
   }
-  console.warn(`tuoitre: ${cat.key} unavailable —`, last);
-  return { ...cat, items: [], error: String(last && last.message) };
 }
 
 function assemble(cats, source) {
