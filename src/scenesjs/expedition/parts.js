@@ -356,4 +356,54 @@ export function disposeAllTextures() {
   TEX.length = 0;
 }
 
+
+/**
+ * The short lit passage behind an arch, built with the room and always there.
+ *
+ * Without it an unopened arch is a black rectangle in a brown wall and reads
+ * as panelling, not as a way out — which is exactly how the rotunda looked on
+ * a phone. Five metres of floor, ceiling, two walls, a carpet runner and a
+ * lamp at the far end cost nothing (they merge into the room's own mesh) and
+ * turn every arch into somewhere you can see a little way into. The real
+ * corridor starts where this ends.
+ */
+export function vestibule(bat, glow, f, door, depth = 5) {
+  const W = door.width;
+  const H = door.height;
+  bat.box(depth, 0.6, W + 1.2, PAL.floorB, f.at(depth / 2, 0, -0.3), [0, f.yaw, 0]);
+  bat.box(depth, 0.08, W - 0.4, PAL.floorA, f.at(depth / 2, 0, 0.02), [0, f.yaw, 0]);
+  bat.box(depth, 0.06, W - 1.4, PAL.carpet, f.at(depth / 2, 0, 0.07), [0, f.yaw, 0]);
+  bat.box(depth, 0.6, W + 1.2, PAL.ceiling, f.at(depth / 2, 0, H + 0.3), [0, f.yaw, 0]);
+  for (const side of [-1, 1]) {
+    bat.box(depth, H, 0.6, PAL.panel,
+      f.at(depth / 2, side * (W / 2 + 0.3), H / 2), [0, f.yaw, 0]);
+    bat.box(depth, 1.1, 0.72, PAL.panelDark,
+      f.at(depth / 2, side * (W / 2 + 0.36), 0.55), [0, f.yaw, 0]);
+  }
+  // the lamp that makes the passage visibly lit from across the room
+  sconce(bat, glow, f.at(depth - 1.1, W / 2 + 0.1, H - 1.9), f.yaw + Math.PI / 2, 0.85);
+  sconce(bat, glow, f.at(depth - 1.1, -(W / 2 + 0.1), H - 1.9), f.yaw - Math.PI / 2, 0.85);
+}
+
+/**
+ * An invisible-ish pane hung in the arch itself, so the crosshair has
+ * something to hit. Aiming at a doorway has to name the door — before this,
+ * only the little plate above the lintel was readable, which on a phone is
+ * above the middle of the screen and easy never to find.
+ */
+export function threshold(f, w, h) {
+  const mesh = new THREE.Mesh(
+    new THREE.PlaneGeometry(w, h),
+    new THREE.MeshBasicMaterial({
+      color: 0xffd79a, transparent: true, opacity: 0.055,
+      depthWrite: false, side: THREE.DoubleSide, toneMapped: false,
+    }),
+  );
+  mesh.position.set(...f.at(0.05, 0, h / 2));
+  mesh.rotation.y = Math.PI / 2 - f.phi + Math.PI;
+  mesh.renderOrder = 2;
+  mesh.disposePlate = () => { mesh.geometry.dispose(); mesh.material.dispose(); };
+  return mesh;
+}
+
 export { Batch };

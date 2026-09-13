@@ -17,6 +17,7 @@ import * as THREE from 'three';
 import { Batch, rng } from '../kit.js';
 import {
   PAL, facePos, roomShell, sconce, bookcase, brassPlate, pageplate, picture, prism,
+  vestibule, threshold,
 } from './parts.js';
 import { loadImage, britannicaUrl } from './wiki.js';
 
@@ -112,9 +113,19 @@ export function buildChamber({ article, depth = 1, solid, glow }) {
     const half = (f.width - DOOR.width) / 2;
     sconce(bat, gbat, f.at(-0.4, DOOR.width / 2 + half / 2, 3.1), f.phi + Math.PI);
     sconce(bat, gbat, f.at(-0.4, -(DOOR.width / 2 + half / 2), 3.1), f.phi + Math.PI);
+
+    // the passage behind the door, lit, there from the start
+    vestibule(bat, gbat, f, DOOR);
+    const pane = threshold(f, DOOR.width, DOOR.height);
+    pane.userData = { kind: 'door', door };
+    group.add(pane);
+    readable.push(pane);
+    disposers.push(pane.disposePlate);
+    door.threshold = pane;
   }
 
   // --- the entry arch, and bookcases wherever the article ran out of links
+  vestibule(bat, gbat, entry, DOOR);
   const entryPlate = brassPlate(2.6, 0.8, 'BACK', 'the way you came in');
   entryPlate.position.set(...entry.at(-0.36, 0, DOOR.height + 0.72));
   entryPlate.rotation.y = Math.PI / 2 - entry.phi + Math.PI;

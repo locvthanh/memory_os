@@ -17,11 +17,6 @@ three.js -Z.
 The recentring below is kept even without loci: it puts the deck on the origin,
 which is what makes `startView` and any future locus rig readable.
 
-Sibling scene: [[meditation-ledge]] is the same idea at dawn above a cloud sea.
-This one is deliberately a different room -- sunset instead of dawn, ice
-instead of cloud, a cobbled approach and a shelf of cairns instead of a gate
-and a basin.
-
 What this module does, in memory only (the .blend is never saved):
 
   * drops the Blender-only rig: the two suns, the lantern point light, the hero

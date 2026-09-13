@@ -96,7 +96,6 @@ graph LR
 | `sky-loft` | 16 blank pegs | empty palace |
 | `misty-valley` | 8 blank pegs | empty palace |
 | `hutong-corner` | 14 blank pegs | empty palace |
-| `meditation-ledge` | 10 blank pegs | empty palace |
 | `glacier-deck` | **0 loci** — free-move only | empty palace |
 
 \* has outbound edges but no inbound.
@@ -204,16 +203,15 @@ Net effect: Wisdom Village stops being a cul-de-sac of empty plots and becomes t
 
 ### Phase 5 — the quiet circuit
 
-Six scenes with blank pegs (`seaside-bungalow`, `sky-loft`, `misty-valley`, `meditation-ledge`, `hutong-corner`, `glacier-deck`) are not subjects and should not hang off the Athenaeum. Chain them instead, so one gate reaches all of them, and let each link sit on the locus that already looks out of the scene:
+Five scenes with blank pegs (`seaside-bungalow`, `sky-loft`, `misty-valley`, `hutong-corner`, `glacier-deck`) are not subjects and should not hang off the Athenaeum. Chain them instead, so one gate reaches all of them, and let each link sit on the locus that already looks out of the scene:
 
 ```mermaid
 graph LR
   PI[portal-island g2] --> SB[seaside-bungalow]
   PI3[portal-island g3] --> SL[sky-loft]
   SB -->|16 The island on the horizon| MV[misty-valley]
-  MV -->|8 The Snow Peak| ML[meditation-ledge]
-  SL -->|9 The balcony ledge| ML
-  ML -->|10 The Far Peak| GD[glacier-deck · terminal]
+  MV -->|8 The Snow Peak| GD[glacier-deck · terminal]
+  SL -->|9 The balcony ledge| GD
   CS[chinatown-street] -->|6 The Far Corner| HC[hutong-corner]
   HC -->|11 The Scholar Tree| CS
 ```

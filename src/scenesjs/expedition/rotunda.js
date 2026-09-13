@@ -15,6 +15,7 @@ import * as THREE from 'three';
 import { Batch, rng } from '../kit.js';
 import {
   PAL, facePos, roomShell, sconce, bookcase, brassPlate, picture, prism, orientedBox,
+  vestibule, threshold,
 } from './parts.js';
 import { loadImage } from './wiki.js';
 
@@ -113,6 +114,15 @@ export function buildRotunda({ day, solid, glow }) {
     sconce(bat, gbat, f.at(-0.4, DOOR.width / 2 + 0.9, 3.6), f.phi + Math.PI, 1.1);
     sconce(bat, gbat, f.at(-0.4, -(DOOR.width / 2 + 0.9), 3.6), f.phi + Math.PI, 1.1);
     gbat.box(0.8, 0.05, DOOR.width - 0.3, 0xffe1a8, f.at(0, 0, 0.12), [0, f.yaw, 0]);
+
+    // the passage behind the arch, and something in the arch to aim at
+    vestibule(bat, gbat, f, DOOR);
+    const pane = threshold(f, DOOR.width, DOOR.height);
+    pane.userData = { kind: 'door', door };
+    group.add(pane);
+    readable.push(pane);
+    disposers.push(pane.disposePlate);
+    door.threshold = pane;
   }
 
   for (let i = doors.length; i < N; i += 1) {

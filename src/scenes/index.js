@@ -209,13 +209,6 @@ export const SCENES = [
     config: () => import('./hutong-corner.js').then((m) => m.default),
   },
   {
-    id: 'meditation-ledge',
-    title: 'The Ledge',
-    blurb: 'A timber deck cantilevered off a granite cliff at dawn, with a sea of cloud ninety-five metres below it and a snow range on the far side. Built to sit in as much as to remember from, so the ten stops are also the ten stations of a sit \u2014 the approach first (a cedar gate, a stone basin fed by a bamboo spout, a lantern still lit at sunrise, a cairn of five stones), then the cushion at the centre of the deck, then attention moving outward (the wind bell on the east rail, the far rail with nothing past it, a pine bent flat over the drop by the wind and still alive), and finally away (the cloud filling the valley, and the snow summit with the sun cresting the saddle beside it). The camera never leaves the deck. Every peg is still blank. Ten loci.',
-    model: 'models/meditation-ledge.glb',
-    config: () => import('./meditation-ledge.js').then((m) => m.default),
-  },
-  {
     id: 'glacier-deck',
     title: 'The Glacier Deck',
     blurb:

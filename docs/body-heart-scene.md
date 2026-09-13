@@ -83,7 +83,7 @@ scene is English-only.
 - `src/scenes/body-heart.js`: background `0x140e13`, fog 90/620, hemisphere
   1.15 / ambient 0.9 warm / sun 1.5 / shadowExtent 60, travel 7 s, dwell 12 s.
 - Every locus names its own `anchorFrom` with a negative `anchorDistance` —
-  the [[meditation-ledge]] pattern. An interior scene whose loci sit in floors
+  an interior scene whose loci sit in floors
   and walls would otherwise park the camera outside the building.
 - Verified live: 17/17 loci load and the tour runs.
 
@@ -97,5 +97,5 @@ scene is English-only.
   sets it up, and the disease layer for the series has to start somewhere.
 - Sound: a beat at rest vs a beat at 170.
 
-Related: [[human-body-series]], [[meditation-ledge]] (the anchor pattern),
+Related: [[human-body-series]],
 [[the-stack]] (the other scene built as one big walkable structure).

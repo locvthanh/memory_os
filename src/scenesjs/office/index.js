@@ -43,8 +43,6 @@ const NOTES = {
     'A grey-brick Beijing alley that turns a corner: name stone, lantern line, courtyard gate, spirit screen, chess table, moon gate. Fourteen blank pegs at fourteen different heights.',
   'misty-valley':
     'A river valley under a snow range — ford, standing stones, broken watchtower, three-arch bridge, gorge, peak. Every landmark invented, and picked to be impossible to confuse with its neighbour.',
-  'meditation-ledge':
-    'A timber deck cantilevered off a granite cliff at dawn above a sea of cloud. Ten stops that are also the ten stations of a sit. The camera never leaves the deck.',
   'glacier-deck':
     'A sitting platform above a crevassed glacier at sunset, recreated from a photograph. The only room in the palace with no loci and no tour — so it can be entered but can never link back. The one legitimate dead end here, and it is meant to be one.',
   'tuoitre-vn':

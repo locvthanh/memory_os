@@ -18,11 +18,6 @@ it from the left, a shelf of stacked-stone cairns and bonsai along one edge, a
 lit lantern on a side table by the gate, and a crevassed glacier two hundred
 metres below running out to a snow range still holding the last light.
 
-Sibling of [[meditation-ledge]] and deliberately a different room: sunset not
-dawn, ice not cloud, a cobbled approach and a shelf of cairns instead of a gate
-and a basin. The two are close enough in idea that they had to be kept far
-apart in look, or they would blur into one memory.
-
 ## No loci, deliberately
 
 This is the first scene in MemoryOS with **no loci at all**: no pegs, no

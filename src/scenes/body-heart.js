@@ -15,7 +15,7 @@
 // toes.
 //
 // Every stop names its own `anchorFrom` (the chamber it is seen from) with a
-// negative `anchorDistance`, the meditation-ledge pattern: an interior scene
+// negative `anchorDistance`: an interior scene
 // whose loci sit in walls and floors would otherwise park the camera outside
 // the building looking at brick.
 //

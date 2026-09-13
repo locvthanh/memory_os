@@ -19,11 +19,6 @@
 // blender_models/scenegen_glacierdeck/ (gd_*.py) through Blender MCP into
 // blender_models/GlacierDeck.blend.
 //
-// Sibling room: [[meditation-ledge]] is the same instinct at dawn above a sea
-// of cloud, and that one IS a tour — ten stops that double as the stations of
-// a sit. This one is deliberately a different room in every way: sunset not
-// dawn, ice not cloud, and nothing to walk between.
-//
 // Depth note: the landscape is authored at true scale and runs to 16 km, but
 // the viewer's far plane is 2000. The exporter compresses depth radially about
 // the hero eye (see scripts/glacier_deck_export.py), which leaves the opening

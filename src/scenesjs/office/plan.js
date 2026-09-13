@@ -43,7 +43,7 @@ export const SECTIONS = [
   },
   {
     name: 'The Quiet Rooms', leaf: 0x4c7742, glow: 0x84d06a,
-    ids: ['hutong-corner', 'misty-valley', 'meditation-ledge',
+    ids: ['hutong-corner', 'misty-valley',
       'seaside-bungalow', 'glacier-deck'],
   },
   // Catch-all, always last, no id list.

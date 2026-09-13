@@ -142,7 +142,7 @@ geometry is decided at build time. Three notes that apply to all of them:
 - Scene ids are all `body-*` so the hub groups them naturally when sorted.
 - Interior scenes need a **negative** `anchorDistance` and usually a per-locus
   `anchorFrom` (the chamber centre), or the camera backs through a wall —
-  see `src/scenes/meditation-ledge.js` for the pattern this series copies.
+  see `src/scenes/body-heart.js` for the pattern this series uses.
 - Blood-cell discs are instanced from one mesh and merged by material at export
   or the glb grows without teaching anything.
 
