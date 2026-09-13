@@ -4,16 +4,25 @@
 // can talk to tuoitre.vn directly because it is not a browser. MemoryOS has no
 // helper at all — it is static files on GitHub Pages — and tuoitre.vn's RSS
 // sends no `Access-Control-Allow-Origin`, so a plain fetch from the page is
-// blocked. Hence the proxy chain below: the XML comes through a public CORS
-// proxy, and if every proxy is down the scene falls back to the snapshot in
-// world/tuoitre.json so the street is never empty.
+// blocked. Hence SOURCES below: three public relays, RACED per category, first
+// usable answer wins. If all three are down the scene falls back to the
+// snapshot in world/tuoitre.json so the street is never empty.
 //
-// Gotcha worth keeping: allorigins answers a browser on an https origin but
-// sends NO CORS header to an http one, so the live feed works on GitHub Pages
-// and never works under `npm run dev` on http://localhost — locally you always
-// get the snapshot. That is why the proxies are RACED rather than tried in
-// turn: eight categories x two proxies x a serial timeout was the best part of
-// a minute of staring at the loading text before the fallback kicked in.
+// Racing rather than trying them in turn is the whole design, and it is not
+// premature: these are free services with no uptime promise, and one of them
+// WAS already dead an hour after this was written. Serially that costs a
+// timeout per category per relay — the best part of a minute of staring at the
+// loading line. Raced, a dead relay costs nothing because a live one answers
+// first. Two gotchas behind the list:
+//
+//   - allorigins answers a browser on an https origin but sends no CORS header
+//     to an http one, so it never works under `npm run dev` on
+//     http://localhost. Locally you always get the snapshot. Not a bug.
+//   - rss2json is the sturdiest of the three (and the fastest, being cached),
+//     but it returns `pubDate: null` for tuoitre because it cannot parse their
+//     American date format — so timestamps come from the article URL instead,
+//     see `tsFromLink`. It also returns ten items per feed, which is fine
+//     while PER_CAT is seven.
 //
 // The PHOTOS need no proxy. cdn*.tuoitre.vn does send CORS headers, which
 // matters more than it sounds: a cross-origin image without them taints the
@@ -37,9 +46,22 @@ export const CATS = [
   { key: 'du-lich', label: 'Du lịch', en: 'Travel', color: '#ca6f1e' },
 ];
 
-const PROXIES = [
-  (u) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
-  (u) => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}`,
+const SOURCES = [
+  {
+    name: 'rss2json',
+    url: (u) => `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(u)}`,
+    parse: parseRss2Json,
+  },
+  {
+    name: 'allorigins',
+    url: (u) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
+    parse: parseXml,
+  },
+  {
+    name: 'codetabs',
+    url: (u) => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}`,
+    parse: parseXml,
+  },
 ];
 
 export const TZ_OFFSET = 7; // Vietnam, UTC+7
@@ -82,6 +104,25 @@ function parsePubDate(s) {
   return Math.round(utc / 1000);
 }
 
+/**
+ * tuoitre's own article ids carry the timestamp: the tail of
+ *   .../ong-obama-ra-canh-bao-ve-ai-...-100260913151015237.htm
+ * is 100 + 260913 (yymmdd) + 151015 (hhmmss) + a serial. It is the moment the
+ * article was created rather than published, so it can run an hour behind the
+ * real pubDate — close enough for "3 giờ trước" on a board, and the only
+ * timestamp available at all when the relay hands back a null pubDate.
+ */
+function tsFromLink(link) {
+  const m = /-1\d{2}(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})\d*\.htm/.exec(link || '');
+  if (!m) return 0;
+  const [, yy, mo, dd, hh, mi, ss] = m.map(Number);
+  const utc = Date.UTC(2000 + yy, mo - 1, dd, hh - TZ_OFFSET, mi, ss);
+  const now = Date.now();
+  // sanity: inside the last month and not in the future
+  if (!Number.isFinite(utc) || utc > now + 36e5 || utc < now - 40 * 864e5) return 0;
+  return Math.round(utc / 1000);
+}
+
 function hostOk(url) {
   try {
     const h = new URL(url, 'https://tuoitre.vn').hostname.toLowerCase();
@@ -98,7 +139,8 @@ export function thumb(url, w = 480) {
   return url.replace(/\/thumb_w\/\d+\//, `/thumb_w/${w}/`);
 }
 
-function parseFeed(xml, cat) {
+function parseXml(text, cat) {
+  const xml = text;
   const doc = new DOMParser().parseFromString(xml, 'text/xml');
   if (doc.querySelector('parsererror')) throw new Error('bad xml');
   const items = [];
@@ -116,14 +158,42 @@ function parseFeed(xml, cat) {
       img: thumb(img),
       desc: text('description').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').slice(0, 240),
       author: text('author').replace(/[⭐*]+$/, '').trim().slice(0, 48),
-      ts: parsePubDate(text('pubDate')),
+      ts: parsePubDate(text('pubDate')) || tsFromLink(link),
     });
     if (items.length >= PER_CAT) break;
   }
+  if (!items.length) throw new Error('no usable items');
   return { ...cat, items };
 }
 
-async function fetchText(url, ms = 9000) {
+/** rss2json's JSON shape. Same fields, different names, and no pubDate. */
+function parseRss2Json(text, cat) {
+  const data = JSON.parse(text);
+  if (data.status !== 'ok' || !Array.isArray(data.items)) {
+    throw new Error(data.message || 'rss2json said no');
+  }
+  const items = [];
+  for (const it of data.items) {
+    const link = (it.link || '').trim();
+    const title = (it.title || '').trim();
+    if (!title || !hostOk(link)) continue;
+    let img = it.enclosure?.link || it.thumbnail || '';
+    if (img && !hostOk(img)) img = '';
+    items.push({
+      t: title,
+      link,
+      img: thumb(img),
+      desc: String(it.description || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 240),
+      author: String(it.author || '').replace(/[⭐*]+$/, '').trim().slice(0, 48),
+      ts: parsePubDate(it.pubDate) || tsFromLink(link),
+    });
+    if (items.length >= PER_CAT) break;
+  }
+  if (!items.length) throw new Error('no usable items');
+  return { ...cat, items };
+}
+
+async function fetchText(url, ms = 10000) {
   const ctl = new AbortController();
   const timer = setTimeout(() => ctl.abort(), ms);
   try {
@@ -139,11 +209,11 @@ async function fetchCat(cat) {
   const feed = `https://${HOST}/rss/${cat.key}.rss`;
   try {
     return await Promise.any(
-      PROXIES.map((proxy) => fetchText(proxy(feed)).then((xml) => parseFeed(xml, cat))),
+      SOURCES.map((src) => fetchText(src.url(feed)).then((body) => src.parse(body, cat))),
     );
   } catch (err) {
-    console.warn(`tuoitre: ${cat.key} unavailable —`, err);
-    return { ...cat, items: [], error: 'every proxy refused' };
+    console.warn(`tuoitre: ${cat.key} unavailable — every relay refused`);
+    return { ...cat, items: [], error: 'every relay refused' };
   }
 }
 

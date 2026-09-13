@@ -64,16 +64,33 @@ scene config reads the same clock at import time, which is why `background`,
 
 MemoryOS is static files on GitHub Pages, with no helper process — and
 tuoitre.vn's RSS sends no `Access-Control-Allow-Origin`, so the page cannot
-fetch it directly. `feed.js` goes through a public CORS proxy, racing
-allorigins and codetabs with a 9 s timeout, eight categories in parallel
-(~8 s warm, all 8 × 50 items).
+fetch it directly. `feed.js` goes through public relays: **rss2json,
+allorigins and codetabs, raced per category**, first usable answer wins, 10 s
+timeout, eight categories in parallel.
 
-Two things learned the hard way, both worth keeping:
+Racing is the design, not an optimisation. These are free services with no
+uptime promise, and allorigins — which worked perfectly while this scene was
+being built — was dead within the hour, taking the first deploy's live feed
+with it. Tried in turn that costs a timeout per category per relay, the best
+part of a minute of staring at the loading line; raced, a dead relay costs
+nothing because a live one answers first.
 
-- **allorigins answers an https origin and refuses an http one.** So the live
-  feed works on `locvthanh.github.io` and *never* works under `npm run dev` on
-  `http://localhost` — locally you always get the snapshot. That is not a bug
-  to chase.
+Things learned the hard way, all worth keeping:
+
+- **allorigins answers an https origin and refuses an http one.** So it never
+  works under `npm run dev` on `http://localhost`. Locally you get the
+  snapshot, or whichever other relay is up. That is not a bug to chase.
+- **rss2json is the sturdiest and fastest of the three** (it caches), but it
+  returns `pubDate: null` for tuoitre — it cannot parse their American date
+  format. So when a relay gives no usable date, the timestamp is read out of
+  the article URL instead: the tail of
+  `…-100260913151015237.htm` is `100` + `260913` (yymmdd) + `151015` (hhmmss)
+  + a serial, in Vietnam time. That is the article's *creation* time and can
+  run an hour behind the real pubDate, which is close enough for "3 giờ trước"
+  on a board. See `tsFromLink`, and note it sanity-checks the result against a
+  40-day window rather than trusting the regex.
+- rss2json also returns only ten items per feed, which is fine while `PER_CAT`
+  is seven.
 - **The photos need no proxy, and must not have one.** `cdn2.tuoitre.vn` does
   send CORS headers. That matters more than it sounds: a cross-origin image
   without them taints the canvas, WebGL refuses to upload it as a texture, and
