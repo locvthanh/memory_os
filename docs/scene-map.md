@@ -12,21 +12,25 @@ problem it describes: **`the-office`, "The Back Office"** — a small office off
 Portal Island gate 5 (one of the three `xx` free slots, Phase 4 below) whose
 north wall opens onto a corridor of doors, **one per orphan**.
 
-It is generated, not drawn. `blender_models/office_scenegen/build_office.py`
-re-runs this audit mechanically on every build: it reads `src/scenes/index.js`
-for the registered scenes and every other `src/scenes/*.js` for `link:` edges,
-gives a door to every scene with no inbound edge, and lays out exactly as many
-bays as that needs. It writes the glb *and* `src/scenes/the-office.data.js`,
-which `src/scenes/the-office.js` reads — so adding a scene grows the corridor a
-bay, and wiring a scene up by hand makes its door disappear. Its own links are
-excluded from the scan, so the room can never count itself out of a job.
+It is not drawn, and as of 2026-09-13 it is not baked either: **the room
+re-runs this audit in the browser every time it is opened.** `build` in
+`src/scenesjs/office/` reads `src/scenes/index.js` for the registered scenes,
+fetches every other `src/scenes/*.js` as text and scans its `link:` edges,
+subtracts, and lays out a corridor with one door per scene that nothing points
+at — as many bays as that needs. Push a scene and walk in: the door is there.
+Wire a scene up by hand and its door is gone on the next visit. Its own links
+are excluded from the scan, so the room can never count itself out of a job.
 
-At the time of writing it built **17 doors out of 28 registered scenes, 9 bays,
-26.7 m** — the whole "fully isolated" table in §2 below, plus `lunar-base`,
-`future-city` and `tuoitre-vn`, all added after the audit. `tuoitre-vn` is the
-proof the thing works: it was committed by another session an hour after this
-room shipped, and the next build gave it door 17 in The New Wing without anyone
-deciding to.
+It was a Blender generator for its first two hours, baking the corridor into a
+glb. That version was correct and went stale twice the same afternoon, because
+a generator is a thing somebody has to remember to run — which is exactly the
+failure this room exists to stop. See `docs/the-office-scene.md`.
+
+At the time of writing it hangs **19 doors out of 30 registered scenes, 10
+bays, 29.4 m** — the whole "fully isolated" table in §2 below, plus
+`lunar-base`, `future-city`, `tuoitre-vn`, `cafef-vn` and `endless-survey`, all
+added after the audit. The last three landed in The New Wing, the catch-all, on
+their own.
 
 The doors do not open by walking into them — there is no collision in this
 viewer. Each one stands a tappable badge in front of it at handle height,
