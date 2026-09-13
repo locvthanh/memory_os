@@ -28,11 +28,12 @@ const KEY_MAP = {
 const DESKTOP_HINT = 'Drag to look &middot; WASD flies where you are looking &middot; '
   + 'Space/E up, C/Q down &middot; hold Shift to boost';
 const TOUCH_HINT = 'Drag to look &middot; joystick to fly where you are looking &middot; '
-  + '&uarr;&darr; to rise/descend &middot; hold &raquo; to boost';
+  + '&uarr;&darr; to rise/descend';
 
 // Free-fly movement layered on top of the existing OrbitControls drag-to-look.
-// Owns the on-screen joystick, up/down and boost buttons (for touch/mobile) and
-// the WASD/Space/Shift keyboard equivalent (for desktop). Every frame it
+// Owns the on-screen joystick and up/down buttons (for touch/mobile) and the
+// WASD/Space/Shift keyboard equivalent (for desktop). Boost is keyboard-only:
+// the touch screen had a `»` button for it and it earned its space back. Every frame it
 // translates the camera by the current input, then re-pins the OrbitControls
 // target in front of the (now moved) camera so dragging keeps rotating only.
 //
@@ -49,7 +50,6 @@ export class FreeMove {
     this.keys = new Set();
     this.joystick = { active: false, x: 0, y: 0, pointerId: null };
     this.vertical = 0;       // -1, 0, 1 from the up/down buttons
-    this.touchBoost = false; // from the on-screen boost button
     // Velocity is smoothed rather than applied raw: a camera that starts and
     // stops on the exact frame a key goes down reads as a jump cut, not flight.
     this.velocity = new THREE.Vector3();
@@ -84,7 +84,6 @@ export class FreeMove {
       <div class="joystick-base">
         <div class="joystick-knob"></div>
       </div>
-      <button type="button" class="fly-boost" aria-label="Boost">&raquo;</button>
       <div class="vertical-controls">
         <button type="button" data-dir="up" aria-label="Rise">&uarr;</button>
         <button type="button" data-dir="down" aria-label="Descend">&darr;</button>
@@ -143,22 +142,6 @@ export class FreeMove {
       btn.addEventListener('pointercancel', release);
       btn.addEventListener('pointerleave', release);
     });
-
-    const boostBtn = wrap.querySelector('.fly-boost');
-    this._boostBtn = boostBtn;
-    const boostOn = (e) => {
-      e.preventDefault();
-      this.touchBoost = true;
-      boostBtn.classList.add('active');
-    };
-    const boostOff = () => {
-      this.touchBoost = false;
-      boostBtn.classList.remove('active');
-    };
-    boostBtn.addEventListener('pointerdown', boostOn);
-    boostBtn.addEventListener('pointerup', boostOff);
-    boostBtn.addEventListener('pointercancel', boostOff);
-    boostBtn.addEventListener('pointerleave', boostOff);
   }
 
   show() {
@@ -172,13 +155,11 @@ export class FreeMove {
     this.dom.hidden = true;
     this.keys.clear();
     this.vertical = 0;
-    this.touchBoost = false;
     this.velocity.set(0, 0, 0);
     this.joystick.active = false;
     this.joystick.x = 0;
     this.joystick.y = 0;
     this._joystickKnob.style.transform = 'translate(0, 0)';
-    this._boostBtn.classList.remove('active');
     // Leaving fly mode mid-boost must not hand Tour Mode a widened lens.
     if (this._camera && this._baseFov !== null && this._camera.fov !== this._baseFov) {
       this._camera.fov = this._baseFov;
@@ -206,7 +187,7 @@ export class FreeMove {
     if (this.keys.has('up')) iv = 1;
     if (this.keys.has('down')) iv = -1;
 
-    const boosting = this.touchBoost || this.keys.has('boost');
+    const boosting = this.keys.has('boost');
     const speed = this.speed * (boosting ? this.boostFactor : 1);
 
     // Forward is the true look direction -- pitch included -- so aiming up
