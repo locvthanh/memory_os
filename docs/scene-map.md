@@ -21,9 +21,17 @@ which `src/scenes/the-office.js` reads — so adding a scene grows the corridor 
 bay, and wiring a scene up by hand makes its door disappear. Its own links are
 excluded from the scan, so the room can never count itself out of a job.
 
-At the time of writing it built **16 doors out of 27 registered scenes, 8 bays,
-24 m** — the whole "fully isolated" table in §2 below, plus `lunar-base` and
-`future-city`, which were added after the audit.
+At the time of writing it built **17 doors out of 28 registered scenes, 9 bays,
+26.7 m** — the whole "fully isolated" table in §2 below, plus `lunar-base`,
+`future-city` and `tuoitre-vn`, all added after the audit. `tuoitre-vn` is the
+proof the thing works: it was committed by another session an hour after this
+room shipped, and the next build gave it door 17 in The New Wing without anyone
+deciding to.
+
+The doors do not open by walking into them — there is no collision in this
+viewer. Each one stands a tappable badge in front of it at handle height,
+coloured by its wing and printing the door's own number; tapping it opens the
+locus panel with that scene's link.
 
 **This does not replace the phases below, and is not meant to.** A corridor of
 doors is an index; the point of §4 is that a scene should be reachable from the

@@ -7,7 +7,7 @@ import * as THREE from 'three';
 const LABEL_OFFSET_Y = 1.6;
 const LABEL_WORLD_SIZE = 1.1;
 
-function makeNumberSprite(number, worldSize, color) {
+function makeNumberSprite(text, worldSize, color) {
   const size = 128;
   const canvas = document.createElement('canvas');
   canvas.width = size;
@@ -26,7 +26,12 @@ function makeNumberSprite(number, worldSize, color) {
   ctx.font = 'bold 64px -apple-system, "Segoe UI", Roboto, Arial, sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillText(String(number), size / 2, size / 2 + 4);
+  const label = String(text);
+  // Two characters still fit the 128px disc at 64px; anything longer is
+  // stepped down so a door number like "13" and a stop number like "7" read
+  // at the same weight.
+  ctx.font = `bold ${label.length > 2 ? 46 : 64}px -apple-system, "Segoe UI", Roboto, Arial, sans-serif`;
+  ctx.fillText(label, size / 2, size / 2 + 4);
 
   const texture = new THREE.CanvasTexture(canvas);
   texture.colorSpace = THREE.SRGBColorSpace;
@@ -50,7 +55,15 @@ export function buildLocusLabels(loci, options = {}) {
     // subjects differ in radius by 40x, so one size fits none.
     const s = locus.labelScale ?? worldSize;
     const o = locus.labelOffsetY ?? offsetY;
-    const sprite = makeNumberSprite(i + 1, s, locus.labelColor);
+    // A locus may print something other than its tour position. the-office
+    // does: each door already has its own number painted on the wall beside the
+    // handle, and a badge floating next to it reading the tour index instead
+    // would contradict it.
+    const sprite = makeNumberSprite(locus.labelText ?? i + 1, s, locus.labelColor);
+    // Which locus this badge belongs to. NOT the child index: a scene that
+    // hides some badges (pin-factory hides ten) leaves holes, so
+    // children.indexOf() would resolve a tap to the wrong locus.
+    sprite.userData.locusIndex = i;
     if (locus.labelPosition) sprite.position.set(...locus.labelPosition);
     else sprite.position.copy(locus.position).add(new THREE.Vector3(0, o, 0));
     group.add(sprite);

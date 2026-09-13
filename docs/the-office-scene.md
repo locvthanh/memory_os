@@ -112,10 +112,25 @@ Island), **The Map** (the corkboard), **The Corridor** (the arch, looking up
 it), then one stop per door in corridor order, then **Not Yet Built** at the
 empty frame.
 
-Every door locus sets `hideLabel: true`. The door already carries its own
-painted number; a floating tour badge reading 4, 5, 6… beside it would
-contradict it — same reason `pin-factory` hides badges at its ten numbered
-stations. The four room stops keep theirs.
+## How you get through a door
+
+The doors are scenery. This viewer has no collision and no proximity triggers,
+and fly mode hides the locus panel, so flying up to a leaf does nothing on its
+own — which is the first thing anyone tries, because Room OS's doors *are*
+real and you walk through them at 0.65 m.
+
+So each door stands a **tappable badge** out in the corridor in front of it, at
+handle height, 0.62 m off the wall. Tap it — `Viewer._wireLocusPicking` works
+in fly mode as well as on the rails — and the panel opens on that door with its
+`Open door NN →` link. The badge is the handle.
+
+The badge prints the **door's** number, not the tour index, through a
+`labelText` override added to `loci.js` / `LocusLabels.js` for this: the number
+is already painted on the wall beside the handle, and a badge reading 4, 5, 6…
+next to it would contradict it (the problem `pin-factory` solves by hiding its
+badges instead). It is tinted with its wing's colour, which the generator puts
+in the data file, so badge, leaf and banner agree. The room stops keep ordinary
+numbered badges.
 
 ## Camera
 
@@ -144,6 +159,12 @@ will see, which is the check to run before shipping a rebuild.
 - **Door height drives everything above it.** At `DOOR_H = 2.45` the name plate
   was pushed into the cornice and cropped out of the walkthrough frame. 2.30 m
   leaves room for transom, plate and cornice under a 3.30 m ceiling.
+- **Badge picking was resolving to the wrong locus** in any scene that hides
+  some badges. `Viewer` read the tapped sprite's position in the label group
+  and used it as a locus index, but `buildLocusLabels` skips a `hideLabel`
+  locus, so the two lists drift apart — `pin-factory`, which hides ten of
+  sixteen, opened the wrong stop on every tap past the first hidden one. The
+  sprite now carries `userData.locusIndex` and `Viewer` reads that.
 - Built through the Blender MCP addon, so bmesh only — no
   `bpy.ops.mesh.primitive_*`. Boxes are batched into one mesh per material
   (`Batch`), which is what keeps 16 doors, a plank floor and 27 corkboard cards
@@ -171,6 +192,9 @@ will see, which is the check to run before shipping a rebuild.
   the pair rule is only half kept for the orphans themselves.
 - The wing assignment is a hand-kept table. Anything unclassified lands in The
   New Wing, which is fine, but it wants a look every few scenes.
+- Walking through a door would still be better than tapping a badge, and the
+  data file already has every door's position and target — proximity entry in
+  `FreeMove` is a small change whenever it is wanted.
 - The key cabinet's hooks and the corkboard's cards are counted from the repo
   but carry no labels. Tags with scene ids on them would make the office
   readable without walking the corridor.

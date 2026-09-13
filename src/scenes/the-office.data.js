@@ -6,31 +6,40 @@
 // no inbound edge. Re-run it after adding or wiring a scene and the corridor
 // grows or shrinks a bay; src/scenes/the-office.js reads whatever is here.
 //
-// Built 16 doors out of 27 registered scenes, in 8 bays,
-// corridor 24.0 m long.
+// Built 17 doors out of 28 registered scenes, in 9 bays,
+// corridor 26.7 m long.
 export const BUILT = {
-  scenes: 27,
-  orphans: 16,
-  bays: 8,
-  corridorLength: 24.0,
+  scenes: 28,
+  orphans: 17,
+  bays: 9,
+  corridorLength: 26.7,
 };
 
 export const WINGS = [
   {
     'name': 'The Subjects',
-    'count': 4
+    'count': 4,
+    'leaf': '#c2842f'
   },
   {
     'name': 'The Systems',
-    'count': 4
+    'count': 4,
+    'leaf': '#2c7a75'
   },
   {
     'name': 'Work & Worlds',
-    'count': 4
+    'count': 4,
+    'leaf': '#47569f'
   },
   {
     'name': 'The Quiet Rooms',
-    'count': 4
+    'count': 4,
+    'leaf': '#4c7742'
+  },
+  {
+    'name': 'The New Wing',
+    'count': 1,
+    'leaf': '#6a4a8f'
   }
 ];
 
@@ -105,7 +114,8 @@ export const LOCI = [
     'door': 1,
     'scene': 'solar-system',
     'sceneTitle': 'The Solar System',
-    'section': 'The Subjects'
+    'section': 'The Subjects',
+    'color': '#c2842f'
   },
   {
     'id': 5,
@@ -125,7 +135,8 @@ export const LOCI = [
     'door': 2,
     'scene': 'india-history',
     'sceneTitle': 'River of Time: India',
-    'section': 'The Subjects'
+    'section': 'The Subjects',
+    'color': '#c2842f'
   },
   {
     'id': 6,
@@ -145,7 +156,8 @@ export const LOCI = [
     'door': 3,
     'scene': 'nobel-hall',
     'sceneTitle': 'The Nobel Medal Hall',
-    'section': 'The Subjects'
+    'section': 'The Subjects',
+    'color': '#c2842f'
   },
   {
     'id': 7,
@@ -165,7 +177,8 @@ export const LOCI = [
     'door': 4,
     'scene': 'cfa-level-1',
     'sceneTitle': 'The CFA Financial District',
-    'section': 'The Subjects'
+    'section': 'The Subjects',
+    'color': '#c2842f'
   },
   {
     'id': 8,
@@ -185,7 +198,8 @@ export const LOCI = [
     'door': 5,
     'scene': 'macro-hydraulic-hall',
     'sceneTitle': 'The Hydraulic Hall',
-    'section': 'The Systems'
+    'section': 'The Systems',
+    'color': '#2c7a75'
   },
   {
     'id': 9,
@@ -205,7 +219,8 @@ export const LOCI = [
     'door': 6,
     'scene': 'the-stack',
     'sceneTitle': 'The Stack',
-    'section': 'The Systems'
+    'section': 'The Systems',
+    'color': '#2c7a75'
   },
   {
     'id': 10,
@@ -225,7 +240,8 @@ export const LOCI = [
     'door': 7,
     'scene': 'body-heart',
     'sceneTitle': 'The Pump House',
-    'section': 'The Systems'
+    'section': 'The Systems',
+    'color': '#2c7a75'
   },
   {
     'id': 11,
@@ -245,7 +261,8 @@ export const LOCI = [
     'door': 8,
     'scene': 'body-lungs',
     'sceneTitle': 'The Bellows Cathedral',
-    'section': 'The Systems'
+    'section': 'The Systems',
+    'color': '#2c7a75'
   },
   {
     'id': 12,
@@ -265,7 +282,8 @@ export const LOCI = [
     'door': 9,
     'scene': 'grab-workplace',
     'sceneTitle': 'The Green Court',
-    'section': 'Work & Worlds'
+    'section': 'Work & Worlds',
+    'color': '#47569f'
   },
   {
     'id': 13,
@@ -285,7 +303,8 @@ export const LOCI = [
     'door': 10,
     'scene': 'lunar-base',
     'sceneTitle': 'Lunar Base',
-    'section': 'Work & Worlds'
+    'section': 'Work & Worlds',
+    'color': '#47569f'
   },
   {
     'id': 14,
@@ -305,7 +324,8 @@ export const LOCI = [
     'door': 11,
     'scene': 'future-city',
     'sceneTitle': 'Future City',
-    'section': 'Work & Worlds'
+    'section': 'Work & Worlds',
+    'color': '#47569f'
   },
   {
     'id': 15,
@@ -325,7 +345,8 @@ export const LOCI = [
     'door': 12,
     'scene': 'sky-loft',
     'sceneTitle': 'The Sky Loft',
-    'section': 'Work & Worlds'
+    'section': 'Work & Worlds',
+    'color': '#47569f'
   },
   {
     'id': 16,
@@ -345,7 +366,8 @@ export const LOCI = [
     'door': 13,
     'scene': 'hutong-corner',
     'sceneTitle': 'Hutong Corner',
-    'section': 'The Quiet Rooms'
+    'section': 'The Quiet Rooms',
+    'color': '#4c7742'
   },
   {
     'id': 17,
@@ -365,7 +387,8 @@ export const LOCI = [
     'door': 14,
     'scene': 'misty-valley',
     'sceneTitle': 'The Misty Valley',
-    'section': 'The Quiet Rooms'
+    'section': 'The Quiet Rooms',
+    'color': '#4c7742'
   },
   {
     'id': 18,
@@ -385,7 +408,8 @@ export const LOCI = [
     'door': 15,
     'scene': 'meditation-ledge',
     'sceneTitle': 'The Ledge',
-    'section': 'The Quiet Rooms'
+    'section': 'The Quiet Rooms',
+    'color': '#4c7742'
   },
   {
     'id': 19,
@@ -405,20 +429,42 @@ export const LOCI = [
     'door': 16,
     'scene': 'glacier-deck',
     'sceneTitle': 'The Glacier Deck',
-    'section': 'The Quiet Rooms'
+    'section': 'The Quiet Rooms',
+    'color': '#4c7742'
   },
   {
     'id': 20,
-    'kind': 'end',
+    'kind': 'door',
     'position': [
-      0.0,
-      1.35,
-      -23.7
+      -2.84,
+      1.75,
+      -24.0
     ],
     'anchorFrom': [
       0.0,
       0,
-      -18.0
+      -24.0
+    ],
+    'anchorDistance': -3.3,
+    'eyeHeight': 0.15,
+    'door': 17,
+    'scene': 'tuoitre-vn',
+    'sceneTitle': 'Phố Báo Sáng',
+    'section': 'The New Wing',
+    'color': '#6a4a8f'
+  },
+  {
+    'id': 21,
+    'kind': 'end',
+    'position': [
+      0.0,
+      1.35,
+      -26.4
+    ],
+    'anchorFrom': [
+      0.0,
+      0,
+      -20.7
     ],
     'anchorDistance': -6.0,
     'eyeHeight': 0.35

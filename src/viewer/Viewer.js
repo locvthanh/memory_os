@@ -382,7 +382,11 @@ export class Viewer {
       const hit = raycaster.intersectObjects(this.locusLabels.children)[0];
 
       if (hit) {
-        const index = this.locusLabels.children.indexOf(hit.object);
+        // Read the index off the sprite rather than its position in the
+        // group: a scene that hides some badges (pin-factory, and the-office
+        // before its doors got tappable ones) has fewer sprites than loci, so
+        // children.indexOf() drifts and opens the wrong stop.
+        const index = hit.object.userData.locusIndex ?? 0;
         this.overlay.show(index, this.loci[index]); // show() unhides the panel
       } else {
         // Tap on empty scene = dismiss, in tour mode as well as free mode.

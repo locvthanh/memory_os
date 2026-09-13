@@ -52,6 +52,18 @@ export const SCENES = [
     config: () => import('./portal-island.js').then((m) => m.default),
   },
   {
+    // Wired 2026-09-13 from the orphan audit in docs/scene-map.md: every
+    // registered scene that nothing links to gets a door in here, and Portal
+    // Island's gate 5 (an `xx` placeholder) opens it. The room is generated
+    // from this very file -- see docs/the-office-scene.md -- so adding a scene
+    // above and re-running the generator grows the corridor a door.
+    id: 'the-office',
+    title: 'The Back Office',
+    blurb: 'The room where the unwired scenes are kept. A small office in the same key as Room OS \u2014 cream walls, a plank floor, ceiling panels, a desk with the register open on it, a corkboard carrying the whole map of the palace on one card per scene, filing cabinets, a whiteboard reading EVERY DOOR IS A PAIR \u2014 and a north wall that opens onto an arcade of doors, one per orphan: the scenes that sit on this hub page and that nothing else in the world points at. Door colour follows the banner overhead (THE SUBJECTS amber, THE SYSTEMS teal, WORK & WORLDS indigo, THE QUIET ROOMS green, THE NEW WING violet for anything not yet classified) and each door carries its number, the name of the room behind it, and a badge you can tap to open it. Where a wing holds an odd number the spare slot is left as blank wall: room for one more. The corridor is built one bay longer than the doors need, and it ends on a cased frame with nothing in it: NOT YET BUILT. Reached from Portal Island gate 5, and the register desk leads back.',
+    model: 'models/the-office.glb',
+    config: () => import('./the-office.js').then((m) => m.default),
+  },
+  {
     id: 'chroniclers-athenaeum',
     title: "The Chroniclers' Athenaeum",
     blurb: 'A great library: a nave of book stacks under a domed reading room, with an alchemist’s lab, a manuscript vault, a glass herbarium and a star observatory off its wings. The Statue of Liberty standing mid-nave is a door through to the White House. Thirteen loci.',

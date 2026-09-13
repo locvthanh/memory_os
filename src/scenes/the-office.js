@@ -27,11 +27,18 @@
 // opposite side and faces the leaf square on. All of that is computed by the
 // generator and carried in the data file.
 //
-// The door loci set `hideLabel: true`. Every door already carries its own
-// painted number beside the handle; a floating tour badge reading 4, 5, 6…
-// next to it would contradict it — the same reason pin-factory hides badges at
-// its ten numbered stations. The three room stops and the closing stop keep
-// theirs.
+// HOW YOU GET THROUGH A DOOR. The doors are scenery — this viewer has no
+// collision and no proximity triggers, and in fly mode the locus panel is
+// hidden, so flying up to a leaf does nothing on its own. Each door therefore
+// stands a tappable badge out in the corridor in front of it: tap it (the
+// picking in Viewer._wireLocusPicking works in fly mode too) and the panel
+// opens on that door with its `Open door NN →` link in it.
+//
+// The badge prints the DOOR's number, not the tour index, via `labelText` —
+// the number is already painted on the wall beside the handle and a badge
+// reading 4, 5, 6… next to it would contradict it. It is tinted with its
+// wing's colour, so badge, leaf and banner agree. The three room stops and the
+// closing stop keep ordinary numbered badges.
 import { BUILT, LOCI, WINGS } from './the-office.data.js';
 import { getScene } from './index.js';
 
@@ -105,7 +112,8 @@ const ROOM_TEXT = {
       `${BUILT.orphans} doors in ${BUILT.bays} bays under banners that name the wings: ${wingLine}. ` +
       'Door colour follows the banner, so a door tells you what kind of room it opens before you read its name. ' +
       'Where a wing holds an odd number, the spare slot is left as blank wall: room for one more of that kind. ' +
-      'The runner ends at a frame with nothing in it.',
+      'The doors do not open by walking into them — tap the coloured badge standing in front of one, here or in fly mode, ' +
+      'and this panel comes back with that door\u2019s scene in it. The runner ends at a frame with nothing in it.',
   },
   end: {
     title: 'Not Yet Built',
@@ -144,6 +152,11 @@ export default {
     };
     if (l.kind === 'door') {
       const n = String(l.door).padStart(2, '0');
+      // Stand the badge 0.62 m off the wall, into the corridor, and a little
+      // BELOW the aim point -- roughly handle height. Above it, the badge
+      // covers the transom light and crowds the name plate, which are the two
+      // things that tell you what the door is before you tap it.
+      const side = Math.sign(l.position[0]) || 1;
       return {
         ...base,
         title: `Door ${n} — ${l.sceneTitle}`,
@@ -151,7 +164,9 @@ export default {
           `${l.section}. ` +
           (NOTES[l.scene] || trim(getScene(l.scene)?.blurb) ||
             'A registered scene that nothing else in the palace points at.'),
-        hideLabel: true,
+        labelText: n,
+        labelColor: l.color,
+        labelPosition: [l.position[0] - side * 0.62, l.position[1] - 0.30, l.position[2]],
         link: l.scene,
         linkLabel: `Open door ${n} →`,
       };

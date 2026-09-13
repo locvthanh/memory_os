@@ -48,6 +48,10 @@ export function buildLoci(gltfScene, config) {
         // tints it with the event's year colour (labelColor, any CSS colour).
         labelPosition: cfg.labelPosition ?? null,
         labelColor: cfg.labelColor ?? null,
+        // What the badge prints, if not the tour position. the-office puts
+        // each door's own number here so the badge and the number painted on
+        // the wall beside it agree.
+        labelText: cfg.labelText ?? null,
         // pin-factory's ten station stops already carry their own numbers
         // (Smith's step 1..10, on the sign board and the bench disc); a tour
         // badge reading 3..12 beside them would contradict them, so those
