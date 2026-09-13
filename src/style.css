@@ -820,3 +820,184 @@ button {
     bottom: 30px;
   }
 }
+
+
+/* ------------------------------------------------------------------ */
+/* cafef-vn (Sàn Bảng Điện) — src/scenesjs/cafef/hud.js.               */
+/* Same contract as .tt-* and .ex-* above: the scene has no loci, so   */
+/* there is no transport bar and no locus panel, and the only chrome   */
+/* is a crosshair plus whatever screen is under it. One addition the   */
+/* street did not need — a quote strip top right, because the board is */
+/* fifty metres behind you the moment you turn to read a bay. Sits     */
+/* clear of the free-move joystick (left) and rise/descend (right).    */
+/* ------------------------------------------------------------------ */
+
+.cf-hud {
+  position: fixed;
+  inset: 0;
+  z-index: 12;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.cf-masthead {
+  position: absolute;
+  top: 42px;
+  left: 16px;
+  max-width: min(52vw, 360px);
+  color: #fff;
+  font-size: 13px;
+  line-height: 1.5;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+}
+.cf-masthead b {
+  display: block;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+}
+.cf-chip {
+  opacity: 0.78;
+  font-size: 12px;
+}
+.cf-chip.cf-stale {
+  color: #ffce7a;
+  opacity: 1;
+}
+
+.cf-quotes {
+  position: absolute;
+  top: 42px;
+  right: 16px;
+  min-width: 168px;
+  padding: 9px 11px 8px;
+  border-radius: 10px;
+  background: rgba(10, 13, 18, 0.74);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.4);
+  font-variant-numeric: tabular-nums;
+}
+.cf-quotes[hidden] {
+  display: none;
+}
+.cf-quote {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  line-height: 1.62;
+}
+.cf-q-name {
+  flex: 1 1 auto;
+  color: rgba(226, 232, 240, 0.62);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+.cf-q-val {
+  font-size: 13px;
+  font-weight: 700;
+}
+.cf-q-chg {
+  min-width: 54px;
+  text-align: right;
+  font-size: 12px;
+  font-weight: 600;
+}
+.cf-q-note {
+  margin-top: 5px;
+  color: rgba(226, 232, 240, 0.38);
+  font-size: 10.5px;
+  letter-spacing: 0.03em;
+}
+
+.cf-reticle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  margin: -3.5px 0 0 -3.5px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 0 1.5px rgba(0, 0, 0, 0.45);
+  transition: transform 0.12s ease, background 0.12s ease;
+}
+.cf-hud.cf-aimed .cf-reticle {
+  transform: scale(1.85);
+  background: #7fd6ff;
+}
+
+.cf-read {
+  position: absolute;
+  left: 50%;
+  bottom: 190px;
+  transform: translateX(-50%);
+  width: min(560px, calc(100vw - 32px));
+  box-sizing: border-box;
+  padding: 14px 16px 12px;
+  border-radius: 12px;
+  background: rgba(12, 16, 22, 0.86);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #eef3f8;
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.46);
+}
+.cf-read[hidden] {
+  display: none;
+}
+.cf-sec {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.cf-read h3 {
+  margin: 8px 0 0;
+  font-size: 17px;
+  line-height: 1.32;
+  font-weight: 650;
+}
+.cf-read p {
+  margin: 7px 0 0;
+  font-size: 13px;
+  line-height: 1.45;
+  opacity: 0.7;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.cf-read p[hidden] {
+  display: none;
+}
+.cf-open {
+  display: block;
+  margin-top: 10px;
+  font-size: 11.5px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #7fd6ff;
+}
+
+@media (max-width: 620px) {
+  .cf-quotes {
+    top: 38px;
+    right: 12px;
+    min-width: 132px;
+    padding: 7px 9px 6px;
+  }
+  .cf-q-name { font-size: 10px; }
+  .cf-q-val { font-size: 12px; }
+  .cf-q-chg { font-size: 11px; min-width: 46px; }
+}
+
+@media (min-width: 900px) {
+  .cf-read {
+    bottom: 30px;
+  }
+}

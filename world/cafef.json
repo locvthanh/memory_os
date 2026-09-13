@@ -1,0 +1,716 @@
+{
+ "version": 1,
+ "site": "cafef.vn",
+ "title": "CafeF",
+ "built": 1789292157,
+ "total": 56,
+ "cats": [
+  {
+   "key": "thi-truong-chung-khoan",
+   "label": "Chứng khoán",
+   "items": [
+    {
+     "t": "Góc nhìn chuyên gia: Xác suất FED tăng lãi suất lên cao, chứng khoán sẽ phản ứng ra sao?",
+     "link": "https://cafef.vn/goc-nhin-chuyen-gia-xac-suat-fed-tang-lai-suat-len-cao-chung-khoan-se-phan-ung-ra-sao-188260913160231773.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/anh-1-1789290091942528926569-0-0-1250-2000-crop-1789290094089546943755.jpg",
+     "desc": "Các chuyên gia khuyến nghị nhà đầu tư nên duy trì trạng thái thận trọng và chờ những tín hiệu xác nhận rõ hơn về xu hướng trước khi đưa ra quyết định.",
+     "ts": 1789290300
+    },
+    {
+     "t": "Lý do phiên đấu giá 79 triệu cổ phiếu Seaprodex gây chú ý",
+     "link": "https://cafef.vn/ly-do-phien-dau-gia-79-trieu-co-phieu-seaprodex-gay-chu-y-188260913153333054.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789288364702-1789288365075609436885.webp",
+     "desc": "SCIC sẽ đấu giá trọn lô 79 triệu cổ phiếu SEA của Tổng Công ty Thủy sản Việt Nam với giá khởi điểm hơn 8.509 tỷ đồng. Trong khi đó, tổng tài sản của Seaprodex đến ngày 30/6 chỉ 2.905 tỷ đồng, tức định giá đấu giá cao gấp khoảng 4,6 lần quy ",
+     "ts": 1789288380
+    },
+    {
+     "t": "UBCKNN xử phạt loạt doanh nghiệp",
+     "link": "https://cafef.vn/ubcknn-xu-phat-loat-doanh-nghiep-188260913135037459.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789282205249-1789282205809383931637.png",
+     "desc": "UBCKNN mới đây đã ban hành quyết định xử phạt loạt doanh nghiệp do vi phạm hành chính trong lĩnh vực chứng khoán và thị trường chứng khoán.",
+     "ts": 1789282200
+    },
+    {
+     "t": "Chuyện gì đây: Một công ty chứng khoán bất ngờ huỷ phương án phát hành riêng lẻ chỉ sau hơn 1 tháng công bố",
+     "link": "https://cafef.vn/chuyen-gi-day-mot-cong-ty-chung-khoan-bat-ngo-huy-phuong-an-phat-hanh-rieng-le-chi-sau-hon-1-thang-cong-bo-188260913134403888.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1784698057088-1784698057424830702208-17892816006041455841376-0-14-336-552-crop-17892816072032124089870.png",
+     "desc": "Thị giá cổ phiếu đã giảm tới 55% sau 6 tháng.",
+     "ts": 1789281960
+    },
+    {
+     "t": "EEMC công bố thông tin về ông Đặng Phan Tường",
+     "link": "https://cafef.vn/eemc-cong-bo-thong-tin-ve-ong-dang-phan-tuong-188260913103017077.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789270176659-17892701772201439262003.jpeg",
+     "desc": "Tổng công ty Thiết bị điện Đông Anh – Công ty cổ phần (EEMC) vừa công bố thông tin liên quan đến ông Đặng Phan Tường, thành viên Hội đồng quản trị Công ty.",
+     "ts": 1789270200
+    },
+    {
+     "t": "Chứng khoán tuần qua: VN-Index mất 58 điểm, áp lực bán phủ bóng thị trường",
+     "link": "https://cafef.vn/chung-khoan-tuan-qua-vn-index-mat-58-diem-ap-luc-ban-phu-bong-thi-truong-188260913084852777.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789264079747-17892640799321338750243.jpg",
+     "desc": "Áp lực xả hàng ồ ạt dịp cuối tuần đã đẩy VN-Index bốc hơi gần 58 điểm, chính thức xuyên thủng mốc tâm lý 1.800 điểm. Thanh khoản sụt giảm cùng đà bán ròng quyết liệt từ khối ngoại đang đặt thị trường vào thế rủi ro cao.",
+     "ts": 1789265880
+    },
+    {
+     "t": "FPTS muốn vay 2.300 tỷ đồng tại ACB",
+     "link": "https://cafef.vn/fpts-muon-vay-2300-ty-dong-tai-acb-188260913084719091.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789263997251-1789263997427888749216.png",
+     "desc": "HĐQT FPTS đã thông qua tổng hạn mức vay vốn ngắn hạn 2.300 tỷ đồng tại ACB nhằm mục đích đầu tư trái phiếu, bổ sung vốn lưu động,...",
+     "ts": 1789264020
+    }
+   ]
+  },
+  {
+   "key": "doanh-nghiep",
+   "label": "Doanh nghiệp",
+   "items": [
+    {
+     "t": "Tỷ phú Nguyễn Thị Phương Thảo bắt tay tập đoàn công nghệ Pháp doanh thu hơn 22 tỷ euro",
+     "link": "https://cafef.vn/ty-phu-nguyen-thi-phuong-thao-bat-tay-tap-doan-cong-nghe-phap-doanh-thu-hon-22-ty-euro-18826091312592095.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/photo1667549577221-1667549577306960549079-17892790174481273901917.webp",
+     "desc": "Vietjet đang mở rộng từ vận tải hành khách sang bảo dưỡng, kỹ thuật và AI, với trung tâm gần 100 triệu USD tại Long Thành và hợp tác mới cùng Thales.",
+     "ts": 1789291260
+    },
+    {
+     "t": "Hơn 190 người nhập viện nghi ngộ độc tập thể, Công ty Scavi Huế nói gì?",
+     "link": "https://cafef.vn/hon-190-nguoi-nhap-vien-nghi-ngo-doc-tap-the-cong-ty-scavi-hue-noi-gi-188260913135815987.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789282593654-178928259440715950644.jpg",
+     "desc": "Công ty Scavi Huế phát đi thông cáo báo chí để thông tin về một số vấn đề liên quan đến vụ nghi ngộ độc tập thể hơn 190 người phải nhập viện.",
+     "ts": 1789285380
+    },
+    {
+     "t": "Con gái Chủ tịch Cao Thị Ngọc Dung đã bán thành công 7 triệu cổ phiếu PNJ",
+     "link": "https://cafef.vn/con-gai-chu-tich-cao-thi-ngoc-dung-da-ban-thanh-cong-7-trieu-co-phieu-pnj-188260913124753252.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789278434594-17892784348931862454122.png",
+     "desc": "Bà Trần Phương Ngọc Thảo- Phó Chủ tịch HĐQT PNJ, đồng thời là con gái của Chủ tịch Cao Thị Ngọc Dung đã bán thành công 7 triệu cổ phiếu như đăng ký, thu về 259 tỷ đồng.",
+     "ts": 1789278420
+    },
+    {
+     "t": "Khởi tố Cựu Chủ tịch Tổng công ty Truyền tải điện Quốc gia Đặng Phan Tường",
+     "link": "https://cafef.vn/khoi-to-cuu-chu-tich-tong-cong-ty-truyen-tai-dien-quoc-gia-dang-phan-tuong-188260913121641759.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/tuong-17892764279911843620836-0-0-500-800-crop-1789276433159703225379.jpg",
+     "desc": "Ông Đặng Phan Tường, cựu Chủ tịch HĐTV Tổng công ty Truyền tải điện Quốc gia (EVNNPT), vừa bị khởi tố trong vụ án xảy ra tại EVNNPT, Tập đoàn PC1 và các doanh nghiệp liên quan.",
+     "ts": 1789276500
+    },
+    {
+     "t": "Tổng Bí thư, Chủ tịch nước Tô Lâm chứng kiến Tổng Công ty của Bộ Công an hợp tác tập đoàn Pháp phát triển công nghệ cao",
+     "link": "https://cafef.vn/tong-bi-thu-chu-tich-nuoc-to-lam-chung-kien-tong-cong-ty-cua-bo-cong-an-hop-tac-tap-doan-phap-phat-trien-cong-nghe-cao-188260913113246335.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789273896683-1789273897495504149363.jpg",
+     "desc": "Tập đoàn Thales đã hiện diện tại Việt Nam từ năm 1994, trong các lĩnh vực quản lý bay hàng không; viễn thông và an ninh mạng.",
+     "ts": 1789273928
+    },
+    {
+     "t": "Một 'ông lớn' Hàn Quốc kiếm nghìn tỷ tại Việt Nam: Thành công đến mức mang đi làm mẫu cho Thái Lan, Indonesia",
+     "link": "https://cafef.vn/mot-ong-lon-han-quoc-kiem-nghin-ty-tai-viet-nam-thanh-cong-den-muc-mang-di-lam-mau-cho-thai-lan-indonesia-188260913094202361.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/chatgpt-image-09-41-04-13-thg-9-2026-17892672799371807308053-0-0-991-1586-crop-1789267286401801989806.png",
+     "desc": "Sau nhiều năm Hàn Quốc giữ vị trí thị trường lớn nhất, bản đồ doanh thu của Lock&Lock đang đảo chiều. Nửa đầu năm 2026, Đông Nam Á lần đầu vượt cả Hàn Quốc và Trung Quốc. Đáng chú ý, Lock&Lock cho biết mô hình bán hàng đã thành công tại Việ",
+     "ts": 1789267260
+    },
+    {
+     "t": "Sun Group đóng cửa Công viên Rồng: Miền Bắc mất tàu lượn lộn 6 vòng, lao xuống từ \"tòa nhà 15 tầng\" nhưng còn tàu lượn giật ngược đầu tiên Đông Nam Á của Vingroup",
+     "link": "https://cafef.vn/sun-group-dong-cua-cong-vien-rong-mien-bac-mat-tau-luon-lon-6-vong-lao-xuong-tu-toa-nha-15-tang-nhung-con-tau-luon-giat-nguoc-dau-tien-dong-nam-a-cua-vingroup-188260913090419911.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/29901978217648979438493876234631365833722424n-17892647657741406730554-64-0-1058-1591-crop-1789264772472291550919-0-0-994-1590-crop-17892649073421066542679.jpg",
+     "desc": "Sau gần 10 năm hoạt động, Công viên Rồng tại Sun World Hạ Long sẽ đóng cửa từ ngày 14/9. Miền Bắc không thiếu khu vui chơi có tàu lượn, nhưng để tìm một hệ thống đạt tốc độ hơn 100 km/h, cao tương đương tòa nhà 15 tầng và lộn ngược người ch",
+     "ts": 1789265040
+    }
+   ]
+  },
+  {
+   "key": "tai-chinh-ngan-hang",
+   "label": "Tài chính · Ngân hàng",
+   "items": [
+    {
+     "t": "Thống đốc Phạm Đức Ấn cập nhật số liệu tăng trưởng tín dụng mới nhất",
+     "link": "https://cafef.vn/thong-doc-pham-duc-an-cap-nhat-so-lieu-tang-truong-tin-dung-moi-nhat-188260913155049047.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789289328952-1789289330681217813695.jpg",
+     "desc": "Thống đốc Phạm Đức Ấn cho biết, trong 8 tháng đầu năm 2026, NHNN đã nỗ lực triển khai quyết liệt, đồng bộ nhiều giải pháp đảm bảo ổn định thị trường tiền tệ, vừa góp phần quan trọng ổn định kinh tế vĩ mô, kiểm soát lạm phát, vừa hỗ trợ tăng",
+     "ts": 1789289340
+    },
+    {
+     "t": "Giá vàng miếng, vàng nhẫn trơn chiều 13/9 tại SJC, DOJI, PNJ, Bảo Tín Minh Châu và Bảo Tín Mạnh Hải",
+     "link": "https://cafef.vn/gia-vang-mieng-vang-nhan-tron-chieu-13-9-tai-sjc-doji-pnj-bao-tin-minh-chau-va-bao-tin-manh-hai-18826091223583934.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/12/ed4597f35d9c4e2096ec4d67c1feef88-114087-17892321522901666998145-0-0-1280-2048-crop-17892322795441016541893.jpg",
+     "desc": "Giá bán ra vàng miếng trên thị trường hiện nay dao động trong khoảng 145,0 - 146,0 triệu đồng/lượng.",
+     "ts": 1789284180
+    },
+    {
+     "t": "Tiến sĩ AI người Việt SN 1992 rời \"ông lớn\" công nghệ Mỹ, về làm Giám đốc trẻ nhất trong dàn lãnh đạo ngân hàng Top Việt Nam",
+     "link": "https://cafef.vn/tien-si-ai-nguoi-viet-sn-1992-roi-ong-lon-cong-nghe-my-ve-lam-giam-doc-tre-nhat-trong-dan-lanh-dao-ngan-hang-top-viet-nam-188260913131452776.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/tai-xuong-45-17892800332521518896810-268-0-1121-1365-crop-17892805709532124465115.png",
+     "desc": "Sự tham gia của Phạm Hy Hiếu tại Techcombank diễn ra khi nhà băng này đang xem AI là trọng tâm chiến lược trong thời gian tới.",
+     "ts": 1789283640
+    },
+    {
+     "t": "Ngân hàng đồng hành thúc đẩy năng lực tính toán lượng tử tầm vóc quốc tế",
+     "link": "https://cafef.vn/ngan-hang-dong-hanh-thuc-day-nang-luc-tinh-toan-luong-tu-tam-voc-quoc-te-188260913095735603.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/photo1789219560453-17892195635651020402999-17892682597502002059708.jpg",
+     "desc": "Quandela và Quanova ký kết hợp tác chiến lược nhằm phát triển năng lực tính toán lượng tử tại Việt Nam. Thỏa thuận dựa trên nền tảng nhiều hoạt động đã được triển khai giữa hai đơn vị này với Nam A Bank và Trường Đại học Quang Trung.",
+     "ts": 1789281000
+    },
+    {
+     "t": "8 cổ phiếu ngân hàng vào rổ chỉ số mới nổi của FTSE, mã nào được dự báo hút vốn ngoại nhiều nhất?",
+     "link": "https://cafef.vn/8-co-phieu-ngan-hang-vao-ro-chi-so-moi-noi-cua-ftse-ma-nao-duoc-du-bao-hut-von-ngoai-nhieu-nhat-188260913122859736.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789277277587-1789277278574847682208-0-71-630-1079-crop-1789277309586472328360.jpg",
+     "desc": "MBS dự báo những cổ phiếu này sẽ thu hút dòng vốn 308 triệu USD.",
+     "ts": 1789277280
+    },
+    {
+     "t": "Từ 1/11, việc chia sẻ thông tin tín dụng của khách hàng phải đáp ứng điều kiện gì?",
+     "link": "https://cafef.vn/tu-1-11-viec-chia-se-thong-tin-tin-dung-cua-khach-hang-phai-dap-ung-dieu-kien-gi-188260913071939365.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789258717746-17892587180421937937370.png",
+     "desc": "Thông tư 46/2026/TT-NHNN bổ sung, sửa đổi một số quy định về cung cấp và khai thác thông tin tín dụng, trong đó làm rõ trường hợp phải có sự đồng ý của khách hàng vay, cách thức thể hiện sự đồng ý và bổ sung quy định đối với ngân hàng thành",
+     "ts": 1789269480
+    },
+    {
+     "t": "Loạt dự án lớn tại Hà Nội được Agribank, Vietcombank, BIDV, VietinBank, MB, MSB, TPBank, NCB rót vốn",
+     "link": "https://cafef.vn/loat-du-an-lon-tai-ha-noi-duoc-agribank-vietcombank-bidv-vietinbank-mb-msb-tpbank-ncb-rot-von-188260913101442481.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789269123896-1789269125243614064635.jpg",
+     "desc": "Tại Hội nghị “Giải pháp khơi thông nguồn lực tài chính - ngân hàng phục vụ tăng trưởng kinh tế Thủ đô giai đoạn 2026-2030”, loạt ngân hàng đã ký kết thỏa thuận hợp tác, cam kết thu xếp và tài trợ vốn cho các dự án trọng điểm của Hà Nội, từ ",
+     "ts": 1789269120
+    }
+   ]
+  },
+  {
+   "key": "bat-dong-san",
+   "label": "Bất động sản",
+   "items": [
+    {
+     "t": "Đề xuất tuyến đường cao tốc 4 làn xe dài 136km gần 2 tỷ USD đi qua nơi được ví như “Đà Lạt thứ 2”",
+     "link": "https://cafef.vn/de-xuat-tuyen-duong-cao-toc-4-lan-xe-dai-136km-gan-2-ty-usd-di-qua-noi-duoc-vi-nhu-da-lat-thu-2-188260913131125362.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/cam-nang-du-lich-mang-den-01-1724981690-1789279723869613308931-0-0-497-795-crop-17892797297011077566869.jpg",
+     "desc": "Cao tốc Quảng Ngãi - Đăk Hà được đề xuất đầu tư với quy mô 4 làn xe, dài 136km kết nối cao tốc Bắc - Nam phía Đông với cao tốc Bắc - Nam phía Tây, tổng mức đầu tư hơn 52.000 tỷ đồng.",
+     "ts": 1789290000
+    },
+    {
+     "t": "Sắp mở bán hơn 400 căn nhà ở xã hội giá từ 23 triệu đồng/m2 nằm trong đại dự án “sống còn” 8 tỷ USD của Novaland",
+     "link": "https://cafef.vn/sap-mo-ban-hon-400-can-nha-o-xa-hoi-gia-tu-23-trieu-dong-m2-nam-trong-dai-du-an-song-con-8-ty-usd-cua-novaland-188260913151536541.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/2-1757088522077686867500-1757117053241-1757117053652583555208-17892870596201260526214.jpeg",
+     "desc": "418 căn hộ thuộc dự án nhà ở xã hội tại Aqua City dự kiến tiếp nhận hồ sơ đăng ký trong quý IV/2026, với giá bán tạm tính 23-25 triệu đồng/m2.",
+     "ts": 1789289940
+    },
+    {
+     "t": "Tuyến đường sắt 5 tỷ USD nối thành phố giàu nhất Việt Nam với siêu sân bay 16 tỷ USD được thúc tiến độ: DN của tỷ phú Trần Bá Dương khẩn trương rà soát quỹ đất thanh toán",
+     "link": "https://cafef.vn/tuyen-duong-sat-5-ty-usd-noi-thanh-pho-giau-nhat-viet-nam-voi-sieu-san-bay-16-ty-usd-duoc-thuc-tien-do-dn-cua-ty-phu-tran-ba-duong-khan-truong-ra-soat-quy-dat-thanh-toan-188260913160321425.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789289862541-17892898631671120606578.png",
+     "desc": "UBND TPHCM giao Sở Nông nghiệp và Môi trường khẩn trương phối hợp với Công ty Cổ phần đầu tư địa ốc Đại Quang Minh rà soát, tham mưu danh mục quỹ đất dự kiến thanh toán theo hợp đồng BT, báo cáo thành phố trước ngày 13/9.",
+     "ts": 1789289880
+    },
+    {
+     "t": "TP.HCM quyết định thu hồi khu đất hơn 145ha tại phường Bình Dương",
+     "link": "https://cafef.vn/tphcm-quyet-dinh-thu-hoi-khu-dat-hon-145ha-tai-phuong-binh-duong-188260913121340994.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789276375512-17892763758271084492739.jpg",
+     "desc": "UBND TP.HCM vừa quyết định thu hồi khu đất hơn 145ha tại phường Bình Dương của Tổng Công ty Sản xuất - Xuất nhập khẩu Bình Dương để thi hành bản án phúc thẩm.",
+     "ts": 1789288740
+    },
+    {
+     "t": "Tỷ phú Phạm Nhật Vượng đang cho xây dựng “kỳ quan giải trí” 225ha, mang vẻ đẹp của vùng đất “Thiên hạ đệ nhất hùng quan” tại chân đèo đẹp nhất Việt Nam",
+     "link": "https://cafef.vn/ty-phu-pham-nhat-vuong-dang-cho-xay-dung-ky-quan-giai-tri-225ha-mang-ve-dep-cua-vung-dat-thien-ha-de-nhat-hung-quan-tai-chan-deo-dep-nhat-viet-nam-188260913133804296.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/a1-11-1789008919179-17892813313291523844854-0-136-765-1360-crop-17892813377531921678234.jpg",
+     "desc": "Tại Vinhomes Hải Vân Bay, quy mô 225ha cùng hệ trải nghiệm vận động, khám phá, giải trí gia đình của VinWonders và Công viên Rừng Hải Vân là điểm nhấn của dự án.",
+     "ts": 1789287480
+    },
+    {
+     "t": "Cây cầu dài 6,3km quy mô 8 làn xe sở hữu dây văng tĩnh không cao bậc nhất Việt Nam kết nối với siêu dự án 16 tỷ USD",
+     "link": "https://cafef.vn/cay-cau-dai-63km-quy-mo-8-lan-xe-so-huu-day-vang-tinh-khong-cao-bac-nhat-viet-nam-ket-noi-voi-sieu-du-an-16-ty-usd-18826091314280457.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/cau-phu-my-2-11-8376-8844-17892844087341675295924-0-0-755-1208-crop-17892844148141100818472.jpg",
+     "desc": "Dự án cầu Phú Mỹ 2 kết nối TPHCM với Đồng Nai có chiều dài 6,3km quy mô 8 làn xe, dây văn tĩnh không cao 55m.",
+     "ts": 1789286340
+    },
+    {
+     "t": "Tuyến metro gần 4 tỷ USD, dài hơn 54 km kết nối Bến Thành - Cần Giờ của tỷ phú Phạm Nhật Vượng có diễn biến mới",
+     "link": "https://cafef.vn/tuyen-metro-gan-4-ty-usd-dai-hon-54-km-ket-noi-ben-thanh-can-gio-cua-ty-phu-pham-nhat-vuong-co-dien-bien-moi-188260913114221727.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789274480322-178927448288314570156.jpg",
+     "desc": "TP.HCM vừa phân bổ 88 căn hộ và nền đất để bố trí tái định cư cho các hộ dân bị ảnh hưởng bởi dự án đường sắt Bến Thành - Cần Giờ.",
+     "ts": 1789277280
+    }
+   ]
+  },
+  {
+   "key": "vi-mo-dau-tu",
+   "label": "Vĩ mô · Đầu tư",
+   "items": [
+    {
+     "t": "Hà Nội dự kiến thêm 5 cầu vượt sông trên Trục đại lộ cảnh quan sông Hồng",
+     "link": "https://cafef.vn/ha-noi-du-kien-them-5-cau-vuot-song-tren-truc-dai-lo-canh-quan-song-hong-188260913153046406.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789288215360-17892882157011655494315.webp",
+     "desc": "Hà Nội dự kiến quy hoạch thêm 5 cầu vượt sông Hồng trên Trục đại lộ cảnh quan, giai đoạn 2026-2038, gồm Liên Trung, Tàm Xá, Cự Khối, Bát Tràng và Khuyến Lương.",
+     "ts": 1789292100
+    },
+    {
+     "t": "Dự án trục đại lộ cảnh quan sông Hồng qua góc nhìn quốc tế: Định hình một Hà Nội mới",
+     "link": "https://cafef.vn/du-an-truc-dai-lo-canh-quan-song-hong-qua-goc-nhin-quoc-te-dinh-hinh-mot-ha-noi-moi-188260913143302455.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789284759272-17892847596241773614955.jpg",
+     "desc": "Trong con mắt của các chuyên gia và truyền thông quốc tế, dự án phát triển không gian sông Hồng của Hà Nội được nhìn nhận là một nỗ lực tái cấu trúc đô thị quy mô lớn, mở ra nhiều tiềm năng và hứa hẹn tạo động lực tăng trưởng dài hạn cho Th",
+     "ts": 1789290000
+    },
+    {
+     "t": "Việt Nam vừa công bố một kỷ lục chưa từng xuất hiện",
+     "link": "https://cafef.vn/viet-nam-vua-cong-bo-mot-ky-luc-chua-tung-xuat-hien-188260913152910146.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789288116959-17892881175011555471829.jpg",
+     "desc": "Đây là một thông tin đáng chú ý!",
+     "ts": 1789289100
+    },
+    {
+     "t": "Bộ Nội vụ: Xem xét tiền lương, phụ cấp lãnh đạo cấp xã theo phân loại hành chính",
+     "link": "https://cafef.vn/bo-noi-vu-xem-xet-tien-luong-phu-cap-lanh-dao-cap-xa-theo-phan-loai-hanh-chinh-188260913140948735.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789283360719-17892833611771475320097.jpg",
+     "desc": "Bộ Nội vụ sẽ xem xét các nội dung tiền lương, phụ cấp chức danh lãnh đạo cấp xã theo phân loại đơn vị hành chính trong quá trình hoàn thiện chính sách tiền lương.",
+     "ts": 1789287600
+    },
+    {
+     "t": "Quy định về tham gia BHXH bắt buộc đối với chủ hộ kinh doanh",
+     "link": "https://cafef.vn/quy-dinh-ve-tham-gia-bhxh-bat-buoc-doi-voi-chu-ho-kinh-doanh-188260913134346079.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789281796234-17892817965421264779540.png",
+     "desc": "Từ ngày 01/01/2026, không phải tất cả chủ hộ kinh doanh đều phải tham gia bảo hiểm xã hội bắt buộc. Việc xác định chủ hộ kinh doanh thuộc diện tham gia BHXH bắt buộc được căn cứ vào thời điểm và mức doanh thu kê khai của hộ kinh doanh.",
+     "ts": 1789285620
+    },
+    {
+     "t": "Hạ tầng liên vùng mở thêm không gian cho tăng trưởng",
+     "link": "https://cafef.vn/ha-tang-lien-vung-mo-them-khong-gian-cho-tang-truong-18826091313353959.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789281310190-17892813105051171834445.jpg",
+     "desc": "Quốc hội mới đây đã thông qua chủ trương đầu tư Vành đai 5 – Vùng Thủ đô Hà Nội. Đặt trong mạng lưới vành đai, cao tốc, đường sắt và cảng biển đang được đầu tư, dự án có thể mở rộng không gian công nghiệp, logistics, đô thị và tạo thêm dư đ",
+     "ts": 1789283400
+    },
+    {
+     "t": "Vì sao hầm chui nào ở TP.HCM cũng từng 'ít nhất một lần' chìm trong biển nước?",
+     "link": "https://cafef.vn/vi-sao-ham-chui-nao-o-tphcm-cung-tung-it-nhat-mot-lan-chim-trong-bien-nuoc-188260913105449433.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789271655153-1789271656350684478464.jpg",
+     "desc": "Hầm HC1-02 thuộc nút giao An Phú ngập sâu sau trận mưa tối 10/9, được cho là bơm thoát nước không đáp ứng, đây cũng là nguyên nhân nhiều hầm chui ở TP.HCM từng gặp.",
+     "ts": 1789281660
+    }
+   ]
+  },
+  {
+   "key": "tai-chinh-quoc-te",
+   "label": "Tài chính quốc tế",
+   "items": [
+    {
+     "t": "Lầu Năm Góc vướng nghi vấn ép phi công được giải cứu ở Iran lên truyền hình",
+     "link": "https://cafef.vn/lau-nam-goc-vuong-nghi-van-ep-phi-cong-duoc-giai-cuu-o-iran-len-truyen-hinh-188260913150646483.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789286771071-17892867715401329391861.webp",
+     "desc": "Bộ trưởng Chiến tranh Mỹ Pete Hegseth cùng một số quan chức Lầu Năm Góc đã vận động 2 thành viên tổ bay của chiếc F-15 bị Iran bắn hạ hồi tháng 4 tham gia chương trình truyền hình của đài CBS, các nguồn tin am hiểu sự việc cho biết.",
+     "ts": 1789288200
+    },
+    {
+     "t": "Tàu chở 243 người mất liên lạc, Indonesia đẩy mạnh chiến dịch tìm kiếm",
+     "link": "https://cafef.vn/tau-cho-243-nguoi-mat-lien-lac-indonesia-day-manh-chien-dich-tim-kiem-18826091315051487.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789286675619-17892866760461877103129.png",
+     "desc": "Nhân viên cứu hộ Indonesia phát động chiến dịch tìm kiếm sau khi mất liên lạc với tàu chở hơn 240 người, di chuyển từ Đông Java đến tỉnh Nam Kalimantan.",
+     "ts": 1789286700
+    },
+    {
+     "t": "Trúng xổ số 4.000 tỷ đồng, vợ chồng giáo viên làm điều không tưởng",
+     "link": "https://cafef.vn/trung-xo-so-4000-ty-dong-vo-chong-giao-vien-lam-dieu-khong-tuong-188260913133323239.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789281171347-17892811719471155569474.jpg",
+     "desc": "Chỉ sau một đêm, Frances Connolly trở thành triệu phú nhờ trúng 115 triệu bảng Anh (khoảng 4.000 tỷ đồng). Nhưng thay vì tận hưởng cuộc sống xa hoa, bà và chồng đã dành gần một nửa số tiền cho các hoạt động từ thiện.",
+     "ts": 1789282740
+    },
+    {
+     "t": "Quốc gia Đông Nam Á bất ngờ “tiếp quản” dự án 7,3 tỷ USD do Trung Quốc đầu tư: Nợ được gia hạn tới 80 năm",
+     "link": "https://cafef.vn/quoc-gia-dong-nam-a-bat-ngo-tiep-quan-du-an-73-ty-usd-do-trung-quoc-dau-tu-no-duoc-gia-han-toi-80-nam-188260913133140715.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789281050571-1789281052992354809332.jpg",
+     "desc": "Được biết đến rộng rãi với tên gọi",
+     "ts": 1789281000
+    },
+    {
+     "t": "Phát hiện hơn nửa tỷ đồng tiền mặt vương vãi trên đường cao tốc",
+     "link": "https://cafef.vn/phat-hien-hon-nua-ty-dong-tien-mat-vuong-vai-tren-duong-cao-toc-188260913123109001.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789277334682-1789277336294929231088.jpg",
+     "desc": "Số tiền này đã được sung công.",
+     "ts": 1789279200
+    },
+    {
+     "t": "Ukraine chuẩn bị cho đàm phán chấm dứt xung đột vào tháng 10",
+     "link": "https://cafef.vn/ukraine-chuan-bi-cho-dam-phan-cham-dut-xung-dot-vao-thang-10-188260913112740859.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789273614353-1789273614756226317329.jpeg",
+     "desc": "Chánh văn phòng Tổng thống Ukraine Volodymyr Zelensky cho biết Kiev đang chuẩn bị nối lại cuộc đàm phán 3 bên vào tháng 10 nhằm giải quyết cuộc xung đột với Nga.",
+     "ts": 1789277640
+    },
+    {
+     "t": "Game Trung Quốc “bùng nổ” năm 2026: Hàng loạt bom tấn gia nhập cuộc đua 100 triệu USD",
+     "link": "https://cafef.vn/game-trung-quoc-bung-no-nam-2026-hang-loat-bom-tan-gia-nhap-cuoc-dua-100-trieu-usd-188260913112352311.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789273381788-17892733821321661186421.png",
+     "desc": "Vì sao 2026 có thể coi là năm game Trung Quốc “đổi luật chơi”?",
+     "ts": 1789276200
+    }
+   ]
+  },
+  {
+   "key": "kinh-te-so",
+   "label": "Kinh tế số",
+   "items": [
+    {
+     "t": "Giả mạo trường đại học, bệnh viện lừa đảo tuyển dụng",
+     "link": "https://cafef.vn/gia-mao-truong-dai-hoc-benh-vien-lua-dao-tuyen-dung-188260913150253248.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789286442549-17892864429102127817067-0-37-759-1252-crop-17892865634172013636683.png",
+     "desc": "Kẻ gian mạo danh Đại học Quốc gia Hà Nội, Bệnh viện Bạch Mai, gửi thư mời tuyển dụng giả, dụ ứng viên cài ứng dụng, cung cấp dữ liệu cá nhân hoặc chuyển tiền.",
+     "ts": 1789291920
+    },
+    {
+     "t": "Công an yêu cầu tất cả người dân có sổ đỏ đặc biệt lưu ý thông tin sau",
+     "link": "https://cafef.vn/cong-an-yeu-cau-tat-ca-nguoi-dan-co-so-do-dac-biet-luu-y-thong-tin-sau-188260913153632899.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789288521796-17892885226011705143127.jpg",
+     "desc": "Công an tỉnh Ninh Bình vừa phát đi thông báo mới.",
+     "ts": 1789291560
+    },
+    {
+     "t": "Đằng sau những cuốc xe của tài xế Grab lâu năm",
+     "link": "https://cafef.vn/dang-sau-nhung-cuoc-xe-cua-tai-xe-grab-lau-nam-188260913155536825.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789289689519-17892896899201082382506.jpeg",
+     "desc": "Từ người bố đơn thân nuôi hai con đến người mẹ U60 từng bán vé số, mỗi cuốc xe công nghệ là nguồn thu nhập giúp họ trang trải sinh hoạt phí và đóng học phí cho con.",
+     "ts": 1789289700
+    },
+    {
+     "t": "Green SM gửi thông báo đến toàn bộ tài xế trên cả nước",
+     "link": "https://cafef.vn/green-sm-gui-thong-bao-den-toan-bo-tai-xe-tren-ca-nuoc-188260913152329551.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789287737409-17892877380251243679546.jpeg",
+     "desc": "Theo đó, phiên bản Green SM Driver 3.15.1 sẽ được hệ thống tự động triển khai từ ngày 14/9.",
+     "ts": 1789288320
+    },
+    {
+     "t": "Lời khuyên cho tất cả những ai hay gọi video qua Zalo, Messenger",
+     "link": "https://cafef.vn/loi-khuyen-cho-tat-ca-nhung-ai-hay-goi-video-qua-zalo-messenger-188260913152456927.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789287830554-17892878308981774087282.jpeg",
+     "desc": "Gọi video qua Zalo, Messenger là cách liên lạc quen thuộc với nhiều người. Tuy nhiên, người dùng vẫn cần chú ý đến kết nối, quyền truy cập, nhiệt độ thiết bị và nguy cơ bị giả mạo khi thực hiện các cuộc gọi trực tuyến.",
+     "ts": 1789288260
+    },
+    {
+     "t": "Để AI chủ động bảo vệ an ninh mạng",
+     "link": "https://cafef.vn/de-ai-chu-dong-bao-ve-an-ninh-mang-188260913141836029.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789283899976-17892839002191623038090.jpg",
+     "desc": "Trí tuệ nhân tạo (AI) đang chuyển nhanh từ vai trò cung cấp thông tin sang khả năng hành động, mở ra hướng tiếp cận mới trong bảo vệ an ninh mạng. Tuy nhiên, khi công nghệ được trao thêm quyền chủ động, yêu cầu về giám sát, kiểm chứng và tr",
+     "ts": 1789284720
+    },
+    {
+     "t": "Fanuc và Google hợp tác phát triển robot AI hàn tự động",
+     "link": "https://cafef.vn/fanuc-va-google-hop-tac-phat-trien-robot-ai-han-tu-dong-188260913134459489.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789281873257-17892818736242105185878-0-249-762-1469-crop-17892818890501832388108.jpg",
+     "desc": "Fanuc và Google phát triển robot hàn ứng dụng AI, có thể đọc bản vẽ và tự động thực hiện công việc mà không cần nhân viên lập trình.",
+     "ts": 1789282080
+    }
+   ]
+  },
+  {
+   "key": "smart-money",
+   "label": "Smart Money",
+   "items": [
+    {
+     "t": "Điều tra các tài khoản không ghi rõ nội dung chuyển tiền, tần suất giao dịch lớn liên tục cả ngày lẫn đêm,...",
+     "link": "https://cafef.vn/dieu-tra-cac-tai-khoan-khong-ghi-ro-noi-dung-chuyen-tien-tan-suat-giao-dich-lon-lien-tuc-ca-ngay-lan-dem-18826091312255951.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789283796033-1789283797005804834943.png",
+     "desc": "Cơ quan điều tra xác định toàn bộ số tiền giao dịch qua các tài khoản này đều có chung dấu hiệu bất thường của hoạt động rửa tiền. Trong đó, các tài khoản cá nhân có thời điểm phát sinh giao dịch tới gần 1.000 tỷ đồng chỉ trong 3 tháng.",
+     "ts": 1789283760
+    },
+    {
+     "t": "Lãi suất vay mua nhà giảm, có nên mua nhà đất lúc này?",
+     "link": "https://cafef.vn/lai-suat-vay-mua-nha-giam-co-nen-mua-nha-dat-luc-nay-188260913130159174.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789279285786-1789279287168159638566.jpg",
+     "desc": "Gần đây, lãi suất cho vay mua nhà bắt đầu hạ nhiệt, các chuyên gia cho rằng, người mua nhà cần xác định mục tiêu và tài chính của mình để đưa ra quyết định.",
+     "ts": 1789282740
+    },
+    {
+     "t": "Lời khuyên cho người có nhiều sổ tiết kiệm ngân hàng",
+     "link": "https://cafef.vn/loi-khuyen-cho-nguoi-co-nhieu-so-tiet-kiem-ngan-hang-188260913112223659.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789273307510-1789273309872250883640.jpg",
+     "desc": "Chia tiền làm nhiều khoản tiết kiệm, phải nhớ kỹ 5 điều sau.",
+     "ts": 1789275540
+    },
+    {
+     "t": "Từ 1/11, việc chia sẻ thông tin tín dụng của khách hàng phải đáp ứng điều kiện gì?",
+     "link": "https://cafef.vn/tu-1-11-viec-chia-se-thong-tin-tin-dung-cua-khach-hang-phai-dap-ung-dieu-kien-gi-188260913071939365.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789258717746-17892587180421937937370.png",
+     "desc": "Thông tư 46/2026/TT-NHNN bổ sung, sửa đổi một số quy định về cung cấp và khai thác thông tin tín dụng, trong đó làm rõ trường hợp phải có sự đồng ý của khách hàng vay, cách thức thể hiện sự đồng ý và bổ sung quy định đối với ngân hàng thành",
+     "ts": 1789269480
+    },
+    {
+     "t": "Từ truy cập, thanh toán đến nhận hàng: Các lưu ý để hành trình mua sắm trực tuyến an tâm",
+     "link": "https://cafef.vn/tu-truy-cap-thanh-toan-den-nhan-hang-cac-luu-y-de-hanh-trinh-mua-sam-truc-tuyen-an-tam-188260913070650716.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/13/avatar1789257917489-1789257917984403593581.png",
+     "desc": "Việc nhận biết sớm, thận trọng với các dấu hiệu bất thường từ khâu đặt hàng, thanh toán cho đến khi nhận hàng chính là chìa khóa giúp người tiêu dùng mua sắm an toàn trên sàn thương mại điện tử.",
+     "ts": 1789261560
+    },
+    {
+     "t": "1 triệu đồng gửi tiết kiệm Agribank, BIDV, VietinBank, Vietcombank, VPBank, MB,... có được không?",
+     "link": "https://cafef.vn/1-trieu-dong-gui-tiet-kiem-agribank-bidv-vietinbank-vietcombank-vpbank-mb-co-duoc-khong-188260913003718231.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/12/photo-2026-09-13-00-35-59-17892345731081433801793-101-0-899-1276-crop-17892345764681922019292.jpg",
+     "desc": "Gửi tiết kiệm tối thiểu bao nhiêu tiền là băn khoăn của không ít khách hàng khi có nhu cầu mở sổ tiết kiệm lần đầu tại ngân hàng, đặc biệt là những người mới bắt đầu hình thành thói quen tích luỹ, quản lý tài chính.",
+     "ts": 1789261200
+    },
+    {
+     "t": "Người từng chuyển khoản vào 6 tài khoản OCB, PVcomBank, BIDV, VIB, Vietcombank và Sacombank dưới đây, khẩn trương trình báo Công an",
+     "link": "https://cafef.vn/nguoi-tung-chuyen-khoan-vao-6-tai-khoan-ocb-pvcombank-bidv-vib-vietcombank-va-sacombank-duoi-day-khan-truong-trinh-bao-cong-an-188260912174303279.chn",
+     "img": "https://cafefcdn.com/zoom/480_252/203337114487263232/2026/9/12/avatar1789209753471-1789209754128488836459.jpg",
+     "desc": "Công an tỉnh Điện Biên thông báo tìm bị hại từng chuyển tiền vào 6 tài khoản ngân hàng đứng tên Nguyễn Minh Khôi, Trần Thông Minh, Nguyễn Thế Long và Mai Xuân Hùng để phục vụ điều tra vụ án lừa đảo đầu tư vàng số trên không gian mạng.",
+     "ts": 1789255800
+    }
+   ]
+  }
+ ],
+ "market": {
+  "at": 1789084800,
+  "indices": [
+   {
+    "code": "VNINDEX",
+    "label": "VN-INDEX",
+    "kind": "index",
+    "last": 1795.21,
+    "prev": 1829.23,
+    "change": -34.01999999999998,
+    "pct": -1.859798931790971,
+    "vol": 628257109,
+    "high": 1822.44,
+    "low": 1791.85,
+    "at": 1789084800
+   },
+   {
+    "code": "VN30",
+    "label": "VN30",
+    "kind": "index",
+    "last": 1936.69,
+    "prev": 1976.82,
+    "change": -40.12999999999988,
+    "pct": -2.0300280248075135,
+    "vol": 273319720,
+    "high": 1967.84,
+    "low": 1933.82,
+    "at": 1789084800
+   },
+   {
+    "code": "HNX",
+    "label": "HNX-INDEX",
+    "kind": "index",
+    "last": 272.68,
+    "prev": 278.37,
+    "change": -5.689999999999998,
+    "pct": -2.0440421022380275,
+    "vol": 53875500,
+    "high": 279.44,
+    "low": 271.7,
+    "at": 1789084800
+   },
+   {
+    "code": "UPCOM",
+    "label": "UPCOM",
+    "kind": "index",
+    "last": 126.55,
+    "prev": 126.87,
+    "change": -0.3200000000000074,
+    "pct": -0.2522266887365077,
+    "vol": 29544700,
+    "high": 127.07,
+    "low": 126.17,
+    "at": 1789084800
+   }
+  ],
+  "stocks": [
+   {
+    "code": "VCB",
+    "label": "VCB",
+    "kind": "stock",
+    "last": 58.2,
+    "prev": 59,
+    "change": -0.7999999999999972,
+    "pct": -1.3559322033898256,
+    "vol": 4365200,
+    "high": 59,
+    "low": 58.2,
+    "at": 1789084800
+   },
+   {
+    "code": "BID",
+    "label": "BID",
+    "kind": "stock",
+    "last": 35.6,
+    "prev": 36.35,
+    "change": -0.75,
+    "pct": -2.063273727647868,
+    "vol": 4969500,
+    "high": 36.25,
+    "low": 35.6,
+    "at": 1789084800
+   },
+   {
+    "code": "CTG",
+    "label": "CTG",
+    "kind": "stock",
+    "last": 29.95,
+    "prev": 30.55,
+    "change": -0.6000000000000014,
+    "pct": -1.96399345335516,
+    "vol": 11049200,
+    "high": 30.5,
+    "low": 29.9,
+    "at": 1789084800
+   },
+   {
+    "code": "TCB",
+    "label": "TCB",
+    "kind": "stock",
+    "last": 31.6,
+    "prev": 32.4,
+    "change": -0.7999999999999972,
+    "pct": -2.469135802469127,
+    "vol": 15192300,
+    "high": 32.3,
+    "low": 31.6,
+    "at": 1789084800
+   },
+   {
+    "code": "VPB",
+    "label": "VPB",
+    "kind": "stock",
+    "last": 26.95,
+    "prev": 27.5,
+    "change": -0.5500000000000007,
+    "pct": -2.0000000000000027,
+    "vol": 21893700,
+    "high": 27.6,
+    "low": 26.85,
+    "at": 1789084800
+   },
+   {
+    "code": "MBB",
+    "label": "MBB",
+    "kind": "stock",
+    "last": 19.75,
+    "prev": 20.1,
+    "change": -0.3500000000000014,
+    "pct": -1.7412935323383154,
+    "vol": 18351700,
+    "high": 20.05,
+    "low": 19.75,
+    "at": 1789084800
+   },
+   {
+    "code": "ACB",
+    "label": "ACB",
+    "kind": "stock",
+    "last": 22.05,
+    "prev": 22.4,
+    "change": -0.34999999999999787,
+    "pct": -1.5624999999999907,
+    "vol": 8653100,
+    "high": 22.35,
+    "low": 22,
+    "at": 1789084800
+   },
+   {
+    "code": "STB",
+    "label": "STB",
+    "kind": "stock",
+    "last": 77.3,
+    "prev": 78,
+    "change": -0.7000000000000028,
+    "pct": -0.897435897435901,
+    "vol": 8252800,
+    "high": 79,
+    "low": 77.2,
+    "at": 1789084800
+   },
+   {
+    "code": "HPG",
+    "label": "HPG",
+    "kind": "stock",
+    "last": 21.3,
+    "prev": 21.85,
+    "change": -0.5500000000000007,
+    "pct": -2.517162471395884,
+    "vol": 22031700,
+    "high": 21.8,
+    "low": 21.3,
+    "at": 1789084800
+   },
+   {
+    "code": "FPT",
+    "label": "FPT",
+    "kind": "stock",
+    "last": 72.7,
+    "prev": 74.5,
+    "change": -1.7999999999999972,
+    "pct": -2.4161073825503316,
+    "vol": 5655200,
+    "high": 74.4,
+    "low": 72.7,
+    "at": 1789084800
+   },
+   {
+    "code": "GAS",
+    "label": "GAS",
+    "kind": "stock",
+    "last": 82.9,
+    "prev": 84.6,
+    "change": -1.6999999999999886,
+    "pct": -2.0094562647754004,
+    "vol": 1451400,
+    "high": 86.7,
+    "low": 82.9,
+    "at": 1789084800
+   },
+   {
+    "code": "MSN",
+    "label": "MSN",
+    "kind": "stock",
+    "last": 66.5,
+    "prev": 68.7,
+    "change": -2.200000000000003,
+    "pct": -3.2023289665211103,
+    "vol": 4606000,
+    "high": 68.7,
+    "low": 66.5,
+    "at": 1789084800
+   },
+   {
+    "code": "VNM",
+    "label": "VNM",
+    "kind": "stock",
+    "last": 59.9,
+    "prev": 61.6,
+    "change": -1.7000000000000028,
+    "pct": -2.7597402597402643,
+    "vol": 4047300,
+    "high": 61.3,
+    "low": 59.8,
+    "at": 1789084800
+   },
+   {
+    "code": "MWG",
+    "label": "MWG",
+    "kind": "stock",
+    "last": 71.3,
+    "prev": 72.9,
+    "change": -1.6000000000000085,
+    "pct": -2.194787379972577,
+    "vol": 2587600,
+    "high": 72.5,
+    "low": 71.3,
+    "at": 1789084800
+   },
+   {
+    "code": "VIC",
+    "label": "VIC",
+    "kind": "stock",
+    "last": 243.3,
+    "prev": 247.7,
+    "change": -4.399999999999977,
+    "pct": -1.7763423496164623,
+    "vol": 4264000,
+    "high": 248.3,
+    "low": 243.3,
+    "at": 1789084800
+   },
+   {
+    "code": "SSI",
+    "label": "SSI",
+    "kind": "stock",
+    "last": 20.3,
+    "prev": 21,
+    "change": -0.6999999999999993,
+    "pct": -3.33333333333333,
+    "vol": 24010700,
+    "high": 20.95,
+    "low": 20.3,
+    "at": 1789084800
+   }
+  ]
+ }
+}

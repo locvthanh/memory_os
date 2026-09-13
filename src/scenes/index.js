@@ -31,6 +31,13 @@ export const SCENES = [
     config: () => import('./endless-survey.js').then((m) => m.default),
   },
   {
+    id: 'cafef-vn',
+    title: 'Sàn Bảng Điện',
+    blurb:
+      'cafef.vn as the room the money is actually watched in \u2014 a Vietnamese brokerage floor. One wall of it is a twenty-four-metre bảng điện carrying VN-INDEX, VN30, HNX and UPCOM plus sixteen of the largest listings, in the Vietnamese colours (green up, red down, yellow at reference), and banked rows of red chairs face it the way people really do sit there all session. Down the flanks, eight dealing bays \u2014 Chứng khoán, Doanh nghiệp, Tài chính · Ngân hàng, Bất động sản, Vĩ mô · Đầu tư, Tài chính quốc tế, Kinh tế số, Smart Money \u2014 each a desk with seven screens over it holding that section\u2019s stories. Stand and read; press E, or tap a screen, and the article opens on cafef.vn. In the corner by the doors there is a coffee counter, because the paper is named after one. Built in the browser from the live feed when you open it, like Phố Báo Sáng, and it reads the trading clock: full at 09:30 and at the ATC, thinning through nghỉ trưa, and at the weekend it is the board talking to empty chairs. No loci \u2014 nothing here holds still long enough to peg. Free move only.',
+    config: () => import('./cafef-vn.js').then((m) => m.default),
+  },
+  {
     id: 'tuoitre-vn',
     title: 'Ph\u1ed1 B\u00e1o S\u00e1ng',
     blurb:
