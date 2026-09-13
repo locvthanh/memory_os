@@ -74,7 +74,13 @@ src/
   viewer/Walkthrough.js  camera rig (see below)
   viewer/loci.js       buildLoci(gltfScene, config)
   viewer/LocusOverlay.js  the #locus-panel DOM wrapper
+  world/               the living layer: state -> runtime geometry
+world/state.json       the world's state — machine-written, never hand-edited
+world/chronicle.md     what the world did, one line at a time
+tools/tick.mjs         the day tick; run nightly by .github/workflows/tick.yml
 ```
+
+See **The living world** below before touching any of those.
 
 ## How the walkthrough works (`src/viewer/Walkthrough.js`)
 
@@ -209,6 +215,39 @@ lines, blockade arcs, campaign arrows and locus pins. Re-run it after editing
 any of those; never hand-edit the generated file. The old
 `models/civil-war-map.glb` is still on disk and `scripts/build_glb.py` can still
 rebuild it, but nothing in the app loads it any more.
+
+## The living world
+
+Some scenes keep moving between visits. `tools/tick.mjs` advances
+`world/state.json` once a day (GitHub Actions, 22:00 UTC) and `src/world/`
+composites the result onto the loaded glb at runtime. Full design in
+`docs/simulated-world.md`. The rule that matters:
+
+> **Canon is hand-built and only Tony writes it. State is machine-written and is
+> data only.**
+
+- `models/*.glb` and `src/scenes/*.js` are canon. The tick must never write
+  them, and an agent proposing content for them opens a **pull request** rather
+  than pushing to `main`.
+- `world/*` is state. Nobody hand-edits it; the tick owns it. It is JSON —
+  never geometry, never prose the viewer cannot render safely.
+- A scene joins by adding one `world: { id, stairX, gateZ, zTop, zBottom }` key
+  to its config. A scene without it is untouched by any of this.
+- Failure is silent by contract: `attachWorld` returns `null` on a missing
+  file, an unknown `version`, or a parse error, and `Viewer` never awaits it. An
+  evolving world must not be able to break a finished one.
+- `stageOf()` exists twice on purpose — `tools/tick.mjs` and
+  `src/world/stages.js`. The tick decides, the viewer draws; change one and you
+  must change the other.
+- Dropping a ray to find the ground does **not** mean taking the first hit: on a
+  plot the first hit is the roof of the house standing there. See `groundAt` in
+  `src/world/WorldLayer.js`.
+- The day tick is arithmetic only and must stay that way. Anything needing
+  judgement belongs in the weekly season tick, which is a human or an LLM
+  opening a PR.
+
+Run it by hand with `node tools/tick.mjs --days N` (add `--no-git` to advance
+without harvesting commits, `--init` to start the world over).
 
 ## Blender / Blender-MCP workflow
 

@@ -1,0 +1,66 @@
+name: The day tick
+
+# The world's heartbeat. Once a day it advances world/state.json by one day and
+# commits the result; the village is different when he opens it in the morning.
+#
+# 22:00 UTC is 05:00 in Vietnam, so the night's work has happened before he is
+# awake. `workflow_dispatch` runs it by hand; `days` advances several at once,
+# which is how you catch a world up after the runner has been down.
+on:
+  schedule:
+    - cron: '0 22 * * *'
+  workflow_dispatch:
+    inputs:
+      days:
+        description: 'How many days to advance'
+        required: false
+        default: '1'
+
+permissions:
+  contents: write
+  actions: write # only to ask deploy.yml to run afterwards — see below
+
+concurrency:
+  group: world-tick
+  cancel-in-progress: false
+
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # The tick harvests commits since it last ran, so it needs the log,
+          # not just the tip.
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Advance the world
+        run: node tools/tick.mjs --days "${{ github.event.inputs.days || '1' }}"
+
+      - name: Commit the day
+        id: commit
+        run: |
+          git config user.name 'memoryOS tick'
+          git config user.email 'tick@users.noreply.github.com'
+          git add world/
+          if git diff --cached --quiet; then
+            echo "nothing happened today"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            DAY=$(node -e "console.log(require('./world/state.json').day)")
+            git commit -m "World: day $DAY"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # A push made with GITHUB_TOKEN deliberately does not trigger other
+      # workflows, so deploy.yml would never see the new day. Ask for it.
+      - name: Publish the new day
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run deploy.yml --ref main

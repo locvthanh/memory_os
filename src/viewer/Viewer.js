@@ -7,6 +7,7 @@ import { LocusOverlay } from './LocusOverlay.js';
 import { buildLocusLabels } from './LocusLabels.js';
 import { FreeMove } from './FreeMove.js';
 import { MusicPlayer } from './MusicPlayer.js';
+import { attachWorld } from '../world/WorldLayer.js';
 
 const SKY = 0x87b6d9;
 
@@ -214,6 +215,16 @@ export class Viewer {
       }
       this._applyStartView();
 
+      // The living layer, if this scene has one. Deliberately not awaited and
+      // deliberately swallowed: a scene must open at the same speed and look
+      // exactly as it always did whether or not world/state.json is there.
+      // See src/world/WorldLayer.js and docs/simulated-world.md.
+      attachWorld({ scene: this.scene, model, config: this.config, camera: this.camera })
+        .then((world) => {
+          this.world = world;
+        })
+        .catch((err) => console.warn('world: layer failed to attach —', err));
+
       document.getElementById('loading').classList.add('hidden');
       this._animate();
       return this;
@@ -332,6 +343,10 @@ export class Viewer {
       pointer.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
       pointer.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
       raycaster.setFromCamera(pointer, this.camera);
+      // The world layer gets first refusal: tapping an inhabitant or a
+      // dedication tablet must not read as "tapped empty scene" and dismiss
+      // the locus panel.
+      if (this.world && this.world.pick(raycaster)) return;
       const hit = raycaster.intersectObjects(this.locusLabels.children)[0];
 
       if (hit) {
@@ -362,6 +377,7 @@ export class Viewer {
       this.walkthrough.update(dt);
       if (this.controls.enabled) this.controls.update();
     }
+    if (this.world) this.world.update(dt);
     this.renderer.render(this.scene, this.camera);
   }
 }

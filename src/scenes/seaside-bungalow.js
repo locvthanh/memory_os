@@ -112,6 +112,14 @@ export default {
       anchorFrom: [0.2, 0, 3.6],
       anchorDistance: -3.73,
       eyeHeight: 0.25,
+      // The way back. Portal Island's locus 2 -- the Seava Ho Tram gate --
+      // opens this scene, and this is the half that links back, so the pair is
+      // a loop rather than a one-way door (same treatment as Liberty <-> the
+      // White House and the owl <-> the observatory). The sliding door is the
+      // right end to hang it on: it is the only opening in the room, and the
+      // gate on the island is a doorway framing somewhere else too.
+      link: 'portal-island',
+      linkLabel: 'Qua cửa kính, trở về Luân Hồi Đài \u2192',
     },
     {
       id: 8,

@@ -31,6 +31,20 @@ const plot = (id, title, silhouette, side, terrace, position) => ({
 });
 
 export default {
+  // The village is the first scene with a living layer: world/state.json is
+  // advanced once a day by tools/tick.mjs, and src/world/ composites the
+  // result — inhabitants, works in progress, dedication tablets — on top of
+  // this hand-built model at runtime. The glb is never rewritten.
+  // `stairX` is the spine the inhabitants walk, `gateZ`/`zTop`/`zBottom` the
+  // stretch of it the ground is sampled along. See docs/simulated-world.md.
+  world: {
+    id: 'wisdom-village',
+    stairX: 0,
+    gateZ: 45,
+    zBottom: 50,
+    zTop: -32,
+  },
+
   // Opening shot: standing on the approach path outside the timber gate,
   // looking north through it at the Founder's statue and the stair beyond, so
   // the scene introduces itself the way a visitor would arrive. Without this

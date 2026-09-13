@@ -70,6 +70,11 @@ export default {
       description: 'Cánh cổng dẫn đến Bungalow biển ở Seava Hồ Tràm',
       position: [6.6, 3.41, -7.9],
       anchorFrom: PLAZA,
+      // The gate was labelled for this scene long before the scene existed;
+      // this is the wire it was always waiting for. Same mechanism as the
+      // Chinese gate below (locus 11) and the Library rotunda (locus 0).
+      link: 'seaside-bungalow',
+      linkLabel: 'Bước qua cổng: Bungalow biển \u2192',
     },
     {
       id: 3,

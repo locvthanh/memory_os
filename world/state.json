@@ -1,0 +1,167 @@
+{
+  "version": 1,
+  "day": 0,
+  "seed": 20260913,
+  "updated": "2026-09-13T06:30:14.404Z",
+  "lastCommit": null,
+  "chronicle": [],
+  "scenes": {
+    "wisdom-village": {
+      "gateZ": 45,
+      "plots": [
+        {
+          "id": 1,
+          "progress": 0,
+          "active": false,
+          "wear": 0,
+          "inscription": null,
+          "blocks": [],
+          "dedicatedOn": null
+        },
+        {
+          "id": 2,
+          "progress": 0,
+          "active": false,
+          "wear": 0,
+          "inscription": null,
+          "blocks": [],
+          "dedicatedOn": null
+        },
+        {
+          "id": 3,
+          "progress": 0,
+          "active": false,
+          "wear": 0,
+          "inscription": null,
+          "blocks": [],
+          "dedicatedOn": null
+        },
+        {
+          "id": 4,
+          "progress": 0,
+          "active": false,
+          "wear": 0,
+          "inscription": null,
+          "blocks": [],
+          "dedicatedOn": null
+        },
+        {
+          "id": 5,
+          "progress": 0,
+          "active": false,
+          "wear": 0,
+          "inscription": null,
+          "blocks": [],
+          "dedicatedOn": null
+        },
+        {
+          "id": 6,
+          "progress": 0,
+          "active": false,
+          "wear": 0,
+          "inscription": null,
+          "blocks": [],
+          "dedicatedOn": null
+        },
+        {
+          "id": 7,
+          "progress": 0,
+          "active": false,
+          "wear": 0,
+          "inscription": null,
+          "blocks": [],
+          "dedicatedOn": null
+        },
+        {
+          "id": 8,
+          "progress": 0,
+          "active": false,
+          "wear": 0,
+          "inscription": null,
+          "blocks": [],
+          "dedicatedOn": null
+        },
+        {
+          "id": 9,
+          "progress": 0,
+          "active": false,
+          "wear": 0,
+          "inscription": null,
+          "blocks": [],
+          "dedicatedOn": null
+        },
+        {
+          "id": 10,
+          "progress": 0,
+          "active": false,
+          "wear": 0,
+          "inscription": null,
+          "blocks": [],
+          "dedicatedOn": null
+        },
+        {
+          "id": 11,
+          "progress": 0,
+          "active": false,
+          "wear": 0,
+          "inscription": null,
+          "blocks": [],
+          "dedicatedOn": null
+        },
+        {
+          "id": 12,
+          "progress": 0,
+          "active": false,
+          "wear": 0,
+          "inscription": null,
+          "blocks": [],
+          "dedicatedOn": null
+        }
+      ],
+      "yard": {
+        "blocks": []
+      },
+      "site": {
+        "blocks": []
+      },
+      "inhabitants": [
+        {
+          "id": "quy",
+          "name": "Quy",
+          "role": "mason",
+          "z": 34,
+          "targetZ": 34,
+          "carrying": null,
+          "journal": []
+        },
+        {
+          "id": "hien",
+          "name": "Hien",
+          "role": "carter",
+          "z": 45,
+          "targetZ": 45,
+          "carrying": null,
+          "journal": []
+        },
+        {
+          "id": "lam",
+          "name": "Lam",
+          "role": "lamplighter",
+          "z": 22,
+          "targetZ": 22,
+          "carrying": null,
+          "journal": []
+        },
+        {
+          "id": "thu",
+          "name": "Thu",
+          "role": "chronicler",
+          "z": 8,
+          "targetZ": 8,
+          "carrying": null,
+          "journal": []
+        }
+      ]
+    }
+  }
+}
