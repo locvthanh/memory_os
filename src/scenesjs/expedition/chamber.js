@@ -17,7 +17,7 @@ import * as THREE from 'three';
 import { Batch, rng } from '../kit.js';
 import {
   PAL, facePos, roomShell, sconce, bookcase, brassPlate, pageplate, picture, prism,
-  vestibule, threshold,
+  vestibule, threshold, archFrame,
 } from './parts.js';
 import { loadImage, britannicaUrl } from './wiki.js';
 
@@ -99,7 +99,7 @@ export function buildChamber({ article, depth = 1, solid, glow }) {
     const f = facePos(R, N, door.faceIndex);
     const pl = brassPlate(3.1, 0.95, door.title,
       door.description || 'unlabelled — nobody has described it');
-    pl.position.set(...f.at(-0.36, 0, DOOR.height + 0.72));
+    pl.position.set(...f.at(-0.36, 0, DOOR.height + 1.35));
     pl.rotation.y = Math.PI / 2 - f.phi + Math.PI;
     pl.userData = { kind: 'door', door };
     group.add(pl);
@@ -115,6 +115,7 @@ export function buildChamber({ article, depth = 1, solid, glow }) {
     sconce(bat, gbat, f.at(-0.4, -(DOOR.width / 2 + half / 2), 3.1), f.phi + Math.PI);
 
     // the passage behind the door, lit, there from the start
+    archFrame(bat, f, DOOR);
     vestibule(bat, gbat, f, DOOR);
     const pane = threshold(f, DOOR.width, DOOR.height);
     pane.userData = { kind: 'door', door };
@@ -125,9 +126,10 @@ export function buildChamber({ article, depth = 1, solid, glow }) {
   }
 
   // --- the entry arch, and bookcases wherever the article ran out of links
+  archFrame(bat, entry, DOOR);
   vestibule(bat, gbat, entry, DOOR);
   const entryPlate = brassPlate(2.6, 0.8, 'BACK', 'the way you came in');
-  entryPlate.position.set(...entry.at(-0.36, 0, DOOR.height + 0.72));
+  entryPlate.position.set(...entry.at(-0.36, 0, DOOR.height + 1.35));
   entryPlate.rotation.y = Math.PI / 2 - entry.phi + Math.PI;
   group.add(entryPlate);
   disposers.push(entryPlate.disposePlate);
@@ -186,8 +188,12 @@ export function buildChamber({ article, depth = 1, solid, glow }) {
       const img = images[k + 1];
       if (!img) return;
       const f = facePos(R, N, door.faceIndex);
+      // beside the door, at eye height, not above it: the arch frame and the
+      // plate already fill the wall above the opening, and a chamber only has
+      // two metres between lintel and ceiling
+      const half = (f.width - DOOR.width) / 2;
       const small = picture(1.5, 1.15, img);
-      small.position.set(...f.at(-0.38, 0, DOOR.height + 2.05));
+      small.position.set(...f.at(-0.38, DOOR.width / 2 + half / 2, 1.9));
       small.rotation.y = Math.PI / 2 - f.phi + Math.PI;
       small.userData = { kind: 'door', door };
       group.add(small);

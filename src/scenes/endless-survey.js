@@ -37,11 +37,14 @@
 import { build } from '../scenesjs/expedition/index.js';
 
 export default {
-  // Standing on the rotunda floor, looking at the oldest anniversary of the
-  // day — the first arch — rather than at the middle of the room.
+  // Standing on the rotunda floor looking straight down the axis of one arch,
+  // past the case in front of it. Aimed at a FACE and not between two: the
+  // twelve faces sit at 15, 45, 75 … degrees, so the obvious opening shot
+  // (dead along -Z) lands on the pier between two arches and the room reads as
+  // having no way out of it at all.
   startView: {
-    position: [0, 1.75, 9.5],
-    lookAt: [0, 3.2, -6],
+    position: [-2.12, 1.75, 7.92],
+    lookAt: [5.69, 2.7, -21.25],
   },
   // Lamplight in a windowless building: the dark is the point, and the fog is
   // what makes a corridor you have not taken yet look like it goes somewhere.

@@ -367,22 +367,58 @@ export function disposeAllTextures() {
  * turn every arch into somewhere you can see a little way into. The real
  * corridor starts where this ends.
  */
+
+/**
+ * A pale stone surround standing proud of the wall: jambs, lintel, keystone.
+ *
+ * This is what actually makes a doorway read as a doorway. A rectangular hole
+ * cut in flat brown panelling is just a darker patch of panelling from six
+ * metres away, which is precisely how the rotunda looked on a phone — twelve
+ * anniversaries, no visible way out of the room. A frame around the hole is
+ * read as a door by anybody, instantly, whatever is or is not behind it.
+ */
+export function archFrame(bat, f, door) {
+  const W = door.width;
+  const H = door.height;
+  for (const side of [-1, 1]) {
+    bat.box(0.5, H + 0.1, 0.62, PAL.marble,
+      f.at(-0.28, side * (W / 2 + 0.31), (H + 0.1) / 2), [0, f.yaw, 0]);
+    bat.box(0.62, 0.26, 0.8, PAL.marbleDark,
+      f.at(-0.34, side * (W / 2 + 0.31), H + 0.12), [0, f.yaw, 0]);
+  }
+  bat.box(0.5, 0.62, W + 1.24, PAL.marble, f.at(-0.28, 0, H + 0.31), [0, f.yaw, 0]);
+  bat.box(0.62, 0.26, W + 1.6, PAL.marbleDark, f.at(-0.34, 0, H + 0.72), [0, f.yaw, 0]);
+  bat.box(0.66, 0.95, 0.66, PAL.marble, f.at(-0.36, 0, H + 0.34), [0, f.yaw, 0]);
+}
+
 export function vestibule(bat, glow, f, door, depth = 5) {
   const W = door.width;
   const H = door.height;
   bat.box(depth, 0.6, W + 1.2, PAL.floorB, f.at(depth / 2, 0, -0.3), [0, f.yaw, 0]);
   bat.box(depth, 0.08, W - 0.4, PAL.floorA, f.at(depth / 2, 0, 0.02), [0, f.yaw, 0]);
   bat.box(depth, 0.06, W - 1.4, PAL.carpet, f.at(depth / 2, 0, 0.07), [0, f.yaw, 0]);
-  bat.box(depth, 0.6, W + 1.2, PAL.ceiling, f.at(depth / 2, 0, H + 0.3), [0, f.yaw, 0]);
+  // pale ceiling and pale panelling: the passage has to read LIGHTER than the
+  // wall it is cut into, or from across the room the arch is just a dark
+  // rectangle and nobody believes it goes anywhere.
+  bat.box(depth, 0.6, W + 1.2, 0xe3d5b8, f.at(depth / 2, 0, H + 0.3), [0, f.yaw, 0]);
   for (const side of [-1, 1]) {
-    bat.box(depth, H, 0.6, PAL.panel,
+    bat.box(depth, H, 0.6, 0xa8875c,
       f.at(depth / 2, side * (W / 2 + 0.3), H / 2), [0, f.yaw, 0]);
-    bat.box(depth, 1.1, 0.72, PAL.panelDark,
+    bat.box(depth, 1.1, 0.72, PAL.panel,
       f.at(depth / 2, side * (W / 2 + 0.36), 0.55), [0, f.yaw, 0]);
+    // the arm has to swing ACROSS the passage, which is -side * tangent, i.e.
+    // phi - side*90deg. (Getting this wrong buried both shades in the walls
+    // and the passages stayed dark.)
+    sconce(bat, glow, f.at(depth - 1.2, side * (W / 2 - 0.05), H - 2.0),
+      f.phi - side * (Math.PI / 2), 0.8);
   }
-  // the lamp that makes the passage visibly lit from across the room
-  sconce(bat, glow, f.at(depth - 1.1, W / 2 + 0.1, H - 1.9), f.yaw + Math.PI / 2, 0.85);
-  sconce(bat, glow, f.at(depth - 1.1, -(W / 2 + 0.1), H - 1.9), f.yaw - Math.PI / 2, 0.85);
+  // light spilling from the far end, so the arch reads as a way through even
+  // before anything has been built past it
+  glow.box(0.5, 0.09, W - 0.8, 0xffdca8, f.at(depth - 0.3, 0, 0.1), [0, f.yaw, 0]);
+  glow.box(0.12, H - 1.0, 0.1, 0xffdca8, f.at(depth - 0.25, W / 2 - 0.35, H / 2 - 0.4),
+    [0, f.yaw, 0]);
+  glow.box(0.12, H - 1.0, 0.1, 0xffdca8, f.at(depth - 0.25, -(W / 2 - 0.35), H / 2 - 0.4),
+    [0, f.yaw, 0]);
 }
 
 /**

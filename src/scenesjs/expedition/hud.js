@@ -22,6 +22,7 @@ export function createHud({ getReadables, onOpen, subtitle }) {
       <span class="ex-trail"></span>
     </div>
     <div class="ex-reticle" aria-hidden="true"></div>
+    <div class="ex-hint" hidden></div>
     <div class="ex-status" hidden></div>
     <div class="ex-read" hidden>
       <span class="ex-kind"></span>
@@ -35,6 +36,7 @@ export function createHud({ getReadables, onOpen, subtitle }) {
   const chip = wrap.querySelector('.ex-chip');
   const trailEl = wrap.querySelector('.ex-trail');
   const statusEl = wrap.querySelector('.ex-status');
+  const hintEl = wrap.querySelector('.ex-hint');
   const read = wrap.querySelector('.ex-read');
   const kindEl = wrap.querySelector('.ex-kind');
   const titleEl = wrap.querySelector('.ex-title');
@@ -106,6 +108,11 @@ export function createHud({ getReadables, onOpen, subtitle }) {
   window.addEventListener('keydown', onKey);
 
   return {
+    /** The standing instruction, until the first room has been walked into. */
+    hint(text) {
+      hintEl.textContent = text || '';
+      hintEl.hidden = !text;
+    },
     status(text) {
       statusEl.textContent = text || '';
       statusEl.hidden = !text;

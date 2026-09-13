@@ -22,10 +22,11 @@ import { buildChamber, ENTRY_FACE, N as CHAMBER_N, DOOR } from './chamber.js';
 import { createHud } from './hud.js';
 import { loadDay, loadArticle, todayParts } from './wiki.js';
 
-const CORRIDOR = 13;        // metres of tunnel between two rooms
-const DESCENT = 2.4;        // how far each level sits below the one before
+const STUB = 5;             // the lit passage every room builds behind its own doors
+const CORRIDOR = 10;        // metres of tunnel between the two passages
+const DESCENT = 2.0;        // how far each level sits below the one before
 const MAX_ROOMS = 10;
-const OPEN_RANGE = 7.5;     // walk this close to a door and it opens
+const OPEN_RANGE = 13;      // head for a door and it opens well before you reach it
 const HYDRATE_RANGE = 46;   // pictures load for rooms this close
 const LIGHTS = 4;
 
@@ -82,7 +83,7 @@ export async function build({ setStatus = () => {} } = {}) {
    *  standing. Returns null if there is simply no room for it. */
   function findSpot(from, dir, childApothem, childRadius) {
     let dist = 0;
-    const base = from.room.apothem + CORRIDOR + childApothem;
+    const base = from.room.apothem + STUB + CORRIDOR + STUB + childApothem;
     for (let k = 0; k < 7; k += 1) {
       dist = base + k * 7;
       const p = from.centre.clone().addScaledVector(dir, dist);
@@ -170,8 +171,10 @@ export async function build({ setStatus = () => {} } = {}) {
       const child = addRoom(probe, parent, door);
       parent.children += 1;
 
-      const aMouth = parent.centre.clone().addScaledVector(dir, parent.room.apothem);
-      const bMouth = child.centre.clone().addScaledVector(dir, -probe.apothem);
+      // from the end of the parent's passage to the end of the child's, so
+      // the two stubs and this tunnel meet instead of overlapping
+      const aMouth = parent.centre.clone().addScaledVector(dir, parent.room.apothem + STUB);
+      const bMouth = child.centre.clone().addScaledVector(dir, -(probe.apothem + STUB));
       child.corridor = buildCorridor(aMouth, bMouth);
       root.add(child.corridor);
 
@@ -240,9 +243,27 @@ export async function build({ setStatus = () => {} } = {}) {
       : `${label} · the day could not be read — standing exhibition`,
   });
   hud.trail([rotunda.title], 0);
+  hud.hint('Fly through any arch — the room beyond it is fetched and built as you go.');
 
   let here = home;
   let frame = 0;
+  let primed = false;
+  let everDelved = false;
+
+  /** On the first frame, open whichever arch you happen to be looking at.
+   *  Nobody should have to guess that walking into a doorway is the verb. */
+  function primeFirstDoor(camera) {
+    const fwd = new THREE.Vector3();
+    camera.getWorldDirection(fwd).setY(0).normalize();
+    let best = null;
+    let bestDot = 0.2;
+    for (const door of rotunda.doors) {
+      const to = worldAnchorOf(home, door).sub(camPos).setY(0).normalize();
+      const dot = to.dot(fwd);
+      if (dot > bestDot) { bestDot = dot; best = door; }
+    }
+    if (best) openDoor(best);
+  }
 
   return {
     root,
@@ -251,6 +272,7 @@ export async function build({ setStatus = () => {} } = {}) {
     update(dt, camera) {
       camPos.copy(camera.position);
       frame += 1;
+      if (!primed) { primed = true; primeFirstDoor(camera); }
 
       // which room are we in?
       let nearest = null;
@@ -264,6 +286,10 @@ export async function build({ setStatus = () => {} } = {}) {
         const names = [];
         for (let e = here; e; e = e.parent) names.unshift(e.room.title);
         hud.trail(names.slice(-4), here.room.depth);
+        if (here.room.depth > 0 && !everDelved) {
+          everDelved = true;
+          hud.hint('');
+        }
       }
 
       // doors open as you walk up to them

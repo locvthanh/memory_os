@@ -815,9 +815,40 @@ button {
   color: #ffd27a;
 }
 
+.ex-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 118px;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: min(440px, calc(100vw - 32px));
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(22, 16, 10, 0.72);
+  color: #ffd79a;
+  font-size: 12.5px;
+  line-height: 1.4;
+  text-align: center;
+}
+.ex-hint[hidden] {
+  display: none;
+}
+
 @media (min-width: 900px) {
   .ex-read {
     bottom: 30px;
+  }
+  .ex-hint {
+    bottom: 178px; /* clear of .ex-read, which sits at 30px on a wide screen */
+  }
+}
+
+/* On a phone the viewer's own fly hint is centred at the top and wraps to
+   three lines, which lands straight on top of the masthead. Drop the
+   masthead below it rather than fighting for the same corner. */
+@media (max-width: 760px) {
+  .ex-masthead {
+    top: 104px;
   }
 }
 
